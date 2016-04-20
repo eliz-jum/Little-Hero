@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="css/style.css" rel="stylesheet"></link>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet"></link>
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+<ion-pane class="background" style="background-color: #ffe9ab;">
+      <div class="bar bar-header" style="background-color: #ff6b3d; height: 60px;">
+      
+        <div class="row row-center" style="background-color: #ff6b3d;">
+          <div class="col col-50">
+            <label class="item item-input item-select" style="background-color: #ff6b3d; border: none;">
+                    <select style="background-color: #ff6b3d; border: none;">
+                        <option selected>Antek</option>
+                        <option>Mag</option>
+                        <option>Pirat</option>
+                        <option>Czlowiek</option>
+                    </select>
+            </label>
+          </div>
+        
+         <div class="col col-10"><i class = "icon icon ion-star" style="padding-left: 20px;"></i></div>
+         <div class="col col-10"><span>10</span></div>
+         <div class="col col-10"><i class = "icon icon ion-star" style="padding-left: 20px;"></i></div>
+         <div class="col col-10"><span>20</span></div>
+         <div class="col col-10"><button class="button icon ion-home" style="background-color: #ff6b3d;"></button></div>
+      </div>
+    </div>     
+
+<ion-view title="TaskView" id="TaskView">
+    <ion-content class="padding has-header" style="margin-top: 40px;">
+
+    <h2>Wyzwania</h2>
+
+    <ion-list style="background-color: #ffe9ab; padding:0;">
+        <ion-item style="background-color: #ffe9ab; border-left: 15px solid green; padding-left:0; margin-left:0; margin-top: 5px; box-shadow: 1px 1px 1px #888888;">
+          <div class="row" style="padding-left:10px;">                       
+            <h3>Posprzątaj</h3>
+          </div>
+        </ion-item>
+        </ion-item>
+        <ion-item style="background-color: #ffe9ab; border-left: 15px solid yellow; padding-left:0; margin-left:0; margin-top: 5px; box-shadow: 1px 1px 1px #888888;">
+          <div class="row" style="padding-left:10px;">                       
+            <h3>Zadanie domowe</h3>
+          </div>
+        </ion-item>
+    </ion-list>
+
+    </ion-content>
+
+    <ion-footer-bar align-title="left" style="background-color: #ff6b3d; height: 50px;"></ion-footer-bar>
+</ion-view>
+
+</body>
+</html>
