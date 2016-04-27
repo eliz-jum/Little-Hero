@@ -10,7 +10,7 @@ angular.module('littleHero', ['ui.router']).config(function ($stateProvider, $ur
             templateUrl: '../main/index.html',
             controller: 'MainController'
         })
-        .state('recoverPass', {
+        .state('recoverPassword', {
             url: '/recoverPassword',
             templateUrl: '../recoverPass/index.html',
             controller: 'RecoverPassController'
