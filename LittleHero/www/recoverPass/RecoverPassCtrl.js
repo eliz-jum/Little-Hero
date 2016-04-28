@@ -1,4 +1,4 @@
-angular.module(littleHero').controller('RecoverPassController', function($scope, $http){
+angular.module('littleHero').controller('RecoverPassController', function($scope, $http){
     
     
     
