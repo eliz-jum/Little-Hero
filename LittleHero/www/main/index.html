@@ -50,8 +50,7 @@
       </div>
 
     </ion-content>
-    </div>
-    <ion-footer-bar align-title="left" style="background-color: #ff6b3d; height: 50px;">
+    <ion-footer-bar ng-click="openModal()" align-title="left" style="background-color: #ff6b3d; height: 50px;">
       <div class="button-bar">
         <button class="button icon ion-android-contact"
                 style="background-color: #ff6b3d; border-right: 1px solid;"></button>
@@ -65,3 +64,23 @@
     </ion-footer-bar>
   </ion-pane>
 </ion-view>
+
+<script id="equipmentModal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header">
+      <h1 class="title">Wybierz ekwipunek</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div ng-repeat="threeItems in equipment">
+        <div class="row" ng-if="!(($index) % 3)">
+          <div class="col col-33" ng-repeat=" item in [equipment[$index], equipment[$index+1], equipment[$index+2]]">
+            <img ng-if="item" ng-src="{{item.imgSrc}}" style="width:100%; border: black 1px solid;"/>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+    <ion-footer-bar>
+      <button class="button button-full" ng-click="modal.hide()">Close</button>
+    </ion-footer-bar>
+  </ion-modal-view>
+</script>
