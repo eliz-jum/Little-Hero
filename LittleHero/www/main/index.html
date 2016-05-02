@@ -42,11 +42,17 @@
         </div>
       </div>
       <div class="row row-90 row-center">
-        <div class="col col-100">
-          <div class="avatar" align="center" style="margin-top: 20px;">
-            <img src="img/postac.png">
+          <div class="avatar col col-100" align="center" style="position: relative; height: 600px">
+            <!--<img src="img/postac.png">-->
+              <img class="asset body" style="position: absolute; top: 0; left: 0; width: 100%" src="img/baza.svg">
+              <img class="asset eyes" style="position: absolute; top: 0; left: 0; width: 100%" src="img/eyes1.svg">
+              <img class="asset nose" style="position: absolute; top: 0; left: 0; width: 100%" src="img/nose1.svg">
+              <img class="asset mouth" style="position: absolute; top: 0; left: 0; width: 100%" src="img/mouth1.svg">
+              <img class="asset hair" style="position: absolute; top: 0; left: 0; width: 100%" src="img/hair1.svg">
+              <img class="asset pants" style="position: absolute; top: 0; left: 0; width: 100%" src="img/pants1.svg">
+              <img class="asset shoes" style="position: absolute; top: 0; left: 0; width: 100%" src="img/shoes1.svg">
+              <img class="asset tee" style="position: absolute; top: 0; left: 0; width: 100%" src="img/tee1.svg">
           </div>
-        </div>
       </div>
 
     </ion-content>
@@ -74,7 +80,7 @@
       <div ng-repeat="threeItems in equipment">
         <div class="row" ng-if="!(($index) % 3)">
           <div class="col col-33" ng-repeat=" item in [equipment[$index], equipment[$index+1], equipment[$index+2]]">
-            <img ng-if="item" ng-src="{{item.imgSrc}}" style="width:100%; border: black 1px solid;"/>
+            <img ng-if="item" ng-src="{{item.iconSrc}}" ng-click="putOn(item)" style="width:100%; border: black 1px solid;"/>
           </div>
         </div>
       </div>
