@@ -1,6 +1,6 @@
 angular.module('littleHero').controller('MainController', function($scope, $state){
-	$scope.onSwipeRight = function() {
-		$state.go('tasks');
-	}
-    
+  $scope.swipeLeft = function() {
+    console.log("swipe left");
+    $state.go("tasks");
+  };
 });

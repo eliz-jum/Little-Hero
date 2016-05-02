@@ -1,63 +1,67 @@
 <ion-view>
-    <ion-pane class="background" style="background-color: #ffe9ab;">
-      <div class="bar bar-header" style="background-color: #ff6b3d; height: 60px;">
+  <ion-pane class="background" style="background-color: #ffe9ab;">
+    <div class="bar bar-header" style="background-color: #ff6b3d; height: 60px;">
 
-        <div class="row row-center" style="background-color: #ff6b3d;">
-          <div class="col col-50">
-            <label class="item item-input item-select" style="background-color: #ff6b3d; border: none;">
-                    <select style="color: #fff; background-color: #ff6b3d; border: none;">
-                        <option selected>Antek</option>
-                        <option>Mag</option>
-                        <option>Pirat</option>
-                        <option>Czlowiek</option>
-                    </select>
-            </label>
-          </div>
+      <div class="row row-center" style="background-color: #ff6b3d;">
+        <div class="col col-50">
+          <label class="item item-input item-select" style="background-color: #ff6b3d; border: none;">
+            <select style="color: #fff; background-color: #ff6b3d; border: none;">
+              <option selected>Antek</option>
+              <option>Mag</option>
+              <option>Pirat</option>
+              <option>Czlowiek</option>
+            </select>
+          </label>
+        </div>
 
-         <div class="col col-10"><i class = "icon icon ion-flash" style="padding-left: 20px;"></i></div>
-         <div class="col col-10"><span>10</span></div>
-         <div class="col col-10"><i class = "icon icon ion-star" style="padding-left: 20px;"></i></div>
-         <div class="col col-10"><span>20</span></div>
-         <div class="col col-10"><button class="button icon ion-gear-b" style="background-color: #ff6b3d;"></button></div>
+        <div class="col col-10"><i class="icon icon ion-flash" style="padding-left: 20px;"></i></div>
+        <div class="col col-10"><span>10</span></div>
+        <div class="col col-10"><i class="icon icon ion-star" style="padding-left: 20px;"></i></div>
+        <div class="col col-10"><span>20</span></div>
+        <div class="col col-10">
+          <button class="button icon ion-gear-b" style="background-color: #ff6b3d;"></button>
+        </div>
       </div>
     </div>
+    <ion-content on-swipe-left="swipeLeft()" class="padding has-header has-footer"
+                 style="margin-top: 10px; background-color: #FFE9AB">
 
-    <ion-content class="padding has-header has-footer" style="margin-top: 10px; background-color: #FFE9AB">
-
-    <div class="row row-100">
+      <div class="row row-100">
         <div class="col col-100">
-            <div class="row row-50 row-center"><i style="margin-left: auto;" class = "icon icon ion-star"></i>
-                <div class="progressBar">
-                    <div class="progressBarIndicator star"></div>
-                </div>
+          <div class="row row-50 row-center"><i style="margin-left: auto;" class="icon icon ion-star"></i>
+            <div class="progressBar">
+              <div class="progressBarIndicator star"></div>
             </div>
+          </div>
 
-            <div class="row row-50 row-center"><i style="margin-left: auto;" class = "icon icon ion-android-favorite"></i>
-                 <div class="progressBar">
-                    <div class="progressBarIndicator heart"></div>
-                </div>
+          <div class="row row-50 row-center"><i style="margin-left: auto;" class="icon icon ion-android-favorite"></i>
+            <div class="progressBar">
+              <div class="progressBarIndicator heart"></div>
             </div>
+          </div>
         </div>
-    </div>
-    <div class="row row-90 row-center">
-            <div class="col col-100">
-                <div class="avatar" align="center" style="margin-top: 20px;">
-                    <img src="img/postac.png">
-                </div>
-            </div>
-    </div>
+      </div>
+      <div class="row row-90 row-center">
+        <div class="col col-100">
+          <div class="avatar" align="center" style="margin-top: 20px;">
+            <img src="img/postac.png">
+          </div>
+        </div>
+      </div>
 
     </ion-content>
-
+    </div>
     <ion-footer-bar align-title="left" style="background-color: #ff6b3d; height: 50px;">
-        <div class="button-bar">
-            <button class="button icon ion-android-contact" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-            <button class="button icon ion-android-happy" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-            <button class="button icon ion-tshirt" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-            <button class="button icon ion-planet" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-            <button class="button icon ion-fork" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-            <button class="button icon ion-ios-paw" style="background-color: #ff6b3d;"></button>
-        </div>
+      <div class="button-bar">
+        <button class="button icon ion-android-contact"
+                style="background-color: #ff6b3d; border-right: 1px solid;"></button>
+        <button class="button icon ion-android-happy"
+                style="background-color: #ff6b3d; border-right: 1px solid;"></button>
+        <button class="button icon ion-tshirt" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
+        <button class="button icon ion-planet" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
+        <button class="button icon ion-fork" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
+        <button class="button icon ion-ios-paw" style="background-color: #ff6b3d;"></button>
+      </div>
     </ion-footer-bar>
-    </ion-pane>
+  </ion-pane>
 </ion-view>
