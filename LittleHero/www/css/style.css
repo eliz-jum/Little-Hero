@@ -94,12 +94,33 @@
     background: #ffe9ab;
 }
 
-.avatar img {
-    width: 55%;
-    height: 55%;
+.avatar  {
+  position: relative;
 }
 
 h2 {
-    text-align: center;  
+    text-align: center;
 }
 
+.asset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%
+}
+
+.equipmentItem {
+  border: red 1px solid;
+}
+
+.equipmentItem img{
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+#customHeader {
+  height: 60px;
+  background-color: #ff6b3d;
+}
