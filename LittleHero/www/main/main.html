@@ -79,7 +79,7 @@
       <h1 class="title">Wybierz ekwipunek</h1>
     </ion-header-bar>
     <ion-content>
-      <div ng-repeat="threeItems in equipment">
+      <div ng-repeat="threeItems in equipment ">
         <div class="row" ng-if="!(($index) % 3)" >
           <div class="col col-33" ng-repeat=" item in [equipment[$index], equipment[$index+1], equipment[$index+2]]">
             <img ng-if="item" ng-src="{{item.iconSrc}}" ng-click="putOn(item)" style="width:100%; border: black 1px solid;"/>

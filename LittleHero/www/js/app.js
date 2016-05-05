@@ -27,22 +27,22 @@ angular.module('littleHero', ['ionic', 'ui.router'])
     $stateProvider
         .state('login', {
             url: '/login',
-            templateUrl: 'login/index.html',
+            templateUrl: 'login/login.html',
             controller: 'LoginController'
         })
         .state('main', {
             url: '/main',
-            templateUrl: 'main/index.html',
+            templateUrl: 'main/main.html',
             controller: 'MainController'
         })
         .state('recoverPassword', {
             url: '/recoverPassword',
-            templateUrl: 'recoverPass/index.html',
+            templateUrl: 'recoverPass/recoverPass.html',
             controller: 'RecoverPassController'
         })
         .state('registration', {
             url: '/registration',
-            templateUrl: 'registration/index.html',
+            templateUrl: 'registration/registration.html',
             controller: 'RegistrationController'
         })
         .state('tasks', {
