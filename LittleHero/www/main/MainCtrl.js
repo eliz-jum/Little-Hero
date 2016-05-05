@@ -57,6 +57,54 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     }
   ];
 
+  $scope.buttons = [
+    {
+      type: 'all',
+      iconSrc: 'img/pants2-icon.svg'
+    },
+    {
+      type: 'all',
+      iconSrc: 'img/pants2-icon.svg'
+    },
+    {
+      type: 'tees',
+      iconSrc: 'img/pants2-icon.svg'
+    },
+    {
+      type: 'pants',
+      iconSrc: 'img/pants2-icon.svg'
+    },
+    {
+      type: 'weapons',
+      iconSrc: 'img/pants2-icon.svg'
+    },
+    {
+      type: 'pets',
+      iconSrc: 'img/pants2-icon.svg'
+    },
+  ]
+
+  $scope.filter = "pants";
+
+  //drukowanie wszystkiego jak leci a potem wstawianie co 3 row
+
+  $scope.filterBy = function(type) {
+    //znalezienie rzeczy w ng repeat
+    //podmiana ng-if na item.type zgodny z parametrem type
+    //podświetlenie karty
+    var element = "";
+
+    if (type == 'all') {
+      //zamien ng-if na pusty
+
+    }
+    else {
+      //zamien ng-if na type
+    }
+
+    //podświetl ikone
+  };
+
   $scope.putOn = function(item) {
 
     console.log(item.type);

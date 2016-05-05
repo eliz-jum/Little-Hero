@@ -65,6 +65,9 @@
         <button class="button icon ion-planet" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
         <button class="button icon ion-fork" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
         <button class="button icon ion-ios-paw" style="background-color: #ff6b3d;"></button>
+        <!--<button class="button" ng-repeat="button in buttons" style="background-color: #ff6b3d; border-right: 1px solid;">-->
+          <!--<img ng-src="{{button.iconSrc}}" ng-click="filterBy(button.type)" style="max-width:100%;">-->
+        <!--</button>-->
       </div>
     </ion-footer-bar>
   </ion-pane>
@@ -77,7 +80,7 @@
     </ion-header-bar>
     <ion-content>
       <div ng-repeat="threeItems in equipment">
-        <div class="row" ng-if="!(($index) % 3)">
+        <div class="row" ng-if="!(($index) % 3)" >
           <div class="col col-33" ng-repeat=" item in [equipment[$index], equipment[$index+1], equipment[$index+2]]">
             <img ng-if="item" ng-src="{{item.iconSrc}}" ng-click="putOn(item)" style="width:100%; border: black 1px solid;"/>
           </div>
