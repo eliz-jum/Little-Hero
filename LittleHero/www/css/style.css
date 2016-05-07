@@ -109,18 +109,17 @@ h2 {
   width: 100%
 }
 
+.equipment {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .equipmentItem {
-  border: red 1px solid;
+  width: 33%;
+  height: auto;
 }
 
-.equipmentItem img{
-  max-height: 100%;
+.equipmentItem img {
   max-width: 100%;
-  display: block;
-  margin: auto;
-}
-
-#customHeader {
-  height: 60px;
-  background-color: #ff6b3d;
+  border: grey 1px solid;
 }
