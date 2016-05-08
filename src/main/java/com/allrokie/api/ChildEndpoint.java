@@ -1,42 +1,61 @@
 package com.allrokie.api;
 
-import com.allrokie.database.MemoryDB;
+import com.allrokie.dao.ChildDao;
 import com.allrokie.model.Child;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
 
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Collection;
+import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by siulkilulki on 23.03.16.
  */
 
 @Path( "/childs" )
-@Api( value = "/childs", description = "Operations about childs using static java array" )
+//@Api( value = "/childs", description = "Operations about childs using static java array" )
 public class ChildEndpoint
 {
-    private MemoryDB memoryDB = new MemoryDB();
+    @Inject
+    ChildDao dao;
+
 
     @GET
     @Path( "/" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get childs collection", notes = "Get childs collection", response = Child.class)
-    public Collection<Child> getChildCollection()
+    //@ApiOperation( value = "Get childs collection", notes = "Get childs collection", response = Child.class )
+    @Transactional
+    public Response getUsers()
     {
-        return memoryDB.getChilds();
+        List<Child> all = dao.findAll();
+
+        all.forEach( i -> {
+            i.getName();
+            i.getSurname();
+            i.getId();
+        } );
+        return Response.ok( all ).build();
     }
 
     @GET
-    @Path( "/{childId}" )
+    @Path( "/create" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get child", notes = "Get child", response = Child.class)
-    public Child getChild(@PathParam( "childId" ) int id)
+    //@ApiOperation( value = "Get child", notes = "Get child", response = Child.class )
+    @Transactional
+    public Response newUser()
     {
-        return memoryDB.getChild( id );
+        Child child = new Child();
+        child.setSurname( "ktos" );
+        child.setName( String.valueOf( new Random().nextInt() ) );
+
+        dao.create( child );
+        return Response.ok().build();
     }
 }
