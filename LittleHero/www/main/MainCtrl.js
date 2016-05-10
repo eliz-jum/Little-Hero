@@ -114,7 +114,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.modal.hide();
   }
 
-  $ionicModal.fromTemplateUrl('equipmentModal.html', {
+  $ionicModal.fromTemplateUrl('main/equipmentModal.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
