@@ -2,8 +2,8 @@ package com.allrokie.api;
 
 import com.allrokie.dao.ChildDao;
 import com.allrokie.model.Child;
-//import io.swagger.annotations.Api;
-//import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -20,8 +20,8 @@ import java.util.Random;
  */
 
 @Path( "/childs" )
-//@Api( value = "/childs", description = "Operations about childs using static java array" )
-public class ChildEndpoint
+@Api( value = "/childs", description = "Operations about childs using static java array" )
+public class ChildsResource
 {
     @Inject
     ChildDao dao;
@@ -30,7 +30,7 @@ public class ChildEndpoint
     @GET
     @Path( "/" )
     @Produces( MediaType.APPLICATION_JSON )
-    //@ApiOperation( value = "Get childs collection", notes = "Get childs collection", response = Child.class )
+    @ApiOperation( value = "Get childs collection", notes = "Get childs collection", response = Child.class )
     @Transactional
     public Response getUsers()
     {
@@ -47,7 +47,7 @@ public class ChildEndpoint
     @GET
     @Path( "/create" )
     @Produces( MediaType.APPLICATION_JSON )
-    //@ApiOperation( value = "Get child", notes = "Get child", response = Child.class )
+    @ApiOperation( value = "Get child", notes = "Get child", response = Child.class )
     @Transactional
     public Response newUser()
     {

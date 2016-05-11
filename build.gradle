@@ -18,8 +18,7 @@ dependencies {
     providedCompile('org.hibernate:hibernate-validator:5.2.4.Final')
     providedCompile 'javax:javaee-api:7.0'
     providedCompile('org.postgresql:postgresql:9.4.1208.jre7')
-
-    /*compile('io.swagger:swagger-jersey2-jaxrs:1.5.8')*/
+    compile('io.swagger:swagger-jaxrs:1.5.8')
 
     testCompile('junit:junit:4.12')
 }
