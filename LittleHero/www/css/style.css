@@ -122,6 +122,7 @@
 
 h2 {
     text-align: center;
+    padding: 3%;
 }
 
 .asset {
@@ -145,14 +146,35 @@ h2 {
   flex-flow: row wrap;
 }
 
-.equipmentItem {
+.equipment-item {
   width: 33%;
   height: auto;
 }
 
-.equipmentItem img {
+.equipment-item img {
   max-width: 100%;
   border: grey 1px solid;
+}
+
+.task-list ion-item {
+  background-color: #ffe9ab;
+  padding-left:0;
+  margin-left:0;
+  margin-top: 5px;
+  box-shadow: 1px 1px 1px #888888;
+  padding-left: 10px;
+}
+
+.hard-task {
+  border-left: 15px solid red;
+}
+
+.medium-task {
+  border-left: 15px solid yellow;
+}
+
+.easy-task {
+  border-left: 15px solid green;
 }
 
 
