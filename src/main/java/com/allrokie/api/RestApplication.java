@@ -6,7 +6,7 @@ import javax.ws.rs.core.Application;
 /**
  * Created by siulkilulki on 07.05.16.
  */
-@ApplicationPath( "/" )
+@ApplicationPath( "/v1" )
 public class RestApplication extends Application
 {
 }

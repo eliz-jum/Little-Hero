@@ -37,8 +37,8 @@ public class ChildEndpoint
         List<Child> all = dao.findAll();
 
         all.forEach( i -> {
+
             i.getName();
-            i.getSurname();
             i.getId();
         } );
         return Response.ok( all ).build();
