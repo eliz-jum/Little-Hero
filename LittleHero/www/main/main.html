@@ -1,11 +1,11 @@
 <ion-view>
-  <ion-pane class="background" style="background-color: #ffe9ab;">
-    <div class="bar bar-header" style="background-color: #ff6b3d; height: 60px;">
+  <ion-pane class="background">
+    <div class="bar bar-header orange">
 
-      <div class="row row-center" style="background-color: #ff6b3d;">
-        <div class="col col-50">
-          <label class="item item-input item-select" style="background-color: #ff6b3d; border: none;">
-            <select style="color: #fff; background-color: #ff6b3d; border: none;">
+      <div class="row row-center orange">
+        <div class="col col-50 avatar-select">
+          <label class="item item-input item-select">
+            <select>
               <option selected>Antek</option>
               <option>Mag</option>
               <option>Pirat</option>
@@ -14,27 +14,28 @@
           </label>
         </div>
 
-        <div class="col col-10"><i class="icon icon ion-flash" style="padding-left: 20px;"></i></div>
+        <div class="col col-10"><i class="icon icon ion-flash"></i></div>
         <div class="col col-10"><span>10</span></div>
-        <div class="col col-10"><i class="icon icon ion-star" style="padding-left: 20px;"></i></div>
+        <div class="col col-10"><i class="icon icon ion-star"></i></div>
         <div class="col col-10"><span>20</span></div>
         <div class="col col-10">
-          <button class="button icon ion-gear-b" style="background-color: #ff6b3d;"></button>
+          <button class="button button-icon icon ion-gear-b"></button>
         </div>
       </div>
     </div>
-    <ion-content on-swipe-left="swipeLeft()" class="padding has-header has-footer"
-                 style="margin-top: 10px; background-color: #FFE9AB">
+    <ion-content on-swipe-left="swipeLeft()" class="background padding has-header has-footer">
 
       <div class="row row-100">
         <div class="col col-100">
-          <div class="row row-50 row-center"><i style="margin-left: auto;" class="icon icon ion-star"></i>
+          <div class="row row-50 row-center">
+            <i class="icon icon ion-star stats"></i>
             <div class="progressBar">
               <div class="progressBarIndicator star"></div>
             </div>
           </div>
 
-          <div class="row row-50 row-center"><i style="margin-left: auto;" class="icon icon ion-android-favorite"></i>
+          <div class="row row-50 row-center">
+            <i class="icon icon ion-android-favorite stats"></i>
             <div class="progressBar">
               <div class="progressBarIndicator heart"></div>
             </div>
@@ -55,19 +56,14 @@
       </div>
 
     </ion-content>
-    <ion-footer-bar ng-click="openModal()" align-title="left" style="background-color: #ff6b3d; height: 50px;">
+    <ion-footer-bar class="orange" ng-click="openModal()" align-title="left">
       <div class="button-bar">
-        <button class="button icon ion-android-contact"
-                style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-        <button class="button icon ion-android-happy"
-                style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-        <button class="button icon ion-tshirt" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-        <button class="button icon ion-planet" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-        <button class="button icon ion-fork" style="background-color: #ff6b3d; border-right: 1px solid;"></button>
-        <button class="button icon ion-ios-paw" style="background-color: #ff6b3d;"></button>
-        <!--<button class="button" ng-repeat="button in buttons" style="background-color: #ff6b3d; border-right: 1px solid;">-->
-          <!--<img ng-src="{{button.iconSrc}}" ng-click="filterBy(button.type)" style="max-width:100%;">-->
-        <!--</button>-->
+        <button class="button button-icon icon ion-android-contact"></button>
+        <button class="button button-icon icon ion-android-happy"></button>
+        <button class="button button-icon icon ion-tshirt"></button>
+        <button class="button button-icon icon ion-planet"></button>
+        <button class="button button-icon icon ion-fork"></button>
+        <button class="button button-icon icon ion-ios-paw"></button>
       </div>
     </ion-footer-bar>
   </ion-pane>
