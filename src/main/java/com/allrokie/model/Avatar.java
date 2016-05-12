@@ -15,14 +15,21 @@ import java.util.List;
 public class Avatar
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private long id;
 
     @Column
     @NotBlank
     private String name;
 
-    //jakieś itemy
+    @OneToMany
+    private List<Item> wornItems;
+
+    @OneToMany
+    private List<Item> boughtItems; //bought items but not worn
+
+    @OneToMany
+    private List<Item> avaliableItems;
 
     @OneToMany
     private List<Task> tasks;
@@ -35,17 +42,29 @@ public class Avatar
     @NotNull
     private Tutor tutor;
 
+    @Column
+    private int level;
+
+    @Column
+    private int money;
+
+    @Column
+    private int health;
+
+    @Column
+    private int experience;
+
     public Avatar()
     {
     }
 
-    @ApiModelProperty(name = "Avatar id", required = true)
+    @ApiModelProperty( name = "Avatar id", required = true )
     public long getId()
     {
         return id;
     }
 
-    @ApiModelProperty(name = "Avatar name", required = true)
+    @ApiModelProperty( name = "Avatar name", required = true )
     public String getName()
     {
         return name;
@@ -56,7 +75,7 @@ public class Avatar
         this.name = name;
     }
 
-    @ApiModelProperty(name = "Avatar tasks")
+    @ApiModelProperty( name = "Avatar tasks" )
     public List<Task> getTasks()
     {
         return tasks;
@@ -67,7 +86,7 @@ public class Avatar
         this.tasks = tasks;
     }
 
-    @ApiModelProperty(name = "Avatar owner", required = true)
+    @ApiModelProperty( name = "Avatar owner", required = true )
     public Child getOwner()
     {
         return owner;
@@ -78,7 +97,7 @@ public class Avatar
         this.owner = owner;
     }
 
-    @ApiModelProperty(name = "Avatar owner", required = true)
+    @ApiModelProperty( name = "Avatar owner", required = true )
     public Tutor getTutor()
     {
         return tutor;
@@ -89,5 +108,80 @@ public class Avatar
         this.tutor = tutor;
     }
 
+    @ApiModelProperty( name = "Avatar items" )
+    public List<Item> getWornItems()
+    {
+        return wornItems;
+    }
 
+    public void setWornItems( List<Item> wornItems )
+    {
+        this.wornItems = wornItems;
+    }
+
+    @ApiModelProperty( name = "Avatar bought items" )
+    public List<Item> getBoughtItems()
+    {
+        return boughtItems;
+    }
+
+    public void setBoughtItems( List<Item> boughtItems )
+    {
+        this.boughtItems = boughtItems;
+    }
+
+    @ApiModelProperty( name = "Avatar avaliable items" )
+    public List<Item> getAvaliableItems()
+    {
+        return avaliableItems;
+    }
+
+    public void setAvaliableItems( List<Item> avaliableItems )
+    {
+        this.avaliableItems = avaliableItems;
+    }
+
+    @ApiModelProperty( name = "Avatar items level", required = true )
+    public int getLevel()
+    {
+        return level;
+    }
+
+    public void setLevel( int level )
+    {
+        this.level = level;
+    }
+
+    @ApiModelProperty( name = "Avatar money" )
+    public int getMoney()
+    {
+        return money;
+    }
+
+    public void setMoney( int money )
+    {
+        this.money = money;
+    }
+
+    @ApiModelProperty(name = "Avatar health")
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public void setHealth( int health )
+    {
+        this.health = health;
+    }
+
+    @ApiModelProperty(name = "Avatar experience")
+    public int getExperience()
+    {
+        return experience;
+    }
+
+    public void setExperience( int experience )
+    {
+        this.experience = experience;
+    }
 }

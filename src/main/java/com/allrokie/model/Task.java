@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 /**
  * Created by siulkilulki on 11.05.16.
@@ -18,7 +17,7 @@ public class Task
     private long id;
 
     @Column
-    private int difficulty;
+    private int difficulty;//zielony żółty czerowny
 
     @Column
     private int experiencePoints;
@@ -32,7 +31,10 @@ public class Task
     private boolean archived;
 
     @Column
-    private long timestamp;
+    private long createdTimestamp;
+
+    @Column
+    private long completedTimestamp;
 
     @Column
     private int money;
@@ -86,6 +88,28 @@ public class Task
         this.completed = completed;
     }
 
+    @ApiModelProperty(name = "Task created timestamp")
+    public long getCreatedTimestamp()
+    {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp( long createdTimestamp )
+    {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    @ApiModelProperty(name = "Task completed timestamp")
+    public long getCompletedTimestamp()
+    {
+        return completedTimestamp;
+    }
+
+    public void setCompletedTimestamp( long addedTimestamp )
+    {
+        this.completedTimestamp = addedTimestamp;
+    }
+
     @ApiModelProperty(name = "Task archived or not")
     public boolean isArchived()
     {
@@ -95,17 +119,6 @@ public class Task
     public void setArchived( boolean archived )
     {
         this.archived = archived;
-    }
-
-    @ApiModelProperty(name = "Task timestamp")
-    public long getTimestamp()
-    {
-        return timestamp;
-    }
-
-    public void setTimestamp( long timestamp )
-    {
-        this.timestamp = timestamp;
     }
 
     @ApiModelProperty(name = "Task money reward")

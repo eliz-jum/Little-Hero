@@ -30,9 +30,6 @@ public class Tutor
     private String name;
 
     @Column
-    private String surname;
-
-    @Column
     @Email
     private String mail;
 
@@ -83,17 +80,6 @@ public class Tutor
     public void setName( String name )
     {
         this.name = name;
-    }
-
-    @ApiModelProperty(name = "Tutor surname")
-    public String getSurname()
-    {
-        return surname;
-    }
-
-    public void setSurname( String surname )
-    {
-        this.surname = surname;
     }
 
     @ApiModelProperty(name = "Tutor mail")

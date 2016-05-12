@@ -38,7 +38,7 @@ public class ChildsResource
 
         all.forEach( i -> {
 
-            i.getName();
+            i.getNickname();
             i.getId();
         } );
         return Response.ok( all ).build();
@@ -53,7 +53,7 @@ public class ChildsResource
     {
         Child child = new Child();
         child.setSurname( "ktos" );
-        child.setName( String.valueOf( new Random().nextInt() ) );
+        child.setNickname( String.valueOf( new Random().nextInt() ) );
 
         dao.create( child );
         return Response.ok().build();

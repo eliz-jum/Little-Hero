@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -29,10 +28,7 @@ public class Child
     String password; //TODO: change to byte array later
 
     @Column
-    private String name;
-
-    @Column
-    private String surname;
+    private String nickname;
 
     @Column
     @Email
@@ -51,26 +47,15 @@ public class Child
         return id;
     }
 
-    @ApiModelProperty( value = "Child name" )
-    public String getName()
+    @ApiModelProperty( value = "Child nickname" )
+    public String getNickname()
     {
-        return name;
+        return nickname;
     }
 
-    public void setName( String name )
+    public void setNickname( String name )
     {
-        this.name = name;
-    }
-
-    @ApiModelProperty( value = "Child surname" )
-    public String getSurname()
-    {
-        return surname;
-    }
-
-    public void setSurname( String surname )
-    {
-        this.surname = surname;
+        this.nickname = name;
     }
 
 
@@ -117,4 +102,6 @@ public class Child
     {
         this.avatars = avatars;
     }
+
+
 }
