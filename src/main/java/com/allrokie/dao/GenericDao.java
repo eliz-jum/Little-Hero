@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by mbocian on 2016-05-04.
  */
+@SuppressWarnings( "CdiManagedBeanInconsistencyInspection" )
 @Stateless
 public abstract class GenericDao<T>
 {
@@ -35,9 +36,14 @@ public abstract class GenericDao<T>
         entityManager.merge( entity );
     }
 
+    public T find( Long id )
+    {
+        return entityManager.find( clazz, id );
+    }
+
     public List<T> findAll()
     {
-        return (List<T>)entityManager.createQuery( "SELECT t FROM " + clazz.getSimpleName() +" t" ).getResultList();
+        return (List<T>) entityManager.createQuery( "SELECT t FROM " + clazz.getSimpleName() + " t" ).getResultList();
     }
 
     public EntityManager getEntityManager()

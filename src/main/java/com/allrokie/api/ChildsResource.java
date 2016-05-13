@@ -7,55 +7,61 @@ import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by siulkilulki on 23.03.16.
  */
 
 @Path( "/childs" )
-@Api( value = "/childs", description = "Operations about childs using static java array" )
+@Api( value = "/childs", description = "Operations about childs" )
 public class ChildsResource
 {
     @Inject
     ChildDao dao;
 
-
     @GET
     @Path( "/" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get childs collection", notes = "Get childs collection", response = Child.class )
+    @ApiOperation( value = "Get childs collection", notes = "Get childs collection" )
     @Transactional
-    public Response getUsers()
+    public Response getChilds()
     {
         List<Child> all = dao.findAll();
 
-        all.forEach( i -> {
-
-            i.getNickname();
-            i.getId();
-        } );
+        all.forEach( i -> i.getAvatars().size() );
         return Response.ok( all ).build();
     }
 
-    @GET
-    @Path( "/create" )
-    @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get child", notes = "Get child", response = Child.class )
+    @POST
+    @Path( "/" )
+    @Consumes( MediaType.APPLICATION_JSON )
+    @ApiOperation( value = "Create child", notes = "none" )
     @Transactional
-    public Response newUser()
+    public Response newChild( Child child, @Context UriInfo uriInfo )
     {
-        Child child = new Child();
-        child.setSurname( "ktos" );
-        child.setNickname( String.valueOf( new Random().nextInt() ) );
-
         dao.create( child );
-        return Response.ok().build();
+        URI createdChildUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( child.getId() ) ).build();
+        return Response.created( createdChildUri ).build();
+    }
+
+    //PUT
+
+    @GET
+    @Path( "/{id}" )
+    @Produces( MediaType.APPLICATION_JSON )
+    @ApiOperation( value = "Get child", notes = "Get child based on /{id}", response = Child.class )
+    @Transactional
+    public Response getChild( @PathParam( "id" ) long id )
+    {
+        Child child = dao.find( id );
+        child.getAvatars().size();
+        return Response.ok( child ).build();
     }
 }

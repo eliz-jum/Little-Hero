@@ -31,8 +31,6 @@ public class RestApplication extends Application
         beanConfig.setScan(true);
     }
 
-
-
     @Override
     public Set<Class<?>> getClasses() {
         classes.add(ChildsResource.class);

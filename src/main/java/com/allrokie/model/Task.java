@@ -4,16 +4,18 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by siulkilulki on 11.05.16.
  */
 @Entity
 @Table
-public class Task
+public class Task implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.AUTO )
+    @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
     @Column
@@ -49,13 +51,13 @@ public class Task
     {
     }
 
-    @ApiModelProperty(name = "Task id", required = true)
+    @ApiModelProperty( name = "Task id" )
     public long getId()
     {
         return id;
     }
 
-    @ApiModelProperty(name = "Task difficulty")
+    @ApiModelProperty( name = "Task difficulty" )
     public int getDifficulty()
     {
         return difficulty;
@@ -66,7 +68,7 @@ public class Task
         this.difficulty = difficulty;
     }
 
-    @ApiModelProperty(name = "Task experience points")
+    @ApiModelProperty( name = "Task experience points" )
     public int getExperiencePoints()
     {
         return experiencePoints;
@@ -77,7 +79,7 @@ public class Task
         this.experiencePoints = experiencePoints;
     }
 
-    @ApiModelProperty(name = "Task completed or not")
+    @ApiModelProperty( name = "Task completed or not" )
     public boolean isCompleted()
     {
         return completed;
@@ -88,7 +90,7 @@ public class Task
         this.completed = completed;
     }
 
-    @ApiModelProperty(name = "Task created timestamp")
+    @ApiModelProperty( name = "Task created timestamp" )
     public long getCreatedTimestamp()
     {
         return createdTimestamp;
@@ -99,7 +101,7 @@ public class Task
         this.createdTimestamp = createdTimestamp;
     }
 
-    @ApiModelProperty(name = "Task completed timestamp")
+    @ApiModelProperty( name = "Task completed timestamp" )
     public long getCompletedTimestamp()
     {
         return completedTimestamp;
@@ -110,7 +112,7 @@ public class Task
         this.completedTimestamp = addedTimestamp;
     }
 
-    @ApiModelProperty(name = "Task archived or not")
+    @ApiModelProperty( name = "Task archived or not" )
     public boolean isArchived()
     {
         return archived;
@@ -121,7 +123,7 @@ public class Task
         this.archived = archived;
     }
 
-    @ApiModelProperty(name = "Task money reward")
+    @ApiModelProperty( name = "Task money reward" )
     public int getMoney()
     {
         return money;
@@ -132,7 +134,7 @@ public class Task
         this.money = money;
     }
 
-    @ApiModelProperty(name = "Task owner")
+    @ApiModelProperty( name = "Task owner" )
     public Tutor getOwner()
     {
         return owner;
@@ -143,7 +145,7 @@ public class Task
         this.owner = owner;
     }
 
-    @ApiModelProperty(name = "Task avatar")
+    @ApiModelProperty( name = "Task avatar" )
     public Avatar getAvatar()
     {
         return avatar;

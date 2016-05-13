@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,11 +13,15 @@ import java.util.List;
  */
 @Entity
 @Table
-public class Child
+/*@NamedEntityGraph( name = "graph.Child.avatars",
+                attributeNodes = @NamedAttributeNode( value = "avatars", subgraph = "avatars"),
+                subgraphs = @NamedSubgraph( name = "items", attributeNodes = @NamedAttributeNode( "" )))*/
+public class Child implements Serializable
 {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
+    @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
     @Column
@@ -41,7 +46,7 @@ public class Child
     {
     }
 
-    @ApiModelProperty( value = "Child id", required = true )
+    @ApiModelProperty( value = "Child id" )
     public long getId()
     {
         return id;
@@ -59,7 +64,7 @@ public class Child
     }
 
 
-    @ApiModelProperty( value = "Child login", required = true )
+    @ApiModelProperty( value = "Child login" )
     public String getLogin()
     {
         return login;
@@ -70,7 +75,7 @@ public class Child
         this.login = login;
     }
 
-    @ApiModelProperty( value = "Child password", required = true )
+    @ApiModelProperty( value = "Child password" )
     public String getPassword()
     {
         return password;
@@ -81,7 +86,7 @@ public class Child
         this.password = password;
     }
 
-    @ApiModelProperty( value = "Child mail", required = true )
+    @ApiModelProperty( value = "Child mail" )
     public String getMail()
     {
         return mail;

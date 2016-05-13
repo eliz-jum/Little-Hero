@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,10 +13,11 @@ import java.util.List;
  */
 @Entity
 @Table
-public class Tutor
+public class Tutor implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.AUTO )
+    @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
     @Column
@@ -43,13 +45,13 @@ public class Tutor
     {
     }
 
-    @ApiModelProperty(name = "Tutor id", required = true)
+    @ApiModelProperty( name = "Tutor id" )
     public long getId()
     {
         return id;
     }
 
-    @ApiModelProperty(name = "Tutor login", required = true)
+    @ApiModelProperty( name = "Tutor login" )
     public String getLogin()
     {
         return login;
@@ -60,7 +62,7 @@ public class Tutor
         this.login = login;
     }
 
-    @ApiModelProperty(name = "Tutor password", required = true)
+    @ApiModelProperty( name = "Tutor password" )
     public String getPassword()
     {
         return password;
@@ -71,7 +73,7 @@ public class Tutor
         this.password = password;
     }
 
-    @ApiModelProperty(name = "Tutor name")
+    @ApiModelProperty( name = "Tutor name" )
     public String getName()
     {
         return name;
@@ -82,7 +84,7 @@ public class Tutor
         this.name = name;
     }
 
-    @ApiModelProperty(name = "Tutor mail")
+    @ApiModelProperty( name = "Tutor mail" )
     public String getMail()
     {
         return mail;
@@ -93,7 +95,7 @@ public class Tutor
         this.mail = mail;
     }
 
-    @ApiModelProperty(name = "Tutor avatars")
+    @ApiModelProperty( name = "Tutor avatars" )
     public List<Avatar> getAvatars()
     {
         return avatars;
@@ -104,7 +106,7 @@ public class Tutor
         this.avatars = avatars;
     }
 
-    @ApiModelProperty(name = "Tutor tasks")
+    @ApiModelProperty( name = "Tutor tasks" )
     public List<Task> getTasks()
     {
         return tasks;

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,10 +13,11 @@ import java.util.List;
  */
 @Entity
 @Table
-public class Avatar
+public class Avatar implements Serializable
 {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
+    @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
     @Column
@@ -26,10 +28,10 @@ public class Avatar
     private List<Item> wornItems;
 
     @OneToMany
-    private List<Item> boughtItems; //bought items but not worn
+    private List<Item> canBePutOnItems; //bought items but not worn
 
     @OneToMany
-    private List<Item> avaliableItems;
+    private List<Item> canBePurchasedItems;
 
     @OneToMany
     private List<Task> tasks;
@@ -58,13 +60,13 @@ public class Avatar
     {
     }
 
-    @ApiModelProperty( name = "Avatar id", required = true )
+    @ApiModelProperty( name = "Avatar id" )
     public long getId()
     {
         return id;
     }
 
-    @ApiModelProperty( name = "Avatar name", required = true )
+    @ApiModelProperty( name = "Avatar name" )
     public String getName()
     {
         return name;
@@ -97,7 +99,7 @@ public class Avatar
         this.owner = owner;
     }
 
-    @ApiModelProperty( name = "Avatar owner", required = true )
+    @ApiModelProperty( name = "Avatar owner" )
     public Tutor getTutor()
     {
         return tutor;
@@ -120,25 +122,25 @@ public class Avatar
     }
 
     @ApiModelProperty( name = "Avatar bought items" )
-    public List<Item> getBoughtItems()
+    public List<Item> getCanBePutOnItems()
     {
-        return boughtItems;
+        return canBePutOnItems;
     }
 
-    public void setBoughtItems( List<Item> boughtItems )
+    public void setCanBePutOnItems( List<Item> boughtItems )
     {
-        this.boughtItems = boughtItems;
+        this.canBePutOnItems = boughtItems;
     }
 
     @ApiModelProperty( name = "Avatar avaliable items" )
-    public List<Item> getAvaliableItems()
+    public List<Item> getCanBePurchasedItems()
     {
-        return avaliableItems;
+        return canBePurchasedItems;
     }
 
-    public void setAvaliableItems( List<Item> avaliableItems )
+    public void setCanBePurchasedItems( List<Item> avaliableItems )
     {
-        this.avaliableItems = avaliableItems;
+        this.canBePurchasedItems = avaliableItems;
     }
 
     @ApiModelProperty( name = "Avatar items level", required = true )
