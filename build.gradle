@@ -13,14 +13,18 @@ repositories {
 
 
 dependencies {
-    providedCompile('org.hibernate:hibernate-core:5.1.0.Final')
-    providedCompile('org.hibernate:hibernate-entitymanager:5.1.0.Final')
-    providedCompile('org.hibernate:hibernate-validator:5.2.4.Final')
+    providedCompile 'org.hibernate:hibernate-core:5.1.0.Final'
+    providedCompile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+    providedCompile 'org.hibernate:hibernate-validator:5.2.4.Final'
     providedCompile 'javax:javaee-api:7.0'
-    providedCompile('org.postgresql:postgresql:9.4.1208.jre7')
-    compile('io.swagger:swagger-jaxrs:1.5.8')
+    providedCompile 'org.postgresql:postgresql:9.4.1208.jre7' //TODO: change to jre8
 
-    testCompile('junit:junit:4.12')
+    // http://mvnrepository.com/artifact/org.wildfly/wildfly-feature-pack
+    providedCompile group: 'org.wildfly', name: 'wildfly-feature-pack', version: '10.0.0.Final', ext: 'pom'
+
+    compile 'io.swagger:swagger-jaxrs:1.5.8'
+
+    testCompile 'junit:junit:4.12'
 }
 
 

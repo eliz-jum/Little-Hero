@@ -13,8 +13,6 @@ import java.util.Set;
 @ApplicationPath( "/v1" )
 public class RestApplication extends Application
 {
-    private Set<Class<?>> classes = new HashSet<>();
-
     public RestApplication()
     {
         initSwagger();
@@ -33,11 +31,28 @@ public class RestApplication extends Application
 
     @Override
     public Set<Class<?>> getClasses() {
+        final Set<Class<?>> classes = new HashSet<>();
+
         classes.add(ChildsResource.class);
+        classes.add(AvatarsResource.class);
+        classes.add(TasksResource.class);
+        classes.add(TutorsResource.class);
 
         classes.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         classes.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
 
         return classes;
+    }
+
+    @Override
+    public Set<Object> getSingletons() {
+        final HashSet<Object> singletons = new HashSet<Object>();
+
+        CorsFilter corsFilter = new CorsFilter();
+        corsFilter.getAllowedOrigins().add("*");
+
+        singletons.add( corsFilter );
+
+        return singletons;
     }
 }

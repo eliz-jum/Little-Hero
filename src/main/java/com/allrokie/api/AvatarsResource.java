@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by siulkilulki on 11.05.16.
  */
-/*@Path( "/childs/{childId}/avatars" )
+@Path( "/childs/{childId}/avatars" )
 @Api( value = "/childs/{childId}/avatars", description = "Operations about childs" )
 public class AvatarsResource
 {
@@ -38,15 +38,8 @@ public class AvatarsResource
     {
 
         Child child = childDao.find( childId );
-        List<Avatar> all = dao.findAll();
-
-        all.forEach( i -> {
-            i.getTasks().size();
-            i.getCanBePurchasedItems().size();
-            i.getCanBePutOnItems().size();
-            i.getWornItems().size();
-        } );
-        return Response.ok( all ).build();
+        List<Avatar> avatars = child.getAvatars();
+        return Response.ok( avatars ).build();
     }
 
     @POST
@@ -56,7 +49,7 @@ public class AvatarsResource
     @Transactional
     public Response newAvatar( Avatar avatar, @Context UriInfo uriInfo )
     {
-        dao.create( avatar );
+        avatarsDao.create( avatar );
         URI createdChildUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( avatar.getId() ) ).build();
         return Response.created( createdChildUri ).build();
     }
@@ -70,11 +63,11 @@ public class AvatarsResource
     @Transactional
     public Response getAvatar( @PathParam( "avatarId" ) long id )
     {
-        Avatar avatar = dao.find( id );
+        Avatar avatar = avatarsDao.find( id );
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
         return Response.ok( avatar ).build();
     }
-}*/
+}

@@ -56,7 +56,7 @@ public class ChildsResource
     @GET
     @Path( "/{id}" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get child", notes = "Get child based on /{id}", response = Child.class )
+    @ApiOperation( value = "Get child", notes = "Get child based on /{id}" )
     @Transactional
     public Response getChild( @PathParam( "id" ) long id )
     {
