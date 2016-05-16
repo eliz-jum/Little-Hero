@@ -4,5 +4,4 @@ angular.module('littleHero').controller('LoginController', function($scope, $htt
     { text: "Opiekun", checked: true},
     { text: "Dziecko"},
   ];
-111
 });
