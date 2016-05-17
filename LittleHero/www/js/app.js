@@ -49,6 +49,11 @@ angular.module('littleHero', ['ionic', 'ui.router'])
             url: '/tasks',
             templateUrl: 'tasks/tasks.html',
             controller: 'TasksController'
+        })
+        .state('settings', {
+            url: '/settings',
+            templateUrl: 'settings/settings.html',
+            controller: 'SettingsController'
         });
     $urlRouterProvider.otherwise('/main');
 });
