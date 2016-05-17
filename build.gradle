@@ -19,8 +19,14 @@ dependencies {
     providedCompile 'javax:javaee-api:7.0'
     providedCompile 'org.postgresql:postgresql:9.4.1208.jre7' //TODO: change to jre8
 
-    // http://mvnrepository.com/artifact/org.wildfly/wildfly-feature-pack
-    providedCompile group: 'org.wildfly', name: 'wildfly-feature-pack', version: '10.0.0.Final', ext: 'pom'
+// http://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs
+    providedCompile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: '3.0.16.Final'
+
+
+
+
+
+
 
     compile 'io.swagger:swagger-jaxrs:1.5.8'
 

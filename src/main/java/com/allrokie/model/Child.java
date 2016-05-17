@@ -46,7 +46,6 @@ public class Child implements Serializable
     {
     }
 
-    @ApiModelProperty( value = "Child id" )
     public long getId()
     {
         return id;

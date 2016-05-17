@@ -60,7 +60,6 @@ public class Avatar implements Serializable
     {
     }
 
-    @ApiModelProperty( name = "Avatar id" )
     public long getId()
     {
         return id;

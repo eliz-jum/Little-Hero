@@ -21,8 +21,7 @@ public class Tutor implements Serializable
     private long id;
 
     @Column
-    @NotBlank
-    private String login;
+g    private String login;
 
     @Column
     @NotBlank

@@ -1,11 +1,13 @@
 package com.allrokie.api;
 
 import io.swagger.jaxrs.config.BeanConfig;
+import org.jboss.resteasy.plugins.interceptors.CorsFilter;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
+
 
 /**
  * Created by siulkilulki on 07.05.16.
@@ -22,6 +24,7 @@ public class RestApplication extends Application
     {
         BeanConfig beanConfig = new BeanConfig();
         beanConfig.setVersion( "1.0" );
+        beanConfig.setTitle( "Little Hero REST API" );
         beanConfig.setSchemes(new String[]{"http"});
         beanConfig.setHost("localhost:8080");
         beanConfig.setBasePath("/v1");
@@ -47,9 +50,9 @@ public class RestApplication extends Application
     @Override
     public Set<Object> getSingletons() {
         final HashSet<Object> singletons = new HashSet<Object>();
-
         CorsFilter corsFilter = new CorsFilter();
         corsFilter.getAllowedOrigins().add("*");
+        corsFilter.setAllowedHeaders( "Origin, X-Requested-With, Content-Type, Accept" );
 
         singletons.add( corsFilter );
 

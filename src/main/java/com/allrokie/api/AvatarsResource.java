@@ -36,7 +36,6 @@ public class AvatarsResource
     @Transactional
     public Response getAvatars( @PathParam( "childId" ) long childId )
     {
-
         Child child = childDao.find( childId );
         List<Avatar> avatars = child.getAvatars();
         return Response.ok( avatars ).build();
