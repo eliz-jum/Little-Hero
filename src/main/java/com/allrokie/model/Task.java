@@ -51,13 +51,12 @@ public class Task implements Serializable
     {
     }
 
-    @ApiModelProperty( name = "Task id" )
     public long getId()
     {
         return id;
     }
 
-    @ApiModelProperty( name = "Task difficulty" )
+    @ApiModelProperty( value = "Task difficulty" )
     public int getDifficulty()
     {
         return difficulty;
@@ -68,7 +67,7 @@ public class Task implements Serializable
         this.difficulty = difficulty;
     }
 
-    @ApiModelProperty( name = "Task experience points" )
+    @ApiModelProperty( value = "Task experience points" )
     public int getExperiencePoints()
     {
         return experiencePoints;
@@ -79,7 +78,7 @@ public class Task implements Serializable
         this.experiencePoints = experiencePoints;
     }
 
-    @ApiModelProperty( name = "Task completed or not" )
+    @ApiModelProperty( value = "Task completed or not" )
     public boolean isCompleted()
     {
         return completed;
@@ -90,7 +89,7 @@ public class Task implements Serializable
         this.completed = completed;
     }
 
-    @ApiModelProperty( name = "Task created timestamp" )
+    @ApiModelProperty( value = "Task created timestamp" )
     public long getCreatedTimestamp()
     {
         return createdTimestamp;
@@ -101,7 +100,7 @@ public class Task implements Serializable
         this.createdTimestamp = createdTimestamp;
     }
 
-    @ApiModelProperty( name = "Task completed timestamp" )
+    @ApiModelProperty( value = "Task completed timestamp" )
     public long getCompletedTimestamp()
     {
         return completedTimestamp;
@@ -112,7 +111,7 @@ public class Task implements Serializable
         this.completedTimestamp = addedTimestamp;
     }
 
-    @ApiModelProperty( name = "Task archived or not" )
+    @ApiModelProperty( value = "Task archived or not" )
     public boolean isArchived()
     {
         return archived;
@@ -123,7 +122,7 @@ public class Task implements Serializable
         this.archived = archived;
     }
 
-    @ApiModelProperty( name = "Task money reward" )
+    @ApiModelProperty( value = "Task money reward" )
     public int getMoney()
     {
         return money;
@@ -134,7 +133,7 @@ public class Task implements Serializable
         this.money = money;
     }
 
-    @ApiModelProperty( name = "Task owner" )
+    @ApiModelProperty( value = "Task owner" )
     public Tutor getOwner()
     {
         return owner;
@@ -145,7 +144,7 @@ public class Task implements Serializable
         this.owner = owner;
     }
 
-    @ApiModelProperty( name = "Task avatar" )
+    @ApiModelProperty( value = "Task avatar" )
     public Avatar getAvatar()
     {
         return avatar;

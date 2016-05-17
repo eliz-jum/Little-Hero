@@ -21,7 +21,7 @@ public class Tutor implements Serializable
     private long id;
 
     @Column
-g    private String login;
+    private String login;
 
     @Column
     @NotBlank
@@ -44,13 +44,12 @@ g    private String login;
     {
     }
 
-    @ApiModelProperty( name = "Tutor id" )
     public long getId()
     {
         return id;
     }
 
-    @ApiModelProperty( name = "Tutor login" )
+    @ApiModelProperty( value = "Tutor login" )
     public String getLogin()
     {
         return login;
@@ -61,7 +60,7 @@ g    private String login;
         this.login = login;
     }
 
-    @ApiModelProperty( name = "Tutor password" )
+    @ApiModelProperty( value = "Tutor password" )
     public String getPassword()
     {
         return password;
@@ -72,7 +71,7 @@ g    private String login;
         this.password = password;
     }
 
-    @ApiModelProperty( name = "Tutor name" )
+    @ApiModelProperty( value = "Tutor name" )
     public String getName()
     {
         return name;
@@ -83,7 +82,7 @@ g    private String login;
         this.name = name;
     }
 
-    @ApiModelProperty( name = "Tutor mail" )
+    @ApiModelProperty( value = "Tutor mail" )
     public String getMail()
     {
         return mail;
@@ -94,7 +93,7 @@ g    private String login;
         this.mail = mail;
     }
 
-    @ApiModelProperty( name = "Tutor avatars" )
+    @ApiModelProperty( value = "Tutor avatars" )
     public List<Avatar> getAvatars()
     {
         return avatars;
@@ -105,7 +104,7 @@ g    private String login;
         this.avatars = avatars;
     }
 
-    @ApiModelProperty( name = "Tutor tasks" )
+    @ApiModelProperty( value = "Tutor tasks" )
     public List<Task> getTasks()
     {
         return tasks;

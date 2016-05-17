@@ -24,23 +24,23 @@ public class Avatar implements Serializable
     @NotBlank
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Item> wornItems;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Item> canBePutOnItems; //bought items but not worn
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Item> canBePurchasedItems;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
     private Child owner;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
     private Tutor tutor;
 
@@ -65,7 +65,7 @@ public class Avatar implements Serializable
         return id;
     }
 
-    @ApiModelProperty( name = "Avatar name" )
+    @ApiModelProperty( value = "Avatar name" )
     public String getName()
     {
         return name;
@@ -76,7 +76,7 @@ public class Avatar implements Serializable
         this.name = name;
     }
 
-    @ApiModelProperty( name = "Avatar tasks" )
+    @ApiModelProperty( value = "Avatar tasks" )
     public List<Task> getTasks()
     {
         return tasks;
@@ -87,7 +87,7 @@ public class Avatar implements Serializable
         this.tasks = tasks;
     }
 
-    @ApiModelProperty( name = "Avatar owner", required = true )
+    @ApiModelProperty( value = "Avatar owner", required = true )
     public Child getOwner()
     {
         return owner;
@@ -98,7 +98,7 @@ public class Avatar implements Serializable
         this.owner = owner;
     }
 
-    @ApiModelProperty( name = "Avatar owner" )
+    @ApiModelProperty( value = "Avatar owner" )
     public Tutor getTutor()
     {
         return tutor;
@@ -109,7 +109,7 @@ public class Avatar implements Serializable
         this.tutor = tutor;
     }
 
-    @ApiModelProperty( name = "Avatar items" )
+    @ApiModelProperty( value = "Avatar items" )
     public List<Item> getWornItems()
     {
         return wornItems;
@@ -120,7 +120,7 @@ public class Avatar implements Serializable
         this.wornItems = wornItems;
     }
 
-    @ApiModelProperty( name = "Avatar bought items" )
+    @ApiModelProperty( value = "Avatar bought items" )
     public List<Item> getCanBePutOnItems()
     {
         return canBePutOnItems;
@@ -131,7 +131,7 @@ public class Avatar implements Serializable
         this.canBePutOnItems = boughtItems;
     }
 
-    @ApiModelProperty( name = "Avatar avaliable items" )
+    @ApiModelProperty( value = "Avatar avaliable items" )
     public List<Item> getCanBePurchasedItems()
     {
         return canBePurchasedItems;
@@ -142,7 +142,7 @@ public class Avatar implements Serializable
         this.canBePurchasedItems = avaliableItems;
     }
 
-    @ApiModelProperty( name = "Avatar items level", required = true )
+    @ApiModelProperty( value = "Avatar items level", required = true )
     public int getLevel()
     {
         return level;
@@ -153,7 +153,7 @@ public class Avatar implements Serializable
         this.level = level;
     }
 
-    @ApiModelProperty( name = "Avatar money" )
+    @ApiModelProperty( value = "Avatar money" )
     public int getMoney()
     {
         return money;
@@ -164,7 +164,7 @@ public class Avatar implements Serializable
         this.money = money;
     }
 
-    @ApiModelProperty(name = "Avatar health")
+    @ApiModelProperty(value = "Avatar health")
     public int getHealth()
     {
         return health;
@@ -175,7 +175,7 @@ public class Avatar implements Serializable
         this.health = health;
     }
 
-    @ApiModelProperty(name = "Avatar experience")
+    @ApiModelProperty(value = "Avatar experience")
     public int getExperience()
     {
         return experience;
