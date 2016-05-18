@@ -1,7 +1,9 @@
-angular.module('littleHero').controller('LoginController', function($scope, $http){
+angular.module('littleHero').controller('LoginController', function($scope, $state, $http){
 
-  $scope.devList = [
-    { text: "Opiekun", checked: true},
-    { text: "Dziecko"},
-  ];
+  $scope.validate=function() {
+    if($scope.login && $scope.password){
+      $state.go("main")
+    }
+    else{$scope.invalid=true}
+  };
 });

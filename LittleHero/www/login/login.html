@@ -1,33 +1,25 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
-<div ng-controller="LoginController" class="text-center" style="padding:50px 0; background-color: #ffe9ab">
+<div ng-controller="LoginController" class="text-center background" style="padding:50px 0">
     <h2>Little Hero</h2>
     <form>
-      <div class="list" style="background-color: #ffe9ab">
-        <label class="item item-input" style="background-color: #ffe9ab">
-          <span class="input-label"><b>Username</b></span>
-          <input type="text">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label"><b>Login</b></span>
+          <input type="text" ng-model="login">
         </label>
-        <label class="item item-input" style="background-color: #ffe9ab">
-          <span class="input-label"><b>Password</b></span>
-          <input type="password">
+        <label class="item item-input">
+          <span class="input-label"><b>Hasło</b></span>
+          <input type="password" ng-model="password">
         </label>
       </div>
-            <!-- switch taki trochę switch -->
-      <div class="list" >
 
-        <ion-checkbox ng-repeat="item in devList"
-                      ng-model="item.checked"
-                      ng-checked="item.checked"
-                      style="background-color: #ffe9ab">
-          {{ item.text }}
-        </ion-checkbox>
-
-        <div class="item" style="background-color: #ffe9ab">
-
-          <button class="button button-block button-positive" >
+          <button class="button button-block button-positive" ng-click="validate()">
             Zaloguj
           </button>
+      <div ng-show="invalid">
+        Brak danych, logowanie nie powiodło się
+      </div>
 
         <div id="forgotPassword"><a ui-sref="recoverPassword">Zapomniałeś hasła?</a></div>
     </form>
