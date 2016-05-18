@@ -79,15 +79,17 @@ public class AvatarsResource
         Tutor tutor = tutorsDao.find( id );
         tutor.getAvatars().size();
         tutor.getTasks().size();
-
         avatar.setTutor( tutor );
 
         Child child = childDao.find( childId );
         child.getAvatars().size();
         avatar.setOwner( child );
 
-        child.getAvatars().add( avatar );
         avatarsDao.create( avatar );
+        child.getAvatars().add( avatar );
+
+        avatar.setOwner( null );
+        avatar.setTutor( null );
         childDao.update( child );
 
 
@@ -110,7 +112,6 @@ public class AvatarsResource
         avatar.getCanBePurchasedItems().size();
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
-
 
         return Response.ok( avatar ).build();
     }
