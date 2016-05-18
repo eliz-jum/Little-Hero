@@ -17,16 +17,8 @@ dependencies {
     providedCompile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
     providedCompile 'org.hibernate:hibernate-validator:5.2.4.Final'
     providedCompile 'javax:javaee-api:7.0'
-    providedCompile 'org.postgresql:postgresql:9.4.1208.jre7' //TODO: change to jre8
-
-// http://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs
+    providedCompile group: 'org.postgresql', name: 'postgresql', version: '9.4.1208'
     providedCompile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: '3.0.16.Final'
-
-
-
-
-
-
 
     compile 'io.swagger:swagger-jaxrs:1.5.8'
 

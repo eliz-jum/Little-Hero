@@ -2,9 +2,13 @@ package com.allrokie.model;
 
 import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,30 +21,36 @@ public class Avatar implements Serializable
 {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column( name = "id", updatable = false, nullable = false )
     private long id;
 
     @Column
     @NotBlank
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
+    @OneToMany
     private List<Item> wornItems;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
+    @OneToMany
     private List<Item> canBePutOnItems; //bought items but not worn
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
+    @OneToMany
     private List<Item> canBePurchasedItems;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
+    @OneToMany
     private List<Task> tasks;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
+    @ManyToOne( fetch = FetchType.LAZY )
     @NotNull
     private Child owner;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
+    @ManyToOne( fetch = FetchType.LAZY )
     @NotNull
     private Tutor tutor;
 
@@ -164,7 +174,7 @@ public class Avatar implements Serializable
         this.money = money;
     }
 
-    @ApiModelProperty(value = "Avatar health")
+    @ApiModelProperty( value = "Avatar health" )
     public int getHealth()
     {
         return health;
@@ -175,7 +185,7 @@ public class Avatar implements Serializable
         this.health = health;
     }
 
-    @ApiModelProperty(value = "Avatar experience")
+    @ApiModelProperty( value = "Avatar experience" )
     public int getExperience()
     {
         return experience;

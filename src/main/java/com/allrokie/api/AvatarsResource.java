@@ -45,7 +45,10 @@ public class AvatarsResource
         child.getAvatars().size();
         List<Avatar> avatars = child.getAvatars();
         avatars.forEach( avatar -> {
-            avatar.getName();
+            avatar.getTasks().size();
+            avatar.getCanBePurchasedItems().size();
+            avatar.getCanBePutOnItems().size();
+            avatar.getWornItems().size();
         } );
 
         return Response.ok( avatars ).build();
@@ -84,10 +87,9 @@ public class AvatarsResource
         avatar.setOwner( child );
 
         child.getAvatars().add( avatar );
+        avatarsDao.create( avatar );
         childDao.update( child );
 
-
-        avatarsDao.create( avatar );
 
         URI createdChildUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( avatar.getId() ) ).build();
         return Response.created( createdChildUri ).build();
@@ -103,10 +105,12 @@ public class AvatarsResource
     public Response getAvatar( @PathParam( "avatarId" ) long id )
     {
         Avatar avatar = avatarsDao.find( id );
+
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
+
 
         return Response.ok( avatar ).build();
     }
