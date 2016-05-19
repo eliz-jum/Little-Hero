@@ -5,12 +5,12 @@
 	 width="1080px" height="1340px" viewBox="0 0 1080 1340" enable-background="new 0 0 1080 1340" xml:space="preserve">
 <g>
 	
-		<circle stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="498.5" cy="299.5" r="3.5"/>
+		<circle stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="498.506" cy="302" r="3.5"/>
 	
-		<circle stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="581.5" cy="299.5" r="3.5"/>
+		<circle stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="581.506" cy="302" r="3.5"/>
 	<path fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-		M483.639,281.758c6.902-8.025,20.803-9.261,29.924-1.421"/>
+		M482.063,276.764c11.888,8.643,27.847,9.215,32.875,8.736"/>
 	<path fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-		M596.563,282.758c-6.901-8.025-20.802-9.261-29.924-1.421"/>
+		M597.938,276.764c-11.887,8.643-27.846,9.215-32.875,8.736"/>
 </g>
 </svg>
