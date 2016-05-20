@@ -64,4 +64,17 @@ public class ChildsResource
         child.getAvatars().size();
         return Response.ok( child ).build();
     }
+
+    @DELETE
+    @Path( "/{id}" )
+    @ApiOperation( value = "Delete child" )
+    @Transactional
+    public Response deleteChild( @PathParam( "id" ) long id )
+    {
+        Child child = dao.find( id );
+        child.getAvatars().size();
+        dao.remove( child );
+
+        return Response.status( Response.Status.NO_CONTENT ).build();
+    }
 }

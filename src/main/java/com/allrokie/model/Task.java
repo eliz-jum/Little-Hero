@@ -42,7 +42,7 @@ public class Task implements Serializable
     private int money;
 
     @ManyToOne
-    private Tutor owner;
+    private Tutor tutor;
 
     @ManyToOne
     private Avatar avatar;
@@ -134,14 +134,14 @@ public class Task implements Serializable
     }
 
     @ApiModelProperty( value = "Task owner" )
-    public Tutor getOwner()
+    public Tutor getTutor()
     {
-        return owner;
+        return tutor;
     }
 
-    public void setOwner( Tutor owner )
+    public void setTutor( Tutor owner )
     {
-        this.owner = owner;
+        this.tutor = owner;
     }
 
     @ApiModelProperty( value = "Task avatar" )

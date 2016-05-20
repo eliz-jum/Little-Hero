@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Item implements Serializable
 {
     @Id
-    @Column(name = "name", nullable = false)
+    @Column( name = "name", updatable = false, nullable = false )
     private String name;
 
     @Column
@@ -25,9 +25,6 @@ public class Item implements Serializable
 
     @Column
     private String type;
-
-    @ManyToOne
-    private Avatar avatar;
 
     public Item()
     {
@@ -81,15 +78,5 @@ public class Item implements Serializable
     public void setType( String type )
     {
         this.type = type;
-    }
-
-    public Avatar getAvatar()
-    {
-        return avatar;
-    }
-
-    public void setAvatar( Avatar avatar )
-    {
-        this.avatar = avatar;
     }
 }

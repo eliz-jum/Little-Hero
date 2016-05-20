@@ -13,15 +13,12 @@ import java.util.List;
  */
 @Entity
 @Table
-/*@NamedEntityGraph( name = "graph.Child.avatars",
-                attributeNodes = @NamedAttributeNode( value = "avatars", subgraph = "avatars"),
-                subgraphs = @NamedSubgraph( name = "items", attributeNodes = @NamedAttributeNode( "" )))*/
 public class Child implements Serializable
 {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column( name = "id", updatable = false, nullable = false )
     private long id;
 
     @Column
@@ -39,7 +36,7 @@ public class Child implements Serializable
     @Email
     private String mail;
 
-    @OneToMany
+    @OneToMany( mappedBy = "child" )
     private List<Avatar> avatars;
 
     public Child()

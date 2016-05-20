@@ -17,7 +17,7 @@ public class Tutor implements Serializable
 {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column( name = "id", updatable = false, nullable = false )
     private long id;
 
     @Column
@@ -34,10 +34,10 @@ public class Tutor implements Serializable
     @Email
     private String mail;
 
-    @OneToMany
+    @OneToMany( mappedBy = "tutor" )
     private List<Avatar> avatars;
 
-    @OneToMany
+    @OneToMany( mappedBy = "tutor" )
     private List<Task> tasks;
 
     public Tutor()

@@ -2,13 +2,10 @@ package com.allrokie.model;
 
 import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
@@ -29,25 +26,25 @@ public class Avatar implements Serializable
     private String name;
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @OneToMany
+    @ManyToMany
     private List<Item> wornItems;
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @OneToMany
+    @ManyToMany
     private List<Item> canBePutOnItems; //bought items but not worn
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @OneToMany
+    @ManyToMany
     private List<Item> canBePurchasedItems;
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @OneToMany
+    @OneToMany( mappedBy = "avatar" )
     private List<Task> tasks;
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
     @ManyToOne( fetch = FetchType.LAZY )
     @NotNull
-    private Child owner;
+    private Child child;
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
     @ManyToOne( fetch = FetchType.LAZY )
@@ -98,14 +95,14 @@ public class Avatar implements Serializable
     }
 
     @ApiModelProperty( value = "Avatar owner", required = true )
-    public Child getOwner()
+    public Child getChild()
     {
-        return owner;
+        return child;
     }
 
-    public void setOwner( Child owner )
+    public void setChild( Child owner )
     {
-        this.owner = owner;
+        this.child = owner;
     }
 
     @ApiModelProperty( value = "Avatar owner" )

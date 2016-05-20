@@ -37,9 +37,10 @@ public class RestApplication extends Application
         final Set<Class<?>> classes = new HashSet<>();
 
         classes.add(ChildsResource.class);
-        classes.add(AvatarsResource.class);
-        classes.add(TasksResource.class);
+        classes.add(ChildAvatarsResource.class);
+        classes.add(TutorAvatarsResource.class);
         classes.add(TutorsResource.class);
+        classes.add(AvatarTasksResource.class);
 
         classes.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         classes.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);

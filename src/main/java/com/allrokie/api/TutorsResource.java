@@ -69,4 +69,17 @@ public class TutorsResource
         return Response.ok( tutor ).build();
     }
 
+    @DELETE
+    @Path( "/{id}" )
+    @ApiOperation( value = "Delete child" )
+    @Transactional
+    public Response deleteChild( @PathParam( "id" ) long id )
+    {
+        Tutor tutor = dao.find( id );
+        tutor.getAvatars().size();
+        tutor.getTasks().size();
+        dao.remove( tutor );
+
+        return Response.status( Response.Status.NO_CONTENT ).build();
+    }
 }

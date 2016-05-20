@@ -4,12 +4,11 @@ import com.allrokie.dao.AvatarsDao;
 import com.allrokie.dao.ChildDao;
 import com.allrokie.dao.TutorsDao;
 import com.allrokie.model.*;
-import com.fasterxml.jackson.databind.JsonNode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -25,7 +24,7 @@ import java.util.Map;
  */
 @Path( "/childs/{childId}/avatars" )
 @Api( value = "/childs/id/avatars", description = "Operations about avatars" )
-public class AvatarsResource
+public class ChildAvatarsResource
 {
     @Inject
     AvatarsDao avatarsDao;
@@ -41,9 +40,19 @@ public class AvatarsResource
     @Transactional
     public Response getAvatars( @PathParam( "childId" ) long childId )
     {
-        Child child = childDao.find( childId );
+        /*Child child = childDao.find( childId );
         child.getAvatars().size();
         List<Avatar> avatars = child.getAvatars();
+        avatars.forEach( avatar -> {
+            avatar.getTasks().size();
+            avatar.getCanBePurchasedItems().size();
+            avatar.getCanBePutOnItems().size();
+            avatar.getWornItems().size();
+        } );*/ //TODO: Why this doesn't work, even though the relation is bidrectional!
+
+        Query q = avatarsDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.child.id = :id" );
+        q.setParameter( "id", childId );
+        List<Avatar> avatars = (List<Avatar>) q.getResultList();
         avatars.forEach( avatar -> {
             avatar.getTasks().size();
             avatar.getCanBePurchasedItems().size();
@@ -74,8 +83,7 @@ public class AvatarsResource
         avatar.setMoney( (int) json.get( "money" ) );
 
         int tutorId = (int) json.get( "tutorId" );
-        long id = 2;
-        id = (long) tutorId;
+        long id = (long) tutorId;
         Tutor tutor = tutorsDao.find( id );
         tutor.getAvatars().size();
         tutor.getTasks().size();
@@ -83,15 +91,9 @@ public class AvatarsResource
 
         Child child = childDao.find( childId );
         child.getAvatars().size();
-        avatar.setOwner( child );
+        avatar.setChild( child );
 
         avatarsDao.create( avatar );
-        child.getAvatars().add( avatar );
-
-        avatar.setOwner( null );
-        avatar.setTutor( null );
-        childDao.update( child );
-
 
         URI createdChildUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( avatar.getId() ) ).build();
         return Response.created( createdChildUri ).build();
@@ -115,4 +117,23 @@ public class AvatarsResource
 
         return Response.ok( avatar ).build();
     }
+
+    @DELETE
+    @Path( "/{avatarId}" )
+    @ApiOperation( value = "Get avatar" )
+    @Transactional
+    public Response deleteAvatar( @PathParam( "avatarId" ) long id )
+    {
+        Avatar avatar = avatarsDao.find( id );
+
+        avatar.getTasks().size();
+        avatar.getCanBePurchasedItems().size();
+        avatar.getCanBePutOnItems().size();
+        avatar.getWornItems().size();
+
+        avatarsDao.remove( avatar );
+
+        return Response.status( Response.Status.NO_CONTENT ).build();
+    }
+
 }
