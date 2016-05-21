@@ -9828,6 +9828,17 @@ h2 {
   max-width: 100%;
   border: grey 1px solid; }
 
+.button-footer {
+  display: flex;
+  flex-direction: row; }
+
+.button-footer-item {
+  height: 100%; }
+
+.button-footer img {
+  height: 100%;
+  width: auto; }
+
 /************** TASKS *************/
 .task-list ion-item {
   background-color: #ffe9ab;

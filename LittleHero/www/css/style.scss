@@ -93,15 +93,6 @@ h2 {
   width: 100%
 }
 
-.button-bar .button {
-  border-right: 1px solid;
-  text-align: center;
-}
-
-.button-bar .button:last-of-type {
-  border: none;
-}
-
 .equipment {
   display: flex;
   flex-flow: row wrap;
@@ -116,6 +107,17 @@ h2 {
   max-width: 100%;
   border: grey 1px solid;
 }
+
+.button-footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-footer img {
+  height: 100%;
+  width: auto;
+}
+
 
 /************** TASKS *************/
 .task-list ion-item {

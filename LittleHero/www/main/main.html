@@ -44,28 +44,29 @@
           <div class="avatar col col-100" align="center">
               <img class="asset animal" src="img/empty.svg" alt="animal">
               <img class="asset body" src="img/baza.svg" alt="body">
+              <img class="asset hand_left" src="img/empty.svg" alt="animal">
+              <img class="asset hand_right" src="img/empty.svg" alt="animal">
               <img class="asset eyes" src="img/eyes1.svg" alt="eyes">
               <img class="asset nose" src="img/nose1.svg" alt="nose">
               <img class="asset mouth" src="img/mouth1.svg" alt="mouth">
+              <img class="asset hair_back" src="img/empty.svg" alt="animal">
+              <img class="asset hair_front" src="img/empty.svg" alt="animal">
               <img class="asset hair" src="img/hair1.svg" alt="hair">
-              <img class="asset pants" src="img/pants1.svg" alt="bottom">
+              <img class="asset sock" src="img/empty.svg" alt="animal">
+              <img class="asset bottom" src="img/pants1.svg" alt="bottom">
               <img class="asset shoes" src="img/shoes1.svg" alt="shoes">
-              <img class="asset tee" src="img/tee1.svg" alt="tee">
-              <img class="asset hat" src="img/empty.svg" alt="hat">
+              <img class="asset top" src="img/tee1.svg" alt="top">
+              <img class="asset misc" src="img/empty.svg" alt="misc">
+
               <!--<img class="asset misc" src="img/empty.svg" alt="misc">-->
           </div>
       </div>
-
     </ion-content>
-    <ion-footer-bar class="orange" ng-click="openModal()" align-title="left">
-      <div class="button-bar">
-        <button class="button button-icon icon ion-android-contact"></button>
-        <button class="button button-icon icon ion-android-happy"></button>
-        <button class="button button-icon icon ion-tshirt"></button>
-        <button class="button button-icon icon ion-planet"></button>
-        <button class="button button-icon icon ion-fork"></button>
-        <button class="button button-icon icon ion-ios-paw"></button>
-      </div>
+
+
+    <ion-footer-bar class="button-footer">
+        <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="openModal(item)"/>
     </ion-footer-bar>
+
   </ion-pane>
 </ion-view>

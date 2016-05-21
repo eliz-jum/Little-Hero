@@ -4,7 +4,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $state.go("tasks");
   };
 
-  $scope.equipment = [
+  var allEquipment = [
     {
       type: 'animal',
       iconSrc: 'img/animal1_icon.svg',
@@ -31,17 +31,17 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/hair1.svg'
     },
     {
-      type: 'hat',
+      type: 'misc',
       iconSrc: 'img/hat1_icon.svg',
       imgSrc: 'img/hat1.svg'
     },
     {
-      type: 'hat',
+      type: 'misc',
       iconSrc: 'img/hat2_icon.svg',
       imgSrc: 'img/hat2.svg'
     },
     {
-      type: 'hat',
+      type: 'misc',
       iconSrc: 'img/hat3_icon.svg',
       imgSrc: 'img/hat3.svg'
     },
@@ -76,32 +76,32 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/nose3.svg'
     },
     {
-      type: 'tee',
+      type: 'top',
       iconSrc: 'img/tee1_icon.svg',
       imgSrc: 'img/tee1.svg',
     },
     {
-      type: 'tee',
+      type: 'top',
       iconSrc: 'img/tee2_icon.svg',
       imgSrc: 'img/tee2.svg'
     },
     {
-      type: 'tee',
+      type: 'top',
       iconSrc: 'img/tee3_icon.svg',
       imgSrc: 'img/tee3.svg'
     },
     {
-      type: 'tee',
+      type: 'top',
       iconSrc: 'img/tee4_icon.svg',
       imgSrc: 'img/tee4.svg'
     },
     {
-      type: 'pants',
+      type: 'bottom',
       iconSrc: 'img/pants1_icon.svg',
       imgSrc: 'img/pants1.svg'
     },
     {
-      type: 'pants',
+      type: 'bottom',
       iconSrc: 'img/pants2_icon.svg',
       imgSrc: 'img/pants2.svg'
     },
@@ -122,56 +122,71 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     }
   ];
 
+  //$scope.currentEquipment=[];
+
   $scope.buttons = [
     {
       type: 'all',
       iconSrc: 'img/pants2_icon.svg'
     },
     {
-      type: 'all',
+      type: 'face',
       iconSrc: 'img/pants2_icon.svg'
     },
     {
-      type: 'tees',
+      type: 'top',
       iconSrc: 'img/pants2_icon.svg'
     },
     {
-      type: 'pants',
+      type: 'bottom',
       iconSrc: 'img/pants2_icon.svg'
     },
     {
-      type: 'weapons',
+      type: 'shoes',
       iconSrc: 'img/pants2_icon.svg'
     },
     {
-      type: 'pets',
+      type: 'animal',
       iconSrc: 'img/pants2_icon.svg'
     },
   ]
 
-  $scope.filter = "pants";
 
-  //drukowanie wszystkiego jak leci a potem wstawianie co 3 row
-
-  $scope.filterBy = function(type) {
+  $scope.filterBy = function(item) {
     //znalezienie rzeczy w ng repeat
     //podmiana ng-if na item.type zgodny z parametrem type
     //podświetlenie karty
-    var element = "";
-
-    if (type == 'all') {
-      //zamien ng-if na pusty
-
+    $scope.currentEquipment=[];
+    if (item.type == 'all') {
+      $scope.currentEquipment=allEquipment;
+    }
+    else if (item.type == 'face') {
+      allEquipment.forEach(function(listItem){
+        if (listItem.type=='eyes' || listItem.type=='nose' || listItem.type=='mouth') {
+          $scope.currentEquipment.push(listItem);
+        }
+      });
+    }
+    else if (item.type == 'hair') {
+      allEquipment.forEach(function(listItem){
+        if (listItem.type=='hair_back' || listItem.type=='hair_front') {
+          $scope.currentEquipment.push(listItem);
+        }
+      });
     }
     else {
-      //zamien ng-if na type
+
+      allEquipment.forEach(function(listItem){
+        if (listItem.type==item.type) {
+          $scope.currentEquipment.push(listItem);
+        }
+      });
     }
 
     //podświetl ikone
   };
 
   $scope.putOn = function(item) {
-
     console.log(item.type);
     var element = document.getElementsByClassName(item.type)[0];
     console.log(element);
@@ -185,7 +200,9 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.modal = modal;
   });
 
-  $scope.openModal = function() {
+  $scope.openModal = function(item) {
+
+    $scope.filterBy(item);
     $scope.modal.show();
   };
 
