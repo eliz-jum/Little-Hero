@@ -9809,13 +9809,6 @@ h2 {
   left: 0;
   width: 100%; }
 
-.button-bar .button {
-  border-right: 1px solid;
-  text-align: center; }
-
-.button-bar .button:last-of-type {
-  border: none; }
-
 .equipment {
   display: flex;
   flex-flow: row wrap; }
@@ -9831,9 +9824,6 @@ h2 {
 .button-footer {
   display: flex;
   flex-direction: row; }
-
-.button-footer-item {
-  height: 100%; }
 
 .button-footer img {
   height: 100%;

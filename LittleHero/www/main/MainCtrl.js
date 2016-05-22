@@ -11,6 +11,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/animal1.svg'
     },
     {
+      type: 'animal',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
       type: 'eyes',
       iconSrc: 'img/eyes1_icon.svg',
       imgSrc: 'img/eyes1.svg'
@@ -26,24 +31,94 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/eyes3.svg'
     },
     {
-      type: 'hair',
-      iconSrc: 'img/hair1_icon.svg',
-      imgSrc: 'img/hair1.svg'
+      type: 'hair_back',
+      iconSrc: 'img/hair_back1_icon.svg',
+      imgSrc: 'img/hair_back1.svg'
     },
     {
-      type: 'misc',
+      type: 'hair_back',
+      iconSrc: 'img/hair_back2_icon.svg',
+      imgSrc: 'img/hair_back2.svg'
+    },
+    {
+      type: 'hair_back',
+      iconSrc: 'img/hair_back3_icon.svg',
+      imgSrc: 'img/hair_back3.svg'
+    },
+    {
+      type: 'hair_back',
+      iconSrc: 'img/hair_back4_icon.svg',
+      imgSrc: 'img/hair_back4.svg'
+    },
+    {
+      type: 'hair_back',
+      iconSrc: 'img/hair_back5_icon.svg',
+      imgSrc: 'img/hair_back5.svg'
+    },
+    {
+      type: 'hair_back',
+      iconSrc: 'img/hair_back6_icon.svg',
+      imgSrc: 'img/hair_back6.svg'
+    },
+    {
+      type: 'hair_back',
+      iconSrc: 'img/hair_back7_icon.svg',
+      imgSrc: 'img/hair_back7.svg'
+    },
+    {
+      type: 'hair_front',
+      iconSrc: 'img/hair_front1_icon.svg',
+      imgSrc: 'img/hair_front1.svg'
+    },
+    {
+      type: 'hair_front',
+      iconSrc: 'img/hair_front2_icon.svg',
+      imgSrc: 'img/hair_front2.svg'
+    },
+    {
+      type: 'misc_head',
       iconSrc: 'img/hat1_icon.svg',
       imgSrc: 'img/hat1.svg'
     },
     {
-      type: 'misc',
+      type: 'misc_head',
       iconSrc: 'img/hat2_icon.svg',
       imgSrc: 'img/hat2.svg'
     },
     {
-      type: 'misc',
+      type: 'misc_head',
       iconSrc: 'img/hat3_icon.svg',
       imgSrc: 'img/hat3.svg'
+    },
+    {
+      type: 'misc_head',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
+      type: 'misc_ear',
+      iconSrc: 'img/ears1_icon.svg',
+      imgSrc: 'img/ears1.svg'
+    },
+    {
+      type: 'misc_ear',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
+      type: 'misc_neck',
+      iconSrc: 'img/neck1_icon.svg',
+      imgSrc: 'img/neck1.svg'
+    },
+    {
+      type: 'misc_neck',
+      iconSrc: 'img/neck2_icon.svg',
+      imgSrc: 'img/neck2.svg'
+    },
+    {
+      type: 'misc_neck',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
     },
     {
       type: 'mouth',
@@ -78,7 +153,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     {
       type: 'top',
       iconSrc: 'img/tee1_icon.svg',
-      imgSrc: 'img/tee1.svg',
+      imgSrc: 'img/tee1.svg'
     },
     {
       type: 'top',
@@ -96,6 +171,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/tee4.svg'
     },
     {
+      type: 'top',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
       type: 'bottom',
       iconSrc: 'img/pants1_icon.svg',
       imgSrc: 'img/pants1.svg'
@@ -104,6 +184,26 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       type: 'bottom',
       iconSrc: 'img/pants2_icon.svg',
       imgSrc: 'img/pants2.svg'
+    },
+    {
+      type: 'bottom',
+      iconSrc: 'img/pants3_icon.svg',
+      imgSrc: 'img/pants3.svg'
+    },
+    {
+      type: 'bottom',
+      iconSrc: 'img/skirt1_icon.svg',
+      imgSrc: 'img/skirt1.svg'
+    },
+    {
+      type: 'bottom',
+      iconSrc: 'img/skirt2_icon.svg',
+      imgSrc: 'img/skirt2.svg'
+    },
+    {
+      type: 'bottom',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
     },
     {
       type: 'shoes',
@@ -119,6 +219,76 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       type: 'shoes',
       iconSrc: 'img/shoes3_icon.svg',
       imgSrc: 'img/shoes3.svg'
+    },
+    {
+      type: 'shoes',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
+      type: 'prop_left',
+      iconSrc: 'img/prop1_left_icon.svg',
+      imgSrc: 'img/prop1_left.svg'
+    },
+    {
+      type: 'prop_left',
+      iconSrc: 'img/prop2_left_icon.svg',
+      imgSrc: 'img/prop2_left.svg'
+    },
+    {
+      type: 'prop_right',
+      iconSrc: 'img/prop1_right_icon.svg',
+      imgSrc: 'img/prop1_right.svg'
+    },
+    {
+      type: 'prop_right',
+      iconSrc: 'img/prop2_right_icon.svg',
+      imgSrc: 'img/prop2_right.svg'
+    },
+    {
+      type: 'sock',
+      iconSrc: 'img/sock1_icon.svg',
+      imgSrc: 'img/sock1.svg'
+    },
+    {
+      type: 'sock',
+      iconSrc: 'img/sock2_icon.svg',
+      imgSrc: 'img/sock2.svg'
+    },
+    {
+      type: 'sock',
+      iconSrc: 'img/sock3_icon.svg',
+      imgSrc: 'img/sock3.svg'
+    },
+    {
+      type: 'sock',
+      iconSrc: 'img/tights1_icon.svg',
+      imgSrc: 'img/tights1.svg'
+    },
+    {
+      type: 'sock',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
+      type: 'top_bottom',
+      iconSrc: 'img/top_bottom1_icon.svg',
+      imgSrc: 'img/top_bottom1.svg'
+    },
+    {
+      type: 'top_bottom',
+      iconSrc: 'img/top_bottom2_icon.svg',
+      imgSrc: 'img/top_bottom2.svg'
+    },
+    {
+      type: 'top_bottom',
+      iconSrc: 'img/top_bottom3_icon.svg',
+      imgSrc: 'img/top_bottom3.svg'
+    },
+    {
+      type: 'top_bottom',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
     }
   ];
 
@@ -131,23 +301,43 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     },
     {
       type: 'face',
-      iconSrc: 'img/pants2_icon.svg'
+      iconSrc: 'img/mouth3_icon.svg'
+    },
+    {
+      type: 'hair',
+      iconSrc: 'img/hair_back1_icon.svg'
     },
     {
       type: 'top',
-      iconSrc: 'img/pants2_icon.svg'
+      iconSrc: 'img/tee2_icon.svg'
     },
     {
       type: 'bottom',
       iconSrc: 'img/pants2_icon.svg'
     },
     {
+      type: 'top_bottom',
+      iconSrc: 'img/top_bottom3_icon.svg'
+    },
+    {
+      type: 'sock',
+      iconSrc: 'img/sock2_icon.svg'
+    },
+    {
       type: 'shoes',
-      iconSrc: 'img/pants2_icon.svg'
+      iconSrc: 'img/shoes2_icon.svg'
+    },
+    {
+      type: 'prop',
+      iconSrc: 'img/prop1_right_icon.svg'
+    },
+    {
+      type: 'misc',
+      iconSrc: 'img/hat1_icon.svg'
     },
     {
       type: 'animal',
-      iconSrc: 'img/pants2_icon.svg'
+      iconSrc: 'img/animal1_icon.svg'
     },
   ]
 
@@ -170,6 +360,20 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     else if (item.type == 'hair') {
       allEquipment.forEach(function(listItem){
         if (listItem.type=='hair_back' || listItem.type=='hair_front') {
+          $scope.currentEquipment.push(listItem);
+        }
+      });
+    }
+    else if (item.type == 'prop') {
+      allEquipment.forEach(function(listItem){
+        if (listItem.type=='prop_left' || listItem.type=='prop_right') {
+          $scope.currentEquipment.push(listItem);
+        }
+      });
+    }
+    else if (item.type == 'misc') {
+      allEquipment.forEach(function(listItem){
+        if (listItem.type=='misc_head' || listItem.type=='misc_ear' || listItem.type=='misc_neck') {
           $scope.currentEquipment.push(listItem);
         }
       });
