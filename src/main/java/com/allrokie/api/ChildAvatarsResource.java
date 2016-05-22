@@ -52,6 +52,8 @@ public class ChildAvatarsResource
 
         Query q = avatarsDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.child.id = :id" );
         q.setParameter( "id", childId );
+
+        //TODO: Do i need below?
         List<Avatar> avatars = (List<Avatar>) q.getResultList();
         avatars.forEach( avatar -> {
             avatar.getTasks().size();
