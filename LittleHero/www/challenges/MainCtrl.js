@@ -246,11 +246,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/prop2_right.svg'
     },
     {
-      type: 'prop_right',
-      iconSrc: 'img/prop3_right_icon.svg',
-      imgSrc: 'img/prop3_right.svg'
-    },
-    {
       type: 'sock',
       iconSrc: 'img/sock1_icon.svg',
       imgSrc: 'img/sock1.svg'
