@@ -21,19 +21,25 @@
         </div>
       </div>
     </div>
-    <ion-content on-swipe-right="swipeRight()" class="background padding has-header">
 
-      <h2>Wyzwania</h2>
+    <ion-content on-swipe-right="swipeRight()" class="background has-header">
+
+      <div class="title">
+        <h2>Wyzwania</h2>
+      </div>
 
       <ion-list class="task-list">
-        <ion-item class="easy-task">
-          <div class="row">
-            <h3>Posprzątaj</h3>
+        <ion-item>
+          <div class="drag easy-task"></div>
+          <div class="task-name">
+            <span>Posprzątaj pokój</span>
           </div>
         </ion-item>
-        <ion-item class="medium-task">
-          <div class="row">
-            <h3>Zadanie domowe</h3>
+
+        <ion-item>
+          <div class="drag medium-task"></div>
+          <div class="task-name">
+            <span>Zadanie domowe</span>
           </div>
         </ion-item>
       </ion-list>

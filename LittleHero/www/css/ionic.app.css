@@ -5647,14 +5647,14 @@ ion-tabs.tabs-color-active-dark .tab-item {
  * --------------------------------------------------
  */
 .item {
-  border-color: #ddd;
+  border-top-color: grey;
+  border-bottom-color: gray;
   background-color: #fff;
   color: #444;
   position: relative;
   z-index: 2;
   display: block;
-  margin: -1px;
-  padding: 16px;
+  margin-top: 0px;
   border-width: 1px;
   border-style: solid;
   font-size: 16px; }
@@ -9830,21 +9830,44 @@ h2 {
   width: auto; }
 
 /************** TASKS *************/
+.title {
+  padding-top: 20pt;
+  padding-bottom: 5pt;
+}
+
 .task-list ion-item {
+  display: flex;
+  flex-direction: row;
   background-color: #ffe9ab;
-  margin-left: 0;
-  margin-top: 5px;
-  box-shadow: 1px 1px 1px #888888;
-  padding-left: 10px; }
+  height: 50pt;
+  line-height: 50pt;
+}
+
+.drag {
+  width: 35pt;
+  border-radius: 0px 30px 30px 0px;
+}
+
+.task-name {
+  padding: 0px 0px 0px 50px;
+}
+
+.task-name span {
+  font-size: large;
+  font-weight: bold;
+}
 
 .hard-task {
-  border-left: 15px solid red; }
+  background-color: red;
+}
 
 .medium-task {
-  border-left: 15px solid yellow; }
+  background-color: yellow;
+}
 
 .easy-task {
-  border-left: 15px solid green; }
+  background-color: green;
+}
 
 ion-radio {
   backround-color: #ffe9ab; }
