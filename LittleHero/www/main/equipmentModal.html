@@ -3,7 +3,7 @@
     <a class="button button-icon icon ion-android-arrow-back" ng-click="modal.hide()"></a>
     <h1 class="title">Wybierz ekwipunek</h1>
   </ion-header-bar>
-  <ion-content class="has-header has-footer">
+  <ion-content class="has-header has-footer" on-swipe-right="previousType()" on-swipe-left="nextType()">
     <div class="equipment">
 
       <div class="equipment-item" ng-repeat="item in currentEquipment">
@@ -12,14 +12,7 @@
 
     </div>
   </ion-content>
-  <ion-footer-bar>
-    <div class="button-bar orange">
-      <button class="button button-icon icon ion-android-contact"></button>
-      <button class="button button-icon icon ion-android-happy"></button>
-      <button class="button button-icon icon ion-tshirt"></button>
-      <button class="button button-icon icon ion-planet"></button>
-      <button class="button button-icon icon ion-fork"></button>
-      <button class="button button-icon icon ion-ios-paw"></button>
-    </div>
+  <ion-footer-bar class="button-footer">
+    <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="openModal(item)"/>
   </ion-footer-bar>
 </ion-modal-view>

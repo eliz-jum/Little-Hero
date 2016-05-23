@@ -8,6 +8,32 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $state.go("notifications");
   };
 
+  $scope.nextType = function() {
+    var currentIndex = $scope.buttons.indexOf($scope.currentButton);
+
+    if (currentIndex > -1) {
+
+      var next = currentIndex < $scope.buttons.length - 1
+        ? $scope.buttons[currentIndex + 1]
+        : $scope.buttons[0];
+
+      $scope.filterBy(next);
+    }
+  };
+
+  $scope.previousType = function() {
+    var currentIndex = $scope.buttons.indexOf($scope.currentButton);
+
+    if (currentIndex > -1) {
+
+      var previous = currentIndex > 0
+        ? $scope.buttons[currentIndex - 1]
+        : $scope.buttons[$scope.buttons.length - 1];
+
+      $scope.filterBy(previous);
+    }
+  };
+
   var allEquipment = [
     {
       type: 'animal',
@@ -301,8 +327,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     }
   ];
 
-  //$scope.currentEquipment=[];
-
   $scope.buttons = [
     {
       type: 'all',
@@ -347,15 +371,15 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     {
       type: 'animal',
       iconSrc: 'img/animal1_icon.svg'
-    },
+    }
   ]
 
 
   $scope.filterBy = function(item) {
-    //znalezienie rzeczy w ng repeat
-    //podmiana ng-if na item.type zgodny z parametrem type
-    //podświetlenie karty
+
     $scope.currentEquipment=[];
+    $scope.currentButton = item;
+
     if (item.type == 'all') {
       $scope.currentEquipment=allEquipment;
     }
