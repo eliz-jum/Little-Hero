@@ -1,13 +1,42 @@
-angular.module('littleHero').controller('SettingsController', function($scope, $http){
+angular.module('littleHero').controller('SettingsController', function($scope, $ionicHistory, $state){
 
-  $scope.items = [
+  $scope.buttons = [
     {
-      id: 1
+      title: "Dane konta",
+      state: "account"
     },
     {
-      id: 2
+      title: "Awatary",
+      state: "avatars"
+    },
+    {
+      title: "Opiekunowe",
+      state: "parents"
+    },
+    {
+      title: "Powiadomienia",
+      state: "notifications"
+    },
+    {
+      title: "Zaproszenia",
+      state: "invites"
+    },
+    {
+      title: "Wyloguj",
+      state: "logout"
     }
   ];
 
-
+  $scope.myGoBack = function() {
+    $backView = $ionicHistory.backView();
+    if ($backView) {
+      $backView.go();
+    }
+    else {
+      $state.go("main");
+    };
+  };
+  $scope.go = function ( path ) {
+    $location.path( path );
+  };
 });
