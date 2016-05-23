@@ -1,0 +1,35 @@
+<div class="bar bar-header orange">
+
+  <div class="row row-center orange">
+    <div class="col col-50 item item-select">
+      <select>
+        <option selected>Antek</option>
+        <option>Mag</option>
+        <option>Pirat</option>
+        <option>Czlowiek</option>
+      </select>
+    </div>
+
+    <div class="col col-10"><i class="icon icon ion-flash"></i></div>
+    <div class="col col-10"><span>10</span></div>
+    <div class="col col-10"><i class="icon icon ion-social-bitcoin"></i></div>
+    <div class="col col-10"><span>20</span></div>
+    <div class="col col-10">
+      <button class="button button-icon icon ion-gear-b" ui-sref="settings"></button>
+    </div>
+  </div>
+</div>
+
+<ion-content on-swipe-left="swipeLeft()" class="background has-header">
+
+  <div class="title">
+    <h2>Powiadomienia</h2>
+  </div>
+
+  <ion-list>
+    <ion-item class="background" ng-repeat="notification in notifications" >
+      {{notification}}
+    </ion-item>
+  </ion-list>
+</ion-content>
+

@@ -3,6 +3,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     console.log("swipe left");
     $state.go("tasks");
   };
+  $scope.swipeRight = function() {
+    console.log("swipe right");
+    $state.go("notifications");
+  };
 
   var allEquipment = [
     {

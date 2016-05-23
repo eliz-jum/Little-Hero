@@ -54,6 +54,12 @@ angular.module('littleHero', ['ionic', 'ui.router'])
             url: '/settings',
             templateUrl: 'settings/settings.html',
             controller: 'SettingsController'
+        })
+        .state('notifications',{
+          url: '/notifications',
+          templateUrl: 'notifications/notifications.html',
+          controller: 'NotificationsController'
         });
+
     $urlRouterProvider.otherwise('/main');
 });
