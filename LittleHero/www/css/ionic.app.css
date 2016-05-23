@@ -9829,6 +9829,9 @@ h2 {
   height: 100%;
   width: auto; }
 
+.selected {
+  border: grey 1px solid; }
+
 /************** TASKS *************/
 .task-list ion-item {
   display: flex;

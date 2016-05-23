@@ -118,6 +118,9 @@ h2 {
   width: auto;
 }
 
+.selected {
+  border: grey 1px solid;
+}
 
 /************** TASKS *************/
 .task-list ion-item {
@@ -146,7 +149,7 @@ h2 {
 }
 
 ion-radio {
-  backround-color: #ffe9ab;
+  background-color: #ffe9ab;
 }
 
 
