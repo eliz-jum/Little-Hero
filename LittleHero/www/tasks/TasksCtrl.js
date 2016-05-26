@@ -3,4 +3,6 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     console.log("swipe right");
     $state.go("main");
   };
+  
+  
 });

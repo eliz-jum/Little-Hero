@@ -20855,7 +20855,7 @@ h2 {
 .button-footer img {
   height: 100%;
   width: auto;
-  border: grey 1px solid; }
+  border-right: grey 1px; }
 
 .selected {
   border: grey 1px solid; }
@@ -20882,7 +20882,8 @@ h2 {
 
 .task-name span {
   font-size: large;
-  font-weight: bold; }
+  font-weight: bold;
+  color: black; }
 
 .hard-task {
   background-color: #EE9360; }
