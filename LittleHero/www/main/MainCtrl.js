@@ -365,8 +365,16 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       iconSrc: 'img/prop1_right_icon.svg'
     },
     {
-      type: 'misc',
+      type: 'misc_head',
       iconSrc: 'img/hat1_icon.svg'
+    },
+    {
+      type: 'misc_ear',
+      iconSrc: 'img/ears1_icon.svg'
+    },
+    {
+      type: 'misc_neck',
+      iconSrc: 'img/neck1_icon.svg'
     },
     {
       type: 'animal',
@@ -400,13 +408,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     else if (item.type == 'prop') {
       allEquipment.forEach(function(listItem){
         if (listItem.type=='prop_left' || listItem.type=='prop_right') {
-          $scope.currentEquipment.push(listItem);
-        }
-      });
-    }
-    else if (item.type == 'misc') {
-      allEquipment.forEach(function(listItem){
-        if (listItem.type=='misc_head' || listItem.type=='misc_ear' || listItem.type=='misc_neck') {
           $scope.currentEquipment.push(listItem);
         }
       });
