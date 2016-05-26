@@ -9827,7 +9827,8 @@ h2 {
 
 .button-footer img {
   height: 100%;
-  width: auto; }
+  width: auto;
+  border-right: grey; }
 
 .selected {
   border: grey 1px solid; }
@@ -9854,4 +9855,4 @@ h2 {
   background-color: green; }
 
 ion-radio {
-  backround-color: #ffe9ab; }
+  background-color: #ffe9ab; }

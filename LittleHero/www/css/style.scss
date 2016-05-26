@@ -116,6 +116,7 @@ h2 {
 .button-footer img {
   height: 100%;
   width: auto;
+  border-right: grey 1px solid;
 }
 
 .selected {
@@ -123,6 +124,8 @@ h2 {
 }
 
 /************** TASKS *************/
+.title
+
 .task-list ion-item {
   display: flex;
   flex-direction: row;

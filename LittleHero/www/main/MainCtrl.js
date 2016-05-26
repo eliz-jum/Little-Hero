@@ -37,13 +37,13 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   var allEquipment = [
     {
       type: 'animal',
-      iconSrc: 'img/animal1_icon.svg',
-      imgSrc: 'img/animal1.svg'
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
     },
     {
       type: 'animal',
-      iconSrc: 'img/empty_icon.svg',
-      imgSrc: 'img/empty.svg'
+      iconSrc: 'img/animal1_icon.svg',
+      imgSrc: 'img/animal1.svg'
     },
     {
       type: 'eyes',
@@ -107,6 +107,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     },
     {
       type: 'misc_head',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
+      type: 'misc_head',
       iconSrc: 'img/hat1_icon.svg',
       imgSrc: 'img/hat1.svg'
     },
@@ -121,7 +126,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/hat3.svg'
     },
     {
-      type: 'misc_head',
+      type: 'misc_ear',
       iconSrc: 'img/empty_icon.svg',
       imgSrc: 'img/empty.svg'
     },
@@ -132,6 +137,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     },
     {
       type: 'misc_ear',
+      iconSrc: 'img/ears2_icon.svg',
+      imgSrc: 'img/ears2.svg'
+    },
+    {
+      type: 'misc_neck',
       iconSrc: 'img/empty_icon.svg',
       imgSrc: 'img/empty.svg'
     },
@@ -147,8 +157,8 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     },
     {
       type: 'misc_neck',
-      iconSrc: 'img/empty_icon.svg',
-      imgSrc: 'img/empty.svg'
+      iconSrc: 'img/neck3_icon.svg',
+      imgSrc: 'img/neck3.svg'
     },
     {
       type: 'mouth',
@@ -182,6 +192,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     },
     {
       type: 'top',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
+      type: 'top',
       iconSrc: 'img/tee1_icon.svg',
       imgSrc: 'img/tee1.svg'
     },
@@ -201,7 +216,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/tee4.svg'
     },
     {
-      type: 'top',
+      type: 'bottom',
       iconSrc: 'img/empty_icon.svg',
       imgSrc: 'img/empty.svg'
     },
@@ -231,7 +246,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/skirt2.svg'
     },
     {
-      type: 'bottom',
+      type: 'shoes',
       iconSrc: 'img/empty_icon.svg',
       imgSrc: 'img/empty.svg'
     },
@@ -249,11 +264,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       type: 'shoes',
       iconSrc: 'img/shoes3_icon.svg',
       imgSrc: 'img/shoes3.svg'
-    },
-    {
-      type: 'shoes',
-      iconSrc: 'img/empty_icon.svg',
-      imgSrc: 'img/empty.svg'
     },
     {
       type: 'prop_left',
@@ -282,6 +292,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     },
     {
       type: 'sock',
+      iconSrc: 'img/empty_icon.svg',
+      imgSrc: 'img/empty.svg'
+    },
+    {
+      type: 'sock',
       iconSrc: 'img/sock1_icon.svg',
       imgSrc: 'img/sock1.svg'
     },
@@ -301,7 +316,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       imgSrc: 'img/tights1.svg'
     },
     {
-      type: 'sock',
+      type: 'top_bottom',
       iconSrc: 'img/empty_icon.svg',
       imgSrc: 'img/empty.svg'
     },
@@ -319,18 +334,13 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       type: 'top_bottom',
       iconSrc: 'img/top_bottom3_icon.svg',
       imgSrc: 'img/top_bottom3.svg'
-    },
-    {
-      type: 'top_bottom',
-      iconSrc: 'img/empty_icon.svg',
-      imgSrc: 'img/empty.svg'
     }
   ];
 
   $scope.buttons = [
     {
       type: 'all',
-      iconSrc: 'img/pants2_icon.svg'
+      iconSrc: 'img/all_icon.svg'
     },
     {
       type: 'face',
@@ -374,7 +384,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     },
     {
       type: 'misc_neck',
-      iconSrc: 'img/neck1_icon.svg'
+      iconSrc: 'img/neck3_icon.svg'
     },
     {
       type: 'animal',
@@ -389,7 +399,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.currentButton = item;
 
     if (item.type == 'all') {
-      $scope.currentEquipment=allEquipment;
+      allEquipment.forEach(function(listItem){
+        if (listItem.imgSrc!='img/empty.svg') {
+          $scope.currentEquipment.push(listItem);
+        }
+      });
     }
     else if (item.type == 'face') {
       allEquipment.forEach(function(listItem){
