@@ -13,7 +13,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by siulkilulki on 11.05.16.
@@ -27,8 +29,8 @@ public class TutorsResource
 
     @GET
     @Path( "/" )
-    @Produces( MediaType.APPLICATION_JSON)
-    @ApiOperation( value = "Get tutors collection")
+    @Produces( MediaType.APPLICATION_JSON )
+    @ApiOperation( value = "Get tutors collection" )
     @Transactional
     public Response getTutors()
     {
@@ -46,8 +48,17 @@ public class TutorsResource
     @Consumes( MediaType.APPLICATION_JSON )
     @ApiOperation( value = "Create tutor" )
     @Transactional
-    public Response newTutor( Tutor tutor, @Context UriInfo uriInfo )
+    public Response newTutor( Map<String, Object> json, @Context UriInfo uriInfo )
     {
+        Tutor tutor = new Tutor();
+
+        tutor.setLogin( (String) json.get( "login" ) );
+        tutor.setPassword( (String) json.get( "password" ) );
+        tutor.setName( (String) json.get( "name" ) );
+        tutor.setMail( (String) json.get( "mail" ) );
+        tutor.setAvatars( new ArrayList<>() );
+        tutor.setTasks( new ArrayList<>() );
+
         dao.create( tutor );
         URI createdTutorUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( tutor.getId() ) ).build();
         return Response.created( createdTutorUri ).build();
@@ -58,7 +69,7 @@ public class TutorsResource
     @GET
     @Path( "/{id}" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get tutor based on /{id}")
+    @ApiOperation( value = "Get tutor based on /{id}" )
     @Transactional
     public Response getTutor( @PathParam( "id" ) long id )
     {

@@ -13,7 +13,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by siulkilulki on 23.03.16.
@@ -44,8 +46,16 @@ public class ChildsResource
     @Consumes( MediaType.APPLICATION_JSON )
     @ApiOperation( value = "Create child", notes = "none" )
     @Transactional
-    public Response newChild( Child child, @Context UriInfo uriInfo )
+    public Response newChild( Map<String, Object> json, @Context UriInfo uriInfo )
     {
+        Child child = new Child();
+
+        child.setLogin( (String) json.get( "login" ) );
+        child.setPassword( (String) json.get( "password" ) );
+        child.setNickname( (String) json.get( "nickname" ) );
+        child.setMail( (String) json.get( "mail" ) );
+        child.setAvatars( new ArrayList<>() );
+
         dao.create( child );
         URI createdChildUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( child.getId() ) ).build();
         return Response.created( createdChildUri ).build();
@@ -62,6 +72,7 @@ public class ChildsResource
     {
         Child child = dao.find( id );
         child.getAvatars().size();
+
         return Response.ok( child ).build();
     }
 

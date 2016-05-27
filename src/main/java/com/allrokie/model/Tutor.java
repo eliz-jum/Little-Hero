@@ -1,5 +1,8 @@
 package com.allrokie.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -34,10 +37,12 @@ public class Tutor implements Serializable
     @Email
     private String mail;
 
-    @OneToMany( mappedBy = "tutor" )
+    @OneToMany( mappedBy = "tutor", fetch = FetchType.LAZY )
+    @JsonBackReference( "tutor_avatars" )
     private List<Avatar> avatars;
 
-    @OneToMany( mappedBy = "tutor" )
+    @OneToMany( mappedBy = "tutor", fetch = FetchType.LAZY )
+    @JsonBackReference( "tutor_tasks" )
     private List<Task> tasks;
 
     public Tutor()

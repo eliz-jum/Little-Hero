@@ -1,5 +1,7 @@
 package com.allrokie.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -42,9 +44,11 @@ public class Task implements Serializable
     private int money;
 
     @ManyToOne
+    @JsonManagedReference("tutor_tasks")
     private Tutor tutor;
 
     @ManyToOne
+    @JsonManagedReference("avatar_tasks")
     private Avatar avatar;
 
     public Task()

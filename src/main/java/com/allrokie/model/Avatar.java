@@ -1,11 +1,15 @@
 package com.allrokie.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,29 +30,30 @@ public class Avatar implements Serializable
     private String name;
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @ManyToMany
+    @ManyToMany( fetch = FetchType.LAZY )
     private List<Item> wornItems;
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @ManyToMany
+    @ManyToMany( fetch = FetchType.LAZY )
     private List<Item> canBePutOnItems; //bought items but not worn
 
     @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @ManyToMany
+    @ManyToMany( fetch = FetchType.LAZY )
     private List<Item> canBePurchasedItems;
 
-    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @OneToMany( mappedBy = "avatar" )
+    @Cascade( org.hibernate.annotations.CascadeType.ALL )
+    @OneToMany( mappedBy = "avatar", fetch = FetchType.LAZY )
+    @JsonBackReference( "avatar_tasks" )
     private List<Task> tasks;
 
-    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @ManyToOne( fetch = FetchType.LAZY )
+    @ManyToOne
     @NotNull
+    @JsonManagedReference( "child_avatars" )
     private Child child;
 
-    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @ManyToOne( fetch = FetchType.LAZY )
+    @ManyToOne
     @NotNull
+    @JsonManagedReference( "tutor_avatars" )
     private Tutor tutor;
 
     @Column

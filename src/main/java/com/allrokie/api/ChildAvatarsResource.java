@@ -3,11 +3,15 @@ package com.allrokie.api;
 import com.allrokie.dao.AvatarsDao;
 import com.allrokie.dao.ChildDao;
 import com.allrokie.dao.TutorsDao;
+import com.allrokie.json_object_creators.JsonObjectCreator;
 import com.allrokie.model.*;
+import com.fasterxml.jackson.databind.JsonNode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -48,21 +52,22 @@ public class ChildAvatarsResource
             avatar.getCanBePurchasedItems().size();
             avatar.getCanBePutOnItems().size();
             avatar.getWornItems().size();
-        } );*/ //TODO: Why this doesn't work, even though the relation is bidrectional!
+        } );*/
 
         Query q = avatarsDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.child.id = :id" );
         q.setParameter( "id", childId );
 
-        //TODO: Do i need below?
         List<Avatar> avatars = (List<Avatar>) q.getResultList();
         avatars.forEach( avatar -> {
             avatar.getTasks().size();
             avatar.getCanBePurchasedItems().size();
             avatar.getCanBePutOnItems().size();
             avatar.getWornItems().size();
+            avatar.getChild().getId();
+            avatar.getTutor().getId();
         } );
 
-        return Response.ok( avatars ).build();
+        return Response.ok( JsonObjectCreator.createChildAvatarArray( avatars ) ).build();
     }
 
     @POST
@@ -89,10 +94,12 @@ public class ChildAvatarsResource
         Tutor tutor = tutorsDao.find( id );
         tutor.getAvatars().size();
         tutor.getTasks().size();
+
         avatar.setTutor( tutor );
 
         Child child = childDao.find( childId );
         child.getAvatars().size();
+
         avatar.setChild( child );
 
         avatarsDao.create( avatar );
@@ -117,7 +124,7 @@ public class ChildAvatarsResource
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
 
-        return Response.ok( avatar ).build();
+        return Response.ok( JsonObjectCreator.createChildAvatar( avatar ) ).build();
     }
 
     @DELETE

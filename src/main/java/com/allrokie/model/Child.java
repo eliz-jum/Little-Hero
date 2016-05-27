@@ -1,10 +1,17 @@
 package com.allrokie.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
@@ -36,12 +43,15 @@ public class Child implements Serializable
     @Email
     private String mail;
 
-    @OneToMany( mappedBy = "child" )
+    @OneToMany( mappedBy = "child", fetch = FetchType.LAZY)
+    @Cascade( org.hibernate.annotations.CascadeType.ALL )
+    @JsonBackReference("child_avatars")
     private List<Avatar> avatars;
 
     public Child()
     {
     }
+
 
     public long getId()
     {
