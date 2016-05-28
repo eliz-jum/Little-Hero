@@ -1,0 +1,65 @@
+[{
+	"id": 0,
+    "name" : "Task0",
+	"difficulty": 1,
+	"experiencePoints": 10,
+	"completed": false,
+	"archived": false,
+	"createdTimestamp": 0,
+	"completedTimestamp": 0,
+	"money": 20,
+	"tutor": {
+		"id": 0
+	},
+	"avatar": {
+		"id": 1
+	}
+}, {
+	"id": 1,
+    "name" : "Task1",
+	"difficulty": 2,
+	"experiencePoints": 2,
+	"completed": false,
+	"archived": false,
+	"createdTimestamp": 0,
+	"completedTimestamp": 0,
+	"money": 30,
+	"tutor": {
+		"id": 0
+	},
+	"avatar": {
+		"id": 1
+	}
+}, {
+	"id": 2,
+    "name" : "Task2",
+	"difficulty": 1,
+	"experiencePoints": 10,
+	"completed": false,
+	"archived": false,
+	"createdTimestamp": 0,
+	"completedTimestamp": 0,
+	"money": 20,
+	"tutor": {
+		"id": 0
+	},
+	"avatar": {
+		"id": 2
+	}
+}, {
+	"id": 3,
+    "name" : "Task3",
+	"difficulty": 3,
+	"experiencePoints": 30,
+	"completed": false,
+	"archived": false,
+	"createdTimestamp": 0,
+	"completedTimestamp": 0,
+	"money": 100,
+	"tutor": {
+		"id": 0
+	},
+	"avatar": {
+		"id": 2
+	}
+}]

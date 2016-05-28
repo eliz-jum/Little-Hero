@@ -33,7 +33,11 @@ angular.module('littleHero', ['ionic', 'ui.router'])
         .state('main', {
             url: '/main',
             templateUrl: 'main/main.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            params: {
+                allAvatars: null,
+                currentAvatar : null
+            }
         })
         .state('recoverPassword', {
             url: '/recoverPassword',
@@ -48,7 +52,11 @@ angular.module('littleHero', ['ionic', 'ui.router'])
         .state('tasks', {
             url: '/tasks',
             templateUrl: 'tasks/tasks.html',
-            controller: 'TasksController'
+            controller: 'TasksController',
+            params: {
+                allAvatars: null,
+                currentAvatar : null
+            }
         })
         .state('settings', {
             url: '/settings',
@@ -62,4 +70,31 @@ angular.module('littleHero', ['ionic', 'ui.router'])
         });
 
     $urlRouterProvider.otherwise('/main');
-});
+})
+
+.service("dataService", function($http) {
+    return {
+        getAvatars: function() {
+            return $http.get("/mockedData/avatars.json").then(function(res) {              
+                return res;
+            });
+        },
+
+        getTasks: function() {
+            return $http.get("/mockedData/tasks.json").then(function(res) {              
+                return res;
+            });
+        }
+
+        /*getCurrentTask: function(id) {
+            return $http.get("/mockedData/tasks.json").then(function(res) {              
+                res.data.forEach(function(task) {
+                    if (task["id"] == id) {                         
+                        return task;
+                    }
+                });
+            });
+
+        },*/
+    }
+})

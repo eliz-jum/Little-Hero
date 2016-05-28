@@ -4,18 +4,15 @@
 
       <div class="row row-center orange">
         <div class="col col-50 item item-select">
-            <select>
-              <option selected>Antek</option>
-              <option>Mag</option>
-              <option>Pirat</option>
-              <option>Czlowiek</option>
+            <select ng-model="currentAvatar" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+                <option value="">Imie dziecka</option>
             </select>
         </div>
 
         <div class="col col-10"><i class="icon icon ion-flash"></i></div>
-        <div class="col col-10"><span>10</span></div>
+        <div class="col col-10"><span>{{ currentAvatar.level }}</span></div>
         <div class="col col-10"><i class="icon icon ion-social-bitcoin"></i></div>
-        <div class="col col-10"><span>20</span></div>
+        <div class="col col-10"><span>{{ currentAvatar.money }}</span></div>
         <div class="col col-10">
           <button class="button button-icon icon ion-gear-b" ui-sref="settings"></button>
         </div>
@@ -28,14 +25,14 @@
           <div class="row row-50 row-center">
             <i class="icon icon ion-star stats"></i>
             <div class="progress-bar">
-              <div class="progress-bar-indicator xp"></div>
+              <div class="progress-bar-indicator xp" ng-style="{'width' : currentAvatar.experience + '%'}"></div>
             </div>
           </div>
 
           <div class="row row-50 row-center">
             <i class="icon icon ion-android-favorite stats"></i>
             <div class="progress-bar">
-              <div class="progress-bar-indicator hp"></div>
+              <div class="progress-bar-indicator hp" ng-style="{'width' : currentAvatar.health + '%'}"></div>
             </div>
           </div>
         </div>

@@ -1,0 +1,43 @@
+[{
+	"id": 1,
+	"name": "Avatar1",
+	"wornItems": [],
+	"canBePutOnItems": [],
+	"canBePurchasedItems": [],
+	"tasks": [{
+		"id": 0
+	}, {
+		"id": 1
+	}],
+	"child": {
+		"id": 0
+	},
+	"tutor": {
+		"id": 0
+	},
+	"level": 10,
+	"money": 12,
+	"health": 20,
+	"experience": 10
+}, {
+	"id": 2,
+	"name": "Avatar2",
+	"wornItems": [],
+	"canBePutOnItems": [],
+	"canBePurchasedItems": [],
+	"tasks": [{
+		"id": 2
+	}, {
+		"id": 3
+	}],
+	"child": {
+		"id": 0
+	},
+	"tutor": {
+		"id": 1
+	},
+	"level": 15,
+	"money": 16,
+	"health": 60,
+	"experience": 90
+}]

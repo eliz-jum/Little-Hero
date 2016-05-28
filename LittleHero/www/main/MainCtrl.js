@@ -1,12 +1,23 @@
-angular.module('littleHero').controller('MainController', function($scope, $state, $ionicModal){
-  $scope.swipeLeft = function() {
-    console.log("swipe left");
-    $state.go("tasks");
-  };
-  $scope.swipeRight = function() {
-    console.log("swipe right");
-    $state.go("notifications");
-  };
+angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
+
+    $scope.$on('$ionicView.beforeEnter', function(){       
+        if ($stateParams.allAvatars != null) {
+            $scope.allAvatars = $stateParams.allAvatars;
+            $scope.currentAvatar = $stateParams.currentAvatar;
+        }
+        else $scope.getAvatars();
+        
+    });
+
+    $scope.swipeLeft = function() {
+        console.log("swipe left");
+        $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar });
+    };
+  
+    $scope.swipeRight = function() {
+        console.log("swipe right");
+        $state.go("notifications");
+    };
 
   $scope.nextType = function() {
     var currentIndex = $scope.buttons.indexOf($scope.currentButton);
@@ -458,4 +469,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.modal.show();
   };
 
+
+    $scope.getAvatars = function() {
+        dataService.getAvatars().then(function(res) {
+            $scope.allAvatars = res.data;
+        });
+    };
   });
