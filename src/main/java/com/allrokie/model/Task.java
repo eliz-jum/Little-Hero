@@ -1,11 +1,10 @@
 package com.allrokie.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -27,11 +26,11 @@ public class Task implements Serializable
     private int experiencePoints;
 
     @Column
-    @NotBlank
+    @NotNull
     private boolean completed;
 
     @Column
-    @NotBlank
+    @NotNull
     private boolean archived;
 
     @Column

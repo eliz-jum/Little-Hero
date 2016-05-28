@@ -3,24 +3,21 @@ package com.allrokie.api;
 import com.allrokie.dao.AvatarsDao;
 import com.allrokie.dao.TasksDao;
 import com.allrokie.dao.TutorsDao;
-import com.allrokie.model.Avatar;
+import com.allrokie.json_object_creators.TaskJson;
 import com.allrokie.model.Task;
-import com.allrokie.model.Tutor;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-import java.net.URI;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by siulkilulki on 19.05.16.
@@ -48,11 +45,11 @@ public class AvatarTasksResource
         q.setParameter( "id", avatarsId );
         List<Task> tasks = (List<Task>) q.getResultList();
 
-        return Response.ok( tasks ).build();
+        return Response.ok( TaskJson.createAvatarTasksArray( tasks ) ).build();
     }
 
 
-    //TODO: Delete as it is probably not needed
+    /*//TODO: Delete as it is probably not needed
     @POST
     @Path( "/" )
     @Consumes( MediaType.APPLICATION_JSON )
@@ -94,7 +91,7 @@ public class AvatarTasksResource
         URI createdTaskUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( task.getId() ) ).build();
 
         return Response.created( createdTaskUri ).build();
-    }
+    }*/
 
     @GET
     @Path( "/{taskId}" )
@@ -103,14 +100,12 @@ public class AvatarTasksResource
     @Transactional
     public Response getTask( @PathParam( "taskId" ) long id )
     {
-        Query q = tasksDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.id = :id" );
-        q.setParameter( "id", id );
-        Task task = (Task) q.getSingleResult();
+        Task task = tasksDao.find( id );
 
-        return Response.ok( task ).build();
+        return Response.ok( TaskJson.createAvatarTask( task ) ).build();
     }
 
-    //TODO: Delete as it is probably not needed
+/*    //TODO: Delete as it is probably not needed
     @DELETE
     @Path( "/{taskId}" )
     @ApiOperation( value = "Delete task" )
@@ -120,6 +115,6 @@ public class AvatarTasksResource
         tasksDao.remove( tasksDao.find( id ) );
 
         return Response.status( Response.Status.NO_CONTENT ).build();
-    }
+    }*/
 
 }

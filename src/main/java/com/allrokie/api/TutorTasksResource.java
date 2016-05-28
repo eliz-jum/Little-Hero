@@ -3,6 +3,7 @@ package com.allrokie.api;
 import com.allrokie.dao.AvatarsDao;
 import com.allrokie.dao.TasksDao;
 import com.allrokie.dao.TutorsDao;
+import com.allrokie.json_object_creators.TaskJson;
 import com.allrokie.model.Avatar;
 import com.allrokie.model.Task;
 import com.allrokie.model.Tutor;
@@ -25,8 +26,8 @@ import java.util.Map;
 /**
  * Created by siulkilulki on 19.05.16.
  */
-@Path( "/tutors/{tutorId}/avatars" )
-@Api( value = "/tutors/tutorId/avatars", description = "Operations about avatars" )
+@Path( "/tutors/{tutorId}/tasks" )
+@Api( value = "/tutors/tutorId/tasks", description = "Operations about tasks" )
 public class TutorTasksResource
 {
     @Inject
@@ -43,17 +44,11 @@ public class TutorTasksResource
     @Transactional
     public Response getAvatars( @PathParam( "tutorId" ) long tutorId )
     {
-        Query q = avatarsDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.tutor.id = :id" );
+        Query q = tasksDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.tutor.id = :id" );
         q.setParameter( "id", tutorId );
-        List<Avatar> avatars = (List<Avatar>) q.getResultList();
-        avatars.forEach( avatar -> {
-            avatar.getTasks().size();
-            avatar.getCanBePurchasedItems().size();
-            avatar.getCanBePutOnItems().size();
-            avatar.getWornItems().size();
-        } );
+        List<Task> tasks = (List<Task>) q.getResultList();
 
-        return Response.ok( avatars ).build();
+        return Response.ok( TaskJson.createTutorTasksArray( tasks ) ).build();
     }
 
     @POST
@@ -79,8 +74,9 @@ public class TutorTasksResource
         task.setMoney( (int) json.get( "money" ) );
         task.setExperiencePoints( (int) json.get( "experiencePoints" ) );
         task.setDifficulty( (int) json.get( "difficulty" ) );
-        task.setArchived( (boolean) json.get( "archived" ) );
-        task.setCompleted( (boolean) json.get( "completed" ) );
+
+        task.setArchived( false );
+        task.setCompleted( false );
 
         task.setCreatedTimestamp( new Date().getTime() );
 
@@ -99,20 +95,16 @@ public class TutorTasksResource
     }
 
     @GET
-    @Path( "/{avatarId}" )
+    @Path( "/{taskId}" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get avatar", notes = "Get avatar based on /{avatarId}", response = Avatar.class )
+    @ApiOperation( value = "Get task", notes = "Get avatar based on /{taskId}", response = Task.class )
     @Transactional
-    public Response getAvatar( @PathParam( "avatarId" ) long id )
+    public Response getAvatar( @PathParam( "taskId" ) long id )
     {
-        Avatar avatar = avatarsDao.find( id );
+        Task task = tasksDao.find( id );
 
-        avatar.getTasks().size();
-        avatar.getCanBePurchasedItems().size();
-        avatar.getCanBePutOnItems().size();
-        avatar.getWornItems().size();
 
-        return Response.ok( avatar ).build();
+        return Response.ok( TaskJson.createTutorTask( task ) ).build();
     }
 
     @DELETE

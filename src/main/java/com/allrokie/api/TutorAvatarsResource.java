@@ -2,7 +2,7 @@ package com.allrokie.api;
 
 import com.allrokie.dao.AvatarsDao;
 import com.allrokie.dao.TutorsDao;
-import com.allrokie.json_object_creators.JsonObjectCreator;
+import com.allrokie.json_object_creators.AvatarJson;
 import com.allrokie.model.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,7 +46,7 @@ public class TutorAvatarsResource
             avatar.getWornItems().size();
         } );
 
-        return Response.ok( JsonObjectCreator.createChildTutorArray( avatars ) ).build();
+        return Response.ok( AvatarJson.createChildTutorsArray( avatars ) ).build();
     }
 
     @GET
@@ -63,6 +63,6 @@ public class TutorAvatarsResource
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
 
-        return Response.ok( JsonObjectCreator.createTutorAvatar( avatar ) ).build();
+        return Response.ok( AvatarJson.createTutorAvatar( avatar ) ).build();
     }
 }

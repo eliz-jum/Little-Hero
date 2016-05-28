@@ -25,34 +25,42 @@ public class RestApplication extends Application
         BeanConfig beanConfig = new BeanConfig();
         beanConfig.setVersion( "1.0" );
         beanConfig.setTitle( "Little Hero REST API" );
-        beanConfig.setSchemes(new String[]{"http"});
-        beanConfig.setHost("localhost:8080");
-        beanConfig.setBasePath("/v1");
-        beanConfig.setResourcePackage("com.allrokie.api");
-        beanConfig.setScan(true);
+        beanConfig.setSchemes( new String[] { "http" } );
+        beanConfig.setHost( "localhost:8080" );
+        beanConfig.setBasePath( "/v1" );
+        beanConfig.setResourcePackage( "com.allrokie.api" );
+        beanConfig.setScan( true );
     }
 
     @Override
-    public Set<Class<?>> getClasses() {
+    public Set<Class<?>> getClasses()
+    {
         final Set<Class<?>> classes = new HashSet<>();
 
-        classes.add(ChildsResource.class);
-        classes.add(ChildAvatarsResource.class);
-        classes.add(TutorAvatarsResource.class);
-        classes.add(TutorsResource.class);
-        classes.add(AvatarTasksResource.class);
+        classes.add( ChildsResource.class );
 
-        classes.add(io.swagger.jaxrs.listing.ApiListingResource.class);
-        classes.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+        classes.add( TutorsResource.class );
+
+        classes.add( ChildAvatarsResource.class );
+        classes.add( TutorAvatarsResource.class );
+
+        classes.add( AvatarTasksResource.class );
+        classes.add( TutorTasksResource.class );
+
+        classes.add( AvatarItemResource.class );
+
+        classes.add( io.swagger.jaxrs.listing.ApiListingResource.class );
+        classes.add( io.swagger.jaxrs.listing.SwaggerSerializers.class );
 
         return classes;
     }
 
     @Override
-    public Set<Object> getSingletons() {
+    public Set<Object> getSingletons()
+    {
         final HashSet<Object> singletons = new HashSet<Object>();
         CorsFilter corsFilter = new CorsFilter();
-        corsFilter.getAllowedOrigins().add("*");
+        corsFilter.getAllowedOrigins().add( "*" );
         corsFilter.setAllowedHeaders( "Origin, X-Requested-With, Content-Type, Accept" );
 
         singletons.add( corsFilter );

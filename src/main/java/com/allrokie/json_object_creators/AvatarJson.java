@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by siulkilulki on 27.05.16.
  */
-public final class JsonObjectCreator
+public final class AvatarJson
 {
     public static JsonObject createChildAvatar( Avatar avatar )
     {
@@ -24,20 +24,7 @@ public final class JsonObjectCreator
                 .build();
     }
 
-
-
-    private static JsonObjectBuilder getAvatarJsonBuilder( Avatar avatar )
-    {
-        return Json.createObjectBuilder()
-                .add( "id", avatar.getId() )
-                .add( "name", avatar.getName() )
-                .add( "experience", avatar.getExperience() )
-                .add( "level", avatar.getLevel() )
-                .add( "money", avatar.getMoney() )
-                .add( "health", avatar.getHealth() );
-    }
-
-    public static JsonArray createChildAvatarArray( List<Avatar> avatars )
+    public static JsonArray createChildAvatarsArray( List<Avatar> avatars )
     {
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
 
@@ -51,7 +38,7 @@ public final class JsonObjectCreator
         return jsonArrayBuilder.build();
     }
 
-    public static JsonArray createChildTutorArray( List<Avatar> avatars )
+    public static JsonArray createChildTutorsArray( List<Avatar> avatars )
     {
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
 
@@ -63,6 +50,17 @@ public final class JsonObjectCreator
                     );
         } );
         return jsonArrayBuilder.build();
+    }
+
+    private static JsonObjectBuilder getAvatarJsonBuilder( Avatar avatar )
+    {
+        return Json.createObjectBuilder()
+            .add( "id", avatar.getId() )
+            .add( "name", avatar.getName() )
+            .add( "experience", avatar.getExperience() )
+            .add( "level", avatar.getLevel() )
+            .add( "money", avatar.getMoney() )
+            .add( "health", avatar.getHealth() );
     }
 
 }

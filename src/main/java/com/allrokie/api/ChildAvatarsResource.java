@@ -3,15 +3,12 @@ package com.allrokie.api;
 import com.allrokie.dao.AvatarsDao;
 import com.allrokie.dao.ChildDao;
 import com.allrokie.dao.TutorsDao;
-import com.allrokie.json_object_creators.JsonObjectCreator;
+import com.allrokie.json_object_creators.AvatarJson;
 import com.allrokie.model.*;
-import com.fasterxml.jackson.databind.JsonNode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -20,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +65,7 @@ public class ChildAvatarsResource
             avatar.getTutor().getId();
         } );
 
-        return Response.ok( JsonObjectCreator.createChildAvatarArray( avatars ) ).build();
+        return Response.ok( AvatarJson.createChildAvatarsArray( avatars ) ).build();
     }
 
     @POST
@@ -79,7 +77,9 @@ public class ChildAvatarsResource
     {
 
         Avatar avatar = new Avatar();
-        avatar.setTasks( (List<Task>) json.get( "tasks" ) );
+
+        avatar.setTasks( new ArrayList<>() );
+
         avatar.setCanBePurchasedItems( (List<Item>) json.get( "canBePurchasedItems" ) );
         avatar.setCanBePutOnItems( (List<Item>) json.get( "canBePutOnItems" ) );
         avatar.setWornItems( (List<Item>) json.get( "wornItems" ) );
@@ -124,7 +124,7 @@ public class ChildAvatarsResource
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
 
-        return Response.ok( JsonObjectCreator.createChildAvatar( avatar ) ).build();
+        return Response.ok( AvatarJson.createChildAvatar( avatar ) ).build();
     }
 
     @DELETE
