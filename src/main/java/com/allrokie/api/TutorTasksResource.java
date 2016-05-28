@@ -1,8 +1,8 @@
 package com.allrokie.api;
 
-import com.allrokie.dao.AvatarsDao;
-import com.allrokie.dao.TasksDao;
-import com.allrokie.dao.TutorsDao;
+import com.allrokie.dao.AvatarDao;
+import com.allrokie.dao.TaskDao;
+import com.allrokie.dao.TutorDao;
 import com.allrokie.json_object_creators.TaskJson;
 import com.allrokie.model.Avatar;
 import com.allrokie.model.Task;
@@ -31,11 +31,11 @@ import java.util.Map;
 public class TutorTasksResource
 {
     @Inject
-    AvatarsDao avatarsDao;
+    AvatarDao avatarDao;
     @Inject
-    TutorsDao tutorsDao;
+    TutorDao tutorDao;
     @Inject
-    TasksDao tasksDao;
+    TaskDao taskDao;
 
     @GET
     @Path( "/" )
@@ -44,7 +44,7 @@ public class TutorTasksResource
     @Transactional
     public Response getAvatars( @PathParam( "tutorId" ) long tutorId )
     {
-        Query q = tasksDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.tutor.id = :id" );
+        Query q = taskDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.tutor.id = :id" );
         q.setParameter( "id", tutorId );
         List<Task> tasks = (List<Task>) q.getResultList();
 
@@ -63,7 +63,7 @@ public class TutorTasksResource
 
         int avatarId = (int) json.get( "avatarId" );
         long id = (long) avatarId;
-        Avatar avatar = avatarsDao.find( id );
+        Avatar avatar = avatarDao.find( id );
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
         avatar.getCanBePutOnItems().size();
@@ -82,12 +82,12 @@ public class TutorTasksResource
 
         task.setCompletedTimestamp( 0 );
 
-        Tutor tutor = tutorsDao.find( tutorId );
+        Tutor tutor = tutorDao.find( tutorId );
         tutor.getAvatars().size();
         tutor.getTasks().size();
         task.setTutor( tutor );
 
-        tasksDao.create( task );
+        taskDao.create( task );
 
         URI createdTaskUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( task.getId() ) ).build();
 
@@ -101,7 +101,7 @@ public class TutorTasksResource
     @Transactional
     public Response getAvatar( @PathParam( "taskId" ) long id )
     {
-        Task task = tasksDao.find( id );
+        Task task = taskDao.find( id );
 
 
         return Response.ok( TaskJson.createTutorTask( task ) ).build();
@@ -113,7 +113,7 @@ public class TutorTasksResource
     @Transactional
     public Response deleteTask( @PathParam( "taskId" ) long id )
     {
-        tasksDao.remove( tasksDao.find( id ) );
+        taskDao.remove( taskDao.find( id ) );
 
         return Response.status( Response.Status.NO_CONTENT ).build();
     }

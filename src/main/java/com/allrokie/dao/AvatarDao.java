@@ -8,9 +8,9 @@ import javax.ejb.Stateless;
  * Created by siulkilulki on 11.05.16.
  */
 @Stateless
-public class AvatarsDao extends GenericDao<Avatar>
+public class AvatarDao extends GenericDao<Avatar>
 {
-    public AvatarsDao()
+    public AvatarDao()
     {
         super( Avatar.class );
     }

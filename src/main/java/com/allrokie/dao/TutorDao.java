@@ -8,9 +8,9 @@ import javax.ejb.Stateless;
  * Created by siulkilulki on 11.05.16.
  */
 @Stateless
-public class TutorsDao extends GenericDao<Tutor>
+public class TutorDao extends GenericDao<Tutor>
 {
-    public TutorsDao()
+    public TutorDao()
     {
         super( Tutor.class );
     }

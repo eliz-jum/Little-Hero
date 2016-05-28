@@ -1,8 +1,8 @@
 package com.allrokie.api;
 
-import com.allrokie.dao.AvatarsDao;
+import com.allrokie.dao.AvatarDao;
 import com.allrokie.dao.ChildDao;
-import com.allrokie.dao.TutorsDao;
+import com.allrokie.dao.TutorDao;
 import com.allrokie.json_object_creators.AvatarJson;
 import com.allrokie.model.*;
 import io.swagger.annotations.Api;
@@ -29,11 +29,11 @@ import java.util.Map;
 public class ChildAvatarsResource
 {
     @Inject
-    AvatarsDao avatarsDao;
+    AvatarDao avatarDao;
     @Inject
     ChildDao childDao;
     @Inject
-    TutorsDao tutorsDao;
+    TutorDao tutorDao;
 
     @GET
     @Path( "/" )
@@ -52,7 +52,7 @@ public class ChildAvatarsResource
             avatar.getWornItems().size();
         } );*/
 
-        Query q = avatarsDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.child.id = :id" );
+        Query q = avatarDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.child.id = :id" );
         q.setParameter( "id", childId );
 
         List<Avatar> avatars = (List<Avatar>) q.getResultList();
@@ -91,7 +91,7 @@ public class ChildAvatarsResource
 
         int tutorId = (int) json.get( "tutorId" );
         long id = (long) tutorId;
-        Tutor tutor = tutorsDao.find( id );
+        Tutor tutor = tutorDao.find( id );
         tutor.getAvatars().size();
         tutor.getTasks().size();
 
@@ -102,7 +102,7 @@ public class ChildAvatarsResource
 
         avatar.setChild( child );
 
-        avatarsDao.create( avatar );
+        avatarDao.create( avatar );
 
         URI createdChildUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( avatar.getId() ) ).build();
         return Response.created( createdChildUri ).build();
@@ -117,7 +117,7 @@ public class ChildAvatarsResource
     @Transactional
     public Response getAvatar( @PathParam( "avatarId" ) long id )
     {
-        Avatar avatar = avatarsDao.find( id );
+        Avatar avatar = avatarDao.find( id );
 
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
@@ -133,14 +133,14 @@ public class ChildAvatarsResource
     @Transactional
     public Response deleteAvatar( @PathParam( "avatarId" ) long id )
     {
-        Avatar avatar = avatarsDao.find( id );
+        Avatar avatar = avatarDao.find( id );
 
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
 
-        avatarsDao.remove( avatar );
+        avatarDao.remove( avatar );
 
         return Response.status( Response.Status.NO_CONTENT ).build();
     }

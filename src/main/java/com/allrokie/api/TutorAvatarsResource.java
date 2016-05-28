@@ -1,7 +1,7 @@
 package com.allrokie.api;
 
-import com.allrokie.dao.AvatarsDao;
-import com.allrokie.dao.TutorsDao;
+import com.allrokie.dao.AvatarDao;
+import com.allrokie.dao.TutorDao;
 import com.allrokie.json_object_creators.AvatarJson;
 import com.allrokie.model.*;
 import io.swagger.annotations.Api;
@@ -23,9 +23,9 @@ import java.util.List;
 public class TutorAvatarsResource
 {
     @Inject
-    AvatarsDao avatarsDao;
+    AvatarDao avatarDao;
     @Inject
-    TutorsDao tutorsDao;
+    TutorDao tutorDao;
 
     @GET
     @Path( "/" )
@@ -34,7 +34,7 @@ public class TutorAvatarsResource
     @Transactional
     public Response getAvatars( @PathParam( "tutorId" ) long childId )
     {
-        Query q = avatarsDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.tutor.id = :id" );
+        Query q = avatarDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.tutor.id = :id" );
         q.setParameter( "id", childId );
         List<Avatar> avatars = (List<Avatar>) q.getResultList();
 
@@ -56,7 +56,7 @@ public class TutorAvatarsResource
     @Transactional
     public Response getAvatar( @PathParam( "avatarId" ) long id )
     {
-        Avatar avatar = avatarsDao.find( id );
+        Avatar avatar = avatarDao.find( id );
 
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();

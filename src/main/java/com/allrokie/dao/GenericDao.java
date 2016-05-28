@@ -36,7 +36,7 @@ public abstract class GenericDao<T>
         entityManager.merge( entity );
     }
 
-    public T find( Long id )
+    public T find( Object id )
     {
         return entityManager.find( clazz, id );
     }

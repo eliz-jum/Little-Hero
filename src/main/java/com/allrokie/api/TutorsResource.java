@@ -1,6 +1,6 @@
 package com.allrokie.api;
 
-import com.allrokie.dao.TutorsDao;
+import com.allrokie.dao.TutorDao;
 import com.allrokie.model.Tutor;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +25,7 @@ import java.util.Map;
 public class TutorsResource
 {
     @Inject
-    TutorsDao dao;
+    TutorDao dao;
 
     @GET
     @Path( "/" )
