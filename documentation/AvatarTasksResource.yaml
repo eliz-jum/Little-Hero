@@ -1,0 +1,45 @@
+Path: http://localhost:8080/v1/childs/1/avatars/4/tasks
+  Request:
+    Method: GET
+    Body:
+
+  Response:
+    Status: 200 Ok
+    Headers:
+      Content-type: application/json
+    Body:
+      [
+        {
+          "id": 5,
+          "difficulty": 3,
+          "experiencePoints": 10,
+          "completed": false,
+          "archived": false,
+          "createdTimestamp": 1464539623344,
+          "completedTimestamp": 0,
+          "money": 100,
+          "tutorId": 2
+        }
+      ]
+
+Path: http://localhost:8080/v1/tutors/2/tasks/5
+  Request:
+    Method: GET
+    Body:
+
+  Response:
+    Status: 200 Ok
+    Headers:
+      Content-type: application/json
+    Body:
+      {
+        "id": 5,
+        "difficulty": 3,
+        "experiencePoints": 10,
+        "completed": false,
+        "archived": false,
+        "createdTimestamp": 1464539623344,
+        "completedTimestamp": 0,
+        "money": 100,
+        "tutorId": 2
+      }

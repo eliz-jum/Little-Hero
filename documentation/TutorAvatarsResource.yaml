@@ -1,0 +1,48 @@
+Path: http://localhost:8080/v1/tutors/2/avatars
+  Request:
+    Method: GET
+    Body:
+
+
+  Response:
+    Status: 200 Ok
+    Headers:
+      Content-type: application/json
+    Body:
+      [
+        {
+          "id": 4,
+          "name": "pierwszy",
+          "experience": 3245,
+          "level": 3,
+          "money": 2323,
+          "health": 3,
+          "wornItems": [],
+          "canBePutOnItems": [],
+          "canBePurchasedItems": [],
+          "childId": 1
+        }
+      ]
+
+Path: http://localhost:8080/v1/tutors/2/avatars/4
+  Request:
+    Method: GET
+    Body:
+
+  Response:
+    Status: 200 Ok
+    Headers:
+      Content-type: application/json
+    Body:
+      {
+        "id": 4,
+        "name": "pierwszy",
+        "experience": 3245,
+        "level": 3,
+        "money": 2323,
+        "health": 3,
+        "wornItems": [],
+        "canBePutOnItems": [],
+        "canBePurchasedItems": [],
+        "childId": 1
+      }

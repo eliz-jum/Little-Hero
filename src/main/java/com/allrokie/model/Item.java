@@ -1,6 +1,9 @@
 package com.allrokie.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -11,7 +14,7 @@ import java.io.Serializable;
 public class Item implements Serializable
 {
     @Id
-    @Column( name = "name", updatable = false, nullable = false )
+    @Column( name = "name" )
     private String name;
 
     @Column

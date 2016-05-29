@@ -70,5 +70,4 @@ public class ItemsResource
 
         return Response.status( Response.Status.NO_CONTENT ).build();
     }
-
 }

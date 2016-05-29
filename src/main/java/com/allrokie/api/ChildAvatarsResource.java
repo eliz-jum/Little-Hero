@@ -2,11 +2,16 @@ package com.allrokie.api;
 
 import com.allrokie.dao.AvatarDao;
 import com.allrokie.dao.ChildDao;
+import com.allrokie.dao.ItemDao;
 import com.allrokie.dao.TutorDao;
 import com.allrokie.json_object_creators.AvatarJson;
-import com.allrokie.model.*;
+import com.allrokie.model.Avatar;
+import com.allrokie.model.Child;
+import com.allrokie.model.Item;
+import com.allrokie.model.Tutor;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.jaxrs.PATCH;
 
 import javax.inject.Inject;
 import javax.persistence.Query;
@@ -24,6 +29,7 @@ import java.util.Map;
 /**
  * Created by siulkilulki on 11.05.16.
  */
+
 @Path( "/childs/{childId}/avatars" )
 @Api( value = "/childs/id/avatars", description = "Operations about avatars" )
 public class ChildAvatarsResource
@@ -34,6 +40,8 @@ public class ChildAvatarsResource
     ChildDao childDao;
     @Inject
     TutorDao tutorDao;
+    @Inject
+    ItemDao itemDao;
 
     @GET
     @Path( "/" )
@@ -108,7 +116,60 @@ public class ChildAvatarsResource
         return Response.created( createdChildUri ).build();
     }
 
-    //PUT
+    @PATCH
+    @Path( "/{avatarId}" )
+    @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.APPLICATION_JSON )
+    @ApiOperation( value = "Update avatar", response = Avatar.class )
+    @Transactional
+    public Response updateAvatar( ArrayList<Map<String, Object>> json, @PathParam( "avatarId" ) long id )
+    {
+        Avatar avatar = avatarDao.find( id );
+
+        avatar.getTasks().size();
+        avatar.getCanBePurchasedItems().size();
+        avatar.getCanBePutOnItems().size();
+        avatar.getWornItems().size();
+
+        // TODO: 29.05.16 change to sth cleaner
+        for( Map<String, Object> command : json )
+        {
+            String operation = (String) command.get( "op" );
+            if( operation.equals( "replace" ) )
+            {
+                String path = (String) command.get( "path" );
+                List<String> items = (ArrayList<String>) command.get( "value" );
+                switch( path )
+                {
+                    case "/wornItems":
+                        avatar.setWornItems( getListOfItems( items ) );
+                        break;
+                    case "/canBePutOnItems":
+                        avatar.setCanBePutOnItems( getListOfItems( items ) );
+                        break;
+                    case "/canBePurchasedItems":
+                        avatar.setCanBePurchasedItems( getListOfItems( items ) );
+                        break;
+                    default:
+                        return Response.status( Response.Status.BAD_REQUEST ).build();
+                }
+
+            }
+        }
+
+        avatarDao.update( avatar );
+        return Response.ok( AvatarJson.createChildAvatar( avatar ) ).build();
+    }
+
+    private List<Item> getListOfItems( List<String> names )
+    {
+        List<Item> items = new ArrayList<>();
+        for( String name : names )
+        {
+            items.add( itemDao.find( name ) );
+        }
+        return items;
+    }
 
     @GET
     @Path( "/{avatarId}" )

@@ -8,6 +8,7 @@ import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -29,15 +30,12 @@ public class Avatar implements Serializable
     @NotBlank
     private String name;
 
-    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @ManyToMany( fetch = FetchType.LAZY )
+    @ManyToMany(  fetch = FetchType.LAZY )
     private List<Item> wornItems;
 
-    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
-    @ManyToMany( fetch = FetchType.LAZY )
+    @ManyToMany(  fetch = FetchType.LAZY )
     private List<Item> canBePutOnItems; //bought items but not worn
 
-    @Cascade( org.hibernate.annotations.CascadeType.SAVE_UPDATE )
     @ManyToMany( fetch = FetchType.LAZY )
     private List<Item> canBePurchasedItems;
 

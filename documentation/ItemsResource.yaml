@@ -1,0 +1,74 @@
+Path: http://localhost:8080/v1/items
+  Request:
+    Method: POST
+    Headers:
+      Content-type: application/json
+
+    Body:
+      {
+        "name": "item1",
+        "money": 10,
+        "level": 3,
+        "clazz": "druid",
+        "type": "typ itemu"
+      }
+
+  Response:
+    Status: 201 Created
+    Body:
+
+Path: http://localhost:8080/v1/items
+  Request:
+    Method: GET
+    Body:
+
+  Response:
+    Status: 200 Ok
+    Headers:
+      Content-type: application/json
+    Body:
+      [
+        {
+          "name": "item1",
+          "money": 10,
+          "level": 3,
+          "clazz": "druid",
+          "type": "typ itemu"
+        }
+      ]
+
+Path: http://localhost:8080/v1/items/item1
+  Request:
+    Method: GET
+    Body:
+
+  Response:
+    Status: 200 Ok
+    Headers:
+      Content-type: application/json
+    Body:
+      {
+        "name": "item1",
+        "money": 10,
+        "level": 3,
+        "clazz": "druid",
+        "type": "typ itemu"
+      }
+
+Path: http://localhost:8080/v1/items/item1
+  Request:
+    Method: DELETE
+    Headers:
+      Content-type: application/json
+    Body:
+      {
+        "name": "item1",
+        "money": 10,
+        "level": 3,
+        "clazz": "druid",
+        "type": "typ itemu"
+      }
+
+  Response:
+    Status: 204 No Content
+    Body:
