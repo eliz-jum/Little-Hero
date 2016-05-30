@@ -1,5 +1,5 @@
-angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService) {
-    
+angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService, ionicToast) {
+
     $scope.tasks = [];
     $scope.tasksStyles = [];
     $scope.allTasks = []; //TODO: delete, when connected to rest
@@ -48,4 +48,13 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
                 break;
             }
     }
+  
+  $scope.dragRight = function() {
+    $scope.showToast();
+  };
+
+  $scope.showToast = function(){
+    <!-- ionicToast.show(message, position, stick, time); -->
+    ionicToast.show('Pozdro', 'bottom', true, 2500);
+  };
 });
