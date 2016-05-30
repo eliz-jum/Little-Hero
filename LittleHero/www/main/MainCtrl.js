@@ -1,4 +1,7 @@
-angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
+angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, $location, dataService){
+
+    $scope.allAvatars = null;
+    $scope.currentAvatar = null;
 
     $scope.$on('$ionicView.beforeEnter', function(){       
         if ($stateParams.allAvatars != null) {
@@ -16,7 +19,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   
     $scope.swipeRight = function() {
         console.log("swipe right");
-        $state.go("notifications");
+        $state.go("notifications", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar });
+    };
+
+    $scope.settings = function() {
+        $state.go("settings");
     };
 
   $scope.nextType = function() {

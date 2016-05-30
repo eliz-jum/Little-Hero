@@ -27,6 +27,10 @@ angular.module('littleHero').controller('SettingsController', function($scope, $
     }
   ];
 
+    $scope.changeState = function(state) {
+        $state.go(state);
+    }
+
   $scope.myGoBack = function() {
     $backView = $ionicHistory.backView();
     if ($backView) {
