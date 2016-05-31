@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -65,7 +66,20 @@ public class ItemsResource
     @Transactional
     public Response deleteItem( @PathParam( "name" ) String itemName )
     {
+        // TODO: 31.05.16 change below to less ugle, refactor 
         Item item = itemDao.find( itemName );
+        String sqlQuery = "DELETE FROM avatar_item_worn WHERE worn_item_id = " + "'"+item.getName()+"'";
+        Query q = itemDao.getEntityManager().createNativeQuery( sqlQuery );
+        q.executeUpdate();
+
+        sqlQuery = "DELETE FROM avatar_item_can_be_put_on WHERE can_be_put_on_item_id = " + "'"+item.getName()+"'";
+        q = itemDao.getEntityManager().createNativeQuery( sqlQuery );
+        q.executeUpdate();
+
+        sqlQuery = "DELETE FROM avatar_item_can_be_purchased WHERE can_be_purchased_item_id = " + "'"+item.getName()+"'";
+        q = itemDao.getEntityManager().createNativeQuery( sqlQuery );
+        q.executeUpdate();
+
         itemDao.remove( item );
 
         return Response.status( Response.Status.NO_CONTENT ).build();

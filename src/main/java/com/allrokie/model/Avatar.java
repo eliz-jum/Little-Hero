@@ -4,13 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
@@ -30,13 +27,28 @@ public class Avatar implements Serializable
     @NotBlank
     private String name;
 
-    @ManyToMany(  fetch = FetchType.LAZY )
+    @ManyToMany( fetch = FetchType.LAZY )
+    @JoinTable(
+            name = "avatar_item_worn",
+            joinColumns = { @JoinColumn( name = "avatar_id" ) },
+            inverseJoinColumns = { @JoinColumn( name = "worn_item_id" ) }
+    )
     private List<Item> wornItems;
 
-    @ManyToMany(  fetch = FetchType.LAZY )
+    @ManyToMany( fetch = FetchType.LAZY )
+    @JoinTable(
+            name = "avatar_item_can_be_put_on",
+            joinColumns = { @JoinColumn( name = "avatar_id" ) },
+            inverseJoinColumns = { @JoinColumn( name = "can_be_put_on_item_id" ) }
+    )
     private List<Item> canBePutOnItems; //bought items but not worn
 
     @ManyToMany( fetch = FetchType.LAZY )
+    @JoinTable(
+            name = "avatar_item_can_be_purchased",
+            joinColumns = { @JoinColumn( name = "avatar_id" ) },
+            inverseJoinColumns = { @JoinColumn( name = "can_be_purchased_item_id" ) }
+    )
     private List<Item> canBePurchasedItems;
 
     @Cascade( org.hibernate.annotations.CascadeType.ALL )
