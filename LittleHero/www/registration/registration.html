@@ -1,5 +1,3 @@
-<!--<link rel="stylesheet" type="text/css" href="css/styles.css" />-->
-
 <div class="text-center background" style="padding:50px 0">
 <h2>Rejestracja konta</h2>
 <form name="registration">
@@ -26,13 +24,15 @@
   <ion-radio ng-model="Opiekun" ng-value=TRUE>Opiekun </ion-radio>
   <ion-radio ng-model="Opiekun" ng-value=FALSE>Dziecko</ion-radio>
 
-  <button class="button button-block button-positive" ng-click="validate()">
-    Zarejestruj
-  </button>
+  <div class="accept-button-container">
+    <button class="button button-block orange accept-button" ng-click="validate()">
+        Zarejestruj
+    </button>
+  </div>
   <div ng-show="invalid">
     Brak danych, logowanie nie powiodło się
   </div>
-	<a ui-sref="login">Masz juz konto? </a>
+	<a ui-sref="login">Masz już konto?</a>
 </form>
 
 

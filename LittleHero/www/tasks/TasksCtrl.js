@@ -1,30 +1,26 @@
 angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService, ionicToast) {
 
+    $scope.username = "";
     $scope.tasks = [];
     $scope.tasksStyles = [];
     $scope.allTasks = []; //TODO: delete, when connected to rest
 
-    $scope.currentAvatar = null;
-    $scope.allAvatars = null;
-
     $scope.$on('$ionicView.beforeEnter', function(){  
+
+        $scope.username = $stateParams.username;
         $scope.allAvatars = $stateParams.allAvatars;
-        $scope.currentAvatar = $stateParams.currentAvatar;
-        
-        if ($scope.currentAvatar != null) {          
-            if ($scope.tasks[0] == null) {           
-                $scope.getTasks();
-            }
+        $scope.currentAvatar = $stateParams.currentAvatar1;
+   
+        if ($scope.tasks.length == 0 && $scope.currentAvatar != null) {           
+            $scope.getTasks();
         }
     });
 
-    $scope.$on('$ionicView.beforeLeave', function(){  
-        $scope.currentAvatar = null;
-    });
 
     $scope.swipeRight = function() {
         console.log("swipe right");
-        $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar });
+        $scope.tasks.length = 0;
+        $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar2" : $scope.currentAvatar, "username" : $scope.username });
     };
 
     $scope.settings = function() {
@@ -42,8 +38,8 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
 
     $scope.getTasksForAvatar = function() {
 
-        $scope.tasks = [];
-        $scope.tasksStyles = [];        
+        $scope.tasks.length = 0;
+        $scope.tasksStyles.length = 0;        
 
         $scope.currentAvatar["tasks"].forEach(function(element) {
             $scope.allTasks.forEach(function(obj) {

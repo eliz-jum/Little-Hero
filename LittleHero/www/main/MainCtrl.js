@@ -1,12 +1,16 @@
 angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, $location, dataService){
 
+    $scope.username = null;
     $scope.allAvatars = null;
     $scope.currentAvatar = null;
 
     $scope.$on('$ionicView.beforeEnter', function(){       
+        
+        $scope.username = $stateParams.username;   
+      
         if ($stateParams.allAvatars != null) {
             $scope.allAvatars = $stateParams.allAvatars;
-            $scope.currentAvatar = $stateParams.currentAvatar;
+            $scope.currentAvatar = $stateParams.currentAvatar2;
         }
         else $scope.getAvatars();
         
@@ -14,12 +18,13 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
     $scope.swipeLeft = function() {
         console.log("swipe left");
-        $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar });
+        $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar1" : $scope.currentAvatar, "username" : $scope.username });
     };
   
     $scope.swipeRight = function() {
         console.log("swipe right");
-        $state.go("notifications", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar });
+        $state.go("notifications", { "allAvatars" : $scope.allAvatars, "currentAvatar1" : $scope.currentAvatar,
+            "username" : $scope.username });
     };
 
     $scope.settings = function() {
