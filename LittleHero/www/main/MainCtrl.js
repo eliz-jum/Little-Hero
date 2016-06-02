@@ -508,10 +508,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   $scope.openModal = function(item) {
     getAssets();
     console.log('po get assets');
-    console.log($scope.isEquipmentLoaded);
-    if ($scope.isEquipmentLoaded==true) {
-      $scope.filterDisplay(item);
-    }
+
+    while (!$scope.isEquipmentLoaded) {}
+
+    $scope.filterDisplay(item);
+
     $scope.modal.show();
   };
 
@@ -561,9 +562,9 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     console.log('filter display');
     console.log(canBePutOnEquipment);
     $scope.currentButton = item;
-    filterBy(item, $scope.canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
-    filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
-    filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
+    //filterBy(item, canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
+    //filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
+    //filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
 
   }
 
