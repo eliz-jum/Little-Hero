@@ -1,19 +1,24 @@
 angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
+  var canBePutOnEquipment = [];
+  var canBePurchasedEquipment = [];
+  var unavailableEquipment = [];
+  $scope.isEquipmentLoaded = false;
 
-    $scope.$on('$ionicView.beforeEnter', function(){       
+
+    $scope.$on('$ionicView.beforeEnter', function(){
         if ($stateParams.allAvatars != null) {
             $scope.allAvatars = $stateParams.allAvatars;
             $scope.currentAvatar = $stateParams.currentAvatar;
         }
         else $scope.getAvatars();
-        
+
     });
 
     $scope.swipeLeft = function() {
         console.log("swipe left");
         $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar });
     };
-  
+
     $scope.swipeRight = function() {
         console.log("swipe right");
         $state.go("notifications");
@@ -45,31 +50,41 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     }
   };
 
-  var allEquipment = [
+  var array = [
     {
       type: 'animal',
       iconSrc: 'img/empty_icon.svg',
-      imgSrc: 'img/empty.svg'
+      imgSrc: 'img/empty.svg',
+      lvl: 1,
+      price: 0
     },
     {
       type: 'animal',
       iconSrc: 'img/animal1_icon.svg',
-      imgSrc: 'img/animal1.svg'
+      imgSrc: 'img/animal1.svg',
+      lvl: 1,
+      price: 0
     },
     {
       type: 'eyes',
       iconSrc: 'img/eyes1_icon.svg',
-      imgSrc: 'img/eyes1.svg'
+      imgSrc: 'img/eyes1.svg',
+      lvl: 1,
+      price: 0
     },
     {
       type: 'eyes',
       iconSrc: 'img/eyes2_icon.svg',
-      imgSrc: 'img/eyes2.svg'
+      imgSrc: 'img/eyes2.svg',
+      lvl: 1,
+      price: 3
     },
     {
       type: 'eyes',
       iconSrc: 'img/eyes3_icon.svg',
-      imgSrc: 'img/eyes3.svg'
+      imgSrc: 'img/eyes3.svg',
+      lvl: 2,
+      price: 5
     },
     {
       type: 'hair_back',
@@ -174,32 +189,44 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     {
       type: 'mouth',
       iconSrc: 'img/mouth1_icon.svg',
-      imgSrc: 'img/mouth1.svg'
+      imgSrc: 'img/mouth1.svg',
+      lvl: 1,
+      price: 0
     },
     {
       type: 'mouth',
       iconSrc: 'img/mouth2_icon.svg',
-      imgSrc: 'img/mouth2.svg'
+      imgSrc: 'img/mouth2.svg',
+      lvl: 1,
+      price: 3
     },
     {
       type: 'mouth',
       iconSrc: 'img/mouth3_icon.svg',
-      imgSrc: 'img/mouth3.svg'
+      imgSrc: 'img/mouth3.svg',
+      lvl: 3,
+      price: 12
     },
     {
       type: 'nose',
       iconSrc: 'img/nose1_icon.svg',
-      imgSrc: 'img/nose1.svg'
+      imgSrc: 'img/nose1.svg',
+      lvl: 1,
+      price: 0
     },
     {
       type: 'nose',
       iconSrc: 'img/nose2_icon.svg',
-      imgSrc: 'img/nose2.svg'
+      imgSrc: 'img/nose2.svg',
+      lvl: 1,
+      price: 1
     },
     {
       type: 'nose',
       iconSrc: 'img/nose3_icon.svg',
-      imgSrc: 'img/nose3.svg'
+      imgSrc: 'img/nose3.svg',
+      lvl: 5,
+      price: 15
     },
     {
       type: 'top',
@@ -404,44 +431,44 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   ]
 
 
-  $scope.filterBy = function(item) {
-
-    $scope.currentEquipment=[];
-    $scope.currentButton = item;
-
+  var filterBy = function(item, array, filteredArray) {
+    console.log('jestem w filterby');
+    console.log(array);
     if (item.type == 'all') {
-      allEquipment.forEach(function(listItem){
+      array.forEach(function(listItem){
         if (listItem.imgSrc!='img/empty.svg') {
-          $scope.currentEquipment.push(listItem);
+          filteredArray.push(listItem);
         }
       });
     }
     else if (item.type == 'face') {
-      allEquipment.forEach(function(listItem){
+      console.log('jestem w face');
+      array.forEach(function(listItem){
+        console.log('foreach');
         if (listItem.type=='eyes' || listItem.type=='nose' || listItem.type=='mouth') {
-          $scope.currentEquipment.push(listItem);
+          filteredArray.push(listItem);
         }
+        console.log(filteredArray);
       });
     }
     else if (item.type == 'hair') {
-      allEquipment.forEach(function(listItem){
+      array.forEach(function(listItem){
         if (listItem.type=='hair_back' || listItem.type=='hair_front') {
-          $scope.currentEquipment.push(listItem);
+          filteredArray.push(listItem);
         }
       });
     }
     else if (item.type == 'prop') {
-      allEquipment.forEach(function(listItem){
+      array.forEach(function(listItem){
         if (listItem.type=='prop_left' || listItem.type=='prop_right') {
-          $scope.currentEquipment.push(listItem);
+          filteredArray.push(listItem);
         }
       });
     }
     else {
-
-      allEquipment.forEach(function(listItem){
+      array.forEach(function(listItem){
         if (listItem.type==item.type) {
-          $scope.currentEquipment.push(listItem);
+          filteredArray.push(listItem);
         }
       });
     }
@@ -455,7 +482,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     console.log(element);
     element.setAttribute("src", item.imgSrc);
     $scope.modal.hide();
+
   }
+
+
 
   $ionicModal.fromTemplateUrl('main/equipmentModal.html', {
     scope: $scope
@@ -464,15 +494,57 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   });
 
   $scope.openModal = function(item) {
+    getAssets();
+    $scope.filterDisplay(item);
+    $scope.closeModal();
+  };
 
-    $scope.filterBy(item);
+  $scope.closeModal = function () {
     $scope.modal.show();
+    $scope.isEquipmentLoaded = false;
+  }
+
+  $scope.getAvatars = function() {
+      dataService.getAvatars().then(function(res) {
+          $scope.allAvatars = res.data;
+      });
   };
 
 
-    $scope.getAvatars = function() {
-        dataService.getAvatars().then(function(res) {
-            $scope.allAvatars = res.data;
-        });
-    };
+
+
+  var getAssets = function() {
+    $scope.filteredCanBePutOnEquipment=[];
+    $scope.filteredCanBePurchasedEquipment=[];
+    $scope.filteredUnavailableEquipment=[];
+
+    console.log('jestem w get assets');
+
+    dataService.getAvatars().then(function(res) {
+      var avatars = res.data;
+      //console.log($scope.currentAvatar);
+      //console.log(avatars[0]);
+
+      $scope.canBePutOnEquipment = avatars[0]["canBePutOnItems"];
+      canBePurchasedEquipment = avatars[0]["canBePurchasedItems"];
+      unavailableEquipment = avatars[0]["unavailableItems"];
+      console.log('can be put on in assets');
+      console.log($scope.canBePutOnEquipment);
+    }).then(function(){
+      $scope.isEquipmentLoaded = true;
+    } );
+
+  }
+
+  $scope.filterDisplay = function(item) {
+    console.log('filter display');
+    console.log($scope.canBePutOnEquipment);
+    $scope.currentButton = item;
+    filterBy(item, $scope.canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
+    filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
+    filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
+
+  }
+
+
   });

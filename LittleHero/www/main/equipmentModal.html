@@ -1,18 +1,24 @@
 <ion-modal-view>
   <ion-header-bar class="bar bar-header">
-    <a class="button button-icon icon ion-android-arrow-back" ng-click="modal.hide()"></a>
-    <h1 class="title">Wybierz ekwipunek</h1>
+    <a class="button button-icon icon ion-android-arrow-back" ng-click="closeModal()"></a>
+    <h1 class="title">Wybierz ekwipunek</h1>-
   </ion-header-bar>
-  <ion-content class="has-header has-footer" on-swipe-right="previousType()" on-swipe-left="nextType()">
-    <div class="equipment">
 
-      <div class="equipment-item" ng-repeat="item in currentEquipment">
+  <ion-content >
+    <div ng-if="isEquipmentLoaded">
+      <div class="equipment-item" ng-repeat="item in filteredCanBePutOnEquipment" class="canBePutOn">
         <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
       </div>
-
+      <div class="equipment-item" ng-repeat="item in filteredCanBePurchasedEquipment" class="canBePurchased">
+        <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
+      </div>
+      <div class="equipment-item" ng-repeat="item in filteredUnavailableEquipment" class="unavailable">
+        <img ng-src="{{item.iconSrc}}"/>
+      </div>
     </div>
   </ion-content>
+
   <ion-footer-bar class="button-footer">
-    <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterBy(item)" ng-class="{selected: item == currentButton}"/>
+    <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
   </ion-footer-bar>
 </ion-modal-view>
