@@ -1,25 +1,25 @@
+<ion-view>
+  <ion-pane class="background">
+
 <ion-header-bar class="bar bar-header orange">
   <div class="buttons">
     <button class="button button-icon icon ion-android-arrow-back"
             ng-click="myGoBack()"></button>
   </div>
-  <div class="title">
-    <h2>Ustawienia</h2>
-  </div>
 </ion-header-bar>
 
-<ion-content>
+<ion-content class="background has-header has-footer">
+
+  <div class="title"></div>
 
   <ion-list>
-
-    <ion-item ng-repeat="button in buttons" ui-sref="{{button.state}}">
+    <ion-item class="background" ng-repeat="button in buttons" ng-click="changeState(button.state)">
        {{ button.title }}
     </ion-item>
 
   </ion-list>
 
 </ion-content>
-
-</body>
-</html>
+</ion-pane>
+</ion-view>
 

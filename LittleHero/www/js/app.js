@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('littleHero', ['ionic', 'ui.router'])
+angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,7 +28,10 @@ angular.module('littleHero', ['ionic', 'ui.router'])
         .state('login', {
             url: '/login',
             templateUrl: 'login/login.html',
-            controller: 'LoginController'
+            controller: 'LoginController',
+             params: {
+                username: ""
+            }
         })
         .state('main', {
             url: '/main',
@@ -36,7 +39,9 @@ angular.module('littleHero', ['ionic', 'ui.router'])
             controller: 'MainController',
             params: {
                 allAvatars: null,
-                currentAvatar : null
+                currentAvatar1 : null,
+                currentAvatar2 : null,
+                username: null
             }
         })
         .state('recoverPassword', {
@@ -47,7 +52,10 @@ angular.module('littleHero', ['ionic', 'ui.router'])
         .state('registration', {
             url: '/registration',
             templateUrl: 'registration/registration.html',
-            controller: 'RegistrationController'
+            controller: 'RegistrationController',
+            params: {
+                username: null
+            }
         })
         .state('tasks', {
             url: '/tasks',
@@ -55,7 +63,9 @@ angular.module('littleHero', ['ionic', 'ui.router'])
             controller: 'TasksController',
             params: {
                 allAvatars: null,
-                currentAvatar : null
+                currentAvatar1 : null,
+                currentAvatar2 : null,
+                username: ""
             }
         })
         .state('settings', {
@@ -66,35 +76,13 @@ angular.module('littleHero', ['ionic', 'ui.router'])
         .state('notifications',{
           url: '/notifications',
           templateUrl: 'notifications/notifications.html',
-          controller: 'NotificationsController'
-        });
+          controller: 'NotificationsController',
+          params: {
+            allAvatars: null,
+            currentAvatar : null,
+            username: ""
+          }
+       });
 
-    $urlRouterProvider.otherwise('/main');
-})
-
-.service("dataService", function($http) {
-    return {
-        getAvatars: function() {
-            return $http.get("/mockedData/avatars.json").then(function(res) {              
-                return res;
-            });
-        },
-
-        getTasks: function() {
-            return $http.get("/mockedData/tasks.json").then(function(res) {              
-                return res;
-            });
-        }
-
-        /*getCurrentTask: function(id) {
-            return $http.get("/mockedData/tasks.json").then(function(res) {              
-                res.data.forEach(function(task) {
-                    if (task["id"] == id) {                         
-                        return task;
-                    }
-                });
-            });
-
-        },*/
-    }
-})
+    $urlRouterProvider.otherwise('/login');
+});

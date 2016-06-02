@@ -8536,11 +8536,8 @@ progress {
   font-size: 16px;
   line-height: 42px;
   cursor: pointer; }
-.button:hover {
-  color: #444;
-  text-decoration: none; }
 .button.active, .button.activated {
-  background-color: #e5e5e5; }
+  background-color: #ff6b3d; }
 .button:after {
   position: absolute;
   top: -6px;
@@ -9876,5 +9873,12 @@ h2 {
   background-color: #B0D57F;
 }
 
-ion-radio {
-  backround-color: #ffe9ab; }
+.ion-radio {
+  background-color: #ffe9ab; }
+
+/************** LOGIN/REGISTER *************/
+
+.accept-button-container {
+   margin: 40px 10px 10px 10px;
+}
+
