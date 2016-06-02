@@ -8,10 +8,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.allAvatars = null;
     $scope.currentAvatar = null;
 
-    $scope.$on('$ionicView.beforeEnter', function(){       
-        
-        $scope.username = $stateParams.username;   
-      
+    $scope.$on('$ionicView.beforeEnter', function(){
+
+        $scope.username = $stateParams.username;
+
         if ($stateParams.allAvatars != null) {
             $scope.allAvatars = $stateParams.allAvatars;
             $scope.currentAvatar = $stateParams.currentAvatar2;
@@ -492,7 +492,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     var element = document.getElementsByClassName(item.type)[0];
     console.log(element);
     element.setAttribute("src", item.imgSrc);
-    $scope.modal.hide();
+    $scope.closeModal();
 
   }
 
@@ -504,16 +504,23 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.modal = modal;
   });
 
+
   $scope.openModal = function(item) {
     getAssets();
-    $scope.filterDisplay(item);
-    $scope.closeModal();
+    console.log('po get assets');
+    console.log($scope.isEquipmentLoaded);
+    if ($scope.isEquipmentLoaded==true) {
+      $scope.filterDisplay(item);
+    }
+    $scope.modal.show();
   };
 
+
   $scope.closeModal = function () {
-    $scope.modal.show();
+    $scope.modal.hide();
     $scope.isEquipmentLoaded = false;
   }
+
 
   $scope.getAvatars = function() {
       dataService.getAvatars().then(function(res) {
@@ -530,18 +537,21 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.filteredUnavailableEquipment=[];
 
     console.log('jestem w get assets');
+    console.log($scope.isEquipmentLoaded);
 
     dataService.getAvatars().then(function(res) {
       var avatars = res.data;
       //console.log($scope.currentAvatar);
-      //console.log(avatars[0]);
+      console.log('promise!');
 
-      $scope.canBePutOnEquipment = avatars[0]["canBePutOnItems"];
+      canBePutOnEquipment = avatars[0]["canBePutOnItems"];
       canBePurchasedEquipment = avatars[0]["canBePurchasedItems"];
       unavailableEquipment = avatars[0]["unavailableItems"];
+
       console.log('can be put on in assets');
-      console.log($scope.canBePutOnEquipment);
+      console.log(canBePutOnEquipment);
     }).then(function(){
+      console.log('po promisie');
       $scope.isEquipmentLoaded = true;
     } );
 
@@ -549,7 +559,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
   $scope.filterDisplay = function(item) {
     console.log('filter display');
-    console.log($scope.canBePutOnEquipment);
+    console.log(canBePutOnEquipment);
     $scope.currentButton = item;
     filterBy(item, $scope.canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
     filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);

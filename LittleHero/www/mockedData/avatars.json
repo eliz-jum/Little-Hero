@@ -2,8 +2,69 @@
 	"id": 1,
 	"name": "Avatar1",
 	"wornItems": [],
-	"canBePutOnItems": [],
-	"canBePurchasedItems": [],
+	"canBePutOnItems": [{
+    "type": "eyes",
+    "iconSrc": "img/eyes1_icon.svg",
+    "imgSrc": "img/eyes1.svg",
+    "lvl": 1,
+    "price": 0
+    },
+    {
+      "type": "mouth",
+      "iconSrc": "img/mouth1_icon.svg",
+      "imgSrc": "img/mouth1.svg",
+      "lvl": 1,
+      "price": 0
+    },
+    {
+      "type": "nose",
+      "iconSrc": "img/nose1_icon.svg",
+      "imgSrc": "img/nose1.svg",
+      "lvl": 1,
+      "price": 0
+    }],
+	"canBePurchasedItems": [{
+    "type": "eyes",
+    "iconSrc": "img/eyes2_icon.svg",
+    "imgSrc": "img/eyes2.svg",
+    "lvl": 1,
+    "price": 3
+    },
+    {
+      "type": "mouth",
+      "iconSrc": "img/mouth2_icon.svg",
+      "imgSrc": "img/mouth2.svg",
+      "lvl": 1,
+      "price": 3
+    },
+    {
+      "type": "nose",
+      "iconSrc": "img/nose2_icon.svg",
+      "imgSrc": "img/nose2.svg",
+      "lvl": 1,
+      "price": 1
+    }],
+  "unavailableItems": [{
+    "type": "eyes",
+    "iconSrc": "img/eyes3_icon.svg",
+    "imgSrc": "img/eyes3.svg",
+    "lvl": 2,
+    "price": 5
+    },
+    {
+      "type": "mouth",
+      "iconSrc": "img/mouth3_icon.svg",
+      "imgSrc": "img/mouth3.svg",
+      "lvl": 3,
+      "price": 12
+    },
+    {
+      "type": "nose",
+      "iconSrc": "img/nose3_icon.svg",
+      "imgSrc": "img/nose3.svg",
+      "lvl": 5,
+      "price": 15
+    }],
 	"tasks": [{
 		"id": 0
 	}, {
@@ -15,7 +76,7 @@
 	"tutor": {
 		"id": 0
 	},
-	"level": 10,
+	"level": 1,
 	"money": 12,
 	"health": 20,
 	"experience": 10
@@ -25,6 +86,7 @@
 	"wornItems": [],
 	"canBePutOnItems": [],
 	"canBePurchasedItems": [],
+  "unavailableItems": [],
 	"tasks": [{
 		"id": 2
 	}, {
