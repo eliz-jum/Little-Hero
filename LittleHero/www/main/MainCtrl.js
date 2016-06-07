@@ -23,8 +23,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     });
 
     $scope.checkForAvatar = function() {
-        if ($scope.currentAvatar != null)
+        if ($scope.currentAvatar != null) {
             $scope.showAvatar = true;
+            getAssets();
+        }
         else
             $scope.showAvatar = false;
     };

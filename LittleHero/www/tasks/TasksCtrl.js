@@ -3,6 +3,7 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     $scope.user = null;
     $scope.tasks = [];
     $scope.tasksStyles = [];
+    $scope.dynamicStyle = [];
 
     $scope.$on('$ionicView.beforeEnter', function(){  
 
@@ -10,17 +11,19 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
         $scope.allAvatars = $stateParams.allAvatars;
         $scope.currentAvatar = $stateParams.currentAvatar;
    
-        if ($scope.tasks.length == 0 && $scope.currentAvatar != null) {           
+        if ($scope.tasks.length == 0 && $scope.currentAvatar != null) {
             $scope.getTasks();
-
-            $scope.tasks.forEach(function(task) {
-                $scope.setTaskStyle(task);
-            });
-
-            console.log($scope.tasksStyles);
         }
     });
 
+    $scope.$on('$ionicView.afterEnter', function(){  
+
+         if ($scope.tasks.length != 0) {
+            $scope.tasks.forEach(function(task) {
+                $scope.setTaskStyle(task);
+            });
+        }
+    });
 
     $scope.swipeRight = function() {
         console.log("swipe right");
@@ -38,8 +41,7 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
         $scope.tasksStyles.length = 0;
 
         dataService.getAvatarTasks($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
-            $scope.tasks = res.data;        
-            /*$scope.getTasksForAvatar();*/
+            $scope.tasks = res.data;
         });
     }
 
@@ -59,22 +61,21 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     }*/
 
     $scope.setTaskStyle = function(task) {
-        console.log(task["difficulty"]);
         switch(task["difficulty"]) {
             case (1):
-                $scope.tasksStyles.push('easy-task');
+                $scope.dynamicStyle.push('easy-task');
                 break;
             case (2):
-                $scope.tasksStyles.push('medium-task');
+                $scope.dynamicStyle.push('medium-task');
                 break;
             case (3):
-                $scope.tasksStyles.push('hard-task');
+                $scope.dynamicStyle.push('hard-task');
                 break;
             }
     }
 
     $scope.markTaskCompleted = function(task) {
-        console.log(task["difficulty"]);
+        console.log(task["id"]);
 
     }
   
