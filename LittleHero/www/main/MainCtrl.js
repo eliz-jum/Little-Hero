@@ -19,6 +19,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
         }
         else $scope.getAvatars();
 
+      getAssets();
     });
 
     $scope.checkForAvatar = function() {
@@ -500,7 +501,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     var element = document.getElementsByClassName(item.type)[0];
     console.log(element);
     element.setAttribute("src", item.imgSrc);
-    $scope.modal.hide();
+    $scope.closeModal();
 
   }
 
@@ -512,16 +513,24 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.modal = modal;
   });
 
+
   $scope.openModal = function(item) {
-    getAssets();
+    //getAssets();
+    console.log('openModal');
+
+    //while (!$scope.isEquipmentLoaded) {}
+
     $scope.filterDisplay(item);
-    $scope.closeModal();
+
+    $scope.modal.show();
   };
 
+
   $scope.closeModal = function () {
-    $scope.modal.show();
+    $scope.modal.hide();
     $scope.isEquipmentLoaded = false;
   }
+
 
   $scope.getAvatars = function() {
       dataService.getChildAvatars($scope.user["id"]).then(function(res) {
@@ -530,33 +539,38 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   }
 
   var getAssets = function() {
-    $scope.filteredCanBePutOnEquipment=[];
-    $scope.filteredCanBePurchasedEquipment=[];
-    $scope.filteredUnavailableEquipment=[];
-
+    canBePutOnEquipment = [];
+    canBePurchasedEquipment = [];
+    unavailableEquipment = [];
     console.log('jestem w get assets');
+    console.log($scope.isEquipmentLoaded);
 
     dataService.getAvatars().then(function(res) {
       var avatars = res.data;
       //console.log($scope.currentAvatar);
-      //console.log(avatars[0]);
+      console.log('promise!');
 
-      $scope.canBePutOnEquipment = avatars[0]["canBePutOnItems"];
+      canBePutOnEquipment = avatars[0]["canBePutOnItems"];
       canBePurchasedEquipment = avatars[0]["canBePurchasedItems"];
       unavailableEquipment = avatars[0]["unavailableItems"];
+
       console.log('can be put on in assets');
-      console.log($scope.canBePutOnEquipment);
+      console.log(canBePutOnEquipment);
     }).then(function(){
+      console.log('po promisie');
       $scope.isEquipmentLoaded = true;
     } );
 
   }
 
   $scope.filterDisplay = function(item) {
+    $scope.filteredCanBePutOnEquipment=[];
+    $scope.filteredCanBePurchasedEquipment=[];
+    $scope.filteredUnavailableEquipment=[];
     console.log('filter display');
-    console.log($scope.canBePutOnEquipment);
+    console.log(canBePutOnEquipment);
     $scope.currentButton = item;
-    filterBy(item, $scope.canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
+    filterBy(item, canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
     filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
     filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
 

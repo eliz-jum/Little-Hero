@@ -5,20 +5,22 @@
   </ion-header-bar>
 
   <ion-content >
-    <div ng-if="isEquipmentLoaded">
-      <div class="equipment-item" ng-repeat="item in filteredCanBePutOnEquipment" class="canBePutOn">
+    <div class="equipment">
+      <div class="equipment-item canBePutOn" ng-repeat="item in filteredCanBePutOnEquipment track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
       </div>
-      <div class="equipment-item" ng-repeat="item in filteredCanBePurchasedEquipment" class="canBePurchased">
+      <div class="equipment-item canBePurchased" ng-repeat="item in filteredCanBePurchasedEquipment track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
       </div>
-      <div class="equipment-item" ng-repeat="item in filteredUnavailableEquipment" class="unavailable">
+      <div class="equipment-item unavailable" ng-repeat="item in filteredUnavailableEquipment track by $index">
         <img ng-src="{{item.iconSrc}}"/>
       </div>
     </div>
   </ion-content>
 
   <ion-footer-bar class="button-footer">
-    <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
+    <div >
+      <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
+    </div>
   </ion-footer-bar>
 </ion-modal-view>
