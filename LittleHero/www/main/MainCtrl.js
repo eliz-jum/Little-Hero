@@ -8,10 +8,9 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.allAvatars = null;
     $scope.currentAvatar = null;
 
-    $scope.$on('$ionicView.beforeEnter', function(){
-
-        $scope.username = $stateParams.username;
-
+    $scope.$on('$ionicView.beforeEnter', function(){       
+        $scope.username = $stateParams.username;   
+      
         if ($stateParams.allAvatars != null) {
             $scope.allAvatars = $stateParams.allAvatars;
             $scope.currentAvatar = $stateParams.currentAvatar2;
