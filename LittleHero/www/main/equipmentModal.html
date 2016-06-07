@@ -10,7 +10,7 @@
         <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
       </div>
       <div class="equipment-item canBePurchased" ng-repeat="item in filteredCanBePurchasedEquipment track by $index">
-        <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
+        <img ng-src="{{item.iconSrc}}" ng-click="buy(item)"/>
       </div>
       <div class="equipment-item unavailable" ng-repeat="item in filteredUnavailableEquipment track by $index">
         <img ng-src="{{item.iconSrc}}"/>
