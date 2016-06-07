@@ -1,4 +1,8 @@
 angular.module('littleHero').service("dataService", function($http) {
+    
+    var BASE_PATH = "http://littlehero-littlehero.rhcloud.com/v1/";
+
+
     return {
         getAvatars: function() {
             return $http.get("/mockedData/avatars.json").then(function(res) {              
@@ -12,8 +16,19 @@ angular.module('littleHero').service("dataService", function($http) {
             });
         },
 
-        /* FUNKCJE W WERSJI GDY ZOSTANIE UDOSTEPNIONY REST - ODKOMENTOWAC*/
-        /***
+        getChildren: function() {
+            return $http.get(BASE_PATH + "childs").then(function(res) {              
+                return res;
+            });
+        },
+
+        getTutors: function() {
+            return $http.get(BASE_PATH + "tutors").then(function(res) {              
+                return res;
+            });
+        },       
+    
+/***
 
         getCurrentAvatarTasks: function(childId, avatarId) {
             return $http.get(BASE_PATH + "/v1/childs/" + childId + "/avatars/" + avatarId + "/tasks").then(function(res) {              
