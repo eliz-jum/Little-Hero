@@ -4,13 +4,15 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   var unavailableEquipment = [];
   $scope.isEquipmentLoaded = false;
 
-    $scope.username = null;
+    $scope.user = null;
     $scope.allAvatars = null;
     $scope.currentAvatar = null;
+    $scope.showAvatar = false;
 
     $scope.$on('$ionicView.beforeEnter', function(){       
-        $scope.username = $stateParams.username;   
-      
+        $scope.user = $stateParams.user;
+        $scope.checkForAvatar();
+        
         if ($stateParams.allAvatars != null) {
             $scope.allAvatars = $stateParams.allAvatars;
             $scope.currentAvatar = $stateParams.currentAvatar2;
@@ -19,15 +21,22 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
     });
 
+    $scope.checkForAvatar = function() {
+        if ($scope.currentAvatar != null)
+            $scope.showAvatar = true;
+        else
+            $scope.showAvatar = false;
+    };
+
     $scope.swipeLeft = function() {
         console.log("swipe left");
-        $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar1" : $scope.currentAvatar, "username" : $scope.username });
+        $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
     };
 
     $scope.swipeRight = function() {
         console.log("swipe right");
-        $state.go("notifications", { "allAvatars" : $scope.allAvatars, "currentAvatar1" : $scope.currentAvatar,
-            "username" : $scope.username });
+        $state.go("notifications", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar,
+            "user" : $scope.user });
     };
 
     $scope.settings = function() {
@@ -515,13 +524,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   }
 
   $scope.getAvatars = function() {
-      dataService.getAvatars().then(function(res) {
+      dataService.getChildAvatars($scope.user["id"]).then(function(res) {
           $scope.allAvatars = res.data;
       });
-  };
-
-
-
+  }
 
   var getAssets = function() {
     $scope.filteredCanBePutOnEquipment=[];

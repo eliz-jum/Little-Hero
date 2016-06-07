@@ -1,18 +1,23 @@
 angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService, ionicToast) {
 
-    $scope.username = "";
+    $scope.user = null;
     $scope.tasks = [];
     $scope.tasksStyles = [];
-    $scope.allTasks = []; //TODO: delete, when connected to rest
 
     $scope.$on('$ionicView.beforeEnter', function(){  
 
-        $scope.username = $stateParams.username;
+        $scope.user = $stateParams.user;
         $scope.allAvatars = $stateParams.allAvatars;
-        $scope.currentAvatar = $stateParams.currentAvatar1;
+        $scope.currentAvatar = $stateParams.currentAvatar;
    
         if ($scope.tasks.length == 0 && $scope.currentAvatar != null) {           
             $scope.getTasks();
+
+            $scope.tasks.forEach(function(task) {
+                $scope.setTaskStyle(task);
+            });
+
+            console.log($scope.tasksStyles);
         }
     });
 
@@ -20,7 +25,7 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     $scope.swipeRight = function() {
         console.log("swipe right");
         $scope.tasks.length = 0;
-        $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar2" : $scope.currentAvatar, "username" : $scope.username });
+        $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
     };
 
     $scope.settings = function() {
@@ -29,14 +34,16 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
 
     $scope.getTasks = function() {
 
-        dataService.getTasks().then(function(res) {
-            $scope.allTasks = res.data;
-          
-            $scope.getTasksForAvatar();
+        $scope.tasks.length = 0;
+        $scope.tasksStyles.length = 0;
+
+        dataService.getAvatarTasks($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
+            $scope.tasks = res.data;        
+            /*$scope.getTasksForAvatar();*/
         });
     }
 
-    $scope.getTasksForAvatar = function() {
+    /*$scope.getTasksForAvatar = function() {
 
         $scope.tasks.length = 0;
         $scope.tasksStyles.length = 0;        
@@ -49,20 +56,26 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
                 }
             });
         });
-    }
+    }*/
 
     $scope.setTaskStyle = function(task) {
+        console.log(task["difficulty"]);
         switch(task["difficulty"]) {
             case (1):
-                return 'easy-task';
+                $scope.tasksStyles.push('easy-task');
                 break;
             case (2):
-                return 'medium-task';
+                $scope.tasksStyles.push('medium-task');
                 break;
             case (3):
-                return 'hard-task';
+                $scope.tasksStyles.push('hard-task');
                 break;
             }
+    }
+
+    $scope.markTaskCompleted = function(task) {
+        console.log(task["difficulty"]);
+
     }
   
   $scope.dragRight = function() {

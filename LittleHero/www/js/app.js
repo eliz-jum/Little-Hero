@@ -30,7 +30,7 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             templateUrl: 'login/login.html',
             controller: 'LoginController',
              params: {
-                username: ""
+                user: null
             }
         })
         .state('main', {
@@ -39,9 +39,8 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             controller: 'MainController',
             params: {
                 allAvatars: null,
-                currentAvatar1 : null,
-                currentAvatar2 : null,
-                username: null
+                currentAvatar: null,
+                user: null
             }
         })
         .state('recoverPassword', {
@@ -63,9 +62,8 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             controller: 'TasksController',
             params: {
                 allAvatars: null,
-                currentAvatar1 : null,
-                currentAvatar2 : null,
-                username: ""
+                currentAvatar : null,
+                user: null
             }
         })
         .state('settings', {
@@ -80,7 +78,7 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
           params: {
             allAvatars: null,
             currentAvatar : null,
-            username: ""
+            user: null
           }
        });
 

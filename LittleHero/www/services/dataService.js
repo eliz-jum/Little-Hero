@@ -26,22 +26,22 @@ angular.module('littleHero').service("dataService", function($http) {
             return $http.get(BASE_PATH + "tutors").then(function(res) {              
                 return res;
             });
-        },       
+        },
+
+        getChildAvatars: function(childId) {
+            return $http.get(BASE_PATH + "childs/" + childId + "/avatars").then(function(res) {              
+                return res;
+            });
+        },   
     
-/***
-
-        getCurrentAvatarTasks: function(childId, avatarId) {
-            return $http.get(BASE_PATH + "/v1/childs/" + childId + "/avatars/" + avatarId + "/tasks").then(function(res) {              
+        getAvatarTasks: function(childId, avatarId) {
+            return $http.get(BASE_PATH + "childs/" + childId + "/avatars/" + avatarId + "/tasks").then(function(res) {              
                 return res;
             });
-        },
+        }
 
-        getCurrentChildAvatars: function(childId) {
-            return $http.get(BASE_PATH + "/v1/childs/" + childId + "/avatars").then(function(res) {              
-                return res;
-            });
-        },
-
+        
+        /***
         getCurrentChildCurrentAvatar: function(childId, avatarId) {
             return $http.get(BASE_PATH + "/v1/childs/" + childId + "/avatars/" + avatarId).then(function(res) {              
                 return res;
