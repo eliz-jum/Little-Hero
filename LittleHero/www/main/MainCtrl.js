@@ -8,14 +8,17 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.allAvatars = null;
     $scope.currentAvatar = null;
 
-    $scope.$on('$ionicView.beforeEnter', function(){       
-        $scope.username = $stateParams.username;   
-      
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.username = $stateParams.username;
+
         if ($stateParams.allAvatars != null) {
             $scope.allAvatars = $stateParams.allAvatars;
             $scope.currentAvatar = $stateParams.currentAvatar2;
         }
         else $scope.getAvatars();
+
+      getAssets();
+
 
     });
 
@@ -505,10 +508,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
 
   $scope.openModal = function(item) {
-    getAssets();
-    console.log('po get assets');
+    //getAssets();
+    console.log('openModal');
 
-    while (!$scope.isEquipmentLoaded) {}
+    //while (!$scope.isEquipmentLoaded) {}
 
     $scope.filterDisplay(item);
 
@@ -532,10 +535,9 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
 
   var getAssets = function() {
-    $scope.filteredCanBePutOnEquipment=[];
-    $scope.filteredCanBePurchasedEquipment=[];
-    $scope.filteredUnavailableEquipment=[];
-
+    canBePutOnEquipment = [];
+    canBePurchasedEquipment = [];
+    unavailableEquipment = [];
     console.log('jestem w get assets');
     console.log($scope.isEquipmentLoaded);
 
@@ -558,12 +560,15 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   }
 
   $scope.filterDisplay = function(item) {
+    $scope.filteredCanBePutOnEquipment=[];
+    $scope.filteredCanBePurchasedEquipment=[];
+    $scope.filteredUnavailableEquipment=[];
     console.log('filter display');
     console.log(canBePutOnEquipment);
     $scope.currentButton = item;
-    //filterBy(item, canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
-    //filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
-    //filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
+    filterBy(item, canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
+    filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
+    filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
 
   }
 
