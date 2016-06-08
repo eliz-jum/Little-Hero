@@ -43,6 +43,14 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
                 user: null
             }
         })
+        .state('mainTutor', {
+            url: '/mainTutor',
+            templateUrl: 'mainTutor/mainTutor.html',
+            controller: 'MTController',
+            params: {
+                user : null
+            }
+        })
         .state('recoverPassword', {
             url: '/recoverPassword',
             templateUrl: 'recoverPass/recoverPass.html',
@@ -80,7 +88,25 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             currentAvatar : null,
             user: null
           }
-       });
-
+       }),
     $urlRouterProvider.otherwise('/login');
+});
+
+angular.module('littleHero').controller('MTController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
+    
+    $scope.shouldShowDelete = false;
+
+      $scope.text=[
+    "zaproszono Cię",
+    "masz nowe zadanie!",
+    "dostałeś nowy poziom!"
+  ];
+
+    $scope.$on('$ionicView.beforeEnter', function(){       
+        $scope.user = $stateParams.user;
+    });
+
+    $scope.settings = function() {
+        $state.go("settings");
+    };
 });
