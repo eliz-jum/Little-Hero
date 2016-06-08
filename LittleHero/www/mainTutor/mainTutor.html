@@ -17,13 +17,13 @@
         <h2>Wszystkie avatary</h2>
       </div>
 
-      <div class="buttons orange row row-100">
+      <div class="buttons hard-task row row-100">
         <button class="button button-icon icon ion-ios-minus-outline"
           ng-click="data.showDelete = !data.showDelete"></button>
       </div>
 
       <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false" show-delete="data.showDelete">
-            <ion-item ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate" href="#/avatar/{{ avatar.id }}">            
+            <ion-item ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate">            
                 <ion-content scroll="false">
                     <ion-delete-button class="ion-minus-circled" 
                              ng-click="onItemDelete(item)">
@@ -33,12 +33,12 @@
                     </div>
                 </ion-content>
 
-                <ion-option-button side="left" class="button orange"
+                <ion-option-button side="left" class="button medium-task"
                        ng-click="initTaskCreator(avatar)">
                     Nowe zadanie
                 </ion-option-button>
             
-                <ion-option-button side="right" class="button orange"
+                <ion-option-button side="right" class="button easy-task"
                        ng-click="initTaskView(avatar)">
                     Podgląd
                 </ion-option-button>

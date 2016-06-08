@@ -1,7 +1,6 @@
 angular.module('littleHero').controller('TasksCreatorController', function($scope, $state, $stateParams, $http, dataService){
 
   $scope.newTask = {};
-  $scope.difficulty = {id: 0, name: "Wybór poziomu trudności"} 
 
   $scope.diffi = [
     { id: 1, name: "łatwe" },

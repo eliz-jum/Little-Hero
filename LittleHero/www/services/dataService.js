@@ -89,13 +89,13 @@ angular.module('littleHero').service("dataService", function($http) {
         },
 
         patchTaskCompleted: function(taskId, valueArray) {
-            return $http.patch(BASE_PATH + "tutors/1/tasks/" + taskId, valueArray).then(function(res) {              
+            return $http.patch(BASE_PATH + "tutors/11/tasks/" + taskId, valueArray).then(function(res) {              
                 return res;
             });
         },
 
         patchTaskFullyCompleted: function(avatarId, valueArray) {
-        return $http.patch(BASE_PATH + "childs/3/avatars/" + avatarId, valueArray).then(function(res) {              
+        return $http.patch(BASE_PATH + "childs/13/avatars/" + avatarId, valueArray).then(function(res) {              
                 return res;
             });
         }
