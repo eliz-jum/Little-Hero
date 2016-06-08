@@ -183,6 +183,13 @@
       "imgSrc": "img/sock2.svg",
       "lvl": 1,
       "price": 12
+    },
+    {
+      "type": "animal",
+      "iconSrc": "img/animal1_icon.svg",
+      "imgSrc": "img/animal1.svg",
+      "lvl": 1,
+      "price": 0
     }
   ],
 	"canBePurchasedItems": [{
@@ -205,13 +212,6 @@
       "imgSrc": "img/nose2.svg",
       "lvl": 1,
       "price": 1
-    },
-    {
-      "type": "animal",
-      "iconSrc": "img/animal1_icon.svg",
-      "imgSrc": "img/animal1.svg",
-      "lvl": 1,
-      "price": 0
     },
     {
       "type": "hair_back",
@@ -386,7 +386,7 @@
       "type": "hair_back",
       "iconSrc": "img/hair_back7_icon.svg",
       "imgSrc": "img/hair_back7.svg",
-      "lvl": 5,
+      "lvl": 7,
       "price": 17
     },
     {

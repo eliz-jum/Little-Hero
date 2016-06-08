@@ -21,13 +21,13 @@
 
     <ion-content on-swipe-right="swipeRight()" class="background has-header">
 
-      <div class="title">
+      <div class="tasks-title">
         <h2>Wyzwania</h2>
       </div>
 
       <ion-list class="task-list" can-swipe="true" swipe-direction="right" scroll="false">
             <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]">
-                <div class="drag"></div>                
+                <div class="drag"></div>
                 <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
                     <div class="task-name">
                         <span>{{ task.content }}</span>
