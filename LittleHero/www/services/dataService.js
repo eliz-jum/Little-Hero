@@ -62,22 +62,45 @@ angular.module('littleHero').service("dataService", function($http) {
             return $http.get(BASE_PATH + "childs/" + childId + "/avatars/" + avatarId + "/tasks").then(function(res) {              
                 return res;
             });
+        },
+
+        getAvatarTutorTasks: function(tutorId) {
+            return $http.get(BASE_PATH + "tutors/" + tutorId + "/tasks").then(function(res) {              
+                return res;
+            });
+        },
+
+        getTutorAvatars: function(tutorId) {
+            return $http.get(BASE_PATH + "tutors/" + tutorId + "/avatars").then(function(res) {              
+                return res;
+            });
+        }, 
+        
+        postTask: function(tutorId, newTask) {
+            return $http.post(BASE_PATH + "tutors/" + tutorId + "/tasks", newTask).then(function(res) {              
+                return res;
+            });
+        },
+
+        deleteTask: function(tutorId, taskId) {
+            return $http.delete(BASE_PATH + "tutors/" + tutorId + "/tasks/" + taskId).then(function(res) {              
+                return res;
+            });
+        },
+
+        patchTaskCompleted: function(taskId, valueArray) {
+            return $http.patch(BASE_PATH + "tutors/1/tasks/" + taskId, valueArray).then(function(res) {              
+                return res;
+            });
+        },
+
+        patchTaskFullyCompleted: function(avatarId, valueArray) {
+        return $http.patch(BASE_PATH + "childs/3/avatars/" + avatarId, valueArray).then(function(res) {              
+                return res;
+            });
         }
 
-        
         /***
-        getCurrentChildCurrentAvatar: function(childId, avatarId) {
-            return $http.get(BASE_PATH + "/v1/childs/" + childId + "/avatars/" + avatarId).then(function(res) {              
-                return res;
-            });
-        },
-
-        postCurrentChildNewAvatar: function(childId, newAvatar) {
-            return $http.post(BASE PATH + "/v1/childs/" + childId + "/avatars", newAvatar).then(function(res) {                        
-                return res;
-            });
-        },
-
         getItems: function() {
             return $http.get(BASE_PATH + "/v1/items").then(function(res) {              
                 return res;

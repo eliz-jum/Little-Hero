@@ -14,18 +14,15 @@
       <span class="input-label">Ilość punktów doświadczenia</span>
       <input type="text" placeholder="Wpisz liczbę punktów doświadczenia za to zadanie" ng-model="amountExperience">
     </label>
-  </div>
+   
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Poziom trudności</span>
+    </label>
 
-  <div class="list">
-    <label class="item item-input item-select">
-      <div class="input-label background">
-        Wybór trudności
-      </div>
-      <select>
-        <option selected>łatwe</option>
-        <option>średnie</option>
-        <option>trudne</option>
-      </select>
+    <label class = "item item-input item-select">
+        <div class = "input-label">Poziom trudności</div>
+	
+        <select ng-model="difficulty" ng-options="diff.name for diff in diffi"></select>
     </label>
 
   </div>

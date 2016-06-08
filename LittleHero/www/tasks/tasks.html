@@ -30,7 +30,7 @@
                 <div class="drag"></div>                
                 <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
                     <div class="task-name">
-                        <span>{{ task.content }}</span>
+                        <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i></div><span>{{ task.content }}</span>
                     </div>
                 </ion-content>
 
