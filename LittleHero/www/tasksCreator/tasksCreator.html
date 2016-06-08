@@ -1,0 +1,41 @@
+<div ng-controller="TasksCreatorController" class="text-center background" style="padding:50px 0">
+  <h2>Dodaj zadanie</h2>
+
+  <div class="list">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Opis</span>
+      <input type="text" placeholder="opis zadania" ng-model="description">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Ilość pieniędzy</span>
+      <input type="text" placeholder="Wpisz liczbę pieniędzy za zadanie" ng-model="amountCash">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Ilość punktów doświadczenia</span>
+      <input type="text" placeholder="Wpisz liczbę punktów doświadczenia za to zadanie" ng-model="amountExperience">
+    </label>
+  </div>
+
+  <div class="list">
+    <label class="item item-input item-select">
+      <div class="input-label background">
+        Wybór trudności
+      </div>
+      <select>
+        <option selected>łatwe</option>
+        <option>średnie</option>
+        <option>trudne</option>
+      </select>
+    </label>
+
+  </div>
+  <div class='accept-button-container'>
+    <button class="button button-block orange accept-button" ng-click="validate()">
+      Dodaj zadanie
+    </button>
+  </div>
+
+  <div ng-show="invalid">
+    Brak danych, dodanie zadania nie powiodło się
+  </div>
+</div>

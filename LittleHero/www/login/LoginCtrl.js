@@ -10,16 +10,17 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.children = [];
     $scope.tutors = [];
     $scope.type = -1; //0 - child, 1 - tutor, -1 - account does not exist
+    $scope.number = -1;
 
     $scope.validate = function() {
 
         if ($scope.login && $scope.password) {
             $scope.checkIfAccountExists();
             if ($scope.type == 0)   {                   
-                $state.go("main", { 'username' : $scope.login });    
+                $state.go("main", { 'user' : $scope.children[$scope.number] });    
             }
             else if ($scope.type == 1)                      
-                $state.go("mainTutor", { 'username' : $scope.login });
+                $state.go("mainTutor", { 'user' : $scope.tutors[$scope.number] });
             else $scope.invalid = true;
         }
         else $scope.invalid = true;
@@ -51,7 +52,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         for (index in $scope.children) {
             if ($scope.children[index].login == $scope.login && 
                     $scope.children[index].password == $scope.password) {
-                
+                        $scope.number = index;
                         $scope.type = 0;
                         flag = true;
             }
@@ -60,7 +61,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         for (index in $scope.tutors) {
             if ($scope.tutors[index].login == $scope.login &&
                     $scope.tutors[index].password == $scope.password) {
-                
+                        $scope.number = index;
                         $scope.type = 1;
                         flag = true;
             }

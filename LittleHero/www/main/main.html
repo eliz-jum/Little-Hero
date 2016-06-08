@@ -4,8 +4,8 @@
 
       <div class="row row-center orange">
         <div class="col col-50 item item-select">
-            <select ng-model="currentAvatar" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
-                <option value="">{{ username }}</option>
+            <select ng-model="currentAvatar" ng-change="checkForAvatar()" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+                <option value="">{{ user.nickname }}</option>
             </select>
         </div>
 
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="row row-90 row-center">
+      <div class="row row-90 row-center" ng-show="showAvatar" ng-hide="!showAvatar">
           <div class="avatar col col-100" align="center" ng-click="dragRight()">
               <img class="asset animal" src="img/empty.svg" alt="animal">
               <img class="asset hair_back" src="img/hair_back1.svg" alt="hair_back">

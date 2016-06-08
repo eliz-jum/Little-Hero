@@ -4,8 +4,8 @@
 
       <div class="row row-center orange">
         <div class="col col-50 item item-select">
-          <select ng-model="currentAvatar" ng-options="avatar.name for avatar in allAvatars track by avatar.id" ng-change="getTasksForAvatar()">
-                <option value="">{{ username }}</option>
+          <select ng-model="currentAvatar" ng-options="avatar.name for avatar in allAvatars track by avatar.id" ng-change="getTasks()">
+                <option value="">{{ user.nickname }}</option>
           </select>
         </div>
 
@@ -25,35 +25,19 @@
         <h2>Wyzwania</h2>
       </div>
 
-      <!--<ion-list class="task-list">
-        <ion-item class="easy-task">
-          <div class="drag"></div>
-          <div class="task-name">
-            <span>Posprzątaj pokój</span>
-          </div>
-        </ion-item>
+      <ion-list class="task-list" can-swipe="true" swipe-direction="right" scroll="false">
+            <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]">
+                <div class="drag"></div>                
+                <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
+                    <div class="task-name">
+                        <span>{{ task.content }}</span>
+                    </div>
+                </ion-content>
 
-        <ion-item class="medium-task">
-          <div class="drag"></div>
-          <div class="task-name">
-            <span>Zadanie domowe</span>
-          </div>
-        </ion-item>
-
-        <ion-item class="hard-task">
-          <div class="drag"></div>
-          <div class="task-name">
-            <span>Zadanie domowe</span>
-          </div>
-        </ion-item>
-      </ion-list>-->
-
-      <ion-list class="task-list">
-            <ion-item ng-repeat="task in tasks track by $index" ng-class="tasksStyles[$index]">
-                <div class="drag"></div>
-                <div class="task-name">
-                    <span>{{ task.name }}</span>
-                </div>
+                <ion-option-button side="left" class="button orange"
+                       ng-click="markTaskCompleted(task)">
+                    Complete!
+                </ion-option-button>
             </ion-item>
       <ion-list>
 

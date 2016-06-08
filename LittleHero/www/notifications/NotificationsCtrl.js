@@ -2,13 +2,13 @@ angular.module('littleHero').controller('NotificationsController', function($sco
   
   $scope.swipeLeft = function() {
     console.log("swipe left");
-    $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "username" : $scope.username });
+    $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
   };
 
   $scope.$on('$ionicView.beforeEnter', function(){  
         $scope.allAvatars = $stateParams.allAvatars;
         $scope.currentAvatar = $stateParams.currentAvatar;
-        $scope.username = $stateParams.username;
+        $scope.user = $stateParams.user;
   });
 
   $scope.settings = function() {
