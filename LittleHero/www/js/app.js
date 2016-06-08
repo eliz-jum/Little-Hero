@@ -71,6 +71,11 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             templateUrl: 'settings/settings.html',
             controller: 'SettingsController'
         })
+        .state('tasksCreator', {
+          url: '/tasksCreator',
+          templateUrl: 'tasksCreator/tasksCreator.html',
+          controller: 'TasksCreatorController'
+        })
         .state('notifications',{
           url: '/notifications',
           templateUrl: 'notifications/notifications.html',
