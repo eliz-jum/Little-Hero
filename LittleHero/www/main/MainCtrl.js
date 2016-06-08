@@ -8,10 +8,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.currentAvatar = null;
     $scope.showAvatar = false;
 
-    $scope.$on('$ionicView.beforeEnter', function(){       
+    $scope.$on('$ionicView.beforeEnter', function(){
         $scope.user = $stateParams.user;
         $scope.checkForAvatar();
-        
+
         if ($stateParams.allAvatars != null) {
             $scope.allAvatars = $stateParams.allAvatars;
             $scope.currentAvatar = $stateParams.currentAvatar2;
@@ -54,7 +54,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
         ? $scope.buttons[currentIndex + 1]
         : $scope.buttons[0];
 
-      $scope.filterBy(next);
+      $scope.filterDisplay(next);
     }
   };
 
@@ -67,7 +67,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
         ? $scope.buttons[currentIndex - 1]
         : $scope.buttons[$scope.buttons.length - 1];
 
-      $scope.filterBy(previous);
+      $scope.filterDisplay(previous);
     }
   };
 
