@@ -18,11 +18,7 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
 
     $scope.$on('$ionicView.afterEnter', function(){  
 
-         if ($scope.tasks.length != 0) {
-            $scope.tasks.forEach(function(task) {
-                $scope.setTaskStyle(task);
-            });
-        }
+        $scope.updateTasks();
     });
 
     $scope.swipeRight = function() {
@@ -43,6 +39,14 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
         dataService.getAvatarTasks($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
             $scope.tasks = res.data;
         });
+    }
+
+    $scope.updateTasks = function() {
+         if ($scope.tasks.length != 0) {
+            $scope.tasks.forEach(function(task) {
+                $scope.setTaskStyle(task);
+            });
+        }
     }
 
     /*$scope.getTasksForAvatar = function() {
@@ -75,9 +79,19 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     }
 
     $scope.markTaskCompleted = function(task) {
-        console.log(task["id"]);
 
-    }
+        var patchTask = {};
+        var patchContent = [];
+
+        patchTask["op"] = "replace";
+        patchTask["path"] = "/isCompleted";
+        patchTask["value"] = true;
+        patchContent.push(patchTask);
+
+        dataService.patchTaskCompleted(task["id"], patchContent).then(function(res) {
+            console.log(res.data);
+        });
+    };
   
   $scope.dragRight = function() {
     $scope.showToast();
@@ -87,4 +101,5 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     <!-- ionicToast.show(message, position, stick, time); -->
     ionicToast.show('Pozdro', 'bottom', true, 2500);
   };
+
 });

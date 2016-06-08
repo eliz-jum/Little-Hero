@@ -48,7 +48,8 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             templateUrl: 'mainTutor/mainTutor.html',
             controller: 'MTController',
             params: {
-                user : null
+                user : null,
+                currentAvatar: null
             }
         })
         .state('recoverPassword', {
@@ -82,7 +83,20 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
         .state('tasksCreator', {
           url: '/tasksCreator',
           templateUrl: 'tasksCreator/tasksCreator.html',
-          controller: 'TasksCreatorController'
+          controller: 'TasksCreatorController',
+          params: {
+                user: null,
+                currentAvatar: null
+          }
+        })
+        .state('tasksView', {
+            url: '/tasksView',
+            templateUrl: 'tasksView/tasksView.html',
+            controller: 'tasksViewController',
+             params: {
+                user: null,
+                currentAvatar: null
+            }
         })
         .state('notifications',{
           url: '/notifications',
@@ -98,8 +112,17 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
 });
 
 angular.module('littleHero').controller('MTController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
-    
-    $scope.shouldShowDelete = false;
+
+    $scope.allAvatars = null;
+    $scope.currentAvatar = null;    
+
+    $scope.data = {
+        showDelete: false
+    };
+
+    $scope.onItemDelete = function(avatar) {
+        console.log(avatar);
+    };
 
       $scope.text=[
     "zaproszono Cię",
@@ -109,7 +132,24 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
 
     $scope.$on('$ionicView.beforeEnter', function(){       
         $scope.user = $stateParams.user;
+        $scope.getAvatars();   
     });
+
+    $scope.getAvatars = function() {
+        dataService.getTutorAvatars($scope.user["id"]).then(function(res) {
+          $scope.allAvatars = res.data;
+      });
+
+    };
+
+    $scope.initTaskCreator = function(avatar) {
+        $state.go("tasksCreator", { "user" : $scope.user, "currentAvatar" : avatar });
+    };
+
+    $scope.initTaskView = function(avatar) {
+        $state.go("tasksView", { "user" : $scope.user, "currentAvatar" : avatar });
+    };
+
 
     $scope.settings = function() {
         $state.go("settings");

@@ -9889,3 +9889,11 @@ h2 {
 /************** LOGIN/REGISTER *************/
 .accept-button-container {
   margin: 40px 10px 10px 10px; }
+
+/************** TUTOR *******************/
+.tutor-avatar-list {
+  padding: 0px 0px 0px 50px;
+  display: flex;
+  flex-direction: row;
+  height: 50pt;
+  line-height: 50pt; }
