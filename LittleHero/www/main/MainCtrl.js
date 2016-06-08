@@ -2,7 +2,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   var canBePutOnEquipment = [];
   var canBePurchasedEquipment = [];
   var unavailableEquipment = [];
-  $scope.isEquipmentLoaded = false;
 
     $scope.user = null;
     $scope.allAvatars = null;
@@ -454,8 +453,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
 
   var filterBy = function(item, array, filteredArray) {
-    console.log('jestem w filterby');
-    console.log(array);
     if (item.type == 'all') {
       array.forEach(function(listItem){
         if (listItem.imgSrc!='img/empty.svg') {
@@ -464,13 +461,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       });
     }
     else if (item.type == 'face') {
-      console.log('jestem w face');
       array.forEach(function(listItem){
-        console.log('foreach');
         if (listItem.type=='eyes' || listItem.type=='nose' || listItem.type=='mouth') {
           filteredArray.push(listItem);
         }
-        console.log(filteredArray);
       });
     }
     else if (item.type == 'hair') {
@@ -494,16 +488,33 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
         }
       });
     }
-
-    //podświetl ikone
   };
 
   $scope.putOn = function(item) {
-    console.log(item.type);
     var element = document.getElementsByClassName(item.type)[0];
-    console.log(element);
     element.setAttribute("src", item.imgSrc);
     $scope.closeModal();
+
+  }
+
+  $scope.buy = function(item) {
+    console.log($scope.currentAvatar);
+    console.log("masz pieniedzy:  "+$scope.currentAvatar.money);
+    console.log("rzecz kosztuje:  "+item.price);
+    if ($scope.currentAvatar.money >= item.price) {
+      //usunac item z tablicy canBePurchasedItems
+      //wlozyc item do canBePutOnItems
+
+      //zmienic pieniadze w jsonie
+      $scope.currentAvatar.money -= item.price;
+      var element = document.getElementsByClassName(item.type)[0];
+      element.setAttribute("src", item.imgSrc);
+      $scope.closeModal();
+    }
+    else {
+      console.log("nie masz piniądza!");
+    }
+
 
   }
 
@@ -517,20 +528,14 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
 
   $scope.openModal = function(item) {
-    //getAssets();
-    console.log('openModal');
-
-    //while (!$scope.isEquipmentLoaded) {}
-
     $scope.filterDisplay(item);
-
     $scope.modal.show();
   };
 
 
   $scope.closeModal = function () {
     $scope.modal.hide();
-    $scope.isEquipmentLoaded = false;
+    getAssets();
   }
 
 
@@ -544,24 +549,15 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     canBePutOnEquipment = [];
     canBePurchasedEquipment = [];
     unavailableEquipment = [];
-    console.log('jestem w get assets');
-    console.log($scope.isEquipmentLoaded);
 
     dataService.getAvatars().then(function(res) {
       var avatars = res.data;
-      //console.log($scope.currentAvatar);
-      console.log('promise!');
 
       canBePutOnEquipment = avatars[0]["canBePutOnItems"];
       canBePurchasedEquipment = avatars[0]["canBePurchasedItems"];
       unavailableEquipment = avatars[0]["unavailableItems"];
 
-      console.log('can be put on in assets');
-      console.log(canBePutOnEquipment);
-    }).then(function(){
-      console.log('po promisie');
-      $scope.isEquipmentLoaded = true;
-    } );
+    });
 
   }
 
@@ -569,8 +565,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.filteredCanBePutOnEquipment=[];
     $scope.filteredCanBePurchasedEquipment=[];
     $scope.filteredUnavailableEquipment=[];
-    console.log('filter display');
-    console.log(canBePutOnEquipment);
+
     $scope.currentButton = item;
     filterBy(item, canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
     filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
