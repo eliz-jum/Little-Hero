@@ -58,6 +58,7 @@ public final class TaskJson
                 .add( "id", task.getId() )
                 .add( "difficulty", task.getDifficulty() )
                 .add( "experiencePoints", task.getExperiencePoints() )
+                .add( "content", task.getContent() )
                 .add( "completed", task.isCompleted() )
                 .add( "archived", task.isArchived() )
                 .add( "createdTimestamp", task.getCreatedTimestamp() )

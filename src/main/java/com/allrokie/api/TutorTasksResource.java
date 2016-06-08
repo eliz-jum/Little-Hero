@@ -9,6 +9,7 @@ import com.allrokie.model.Task;
 import com.allrokie.model.Tutor;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.jaxrs.PATCH;
 
 import javax.inject.Inject;
 import javax.persistence.Query;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +76,7 @@ public class TutorTasksResource
         task.setMoney( (int) json.get( "money" ) );
         task.setExperiencePoints( (int) json.get( "experiencePoints" ) );
         task.setDifficulty( (int) json.get( "difficulty" ) );
+        task.setContent( (String) json.get( "content" ) );
 
         task.setArchived( false );
         task.setCompleted( false );
@@ -92,6 +95,39 @@ public class TutorTasksResource
         URI createdTaskUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( task.getId() ) ).build();
 
         return Response.created( createdTaskUri ).build();
+    }
+
+    @PATCH
+    @Path( "/{taskId}" )
+    @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.APPLICATION_JSON )
+    @Transactional
+    public Response updateAvatar( ArrayList<Map<String, Object>> json, @PathParam( "taskId" ) long id )
+    {
+
+        Task task = taskDao.find( id );
+        // TODO: 29.05.16 change to sth cleaner
+        for( Map<String, Object> command : json )
+        {
+            String operation = (String) command.get( "op" );
+            if( operation.equals( "replace" ) )
+            {
+                String path = (String) command.get( "path" );
+                boolean isCompleted = (boolean) command.get( "value" );
+                switch( path )
+                {
+                    case "/isCompleted":
+                        task.setCompleted( isCompleted );
+                        break;
+                    default:
+                        return Response.status( Response.Status.BAD_REQUEST ).build();
+                }
+
+            }
+        }
+
+        taskDao.update( task );
+        return Response.ok( TaskJson.createTutorTask( task ) ).build();
     }
 
     @GET

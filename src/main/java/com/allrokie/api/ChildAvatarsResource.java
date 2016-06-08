@@ -30,10 +30,9 @@ import java.util.Map;
  * Created by siulkilulki on 11.05.16.
  */
 
-@Path( "/childs/{childId}/avatars" )
-@Api( value = "/childs/id/avatars", description = "Operations about avatars" )
-public class ChildAvatarsResource
-{
+@Path("/childs/{childId}/avatars")
+@Api(value = "/childs/id/avatars", description = "Operations about avatars")
+public class ChildAvatarsResource {
     @Inject
     AvatarDao avatarDao;
     @Inject
@@ -44,12 +43,11 @@ public class ChildAvatarsResource
     ItemDao itemDao;
 
     @GET
-    @Path( "/" )
-    @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get avatars collection" )
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get avatars collection")
     @Transactional
-    public Response getAvatars( @PathParam( "childId" ) long childId )
-    {
+    public Response getAvatars(@PathParam("childId") long childId) {
         /*Child child = childDao.find( childId );
         child.getAvatars().size();
         List<Avatar> avatars = child.getAvatars();
@@ -60,71 +58,69 @@ public class ChildAvatarsResource
             avatar.getWornItems().size();
         } );*/
 
-        Query q = avatarDao.getEntityManager().createQuery( "SELECT a FROM Avatar a WHERE a.child.id = :id" );
-        q.setParameter( "id", childId );
+        Query q = avatarDao.getEntityManager().createQuery("SELECT a FROM Avatar a WHERE a.child.id = :id");
+        q.setParameter("id", childId);
 
         List<Avatar> avatars = (List<Avatar>) q.getResultList();
-        avatars.forEach( avatar -> {
+        avatars.forEach(avatar -> {
             avatar.getTasks().size();
             avatar.getCanBePurchasedItems().size();
             avatar.getCanBePutOnItems().size();
             avatar.getWornItems().size();
             avatar.getChild().getId();
             avatar.getTutor().getId();
-        } );
+        });
 
-        return Response.ok( AvatarJson.createChildAvatarsArray( avatars ) ).build();
+        return Response.ok(AvatarJson.createChildAvatarsArray(avatars)).build();
     }
 
     @POST
-    @Path( "/" )
-    @Consumes( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Create avatar" )
+    @Path("/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Create avatar")
     @Transactional
-    public Response newAvatar( Map<String, Object> json, @PathParam( "childId" ) long childId, @Context UriInfo uriInfo )
-    {
+    public Response newAvatar(Map<String, Object> json, @PathParam("childId") long childId, @Context UriInfo uriInfo) {
 
         Avatar avatar = new Avatar();
 
-        avatar.setTasks( new ArrayList<>() );
+        avatar.setTasks(new ArrayList<>());
 
-        avatar.setCanBePurchasedItems( (List<Item>) json.get( "canBePurchasedItems" ) );
-        avatar.setCanBePutOnItems( (List<Item>) json.get( "canBePutOnItems" ) );
-        avatar.setWornItems( (List<Item>) json.get( "wornItems" ) );
-        avatar.setLevel( (int) json.get( "level" ) );
-        avatar.setName( (String) json.get( "name" ) );
-        avatar.setExperience( (int) json.get( "experience" ) );
-        avatar.setHealth( (int) json.get( "health" ) );
-        avatar.setMoney( (int) json.get( "money" ) );
+        avatar.setCanBePurchasedItems((List<Item>) json.get("canBePurchasedItems"));
+        avatar.setCanBePutOnItems((List<Item>) json.get("canBePutOnItems"));
+        avatar.setWornItems((List<Item>) json.get("wornItems"));
+        avatar.setLevel((int) json.get("level"));
+        avatar.setName((String) json.get("name"));
+        avatar.setExperience((int) json.get("experience"));
+        avatar.setHealth((int) json.get("health"));
+        avatar.setMoney((int) json.get("money"));
 
-        int tutorId = (int) json.get( "tutorId" );
+        int tutorId = (int) json.get("tutorId");
         long id = (long) tutorId;
-        Tutor tutor = tutorDao.find( id );
+        Tutor tutor = tutorDao.find(id);
         tutor.getAvatars().size();
         tutor.getTasks().size();
 
-        avatar.setTutor( tutor );
+        avatar.setTutor(tutor);
 
-        Child child = childDao.find( childId );
+        Child child = childDao.find(childId);
         child.getAvatars().size();
 
-        avatar.setChild( child );
+        avatar.setChild(child);
 
-        avatarDao.create( avatar );
+        avatarDao.create(avatar);
 
-        URI createdChildUri = uriInfo.getAbsolutePathBuilder().path( String.valueOf( avatar.getId() ) ).build();
-        return Response.created( createdChildUri ).build();
+        URI createdChildUri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(avatar.getId())).build();
+        return Response.created(createdChildUri).build();
     }
 
     @PATCH
-    @Path( "/{avatarId}" )
-    @Consumes( MediaType.APPLICATION_JSON )
-    @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Update avatar", response = Avatar.class )
+    @Path("/{avatarId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Update avatar", response = Avatar.class)
     @Transactional
-    public Response updateAvatar( ArrayList<Map<String, Object>> json, @PathParam( "avatarId" ) long id )
-    {
-        Avatar avatar = avatarDao.find( id );
+    public Response updateAvatar(ArrayList<Map<String, Object>> json, @PathParam("avatarId") long id) {
+        Avatar avatar = avatarDao.find(id);
 
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
@@ -132,78 +128,82 @@ public class ChildAvatarsResource
         avatar.getWornItems().size();
 
         // TODO: 29.05.16 change to sth cleaner
-        for( Map<String, Object> command : json )
-        {
-            String operation = (String) command.get( "op" );
-            if( operation.equals( "replace" ) )
-            {
-                String path = (String) command.get( "path" );
-                List<String> items = (ArrayList<String>) command.get( "value" );
-                switch( path )
-                {
+        for (Map<String, Object> command : json) {
+            String operation = (String) command.get("op");
+            if (operation.equals("replace")) {
+                String path = (String) command.get("path");
+                Object value = command.get("value");
+                switch (path) {
                     case "/wornItems":
-                        avatar.setWornItems( getListOfItems( items ) );
+                        avatar.setWornItems(getListOfItems((ArrayList<String>) value));
                         break;
                     case "/canBePutOnItems":
-                        avatar.setCanBePutOnItems( getListOfItems( items ) );
+                        avatar.setCanBePutOnItems(getListOfItems((ArrayList<String>) value));
                         break;
                     case "/canBePurchasedItems":
-                        avatar.setCanBePurchasedItems( getListOfItems( items ) );
+                        avatar.setCanBePurchasedItems(getListOfItems((ArrayList<String>) value));
+                        break;
+                    case "/money":
+                        avatar.setMoney((int) value);
+                        break;
+                    case "/experience":
+                        avatar.setExperience((int) value);
+                        break;
+                    case "/health":
+                        avatar.setHealth((int) value);
+                        break;
+                    case "/level":
+                        avatar.setLevel((int) value);
                         break;
                     default:
-                        return Response.status( Response.Status.BAD_REQUEST ).build();
+                        return Response.status(Response.Status.BAD_REQUEST).build();
                 }
-
             }
         }
 
-        avatarDao.update( avatar );
-        return Response.ok( AvatarJson.createChildAvatar( avatar ) ).build();
+        avatarDao.update(avatar);
+        return Response.ok(AvatarJson.createChildAvatar(avatar)).build();
     }
 
-    private List<Item> getListOfItems( List<String> names )
-    {
+    private List<Item> getListOfItems(List<String> names) {
         List<Item> items = new ArrayList<>();
-        for( String name : names )
-        {
-            items.add( itemDao.find( name ) );
+        for (String name : names) {
+            items.add(itemDao.find(name));
         }
         return items;
     }
 
     @GET
-    @Path( "/{avatarId}" )
-    @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get avatar", notes = "Get avatar based on /{avatarId}", response = Avatar.class )
+    @Path("/{avatarId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get avatar", notes = "Get avatar based on /{avatarId}", response = Avatar.class)
     @Transactional
-    public Response getAvatar( @PathParam( "avatarId" ) long id )
-    {
-        Avatar avatar = avatarDao.find( id );
+    public Response getAvatar(@PathParam("avatarId") long id) {
+        Avatar avatar = avatarDao.find(id);
 
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
 
-        return Response.ok( AvatarJson.createChildAvatar( avatar ) ).build();
+        return Response.ok(AvatarJson.createChildAvatar(avatar)).build();
     }
 
     @DELETE
-    @Path( "/{avatarId}" )
-    @ApiOperation( value = "Get avatar" )
+    @Path("/{avatarId}")
+    @ApiOperation(value = "Get avatar")
     @Transactional
-    public Response deleteAvatar( @PathParam( "avatarId" ) long id )
-    {
-        Avatar avatar = avatarDao.find( id );
+    public Response deleteAvatar(@PathParam("avatarId") long id) {
+        Avatar avatar = avatarDao.find(id);
 
         avatar.getTasks().size();
         avatar.getCanBePurchasedItems().size();
         avatar.getCanBePutOnItems().size();
         avatar.getWornItems().size();
 
-        avatarDao.remove( avatar );
+        avatarDao.remove(avatar);
 
-        return Response.status( Response.Status.NO_CONTENT ).build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
 }

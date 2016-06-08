@@ -20,6 +20,9 @@ public class Task implements Serializable
     private long id;
 
     @Column
+    private String content;
+
+    @Column
     private int difficulty;//zielony żółty czerowny
 
     @Column
@@ -57,6 +60,16 @@ public class Task implements Serializable
     public long getId()
     {
         return id;
+    }
+
+    public String getContent()
+    {
+        return content;
+    }
+
+    public void setContent( String content )
+    {
+        this.content = content;
     }
 
     @ApiModelProperty( value = "Task difficulty" )
