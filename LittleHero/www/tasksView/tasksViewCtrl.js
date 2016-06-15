@@ -14,6 +14,10 @@ angular.module('littleHero').controller('tasksViewController', function($scope, 
         $state.go("mainTutor", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
     };
 
+    $scope.settings = function() {
+        $state.go("settings");
+    };
+  
     $scope.allAvatarTasks = []
 
     $scope.getTasks = function() {
