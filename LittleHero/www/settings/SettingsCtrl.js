@@ -23,7 +23,7 @@ angular.module('littleHero').controller('SettingsController', function($scope, $
     },
     {
       title: "Wyloguj",
-      state: "logout"
+      state: "login"
     }
   ];
 
