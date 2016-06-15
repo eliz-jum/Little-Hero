@@ -5,18 +5,18 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     $scope.tasksStyles = [];
     $scope.dynamicStyle = [];
 
-    $scope.$on('$ionicView.beforeEnter', function(){  
+    $scope.$on('$ionicView.beforeEnter', function(){
 
         $scope.user = $stateParams.user;
         $scope.allAvatars = $stateParams.allAvatars;
         $scope.currentAvatar = $stateParams.currentAvatar;
-   
+
         if ($scope.tasks.length == 0 && $scope.currentAvatar != null) {
             $scope.getTasks();
         }
     });
 
-    $scope.$on('$ionicView.afterEnter', function(){  
+    $scope.$on('$ionicView.afterEnter', function(){
 
         $scope.updateTasks();
     });
@@ -52,7 +52,7 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     /*$scope.getTasksForAvatar = function() {
 
         $scope.tasks.length = 0;
-        $scope.tasksStyles.length = 0;        
+        $scope.tasksStyles.length = 0;
 
         $scope.currentAvatar["tasks"].forEach(function(element) {
             $scope.allTasks.forEach(function(obj) {
@@ -88,18 +88,15 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
         patchTask["value"] = true;
         patchContent.push(patchTask);
 
+        $scope.showToast("Opiekun został poinformowany");
+
         dataService.patchTaskCompleted(task["id"], patchContent).then(function(res) {
             console.log(res.data);
         });
     };
-  
-  $scope.dragRight = function() {
-    $scope.showToast();
-  };
 
-  $scope.showToast = function(){
-    <!-- ionicToast.show(message, position, stick, time); -->
-    ionicToast.show('Pozdro', 'bottom', true, 2500);
+  $scope.showToast = function(message){
+    ionicToast.show(message, 'bottom', false, 2500);
   };
 
 });

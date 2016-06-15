@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
+angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService, ionicToast){
   var canBePutOnEquipment = [];
   var canBePurchasedEquipment = [];
   var unavailableEquipment = [];
@@ -248,5 +248,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
   }
 
-
-  });
+  $scope.showToast = function(message){
+    ionicToast.show(message, 'bottom', false, 2500);
+  };
+});
