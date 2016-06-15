@@ -1,4 +1,4 @@
-<ion-view>  
+<ion-view>
     <ion-pane class="background">
     <div class="bar bar-header orange">
 
@@ -10,8 +10,8 @@
         </div>
       </div>
     </div>
-    
-    <ion-content class="background has-header">
+
+    <ion-content class="background has-header" on-swipe-left="swipeLeft()">
 
       <div class="title">
         <h2>Wszystkie zadania</h2>
@@ -24,9 +24,9 @@
       </div>
 
       <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false" show-delete="data.showDelete">
-            <ion-item ng-repeat="task in allAvatarTasks track by $index" class="item-remove-animate">           
+            <ion-item ng-repeat="task in allAvatarTasks track by $index" class="item-remove-animate">
                 <ion-content scroll="false">
-                    <ion-delete-button class="ion-minus-circled" 
+                    <ion-delete-button class="ion-minus-circled"
                              ng-click="deleteTask(task)">
                     </ion-delete-button>
                     <div class="tutor-avatar-list" scroll="false">
