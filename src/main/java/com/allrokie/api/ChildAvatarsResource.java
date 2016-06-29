@@ -11,6 +11,7 @@ import com.allrokie.model.Item;
 import com.allrokie.model.Tutor;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.PATCH;
 
 import javax.inject.Inject;
@@ -30,8 +31,8 @@ import java.util.Map;
  * Created by siulkilulki on 11.05.16.
  */
 
-@Path("/childs/{childId}/avatars")
-@Api(value = "/childs/id/avatars", description = "Operations about avatars")
+@Path("/v1/childs/{childId}/avatars")
+@Api(value = "ChildAvatars", description = "Operations about avatars")
 public class ChildAvatarsResource {
     @Inject
     AvatarDao avatarDao;
@@ -48,16 +49,6 @@ public class ChildAvatarsResource {
     @ApiOperation(value = "Get avatars collection")
     @Transactional
     public Response getAvatars(@PathParam("childId") long childId) {
-        /*Child child = childDao.find( childId );
-        child.getAvatars().size();
-        List<Avatar> avatars = child.getAvatars();
-        avatars.forEach( avatar -> {
-            avatar.getTasks().size();
-            avatar.getCanBePurchasedItems().size();
-            avatar.getCanBePutOnItems().size();
-            avatar.getWornItems().size();
-        } );*/
-
         Query q = avatarDao.getEntityManager().createQuery("SELECT a FROM Avatar a WHERE a.child.id = :id");
         q.setParameter("id", childId);
 
@@ -191,7 +182,7 @@ public class ChildAvatarsResource {
 
     @DELETE
     @Path("/{avatarId}")
-    @ApiOperation(value = "Get avatar")
+    @ApiOperation(value = "Delete avatar")
     @Transactional
     public Response deleteAvatar(@PathParam("avatarId") long id) {
         Avatar avatar = avatarDao.find(id);

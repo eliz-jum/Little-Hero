@@ -10,35 +10,15 @@ import java.util.List;
  */
 public final class TaskJson
 {
-    public static JsonObject createTutorTask( Task task )
+    public static JsonObject createTask( Task task )
     {
         return getTaskJsonBuilder( task )
                 .add( "avatarId", task.getAvatar().getId() )
-                .build();
-    }
-
-    public static JsonObject createAvatarTask( Task task )
-    {
-        return getTaskJsonBuilder( task )
                 .add( "tutorId", task.getTutor().getId() )
                 .build();
     }
 
-    public static JsonArray createTutorTasksArray( List<Task> tasks )
-    {
-        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
-
-        tasks.forEach( task -> {
-            jsonArrayBuilder
-                    .add(
-                            getTaskJsonBuilder( task )
-                                    .add( "avatarId", task.getAvatar().getId() )
-                    );
-        } );
-        return jsonArrayBuilder.build();
-    }
-
-    public static JsonArray createAvatarTasksArray( List<Task> tasks )
+    public static JsonArray createTasksArray( List<Task> tasks )
     {
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
 
@@ -47,6 +27,7 @@ public final class TaskJson
                     .add(
                             getTaskJsonBuilder( task )
                                     .add( "tutorId", task.getTutor().getId() )
+                                    .add( "avatarId", task.getAvatar().getId() )
                     );
         } );
         return jsonArrayBuilder.build();

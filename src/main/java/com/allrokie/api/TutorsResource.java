@@ -20,8 +20,8 @@ import java.util.Map;
 /**
  * Created by siulkilulki on 11.05.16.
  */
-@Path( "/tutors" )
-@Api( value = "/tutors", description = "Operations about tutors" )
+@Path( "/v1/tutors" )
+@Api( value = "Tutors", description = "Operations about tutors" )
 public class TutorsResource
 {
     @Inject
@@ -82,9 +82,9 @@ public class TutorsResource
 
     @DELETE
     @Path( "/{id}" )
-    @ApiOperation( value = "Delete child" )
+    @ApiOperation( value = "Delete tutor" )
     @Transactional
-    public Response deleteChild( @PathParam( "id" ) long id )
+    public Response deleteTutor( @PathParam( "id" ) long id )
     {
         Tutor tutor = dao.find( id );
         tutor.getAvatars().size();

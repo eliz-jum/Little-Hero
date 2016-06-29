@@ -18,8 +18,8 @@ import java.net.URI;
 /**
  * Created by siulkilulki on 28.05.16.
  */
-@Path( "/items" )
-@Api( value = "/items", description = "Operations about items" )
+@Path( "/v1/items" )
+@Api( value = "Items", description = "Operations about items" )
 public class ItemsResource
 {
 

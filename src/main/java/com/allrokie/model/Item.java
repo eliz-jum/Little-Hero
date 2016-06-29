@@ -1,5 +1,7 @@
 package com.allrokie.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,6 +35,7 @@ public class Item implements Serializable
     {
     }
 
+    @ApiModelProperty( value = "Item name" )
     public String getName()
     {
         return name;
@@ -43,6 +46,7 @@ public class Item implements Serializable
         this.name = name;
     }
 
+    @ApiModelProperty( value = "Item money" )
     public int getMoney()
     {
         return money;
@@ -53,6 +57,7 @@ public class Item implements Serializable
         this.money = money;
     }
 
+    @ApiModelProperty( value = "Item level" )
     public int getLevel()
     {
         return level;
@@ -63,6 +68,7 @@ public class Item implements Serializable
         this.level = level;
     }
 
+    @ApiModelProperty( value = "Item class" )
     public String getClazz()
     {
         return clazz;
@@ -73,6 +79,7 @@ public class Item implements Serializable
         this.clazz = clazz;
     }
 
+    @ApiModelProperty( value = "Item type" )
     public String getType()
     {
         return type;

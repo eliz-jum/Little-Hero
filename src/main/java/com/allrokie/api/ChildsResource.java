@@ -21,8 +21,8 @@ import java.util.Map;
  * Created by siulkilulki on 23.03.16.
  */
 
-@Path( "/childs" )
-@Api( value = "/childs", description = "Operations about childs" )
+@Path( "/v1/childs" )
+@Api( value = "Childs", description = "Operations about childs" )
 public class ChildsResource
 {
     @Inject

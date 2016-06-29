@@ -18,8 +18,9 @@ import java.util.List;
 /**
  * Created by siulkilulki on 11.05.16.
  */
-@Path( "/tutors/{tutorId}/avatars" )
-@Api( value = "/tutors/{tutorId}/avatars", description = "Operations about tutors" )
+@Path( "/v1/tutors/{tutorId}/avatars" )
+//todo
+@Api( value = "TutorAvatar", description = "Operations about tutors" )
 public class TutorAvatarsResource
 {
     @Inject

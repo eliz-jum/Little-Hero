@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Created by siulkilulki on 07.05.16.
  */
-@ApplicationPath( "/v1" )
+@ApplicationPath( "/" )
 public class RestApplication extends Application
 {
     public RestApplication()
@@ -44,8 +44,7 @@ public class RestApplication extends Application
         classes.add( ChildAvatarsResource.class );
         classes.add( TutorAvatarsResource.class );
 
-        classes.add( AvatarTasksResource.class );
-        classes.add( TutorTasksResource.class );
+        classes.add( TasksResource.class );
 
         classes.add( io.swagger.jaxrs.listing.ApiListingResource.class );
         classes.add( io.swagger.jaxrs.listing.SwaggerSerializers.class );

@@ -26,31 +26,50 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by siulkilulki on 19.05.16.
+ * Created by siulkilulki on 29.06.16.
  */
-@Path( "/tutors/{tutorId}/tasks" )
-@Api( value = "/tutors/tutorId/tasks", description = "Operations about tasks" )
-public class TutorTasksResource
+@Path( "v1/tasks" )
+@Api( value = "Tasks", description = "Operations about tasks" )
+public class TasksResource
 {
     @Inject
-    AvatarDao avatarDao;
+    TaskDao taskDao;
     @Inject
     TutorDao tutorDao;
     @Inject
-    TaskDao taskDao;
+    AvatarDao avatarDao;
 
     @GET
     @Path( "/" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get avatars collection" )
+    @ApiOperation( value = "Get tasks collection" )
     @Transactional
-    public Response getAvatars( @PathParam( "tutorId" ) long tutorId )
+    public Response getTasks( @QueryParam( "avatarId" ) long avatarId, @QueryParam( "tutorId" ) long tutorId,
+                              @Context UriInfo uriInfo )
     {
-        Query q = taskDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.tutor.id = :id" );
-        q.setParameter( "id", tutorId );
-        List<Task> tasks = (List<Task>) q.getResultList();
+        List<Task> tasks;
+        if( avatarId != 0 && tutorId != 0 )
+        {
+            Query q = taskDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.tutor.id = :tutorId " +
+                    "AND t.avatar.id = :avatarId" );
+            q.setParameter( "tutorId", tutorId );
+            q.setParameter( "avatarId", avatarId );
+            tasks = (List<Task>) q.getResultList();
+        } else if( avatarId == 0 && tutorId != 0 )
+        {
+            Query q = taskDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.tutor.id = :id" );
+            q.setParameter( "id", tutorId );
+            tasks = (List<Task>) q.getResultList();
+        } else if( avatarId != 0 && tutorId == 0 )
+        {
+            Query q = taskDao.getEntityManager().createQuery( "SELECT t FROM Task t WHERE t.avatar.id = :id" );
+            q.setParameter( "id", avatarId );
+            tasks = (List<Task>) q.getResultList();
+        } else {
+            tasks = taskDao.findAll();
+        }
 
-        return Response.ok( TaskJson.createTutorTasksArray( tasks ) ).build();
+        return Response.ok( TaskJson.createTasksArray( tasks ) ).build();
     }
 
     @POST
@@ -58,8 +77,7 @@ public class TutorTasksResource
     @Consumes( MediaType.APPLICATION_JSON )
     @ApiOperation( value = "Create task" )
     @Transactional
-    public Response createTask( Map<String, Object> json, @PathParam( "tutorId" ) long tutorId,
-                                @Context UriInfo uriInfo )
+    public Response createTask( Map<String, Object> json, @Context UriInfo uriInfo )
     {
         Task task = new Task();
 
@@ -85,7 +103,9 @@ public class TutorTasksResource
 
         task.setCompletedTimestamp( 0 );
 
-        Tutor tutor = tutorDao.find( tutorId );
+        int tutorId = (int) json.get( "tutorId" );
+        long tutorId1 = (long) tutorId;
+        Tutor tutor = tutorDao.find( tutorId1 );
         tutor.getAvatars().size();
         tutor.getTasks().size();
         task.setTutor( tutor );
@@ -102,6 +122,7 @@ public class TutorTasksResource
     @Consumes( MediaType.APPLICATION_JSON )
     @Produces( MediaType.APPLICATION_JSON )
     @Transactional
+    @ApiOperation( value = "Update task", response = Task.class)
     public Response updateAvatar( ArrayList<Map<String, Object>> json, @PathParam( "taskId" ) long id )
     {
 
@@ -127,20 +148,19 @@ public class TutorTasksResource
         }
 
         taskDao.update( task );
-        return Response.ok( TaskJson.createTutorTask( task ) ).build();
+        return Response.ok( TaskJson.createTask( task ) ).build();
     }
 
     @GET
     @Path( "/{taskId}" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get task", notes = "Get avatar based on /{taskId}", response = Task.class )
+    @ApiOperation( value = "Get task", response = Task.class )
     @Transactional
     public Response getAvatar( @PathParam( "taskId" ) long id )
     {
         Task task = taskDao.find( id );
 
-
-        return Response.ok( TaskJson.createTutorTask( task ) ).build();
+        return Response.ok( TaskJson.createTask( task ) ).build();
     }
 
     @DELETE
