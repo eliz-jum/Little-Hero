@@ -3,6 +3,7 @@ package com.allrokie.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.internal.NotNull;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 @Entity
 @Table
+@ApiModel( value = "Avatar", description = "Avatar resource representation" )
 public class Avatar implements Serializable
 {
     @Id
@@ -109,7 +111,7 @@ public class Avatar implements Serializable
         this.tasks = tasks;
     }
 
-    @ApiModelProperty( value = "Avatar owner", required = true )
+    @ApiModelProperty( value = "Avatar child", required = true )
     public Child getChild()
     {
         return child;
@@ -120,7 +122,7 @@ public class Avatar implements Serializable
         this.child = owner;
     }
 
-    @ApiModelProperty( value = "Avatar owner" )
+    @ApiModelProperty( value = "Avatar tutor" )
     public Tutor getTutor()
     {
         return tutor;

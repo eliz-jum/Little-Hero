@@ -11,35 +11,16 @@ import java.util.List;
  */
 public final class AvatarJson
 {
-    public static JsonObject createChildAvatar( Avatar avatar )
+
+    public static JsonObject createAvatar( Avatar avatar )
     {
         return getAvatarJsonBuilder( avatar )
+                .add( "childId", avatar.getChild().getId() )
                 .add( "tutorId", avatar.getTutor().getId() )
                 .build();
     }
 
-    public static JsonObject createTutorAvatar( Avatar avatar )
-    {
-        return getAvatarJsonBuilder( avatar )
-                .add( "childId", avatar.getChild().getId() )
-                .build();
-    }
-
-    public static JsonArray createChildAvatarsArray( List<Avatar> avatars )
-    {
-        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
-
-        avatars.forEach( avatar -> {
-            jsonArrayBuilder
-                    .add(
-                            getAvatarJsonBuilder( avatar )
-                                    .add( "tutorId", avatar.getTutor().getId() )
-                    );
-        } );
-        return jsonArrayBuilder.build();
-    }
-
-    public static JsonArray createChildTutorsArray( List<Avatar> avatars )
+    public static JsonArray createArray( List<Avatar> avatars )
     {
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
 
@@ -48,6 +29,7 @@ public final class AvatarJson
                     .add(
                             getAvatarJsonBuilder( avatar )
                                     .add( "childId", avatar.getChild().getId() )
+                                    .add( "tutorId", avatar.getTutor().getId() )
                     );
         } );
         return jsonArrayBuilder.build();

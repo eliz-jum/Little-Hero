@@ -1,5 +1,6 @@
 package com.allrokie.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import java.io.Serializable;
  */
 @Entity
 @Table
+@ApiModel( value = "Item", description = "Item resource representation" )
+
 public class Item implements Serializable
 {
     @Id

@@ -27,7 +27,7 @@ public class RestApplication extends Application
         beanConfig.setTitle( "Little Hero REST API" );
         beanConfig.setSchemes( new String[] { "http" } );
         beanConfig.setHost( "localhost:8080" );
-        beanConfig.setBasePath( "/v1" );
+        beanConfig.setBasePath( "/" );
         beanConfig.setResourcePackage( "com.allrokie.api" );
         beanConfig.setScan( true );
     }
@@ -37,13 +37,9 @@ public class RestApplication extends Application
     {
         final Set<Class<?>> classes = new HashSet<>();
 
-        classes.add( ChildsResource.class );
+        classes.add( ChildrenResource.class );
         classes.add( TutorsResource.class );
         classes.add( ItemsResource.class );
-
-        classes.add( ChildAvatarsResource.class );
-        classes.add( TutorAvatarsResource.class );
-
         classes.add( TasksResource.class );
 
         classes.add( io.swagger.jaxrs.listing.ApiListingResource.class );

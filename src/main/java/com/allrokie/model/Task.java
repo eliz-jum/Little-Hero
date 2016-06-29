@@ -1,6 +1,7 @@
 package com.allrokie.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table
+@ApiModel( value = "Task", description = "Task resource representation" )
 public class Task implements Serializable
 {
     @Id

@@ -1,6 +1,7 @@
 package com.allrokie.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @Entity
 @Table
+@ApiModel( value = "Tutor", description = "Tutor resource representation" )
 public class Tutor implements Serializable
 {
     @Id

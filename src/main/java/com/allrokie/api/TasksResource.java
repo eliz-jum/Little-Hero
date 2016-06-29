@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * Created by siulkilulki on 29.06.16.
  */
-@Path( "v1/tasks" )
+@Path( "/v1/tasks" )
 @Api( value = "Tasks", description = "Operations about tasks" )
 public class TasksResource
 {
@@ -123,7 +123,7 @@ public class TasksResource
     @Produces( MediaType.APPLICATION_JSON )
     @Transactional
     @ApiOperation( value = "Update task", response = Task.class)
-    public Response updateAvatar( ArrayList<Map<String, Object>> json, @PathParam( "taskId" ) long id )
+    public Response updateTask( ArrayList<Map<String, Object>> json, @PathParam( "taskId" ) long id )
     {
 
         Task task = taskDao.find( id );
@@ -156,7 +156,7 @@ public class TasksResource
     @Produces( MediaType.APPLICATION_JSON )
     @ApiOperation( value = "Get task", response = Task.class )
     @Transactional
-    public Response getAvatar( @PathParam( "taskId" ) long id )
+    public Response getTask( @PathParam( "taskId" ) long id )
     {
         Task task = taskDao.find( id );
 

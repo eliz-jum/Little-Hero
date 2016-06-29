@@ -23,7 +23,7 @@ import java.util.Map;
 
 @Path( "/v1/childs" )
 @Api( value = "Childs", description = "Operations about childs" )
-public class ChildsResource
+public class ChildrenResource
 {
     @Inject
     ChildDao dao;
@@ -31,7 +31,7 @@ public class ChildsResource
     @GET
     @Path( "/" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get childs collection", notes = "Get childs collection" )
+    @ApiOperation( value = "Get childs collection", notes = "Get childs collection", response = Child.class)
     @Transactional
     public Response getChilds()
     {
@@ -66,7 +66,7 @@ public class ChildsResource
     @GET
     @Path( "/{id}" )
     @Produces( MediaType.APPLICATION_JSON )
-    @ApiOperation( value = "Get child", notes = "Get child based on /{id}" )
+    @ApiOperation( value = "Get child", notes = "Get child based on /{id}", response = Child.class)
     @Transactional
     public Response getChild( @PathParam( "id" ) long id )
     {

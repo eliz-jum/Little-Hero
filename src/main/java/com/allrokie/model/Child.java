@@ -1,6 +1,7 @@
 package com.allrokie.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.Email;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 @Entity
 @Table
+@ApiModel( value = "Child", description = "Child resource representation" )
 public class Child implements Serializable
 {
 
@@ -53,7 +55,7 @@ public class Child implements Serializable
         return id;
     }
 
-    @ApiModelProperty( value = "Child nickname" )
+    @ApiModelProperty( value = "Child nickname", required = true)
     public String getNickname()
     {
         return nickname;
@@ -65,7 +67,7 @@ public class Child implements Serializable
     }
 
 
-    @ApiModelProperty( value = "Child login" )
+    @ApiModelProperty( value = "Child login", required = true)
     public String getLogin()
     {
         return login;
@@ -76,7 +78,7 @@ public class Child implements Serializable
         this.login = login;
     }
 
-    @ApiModelProperty( value = "Child password" )
+    @ApiModelProperty( value = "Child password", required = true)
     public String getPassword()
     {
         return password;
@@ -87,7 +89,7 @@ public class Child implements Serializable
         this.password = password;
     }
 
-    @ApiModelProperty( value = "Child mail" )
+    @ApiModelProperty( value = "Child mail", required = true)
     public String getMail()
     {
         return mail;
@@ -98,7 +100,7 @@ public class Child implements Serializable
         this.mail = mail;
     }
 
-    @ApiModelProperty( value = "Child avatars" )
+    @ApiModelProperty( value = "Child avatars")
     public List<Avatar> getAvatars()
     {
         return avatars;
