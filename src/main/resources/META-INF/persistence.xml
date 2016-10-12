@@ -16,18 +16,11 @@
         <class>com.allrokie.model.Child</class>
 
         <properties>
-            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-            <property name="hibernate.connection.username" value="littlehero"/>
-            <property name="hibernate.connection.password" value="herolittle"/>
-            <property name="hibernate.connection.url"
-                      value="jdbc:postgresql://postgresql-littlehero.cdrpznc9a5vq.us-west-2.rds.amazonaws.com:5432/LittleHeroDB"
-            />
-
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
-
-            <property name="hibernate.show_sql" value="create"/>
-
+            <property name="connection.driver_class" value="org.h2.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:./db/repository"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="true" />
         </properties>
 
     </persistence-unit>
