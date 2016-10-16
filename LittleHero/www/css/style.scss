@@ -1,52 +1,64 @@
-
 /************** SHARED *************/
 h2 {
   text-align: center;
-  padding: 3%; }
+  padding: 3%;
+}
 
 .background {
-  background: #ffe9ab; }
+  background: #ffe9ab;
+}
 
 .orange {
-  background-color: #ff6b3d; }
+  background-color: #ff6b3d;
+}
 
 .bar-header {
-  height: 60px; }
+  height: 60px;
+}
 
 .row-center {
-  text-align: center; }
+  text-align: center;
+}
 
 .item-select {
   height: 100%;
   padding: 0;
   margin: 0;
-  border: none; }
+  border: none;
 
-.item-select select {
-  width: 1000px;
-  max-width: 100%;
-  text-align: left;
-  background-color: #ff6b3d; }
+  select {
+    width: 1000px;
+    max-width: 100%;
+    text-align: left;
+    background-color: #ff6b3d;
+  }
+}
 
-.bar-header i {
-  font-size: 20px;
-  padding-left: 20px;
-  margin-top: auto;
-  margin-bottom: auto;
-  display: block; }
+.bar-header {
+  i {
+    font-size: 20px;
+    padding-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
+  }
 
-.bar-header span {
-  font-size: 20px;
-  margin-top: auto;
-  margin-bottom: auto;
-  display: block; }
+  span {
+    font-size: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
+  }
+}
 
 .bar-footer {
-  height: 50px; }
+  height: 50px;
+}
 
 /************** MAIN *************/
 .stats {
-  margin-left: auto; }
+  margin-left: auto;
+}
 
 .progress-bar {
   width: 70%;
@@ -54,59 +66,67 @@ h2 {
   border-radius: 50px;
   border: 2px solid #000;
   margin: 5px auto 5px 10px;
-  display: block; }
+  display: block;
+}
 
 .progress-bar-indicator {
   height: 11px;
   overflow: hidden;
-  border-radius: 50px; }
+  border-radius: 50px;
+}
 
 .hp {
   background: red;
 }
 
 .xp {
-  background: yellow; }
+  background: yellow;
+}
 
 .avatar {
-  position: relative; }
+  position: relative;
+}
 
 .asset {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; }
+  width: 100%;
+}
 
 .equipment {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+}
 
 .equipment-item {
   width: 33%;
   height: auto;
   position: relative;
   border: grey 1px solid;
-}
 
-.equipment-item img {
-  max-width: 100%;
+  img {
+    max-width: 100%;
+  }
 }
 
 .button-footer {
   display: flex;
   flex-direction: row;
-  }
 
-.button-footer img {
-  height: 100%;
-  width: auto;
-  border-right: grey 1px;}
+  img {
+    height: 100%;
+    width: auto;
+    border-right: grey 1px;
+  }
+}
 
 .selected {
   border: grey 1px solid;
 }
 
-.price-tag, .lvl-tag {
+.price-tag,
+.lvl-tag {
   position: absolute;
   margin: 1px;
 }
@@ -127,10 +147,10 @@ h2 {
 
 .unavailable {
   background-color: #bbb;
-}
 
-.unavailable img {
-  opacity: 0.5;
+  img {
+    opacity: 0.5;
+  }
 }
 
 /************** TASKS *************/
@@ -154,7 +174,7 @@ h2 {
 }
 
 .item-content {
-   width: 100%;
+  width: 100%;
 }
 
 .task-name {
@@ -164,12 +184,12 @@ h2 {
   height: 50pt;
   line-height: 50pt;
   padding: 0px;
-}
 
-.task-name span {
-  font-size: large;
-  font-weight: bold;
-  color: black;
+  span {
+    font-size: large;
+    font-weight: bold;
+    color: black;
+  }
 }
 
 .hard-task {
@@ -185,21 +205,22 @@ h2 {
 }
 
 .ion-radio {
-  background-color: #ffe9ab; }
+  background-color: #ffe9ab;
+}
 
 /************** LOGIN/REGISTER *************/
 
 .accept-button-container {
-   margin: 40px 10px 10px 10px;
+  margin: 40px 10px 10px 10px;
 }
 
 /************** TUTOR *******************/
 
 .tutor-avatar-list {
-    padding: 0px 0px 0px 50px;
-    display: flex;
-    flex-direction: row;
-    height: 50pt;
-    line-height: 50pt;
+  padding: 0px 0px 0px 50px;
+  display: flex;
+  flex-direction: row;
+  height: 50pt;
+  line-height: 50pt;
 }
 
