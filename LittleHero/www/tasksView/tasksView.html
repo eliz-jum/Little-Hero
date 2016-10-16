@@ -1,7 +1,6 @@
 <ion-view>
-    <ion-pane class="background">
+  <ion-pane class="background">
     <div class="bar bar-header orange">
-
       <div class="row row-center orange">
         <span class="col col-50 orange">{{ user.name }}</span>
         <div class="col col-40"></div>
@@ -12,38 +11,35 @@
     </div>
 
     <ion-content class="background has-header" on-swipe-left="swipeLeft()">
-
       <div class="title">
         <h2>Wszystkie zadania</h2>
       </div>
 
       <div class="buttons orange row row-100">
         <button class="button button-icon icon ion-ios-minus-outline"
-          ng-click="data.showDelete = !data.showDelete"></button>
-          <h3 style="padding: 2px 2px 2px 40px">{{ currentAvatar.name }}</h3>
+                ng-click="data.showDelete = !data.showDelete"></button>
+        <h3 style="padding: 2px 2px 2px 40px">{{ currentAvatar.name }}</h3>
       </div>
 
       <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false" show-delete="data.showDelete">
-            <ion-item ng-repeat="task in allAvatarTasks track by $index" class="item-remove-animate">
-                <ion-content scroll="false">
-                    <ion-delete-button class="ion-minus-circled"
-                             ng-click="deleteTask(task)">
-                    </ion-delete-button>
-                    <div class="tutor-avatar-list" scroll="false">
-                        <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i></div><span> {{ task.content }}</span>
-                    </div>
-                </ion-content>
+        <ion-item ng-repeat="task in allAvatarTasks track by $index" class="item-remove-animate">
+          <ion-content scroll="false">
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="deleteTask(task)">
+            </ion-delete-button>
+            <div class="tutor-avatar-list" scroll="false">
+              <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i>
+              </div>
+              <span>{{ task.content }}</span>
+            </div>
+          </ion-content>
 
-                <ion-option-button side="left" class="button medium-task"
-                       ng-click="acceptTask(task)">
-                    Zaakceptuj
-                </ion-option-button>
-            </ion-item>
-      <ion-list>
-
-
+          <ion-option-button side="left" class="button medium-task" ng-click="acceptTask(task)">
+            Zaakceptuj
+          </ion-option-button>
+        </ion-item>
+        <ion-list>
     </ion-content>
-
 
     <ion-footer-bar class="button-footer orange"/>
   </ion-pane>

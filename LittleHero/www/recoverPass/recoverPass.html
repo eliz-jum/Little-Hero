@@ -1,22 +1,22 @@
 <div ng-controller="RecoverPassController" class="background" class="text-center" style="padding:50px 0">
-    <h2>Little Hero</h2>
-  <div class="text-center bacground">Wpisz swój login lub adres  e-mail, aby przypomnieć hasło</div>
+  <h2>Little Hero</h2>
+  <div class="text-center bacground">Wpisz swój login lub adres e-mail, aby przypomnieć hasło</div>
   <br>
-    <form>
-      <div>
-        <label class="item item-input">
-          <span class="input-label">Login/E-mail</span>
-          <input type="text" ng-model="loginemail">
-        </label>
-      </div>
-      <div class='accept-button-container'>
-          <button class="button button-block orange accept-button" ng-click="validate()">
-            Przypomnij hasło
-          </button>
-      </div>
-      <div ng-show="invalid">
-        Nie można podać pustego loginu/e-maila
-      </div>
-    </form>
+  <form>
+    <div>
+      <label class="item item-input">
+        <span class="input-label">Login/E-mail</span>
+        <input type="text" ng-model="loginemail">
+      </label>
+    </div>
+    <div class='accept-button-container'>
+      <button class="button button-block orange accept-button" ng-click="validate()">
+        Przypomnij hasło
+      </button>
+    </div>
+    <div ng-show="invalid">
+      Nie można podać pustego loginu/e-maila
+    </div>
+  </form>
 </div>
 

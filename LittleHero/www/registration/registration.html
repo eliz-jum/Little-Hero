@@ -1,39 +1,40 @@
 <div class="text-center background" style="padding:50px 0">
-<h2>Rejestracja konta</h2>
-<form name="registration">
-  <div class="list" class="backgraund">
-    <label class="item item-input" >
-      <span class="input-label"><b>Login</b></span>
-      <input type="text" ng-model="login">
+  <h2>Rejestracja konta</h2>
+  <form name="registration">
+    <div class="list" class="backgraund">
+      <label class="item item-input">
+        <span class="input-label"><b>Login</b></span>
+        <input type="text" ng-model="login">
 
-    </label>
-    <label class="item item-input">
-      <span class="input-label"><b>E-mail</b></span>
-      <input type="email" ng-model="email">
+      </label>
+      <label class="item item-input">
+        <span class="input-label"><b>E-mail</b></span>
+        <input type="email" ng-model="email">
       </label>
       <label class="item item-input">
         <span class="input-label"><b>Hasło</b></span>
         <input type="password" ng-model="password">
       </label>
-    </label>
+      </label>
 
-  </div>
+    </div>
 
-  <!-- switch taki trochę switch -->
+    <!-- switch taki trochę switch -->
 
-  <ion-radio ng-model="Opiekun" ng-value=TRUE>Opiekun </ion-radio>
-  <ion-radio ng-model="Opiekun" ng-value=FALSE>Dziecko</ion-radio>
+    <ion-radio ng-model="Opiekun" ng-value=TRUE>Opiekun</ion-radio>
+    <ion-radio ng-model="Opiekun" ng-value=FALSE>Dziecko</ion-radio>
 
-  <div class="accept-button-container">
-    <button class="button button-block orange accept-button" ng-click="validate()">
+    <div class="accept-button-container">
+      <button class="button button-block orange accept-button" ng-click="validate()">
         Zarejestruj
-    </button>
-  </div>
-  <div ng-show="invalid">
-    Brak danych, logowanie nie powiodło się
-  </div>
-	<a ui-sref="login">Masz już konto?</a>
-</form>
+      </button>
+    </div>
+    <div ng-show="invalid">
+      Brak danych, logowanie nie powiodło się
+    </div>
+    <a ui-sref="login">Masz już konto?</a>
+  </form>
+</div>
 
 
 
