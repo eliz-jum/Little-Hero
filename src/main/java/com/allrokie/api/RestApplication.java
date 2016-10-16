@@ -41,6 +41,7 @@ public class RestApplication extends Application
         classes.add( TutorsResource.class );
         classes.add( ItemsResource.class );
         classes.add( TasksResource.class );
+        classes.add( AvatarsResource.class );
 
         classes.add( io.swagger.jaxrs.listing.ApiListingResource.class );
         classes.add( io.swagger.jaxrs.listing.SwaggerSerializers.class );

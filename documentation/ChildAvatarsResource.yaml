@@ -7,7 +7,7 @@ Path: http://localhost:8080/v1/childs/1/avatars
     Body:
       {
         "name": "pierwszy",
-          "tutorId": 2,
+        "tutorId": 2,
         "wornItems": [],
         "canBePutOnItems": [],
         "canBePurchasedItems": [],

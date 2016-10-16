@@ -135,7 +135,7 @@ public class AvatarsResource
 
         avatar.setTutor( tutor );
 
-        int childId1 = (int) json.get( "tutorId" );
+        int childId1 = (int) json.get( "childId" );
         long childId = (long) childId1;
         Child child = childDao.find( childId );
         child.getAvatars().size();
