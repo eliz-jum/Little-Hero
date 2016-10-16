@@ -1,0 +1,52 @@
+.tasks-title {
+  padding: 20pt 0 5pt;
+}
+
+.task-list ion-item {
+  display: flex;
+  flex-direction: row;
+  height: 50pt;
+  line-height: 50pt;
+  padding: 0;
+}
+
+.drag {
+  width: 35pt;
+  border-radius: 0 30px 30px 0;
+  background-color: #585860;
+}
+
+.item-content {
+  width: 100%;
+}
+
+.task-name {
+  padding: 0 0 50px;
+  display: flex;
+  flex-direction: row;
+  height: 50pt;
+  line-height: 50pt;
+  padding: 0;
+
+  span {
+    font-size: large;
+    font-weight: bold;
+    color: black;
+  }
+}
+
+.hard-task {
+  background-color: #EE9360;
+}
+
+.medium-task {
+  background-color: #FFF572;
+}
+
+.easy-task {
+  background-color: #B0D57F;
+}
+
+.ion-radio {
+  background-color: #ffe9ab;
+}

@@ -1,0 +1,96 @@
+.stats {
+  margin-left: auto;
+}
+
+.progress-bar {
+  width: 70%;
+  height: 20%;
+  border-radius: 50px;
+  border: 2px solid #000;
+  margin: 5px auto 5px 10px;
+  display: block;
+}
+
+.progress-bar-indicator {
+  height: 11px;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.hp {
+  background: red;
+}
+
+.xp {
+  background: yellow;
+}
+
+.avatar {
+  position: relative;
+}
+
+.asset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.equipment {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.equipment-item {
+  width: 33%;
+  height: auto;
+  position: relative;
+  border: grey 1px solid;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.button-footer {
+  display: flex;
+  flex-direction: row;
+
+  img {
+    height: 100%;
+    width: auto;
+    border-right: grey 1px;
+  }
+}
+
+.selected {
+  border: grey 1px solid;
+}
+
+.price-tag,
+.lvl-tag {
+  position: absolute;
+  margin: 1px;
+}
+
+.price-tag {
+  right: 0;
+  bottom: 0;
+}
+
+.lvl-tag {
+  left: 0;
+  top: 0;
+}
+
+.canBePurchased {
+  background-color: #eee;
+}
+
+.unavailable {
+  background-color: #bbb;
+
+  img {
+    opacity: 0.5;
+  }
+}
