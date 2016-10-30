@@ -2,7 +2,8 @@
 	"id": 1,
 	"name": "Avatar1",
 	"wornItems": [],
-	"canBePutOnItems": [{
+	"canBePutOnItems": [
+    {
     "type": "eyes",
     "iconSrc": "img/eyes1_icon.svg",
     "imgSrc": "img/eyes1.svg",
@@ -199,7 +200,8 @@
       "price": 0
     }
   ],
-	"canBePurchasedItems": [{
+	"canBePurchasedItems": [
+    {
     "type": "eyes",
     "iconSrc": "img/eyes2_icon.svg",
     "imgSrc": "img/eyes2.svg",
@@ -354,7 +356,8 @@
       "price": 23
     }
   ],
-  "unavailableItems": [{
+  "unavailableItems": [
+    {
     "type": "eyes",
     "iconSrc": "img/eyes3_icon.svg",
     "imgSrc": "img/eyes3.svg",
@@ -431,7 +434,8 @@
       "lvl": 5,
       "price": 20
     }],
-	"tasks": [{
+	"tasks": [
+    {
 		"id": 0
 	}, {
 		"id": 1

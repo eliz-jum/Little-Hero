@@ -166,6 +166,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   };
 
   $scope.putOn = function(item) {
+    
     var element = document.getElementsByClassName(item.type)[0];
     element.setAttribute("src", item.imgSrc);
     $scope.closeModal();
