@@ -3,7 +3,7 @@
 import logging.config
 
 from flask import Flask, Blueprint
-#from app import settings
+from app import settings
 from app.api.endpoints.children import ns as children_namespace
 from app.api.restplus import api
 from app.database import db
