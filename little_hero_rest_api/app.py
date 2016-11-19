@@ -7,11 +7,10 @@ from flask import Flask, Blueprint
 from little_hero_rest_api import settings
 from little_hero_rest_api.api.endpoints.children import ns as children_namespace
 from little_hero_rest_api.api.restplus import api
-# from flask_sqlalchemy import SQLAlchemy
 from little_hero_rest_api.database import db
 
 app = Flask(__name__)  # Create a Flask WSGI application
-logging.config.fileConfig('../logging.conf')
+logging.config.fileConfig('logging.conf')
 log = logging.getLogger(__name__)
 
 def configure_app(flask_app):
