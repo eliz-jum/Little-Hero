@@ -2,7 +2,7 @@ import logging
 import traceback
 
 from flask_restplus import Api
-from app import settings
+from little_hero_rest_api import settings
 from sqlalchemy.orm.exc import NoResultFound
 
 log = logging.getLogger(__name__)

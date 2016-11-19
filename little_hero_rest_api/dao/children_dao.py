@@ -1,5 +1,5 @@
-from app.database import db
-from app.database.models import Child
+from little_hero_rest_api.database import db
+from little_hero_rest_api.database.models import Child
 
 def create_child(data):
     name = data.get('name')

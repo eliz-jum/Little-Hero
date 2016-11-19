@@ -1,11 +1,11 @@
 import logging
 
 from flask import request
-from app.api.restplus import api
+from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
-from app.database.models import Child
-from app.api.serializers import child
-from app.dao.children_dao import create_child
+from little_hero_rest_api.database.models import Child
+from little_hero_rest_api.api.serializers import child
+from little_hero_rest_api.dao.children_dao import create_child
 
 log = logging.getLogger(__name__)
 

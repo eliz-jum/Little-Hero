@@ -3,13 +3,13 @@
 import logging.config
 
 from flask import Flask, Blueprint
-from app import settings
-from app.api.endpoints.children import ns as children_namespace
-from app.api.restplus import api
-from app.database import db
+from little_hero_rest_api import settings
+from little_hero_rest_api.api.endpoints.children import ns as children_namespace
+from little_hero_rest_api.api.restplus import api
+from little_hero_rest_api.database import db
 
 app = Flask(__name__)  # Create a Flask WSGI application
-logging.config.fileConfig('logging.conf')
+logging.config.fileConfig('../logging.conf')
 log = logging.getLogger(__name__)
 
 
@@ -35,7 +35,7 @@ def initialize_app(flask_app):
 
 def main():
     initialize_app(app)
-    log.info('>>>>> Starting development server at http://{}/ <<<<<'.format(app.config['SERVER_NAME']))
+    log.info('>>>>> Starting development server at http://{}/api/ <<<<<'.format(app.config['SERVER_NAME']))
     app.run(debug=settings.FLASK_DEBUG)
 
 if __name__ == "__main__":

@@ -4,6 +4,6 @@ db = SQLAlchemy()
 
 
 def reset_database():
-    from app.database.models import Child  # noqa
+    from little_hero_rest_api.database.models import Child  # noqa
     db.drop_all()
     db.create_all()
