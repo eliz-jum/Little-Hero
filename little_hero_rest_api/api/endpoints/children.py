@@ -15,6 +15,7 @@ ns = api.namespace('children', description='Operations related to children')
 @ns.route('/')
 class ChildrenCollection(Resource):
 
+    @api.marshal_list_with(child)
     def get(self):
         """Returns list of children."""
         children = Child.query.all()

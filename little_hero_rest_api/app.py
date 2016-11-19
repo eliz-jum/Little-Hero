@@ -6,6 +6,7 @@ from flask import Flask, Blueprint
 from little_hero_rest_api import settings
 from little_hero_rest_api.api.endpoints.children import ns as children_namespace
 from little_hero_rest_api.api.restplus import api
+# from flask_sqlalchemy import SQLAlchemy
 from little_hero_rest_api.database import db
 
 app = Flask(__name__)  # Create a Flask WSGI application
@@ -32,6 +33,10 @@ def initialize_app(flask_app):
     flask_app.register_blueprint(blueprint)
 
     db.init_app(flask_app)
+    with flask_app.app_context(): #see why http://flask-sqlalchemy.pocoo.org/2.1/api/
+        db.drop_all()
+        db.create_all()
+
 
 def main():
     initialize_app(app)
