@@ -6,7 +6,7 @@ def create_child(data):
     child_id = data.get('id')
 
     child = Child(name)
-    if child_id: #if child_id not None
+    if child_id: #if child_id not None    <---- Do I need this?
         child.id = child_id
 
     db.session.add(child)
