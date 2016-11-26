@@ -15,7 +15,7 @@ class Child(BaseModel):
     password = db.Column(db.String(50))
     mail = db.Column(db.String(50))
 
-    avatars = db.relationship('Avatar', back_populates='child', lazy='dynamic')
+    avatars = db.relationship('Avatar', back_populates='child', lazy='dynamic', cascade="all, delete-orphan")
 
     def __init__(self, login, nickname, password, mail):
         self.login = login
