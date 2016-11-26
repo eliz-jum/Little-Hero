@@ -4,6 +4,7 @@ from little_hero_rest_api.dao.children import ChildDAO
 from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.generic import GenericDAO
 
+
 class AvatarDAO(GenericDAO):
 
     child_dao = ChildDAO()

@@ -27,6 +27,22 @@ class Child(BaseModel):
         return '<Child %r>' % self.login
 
 
+avatarAvailableItems = db.Table('avatarAvailableItems',
+    db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
+    db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
+)
+
+avatarPutOnItems = db.Table('avatarPutOnItems',
+    db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
+    db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
+)
+
+avatarCanBePurchasedItems = db.Table('avatarCanBePurchasedItems',
+    db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
+    db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
+)
+
+
 class Avatar(BaseModel):
     name = db.Column(db.String(50))
     level = db.Column(db.Integer)
@@ -34,16 +50,17 @@ class Avatar(BaseModel):
     health = db.Column(db.Integer)
     experience = db.Column(db.Integer)
 
-    #items
     #tasks
-    #tutor
-
 
     child_id = db.Column(db.Integer, db.ForeignKey('child.id'))
     child = db.relationship('Child', back_populates='avatars', lazy='joined')
 
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutor.id'))
     tutor = db.relationship('Tutor', back_populates='avatars', lazy='joined')
+
+    avatarPutOnItems = db.relationship('Item', secondary=avatarAvailableItems, lazy='dynamic')
+    #avatarPutOnItems = db.relationship('Item', secondary=avatarPutOnItems, lazy='dynamic')
+    #avatarCanBePurchasedItems = db.relationship('Item', secondary=avatarCanBePurchasedItems, lazy='dynamic')
 
     def __init__(self, name, child, tutor, level, money, health, experience):
         self.name = name
@@ -72,3 +89,21 @@ class Tutor(BaseModel):
 
     def __repr__(self):
         return '<Tutor %r>' % self.login
+
+
+class Item(BaseModel):
+    name = db.Column(db.String(50))
+    price = db.Column(db.Integer)
+    level = db.Column(db.Integer)
+    clazz = db.Column(db.String(50))
+    type = db.Column(db.String(50))
+
+    def __init__(self, name, price, level, clazz, type):
+        self.name = name
+        self.price = price
+        self.level = level
+        self.clazz = clazz
+        self.type = type
+
+    def __repr__(self):
+        return '<Item %r>' % self.item
