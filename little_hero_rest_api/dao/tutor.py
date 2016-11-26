@@ -16,3 +16,16 @@ class TutorDAO(GenericDAO):
 
         db.session.add(tutor)
         db.session.commit()
+
+    def update(self, id, data):
+        password = data.get('password')
+        mail = data.get('mail')
+
+        query = db.session.query(Tutor).filter_by(id=id)
+
+        if password:
+            query.update({Tutor.password: password})
+        if mail:
+            query.update({Tutor.mail: mail})
+
+        db.session.commit()

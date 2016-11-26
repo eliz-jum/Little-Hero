@@ -4,6 +4,7 @@ from flask import request
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
 from little_hero_rest_api.api.serializers import tutor
+from little_hero_rest_api.api.serializers import tutor_for_patch
 from little_hero_rest_api.dao.tutor import TutorDAO
 
 log = logging.getLogger(__name__)
@@ -47,3 +48,12 @@ class Child(Resource):
         """Delete a tutor given its identifier"""
         DAO.delete(id)
         return None, 204
+
+    @ns.response(204, 'Tutor updated')
+    @api.expect(tutor_for_patch)
+    def patch(self, id):
+        """Update tutor given only its parameters that should be updated"""
+        data = request.json
+        DAO.update(id, data)
+        return None, 204
+

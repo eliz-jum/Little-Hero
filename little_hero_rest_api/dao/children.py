@@ -34,3 +34,19 @@ class ChildDAO(GenericDAO):
     #     child = self.get(child_id)
     #     db.session.delete(child)
     #     db.session.commit()
+
+    def update(self, id, data):
+        nickname = data.get('nickname')
+        password = data.get('password')
+        mail = data.get('mail')
+
+        query = db.session.query(Child).filter_by(id=id)
+
+        if nickname:
+            query.update({Child.nickname: nickname})
+        if password:
+            query.update({Child.password: password})
+        if mail:
+            query.update({Child.mail: mail})
+
+        db.session.commit()

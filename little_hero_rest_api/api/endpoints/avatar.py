@@ -4,6 +4,7 @@ from flask import request
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
 from little_hero_rest_api.api.serializers import avatar
+from little_hero_rest_api.api.serializers import avatar_for_patch
 from little_hero_rest_api.dao.avatar import AvatarDAO
 
 
@@ -45,4 +46,12 @@ class Child(Resource):
     def delete(self, id):
         """Delete a avatar given its identifier"""
         DAO.delete(id)
+        return None, 204
+
+    @ns.response(204, 'Avatar updated')
+    @api.expect(avatar_for_patch)
+    def patch(self, id):
+        """Update Avatar given only its parameters that should be updated"""
+        data = request.json
+        DAO.update(id, data)
         return None, 204
