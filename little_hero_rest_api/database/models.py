@@ -42,9 +42,13 @@ class Avatar(BaseModel):
     child_id = db.Column(db.Integer, db.ForeignKey('child.id'))
     child = db.relationship('Child', back_populates='avatars', lazy='joined')
 
-    def __init__(self, name, child, level, money, health, experience):
+    tutor_id = db.Column(db.Integer, db.ForeignKey('tutor.id'))
+    tutor = db.relationship('Tutor', back_populates='avatars', lazy='joined')
+
+    def __init__(self, name, child, tutor, level, money, health, experience):
         self.name = name
         self.child = child
+        self.tutor = tutor
         self.level = level
         self.money = money
         self.health = health
@@ -52,3 +56,19 @@ class Avatar(BaseModel):
 
     def __repr__(self):
         return '<Avatar %r>' % self.name
+
+
+class Tutor(BaseModel):
+    login = db.Column(db.String(50))
+    password = db.Column(db.String(50))
+    mail = db.Column(db.String(50))
+
+    avatars = db.relationship('Avatar', back_populates='tutor', lazy='dynamic')
+
+    def __init__(self, login, password, mail):
+        self.login = login
+        self.password = password
+        self.mail = mail
+
+    def __repr__(self):
+        return '<Tutor %r>' % self.login

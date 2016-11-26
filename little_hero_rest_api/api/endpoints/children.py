@@ -43,6 +43,6 @@ class Child(Resource):
 
     @ns.response(204, 'Child deleted')
     def delete(self, id):
-        '''Delete a child given its identifier'''
+        """Delete a child given its identifier"""
         DAO.delete(id)
         return None, 204
