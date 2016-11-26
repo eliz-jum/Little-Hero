@@ -14,17 +14,17 @@ DAO = ChildDAO()
 
 @ns.route('/')
 class ChildrenCollection(Resource):
-    '''Show a list of all children and lets you POST to add new child.'''
+    """Show a list of all children and lets you POST to add new child."""
     @api.marshal_list_with(child)
     def get(self):
-        '''Returns list of children.'''
+        """Returns list of children."""
         children = DAO.get_all()
         return children
 
     @api.response(201, 'Child created.')
     @api.expect(child)
     def post(self):
-        '''Create child'''
+        """Create child"""
         data = request.json
         DAO.create(data)
         return None, 201
@@ -34,10 +34,10 @@ class ChildrenCollection(Resource):
 @ns.response(404, 'Child not found')
 @ns.param('id', 'The child identifier')
 class Child(Resource):
-    '''Show a single child entity and lets you delete and update it'''
+    """Show a single child entity and lets you delete and update it"""
     @ns.marshal_with(child)
     def get(self, id):
-        '''Returns child'''
+        """Returns child"""
         child = DAO.get(id)
         return child
 

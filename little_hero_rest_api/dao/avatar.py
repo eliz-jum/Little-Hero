@@ -1,10 +1,14 @@
 from little_hero_rest_api.database import db
 from little_hero_rest_api.database.models import Avatar
 from little_hero_rest_api.database.models import Child
+from little_hero_rest_api.dao.generic import GenericDAO
 
-class AvatarDAO(object):
+class AvatarDAO(GenericDAO):
 
-    def create_avatar(data):
+    def __init__(self):
+        super().__init__(Avatar)
+
+    def create(self, data):
         name = data.get('name')
         child_id = data.get('child_id')
         child = Child.query.filter(child_id == Child.id).one()
