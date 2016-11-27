@@ -9,7 +9,7 @@ from little_hero_rest_api.dao.children import ChildDAO
 
 log = logging.getLogger(__name__)
 
-ns = api.namespace('children', description='Operations related to children')
+ns = api.namespace('v1/children', description='Operations related to children')
 DAO = ChildDAO()
 
 

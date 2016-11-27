@@ -9,7 +9,7 @@ from little_hero_rest_api.dao.item import ItemDAO
 
 log = logging.getLogger(__name__)
 
-ns = api.namespace('items', description='Operations related to items')
+ns = api.namespace('v1/items', description='Operations related to items')
 DAO = ItemDAO()
 
 

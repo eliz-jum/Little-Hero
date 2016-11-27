@@ -10,7 +10,7 @@ from little_hero_rest_api.dao.avatar import AvatarDAO
 
 log = logging.getLogger(__name__)
 
-ns = api.namespace('avatars', description='Operations related to avatars')
+ns = api.namespace('v1/avatars', description='Operations related to avatars')
 
 DAO = AvatarDAO()
 

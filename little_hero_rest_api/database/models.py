@@ -1,5 +1,6 @@
 # reference
 # http://flask-sqlalchemy.pocoo.org/2.1/quickstart/#simple-relationships
+from enum import Enum
 
 from little_hero_rest_api.database import db
 
@@ -7,6 +8,7 @@ from little_hero_rest_api.database import db
 class BaseModel(db.Model):
     __abstract__ = True #sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
+    # created = db.Column()
 
 
 class Child(BaseModel):
@@ -27,22 +29,6 @@ class Child(BaseModel):
         return '<Child %r>' % self.login
 
 
-avatarAvailableItems = db.Table('avatarAvailableItems',
-    db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
-    db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
-)
-
-avatarPutOnItems = db.Table('avatarPutOnItems',
-    db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
-    db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
-)
-
-avatarCanBePurchasedItems = db.Table('avatarCanBePurchasedItems',
-    db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
-    db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
-)
-
-
 class Avatar(BaseModel):
     name = db.Column(db.String(50))
     level = db.Column(db.Integer)
@@ -58,9 +44,7 @@ class Avatar(BaseModel):
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutor.id'))
     tutor = db.relationship('Tutor', back_populates='avatars', lazy='joined')
 
-    avatarPutOnItems = db.relationship('Item', secondary=avatarAvailableItems, lazy='dynamic')
-    #avatarPutOnItems = db.relationship('Item', secondary=avatarPutOnItems, lazy='dynamic')
-    #avatarCanBePurchasedItems = db.relationship('Item', secondary=avatarCanBePurchasedItems, lazy='dynamic')
+    avatar_items = db.relationship('AvatarItem', lazy='dynamic')
 
     def __init__(self, name, child, tutor, level, money, health, experience):
         self.name = name
@@ -107,3 +91,60 @@ class Item(BaseModel):
 
     def __repr__(self):
         return '<Item %r>' % self.item
+
+
+class Task(BaseModel):
+    content = db.Column(db.String(1000))
+    difficulty = db.Column(db.Integer)
+    experience = db.Column(db.Integer)
+    completed = db.Column(db.Boolean)
+    archived = db.Column(db.Boolean)
+    reward = db.Column(db.Integer)
+
+    def __init__(self, content, difficulty, experience, completed, archived, reward):
+        self.content = content
+        self.difficulty = difficulty
+        self.experience = experience
+        self.completed = completed
+        self.archived = archived
+        self.reward = reward
+
+    def __repr__(self):
+        return '<Task id: %r>' % self.id
+
+
+class AvatarItem(db.Model):
+
+    avatar_id = db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id'), primary_key=True)
+    #avatar = db.relationship('Avatar', back_populates='item_avatars', lazy='dynamic')
+    item_id = db.Column('item_id', db.Integer, db.ForeignKey('item.id'), primary_key=True)
+    state = db.Column(db.String(50), primary_key=True)
+
+    def __init__(self, avatar_id, item_id, state):
+        self.avatar_id = avatar_id
+        self.item_id = item_id
+        self.state = state
+
+    def __repr__(self):
+        return '<AvatarItem  avatar_id: {0!r}, item_id: {0!r}, state: {0!r}>'\
+            .format(self.avatar_id,  self.item_id, self.state)
+
+    class ItemState(Enum):
+        on = 1
+        bought = 2
+        available = 3
+        unavailable = 4
+# avatarAvailableItems = db.Table('avatarAvailableItems',
+#     db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
+#     db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
+# )
+#
+# avatarPutOnItems = db.Table('avatarPutOnItems',
+#     db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
+#     db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
+# )
+#
+# avatarCanBePurchasedItems = db.Table('avatarCanBePurchasedItems',
+#     db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
+#     db.Column('item_id', db.Integer, db.ForeignKey('item.id'))
+# )

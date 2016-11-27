@@ -9,7 +9,7 @@ from little_hero_rest_api.dao.tutor import TutorDAO
 
 log = logging.getLogger(__name__)
 
-ns = api.namespace('tutors', description='Operations related to tutors')
+ns = api.namespace('v1/tutors', description='Operations related to tutors')
 DAO = TutorDAO()
 
 
