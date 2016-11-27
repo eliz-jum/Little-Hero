@@ -7,8 +7,8 @@ from sqlalchemy.orm.exc import NoResultFound
 
 log = logging.getLogger(__name__)
 
-api = Api(version='1.0', title='My Blog API',
-          description='A simple demonstration of a Flask RestPlus powered API')
+api = Api(version='1.0', title='Little Hero API',
+          description='Little Hero API for Little Hero mobile application')
 
 
 @api.errorhandler

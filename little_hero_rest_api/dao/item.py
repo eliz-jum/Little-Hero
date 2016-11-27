@@ -26,7 +26,7 @@ class ItemDAO(GenericDAO):
         clazz = data.get('clazz')
         type = data.get('type')
 
-        query = db.session.query(Item).filter_by(id=id)
+        query = Item.query.filter_by(id=id)
 
         if name:
             query.update({Item.name: name})

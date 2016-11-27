@@ -1,18 +1,19 @@
 # reference
 # http://flask-sqlalchemy.pocoo.org/2.1/quickstart/#simple-relationships
 from enum import Enum
-
+from datetime import datetime
 from little_hero_rest_api.database import db
 
 
 class BaseModel(db.Model):
     __abstract__ = True #sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
+    creationDate = db.Column(db.DateTime)
     # created = db.Column()
 
 
 class Child(BaseModel):
-    login = db.Column(db.String(50))
+    login = db.Column(db.String(50), unique=True)
     nickname = db.Column(db.String(50))
     password = db.Column(db.String(50))
     mail = db.Column(db.String(50))
@@ -24,6 +25,7 @@ class Child(BaseModel):
         self.nickname = nickname
         self.password = password
         self.mail = mail
+        self.creationDate = datetime.utcnow()
 
     def __repr__(self):
         return '<Child %r>' % self.login
@@ -60,7 +62,7 @@ class Avatar(BaseModel):
 
 
 class Tutor(BaseModel):
-    login = db.Column(db.String(50))
+    login = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(50))
     mail = db.Column(db.String(50))
 
@@ -76,7 +78,7 @@ class Tutor(BaseModel):
 
 
 class Item(BaseModel):
-    name = db.Column(db.String(50))
+    name = db.Column(db.String(50), unique=True)
     price = db.Column(db.Integer)
     level = db.Column(db.Integer)
     clazz = db.Column(db.String(50))
@@ -97,8 +99,8 @@ class Task(BaseModel):
     content = db.Column(db.String(1000))
     difficulty = db.Column(db.Integer)
     experience = db.Column(db.Integer)
-    completed = db.Column(db.Boolean)
-    archived = db.Column(db.Boolean)
+    is_completed = db.Column(db.Boolean)
+    is_archived = db.Column(db.Boolean)
     reward = db.Column(db.Integer)
 
     def __init__(self, content, difficulty, experience, completed, archived, reward):
@@ -119,6 +121,7 @@ class AvatarItem(db.Model):
     #avatar = db.relationship('Avatar', back_populates='item_avatars', lazy='dynamic')
     item_id = db.Column('item_id', db.Integer, db.ForeignKey('item.id'), primary_key=True)
     state = db.Column(db.String(50), primary_key=True)
+    updateDate = db.Column(db.DateTime)
 
     def __init__(self, avatar_id, item_id, state):
         self.avatar_id = avatar_id

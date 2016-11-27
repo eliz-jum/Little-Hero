@@ -21,7 +21,7 @@ class TutorDAO(GenericDAO):
         password = data.get('password')
         mail = data.get('mail')
 
-        query = db.session.query(Tutor).filter_by(id=id)
+        query = Tutor.query.filter_by(id=id)
 
         if password:
             query.update({Tutor.password: password})

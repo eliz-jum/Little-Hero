@@ -40,7 +40,8 @@ class ChildDAO(GenericDAO):
         password = data.get('password')
         mail = data.get('mail')
 
-        query = db.session.query(Child).filter_by(id=id)
+        #query = db.session.query(Child).filter_by(id=id)
+        query = Child.query.filter_by(id=id)
 
         if nickname:
             query.update({Child.nickname: nickname})

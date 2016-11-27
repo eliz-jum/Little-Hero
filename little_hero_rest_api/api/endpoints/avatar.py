@@ -14,13 +14,18 @@ ns = api.namespace('v1/avatars', description='Operations related to avatars')
 
 DAO = AvatarDAO()
 
+
 @ns.route('/')
 class AvatarsCollection(Resource):
-
+    """Show a list of avatars and lets you POST to add new avatar."""
     @api.marshal_list_with(avatar)
+    @ns.param('child_id', 'For filtering by child id', 'query')
+    @ns.param('tutor_id', 'For filtering by tutor id', 'query')
     def get(self):
-        """Returns list of avatars."""
-        avatars = DAO.get_all()
+        """Returns list of avatars or filtered list of avatars given child.id or tutor.id."""
+        child_id = request.args.get('child_id')
+        tutor_id = request.args.get('tutor_id')
+        avatars = DAO.get_all(child_id, tutor_id)
         return avatars
 
     @api.response(201, 'Child created.')
@@ -30,6 +35,7 @@ class AvatarsCollection(Resource):
         data = request.json
         DAO.create(data)
         return None, 201
+
 
 @ns.route('/<int:id>')
 @ns.response(404, 'Avatar not found')

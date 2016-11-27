@@ -13,12 +13,24 @@ class AvatarDAO(GenericDAO):
     def __init__(self):
         super().__init__(Avatar)
 
+    def get_all(self, child_id, tutor_id):
+        if child_id and tutor_id:
+            return Avatar.query.filter_by(child_id=child_id, tutor_id=tutor_id).all()
+        if child_id:
+            avatars = Avatar.query.filter_by(child_id=child_id).all()
+            return avatars
+        if tutor_id:
+            return Avatar.query.filter_by(child_id=tutor_id).all()
+        return Avatar.query.all()
+
     def create(self, data):
         name = data.get('name')
         child_id = data.get('child_id')
         child = self.child_dao.get(child_id)
         tutor_id = data.get('tutor_id')
-        tutor = self.tutor_dao.get(tutor_id)
+        tutor = None
+        if tutor_id:
+            tutor = self.tutor_dao.get(tutor_id)  # todo: jak nie ma to dać NOT_FOUND
         level = data.get('level')
         money = data.get('money')
         health = data.get('health')
@@ -40,7 +52,8 @@ class AvatarDAO(GenericDAO):
         health = data.get('health')
         experience = data.get('experience')
 
-        query = db.session.query(Avatar).filter_by(id=id)
+        # query = db.session.query(Avatar).filter_by(id=id)
+        query = Avatar.query.filter_by(id=id)
 
         if name:
             query.update({Avatar.name: name})
