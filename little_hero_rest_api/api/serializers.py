@@ -3,12 +3,14 @@ from little_hero_rest_api.api.restplus import api
 
 child = api.model('Child entity', {
     'id': fields.Integer(readOnly=True, description='Id of child'),
+    'login': fields.String(required=True, description='Child login'),
     'nickname': fields.String(required=True, description='Child nickname'),
     'password': fields.String(required=True, description='Child password'),
     'mail': fields.String(required=True, description='Child e-mail')
 })
 
 child_for_patch = api.model('Child entity for patch request', {
+    'login': fields.String(description='Child login'),
     'nickname': fields.String(description='Child nickname'),
     'password': fields.String(description='Child password'),
     'mail': fields.String(description='Child e-mail')
@@ -25,7 +27,7 @@ avatar = api.model('Avatar entity', {
 })
 
 avatar_for_patch = api.model('Avatar entity for patch request', {
-    'id': fields.Integer(readOnly=True, description='Id of avatar'),
+    #'id': fields.Integer(readOnly=True, description='Id of avatar'),
     'name': fields.String(description='Avatar name'),
     'child_id': fields.Integer(description='Id of avatars owner (child)'),
     'tutor_id': fields.Integer(description='Id of tutors related to avatar'),
@@ -44,6 +46,30 @@ tutor_for_patch = api.model('Tutor entity for patch request', {
     #'id': fields.Integer(readOnly=True, description='Id of tutor'),
     'password': fields.String(description='Tutor password'),
     'mail': fields.String(description='Tutor e-mail')
+})
+
+task = api.model('Task entity', {
+    'id': fields.Integer(readOnly=True, description='Id of item'),
+    'content': fields.String(required=True, description='Description of task'),
+    'avatar_id': fields.Integer(required=True, description='Id of avatar who was given this task'),
+    'tutor_id': fields.Integer(required=True, description='Id of tutor who was gave the task'),
+    'experience': fields.Integer(required=True, description='Experience to be gained after completing task'),
+    'is_completed': fields.Boolean(required=True, description='Informs if the task is completed or not'),
+    'is_archived': fields.Boolean(required=True, description='Informs if the task is archived or not'),
+    'reward': fields.Integer(required=True, description='Money reward after completing task'),
+    'completed_date': fields.DateTime(required=True, description='Task date completion')
+})
+
+task_for_patch = api.model('Task entity for patch request', {
+    #'id': fields.Integer(readOnly=True, description='Id of item'),
+    'content': fields.String(description='Description of task'),
+    'avatar_id': fields.Integer(description='Id of avatar who was given this task'),
+    'tutor_id': fields.Integer(description='Id of tutor who was gave the task'),
+    'experience': fields.Integer(description='Experience to be gained after completing task'),
+    'is_completed': fields.Boolean(description='Informs if the task is completed or not'),
+    'is_archived': fields.Boolean(description='Informs if the task is archived or not'),
+    'reward': fields.Integer(description='Money reward after completing task'),
+    'completed_date': fields.DateTime(description='Task date completion')
 })
 
 item = api.model('Item entity', {

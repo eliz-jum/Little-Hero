@@ -22,13 +22,13 @@ class AvatarsCollection(Resource):
     @ns.param('child_id', 'For filtering by child id', 'query')
     @ns.param('tutor_id', 'For filtering by tutor id', 'query')
     def get(self):
-        """Returns list of avatars or filtered list of avatars given child.id or tutor.id."""
+        """Returns list of avatars or filtered list of avatars given child id or tutor id."""
         child_id = request.args.get('child_id')
         tutor_id = request.args.get('tutor_id')
         avatars = DAO.get_all(child_id, tutor_id)
         return avatars
 
-    @api.response(201, 'Child created.')
+    @api.response(201, 'Avatar created.')
     @api.expect(avatar)
     def post(self):
         """Create avatar"""
@@ -40,7 +40,7 @@ class AvatarsCollection(Resource):
 @ns.route('/<int:id>')
 @ns.response(404, 'Avatar not found')
 @ns.param('id', 'The avatar identifier')
-class Child(Resource):
+class Avatar(Resource):
     """Show a single avatar entity and lets you delete and update it"""
     @ns.marshal_with(avatar)
     def get(self, id):
@@ -48,7 +48,7 @@ class Child(Resource):
         avatar = DAO.get(id)
         return avatar
 
-    @ns.response(204, 'Child deleted')
+    @ns.response(204, 'Avatar deleted')
     def delete(self, id):
         """Delete a avatar given its identifier"""
         DAO.delete(id)

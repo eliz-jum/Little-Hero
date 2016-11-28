@@ -14,7 +14,7 @@ DAO = ItemDAO()
 
 
 @ns.route('/')
-class itemsCollection(Resource):
+class ItemsCollection(Resource):
     """Show a list of all items and lets you POST to add new item."""
 
     @api.marshal_list_with(item)
@@ -35,7 +35,7 @@ class itemsCollection(Resource):
 @ns.route('/<int:id>')
 @ns.response(404, 'item not found')
 @ns.param('id', 'The item identifier')
-class Child(Resource):
+class Item(Resource):
     """Show a single item entity and lets you delete and update it"""
     @ns.marshal_with(item)
     def get(self, id):

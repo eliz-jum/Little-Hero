@@ -35,7 +35,7 @@ class TutorsCollection(Resource):
 @ns.route('/<int:id>')
 @ns.response(404, 'Tutor not found')
 @ns.param('id', 'The tutor identifier')
-class Child(Resource):
+class Item(Resource):
     """Show a single tutor entity and lets you delete and update it"""
     @ns.marshal_with(tutor)
     def get(self, id):

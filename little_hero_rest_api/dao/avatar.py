@@ -1,6 +1,8 @@
 from little_hero_rest_api.database import db
 from little_hero_rest_api.database.models import Avatar
 from little_hero_rest_api.dao.children import ChildDAO
+from little_hero_rest_api.database.models import Child
+from little_hero_rest_api.database.models import Tutor
 from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.generic import GenericDAO
 
@@ -21,7 +23,7 @@ class AvatarDAO(GenericDAO):
             return avatars
         if tutor_id:
             return Avatar.query.filter_by(child_id=tutor_id).all()
-        return Avatar.query.all()
+        return super().get_all()
 
     def create(self, data):
         name = data.get('name')
@@ -44,9 +46,7 @@ class AvatarDAO(GenericDAO):
     def update(self, id, data):
         name = data.get('name')
         child_id = data.get('child_id')
-        child = self.child_dao.get(child_id)
         tutor_id = data.get('tutor_id')
-        tutor = self.tutor_dao.get(tutor_id)
         level = data.get('level')
         money = data.get('money')
         health = data.get('health')
@@ -58,9 +58,11 @@ class AvatarDAO(GenericDAO):
         if name:
             query.update({Avatar.name: name})
         if child_id:
-            query.update({Avatar.child: child})
+#            child = self.child_dao.get(child_id)
+            query.update({Avatar.child: child_id})
         if tutor_id:
-            query.update({Avatar.tutor: tutor})
+#            tutor = self.tutor_dao.get(tutor_id)
+            query.update({Avatar.tutor: tutor_id})
         if level:
             query.update({Avatar.level: level})
         if money:

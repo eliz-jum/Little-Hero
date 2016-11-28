@@ -8,7 +8,7 @@ from little_hero_rest_api.database import db
 class BaseModel(db.Model):
     __abstract__ = True #sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
-    creationDate = db.Column(db.DateTime)
+    creationDate = db.Column(db.DateTime) # todo: add creation date
     # created = db.Column()
 
 
@@ -38,15 +38,15 @@ class Avatar(BaseModel):
     health = db.Column(db.Integer)
     experience = db.Column(db.Integer)
 
-    #tasks
-
     child_id = db.Column(db.Integer, db.ForeignKey('child.id'))
     child = db.relationship('Child', back_populates='avatars', lazy='joined')
 
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutor.id'))
     tutor = db.relationship('Tutor', back_populates='avatars', lazy='joined')
 
-    avatar_items = db.relationship('AvatarItem', lazy='dynamic')
+    tasks = db.relationship('Task', back_populates='avatar', lazy='dynamic')
+
+    #avatar_items = db.relationship('AvatarItem', lazy='dynamic')
 
     def __init__(self, name, child, tutor, level, money, health, experience):
         self.name = name
@@ -56,6 +56,7 @@ class Avatar(BaseModel):
         self.money = money
         self.health = health
         self.experience = experience
+        self.creationDate = datetime.utcnow()
 
     def __repr__(self):
         return '<Avatar %r>' % self.name
@@ -67,11 +68,14 @@ class Tutor(BaseModel):
     mail = db.Column(db.String(50))
 
     avatars = db.relationship('Avatar', back_populates='tutor', lazy='dynamic')
+    tasks = db.relationship('Task', back_populates='tutor', lazy='dynamic')
 
     def __init__(self, login, password, mail):
         self.login = login
         self.password = password
         self.mail = mail
+        self.creationDate = datetime.utcnow()
+
 
     def __repr__(self):
         return '<Tutor %r>' % self.login
@@ -83,6 +87,7 @@ class Item(BaseModel):
     level = db.Column(db.Integer)
     clazz = db.Column(db.String(50))
     type = db.Column(db.String(50))
+    #itemOfAvatars = db.relationship('AvatarItem', back_populates='item', lazy='dynamic')
 
     def __init__(self, name, price, level, clazz, type):
         self.name = name
@@ -90,6 +95,7 @@ class Item(BaseModel):
         self.level = level
         self.clazz = clazz
         self.type = type
+        self.creationDate = datetime.utcnow()
 
     def __repr__(self):
         return '<Item %r>' % self.item
@@ -102,14 +108,24 @@ class Task(BaseModel):
     is_completed = db.Column(db.Boolean)
     is_archived = db.Column(db.Boolean)
     reward = db.Column(db.Integer)
+    completed_date = db.Column(db.DateTime)
 
-    def __init__(self, content, difficulty, experience, completed, archived, reward):
+    avatar_id = db.Column(db.Integer, db.ForeignKey('avatar.id'))
+    avatar = db.relationship('Avatar', back_populates='tasks', lazy='joined')
+
+    tutor_id = db.Column(db.Integer, db.ForeignKey('tutor.id'))
+    tutor = db.relationship('Tutor', back_populates='tasks', lazy='joined')
+
+    def __init__(self, content, avatar, tutor, difficulty, experience, completed, archived, reward):
         self.content = content
+        self.avatar = avatar
+        self.tutor = tutor
         self.difficulty = difficulty
         self.experience = experience
         self.completed = completed
         self.archived = archived
         self.reward = reward
+        self.creationDate = datetime.utcnow()
 
     def __repr__(self):
         return '<Task id: %r>' % self.id
@@ -120,13 +136,16 @@ class AvatarItem(db.Model):
     avatar_id = db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id'), primary_key=True)
     #avatar = db.relationship('Avatar', back_populates='item_avatars', lazy='dynamic')
     item_id = db.Column('item_id', db.Integer, db.ForeignKey('item.id'), primary_key=True)
+    #item = db.relationship('Item', back_populates='', lazy='dynamic')
     state = db.Column(db.String(50), primary_key=True)
-    updateDate = db.Column(db.DateTime)
+    #updateDate = db.Column(db.DateTime)
 
     def __init__(self, avatar_id, item_id, state):
         self.avatar_id = avatar_id
         self.item_id = item_id
         self.state = state
+        self.creationDate = datetime.utcnow()
+
 
     def __repr__(self):
         return '<AvatarItem  avatar_id: {0!r}, item_id: {0!r}, state: {0!r}>'\
