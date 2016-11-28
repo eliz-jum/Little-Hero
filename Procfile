@@ -1,1 +1,1 @@
-web: gunicorn app:app --pythonpath little_hero_rest_api
+web: python3 little_hero_rest_api/app.py
