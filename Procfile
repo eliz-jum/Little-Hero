@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn little_hero_rest_api:app
