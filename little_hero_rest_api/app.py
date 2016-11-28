@@ -1,6 +1,7 @@
 # Application bootstrap file
 # Logic for configuring and starting Flask app
 import logging.config
+import os
 from socket import gethostname
 
 from flask import Flask, Blueprint
@@ -49,7 +50,10 @@ def main():
     initialize_app(app)
     #log.info('>>>>> Starting development server at http://{}/api/ <<<<<'.format(app.config['SERVER_NAME']))
     #if 'liveconsole' not in gethostname():
-    app.run(debug=settings.FLASK_DEBUG)
+    app.debug = settings.FLASK_DEBUG
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    #app.run(debug=settings.FLASK_DEBUG)
 
 
 if __name__ == "__main__":
