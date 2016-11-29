@@ -1,8 +1,6 @@
 from little_hero_rest_api.database import db
 from little_hero_rest_api.database.models import Avatar
-from little_hero_rest_api.dao.children import ChildDAO
-from little_hero_rest_api.database.models import Child
-from little_hero_rest_api.database.models import Tutor
+from little_hero_rest_api.dao.child import ChildDAO
 from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.generic import GenericDAO
 

@@ -5,7 +5,7 @@ from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
 from little_hero_rest_api.api.serializers import child
 from little_hero_rest_api.api.serializers import child_for_patch
-from little_hero_rest_api.dao.children import ChildDAO
+from little_hero_rest_api.dao.child import ChildDAO
 
 log = logging.getLogger(__name__)
 

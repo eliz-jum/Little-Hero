@@ -32,7 +32,7 @@ class Child(BaseModel):
 
 
 class Avatar(BaseModel):
-    name = db.Column(db.String(50))
+    name = db.Column(db.String(50), unique=True)
     level = db.Column(db.Integer)
     money = db.Column(db.Integer)
     health = db.Column(db.Integer)
@@ -131,13 +131,14 @@ class Task(BaseModel):
         return '<Task id: %r>' % self.id
 
 
-class AvatarItem(db.Model):
+class AvatarItem(BaseModel):
 
-    avatar_id = db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id'), primary_key=True)
+    avatar_id = db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id'), nullable=False)
     #avatar = db.relationship('Avatar', back_populates='item_avatars', lazy='dynamic')
-    item_id = db.Column('item_id', db.Integer, db.ForeignKey('item.id'), primary_key=True)
+    item_id = db.Column('item_id', db.Integer, db.ForeignKey('item.id'), nullable=False)
     #item = db.relationship('Item', back_populates='', lazy='dynamic')
-    state = db.Column(db.String(50), primary_key=True)
+    state = db.Column(db.String(50))
+    db.UniqueConstraint('avatar_id', 'item_id')
     #updateDate = db.Column(db.DateTime)
 
     def __init__(self, avatar_id, item_id, state):
@@ -146,16 +147,15 @@ class AvatarItem(db.Model):
         self.state = state
         self.creationDate = datetime.utcnow()
 
-
     def __repr__(self):
         return '<AvatarItem  avatar_id: {0!r}, item_id: {0!r}, state: {0!r}>'\
             .format(self.avatar_id,  self.item_id, self.state)
 
-    class ItemState(Enum):
-        on = 1
-        bought = 2
-        available = 3
-        unavailable = 4
+    # class ItemState(Enum):
+    #     on = 1
+    #     bought = 2
+    #     available = 3
+    #     unavailable = 4
 # avatarAvailableItems = db.Table('avatarAvailableItems',
 #     db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
 #     db.Column('item_id', db.Integer, db.ForeignKey('item.id'))

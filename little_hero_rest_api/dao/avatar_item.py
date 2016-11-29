@@ -11,6 +11,15 @@ class AvatarItemDAO(GenericDAO):
     def __init__(self):
         super().__init__(AvatarItem)
 
+    def get_all(self, avatar_id, item_id):
+        if avatar_id and item_id:
+            return AvatarItem.query.filter_by(avatar_id=avatar_id, item_id=item_id).all()
+        if item_id:
+            return AvatarItem.query.filter_by(item_id=item_id).all()
+        if avatar_id:
+            return AvatarItem.query.filter_by(avatar_id=avatar_id).all()
+        return super().get_all()
+
     def create(self, data):
         avatar_id = data.get('avatar_id')
         item_id = data.get('item_id')
@@ -31,6 +40,10 @@ class AvatarItemDAO(GenericDAO):
         query = AvatarItem.query.filter_by(id=id)
 
         if avatar_id:
-            query.update({AvatarItem.id: avatar_id})
+            query.update({AvatarItem.avatar_id: avatar_id})
+        if item_id:
+            query.update({AvatarItem.item_id: item_id})
+        if state:
+            query.update({AvatarItem.state: state})
 
         db.session.commit()

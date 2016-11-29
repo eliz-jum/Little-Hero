@@ -6,11 +6,12 @@ from socket import gethostname
 
 from flask import Flask, Blueprint
 from little_hero_rest_api import settings
-from little_hero_rest_api.api.endpoints.children import ns as children_namespace
+from little_hero_rest_api.api.endpoints.child import ns as children_namespace
 from little_hero_rest_api.api.endpoints.avatar import ns as avatar_namespace
 from little_hero_rest_api.api.endpoints.tutor import ns as tutor_namespace
 from little_hero_rest_api.api.endpoints.item import ns as item_namespace
 from little_hero_rest_api.api.endpoints.task import ns as task_namespace
+from little_hero_rest_api.api.endpoints.avatar_item import ns as avatar_item_namespace
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.database import db
 
@@ -38,6 +39,7 @@ def initialize_app(flask_app):
     api.add_namespace(tutor_namespace)
     api.add_namespace(item_namespace)
     api.add_namespace(task_namespace)
+    api.add_namespace(avatar_item_namespace)
     flask_app.register_blueprint(blueprint)
 
     db.init_app(flask_app)

@@ -36,6 +36,20 @@ avatar_for_patch = api.model('Avatar entity for patch request', {
     'experience': fields.Integer(description='Avatar experience points')
 })
 
+avatar_item = api.model('Avatar-Item entity', {
+    'id': fields.Integer(readOnly=True, description='Id of avatar-item'),
+    'avatar_id': fields.Integer(required=True, description='Avatar id'),
+    'item_id': fields.Integer(required=True, description='Item id'),
+    'state': fields.String(required=True, description='State of item (on, bought, available, unavailable)')
+})
+
+avatar_item_for_patch = api.model('Avatar-Item entity for patch request', {
+    #'id': fields.Integer(readOnly=True, description='Id of avatar-item'),
+    'avatar_id': fields.Integer(description='Avatar id'),
+    'item_id': fields.Integer(description='Item id'),
+    'state': fields.String(description='State of item (on, bought, available, unavailable)')
+})
+
 tutor = api.model('Tutor entity', {
     'id': fields.Integer(readOnly=True, description='Id of tutor'),
     'password': fields.String(required=True, description='Tutor password'),
