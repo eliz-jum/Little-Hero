@@ -24,11 +24,11 @@ class ChildrenCollection(Resource):
 
     @api.response(201, 'Child created.')
     @api.expect(child)
+    @ns.marshal_with(child)
     def post(self):
         """Create child"""
         data = request.json
-        DAO.create(data)
-        return None, 201
+        return DAO.create(data), 201
 
 
 @ns.route('/<int:id>')
@@ -48,10 +48,11 @@ class Child(Resource):
         DAO.delete(id)
         return None, 204
 
-    @ns.response(204, 'Child updated')
+    @ns.response(200, 'Child updated')
     @api.expect(child_for_patch)
+    @ns.marshal_with(child)
     def patch(self, id):
         """Update child given only its parameters that should be updated"""
         data = request.json
         DAO.update(id, data)
-        return None, 204
+        return DAO.update(id, data), 200

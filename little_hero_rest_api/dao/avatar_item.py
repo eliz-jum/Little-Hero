@@ -30,20 +30,13 @@ class AvatarItemDAO(GenericDAO):
         db.session.add(avatar_item)
         db.session.commit()
 
+        return avatar_item
+
     def update(self, id, data):
-        avatar_id = data.get('avatar_id')
-        item_id = data.get('item_id')
-        # item = item_dao.get(item_id)
-        state = data.get('state')  # enum
-
-        # query = db.session.query(Avatar).filter_by(id=id)
         query = AvatarItem.query.filter_by(id=id)
-
-        if avatar_id:
-            query.update({AvatarItem.avatar_id: avatar_id})
-        if item_id:
-            query.update({AvatarItem.item_id: item_id})
-        if state:
-            query.update({AvatarItem.state: state})
+        query.update(data)
+        avatar_item = query.one()
 
         db.session.commit()
+
+        return avatar_item

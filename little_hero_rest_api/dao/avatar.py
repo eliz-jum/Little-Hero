@@ -40,6 +40,7 @@ class AvatarDAO(GenericDAO):
 
         db.session.add(avatar)
         db.session.commit()
+        return avatar
 
     def update(self, id, data):
         name = data.get('name')
@@ -56,10 +57,10 @@ class AvatarDAO(GenericDAO):
         if name:
             query.update({Avatar.name: name})
         if child_id:
-#            child = self.child_dao.get(child_id)
+            # child = self.child_dao.get(child_id)
             query.update({Avatar.child: child_id})
         if tutor_id:
-#            tutor = self.tutor_dao.get(tutor_id)
+            # tutor = self.tutor_dao.get(tutor_id)
             query.update({Avatar.tutor: tutor_id})
         if level:
             query.update({Avatar.level: level})

@@ -25,11 +25,11 @@ class ItemsCollection(Resource):
 
     @api.response(201, 'item created.')
     @api.expect(item)
+    @ns.marshal_with(item)
     def post(self):
         """Create item"""
         data = request.json
-        DAO.create(data)
-        return None, 201
+        return DAO.create(data), 201
 
 
 @ns.route('/<int:id>')
@@ -49,10 +49,11 @@ class Item(Resource):
         DAO.delete(id)
         return None, 204
 
-    @ns.response(204, 'item updated')
+    @ns.response(200, 'item updated')
     @api.expect(item_for_patch)
+    @ns.marshal_with(item)
     def patch(self, id):
         """Update item given only its parameters that should be updated"""
         data = request.json
-        DAO.update(id, data)
-        return None, 204
+
+        return DAO.update(id, data), 200

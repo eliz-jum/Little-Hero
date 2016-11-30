@@ -4,7 +4,7 @@ from flask import request
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.dao.avatar_item import AvatarItemDAO
 from little_hero_rest_api.api.serializers import avatar_item
-from little_hero_rest_api.api.serializers import avatar_for_patch
+from little_hero_rest_api.api.serializers import avatar_item_for_patch
 from flask_restplus import Resource
 
 
@@ -30,11 +30,11 @@ class AvatarItemCollection(Resource):
 
     @api.response(201, 'Avatar-Item link created.')
     @api.expect(avatar_item)
+    @ns.marshal_with(avatar_item)
     def post(self):
         """Create avatar"""
         data = request.json
-        DAO.create(data)
-        return None, 201
+        return DAO.create(data), 201
 
 
 @ns.route('/<int:id>')
@@ -54,10 +54,10 @@ class AvatarItem(Resource):
         DAO.delete(id)
         return None, 204
 
-    @ns.response(204, 'Avatar-Item updated')
-    @api.expect(avatar_for_patch)
+    @ns.response(200, 'Avatar-Item updated')
+    @api.expect(avatar_item_for_patch)
+    @ns.marshal_with(avatar_item)
     def patch(self, id):
         """Update avatar_item entity given only its parameters that should be updated"""
         data = request.json
-        DAO.update(id, data)
-        return None, 204
+        return DAO.update(id, data), 200

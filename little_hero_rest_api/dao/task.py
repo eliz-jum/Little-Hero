@@ -39,6 +39,8 @@ class TaskDAO(GenericDAO):
         db.session.add(task)
         db.session.commit()
 
+        return task
+
     def update(self, id, data):
         content = data.get('content')
         avatar_id = data.get('avatar_id')

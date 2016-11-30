@@ -28,11 +28,11 @@ class TasksCollection(Resource):
 
     @api.response(201, 'task created.')
     @api.expect(task)
+    @ns.marshal_with(task)
     def post(self):
         """Create task"""
         data = request.json
-        DAO.create(data)
-        return None, 201
+        return DAO.create(data), 201
 
 
 @ns.route('/<int:id>')

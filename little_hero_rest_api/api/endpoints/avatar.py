@@ -30,11 +30,11 @@ class AvatarsCollection(Resource):
 
     @api.response(201, 'Avatar created.')
     @api.expect(avatar)
+    @ns.marshal_with(avatar)
     def post(self):
         """Create avatar"""
         data = request.json
-        DAO.create(data)
-        return None, 201
+        return DAO.create(data), 201
 
 
 @ns.route('/<int:id>')
