@@ -51,24 +51,25 @@ class AvatarDAO(GenericDAO):
         health = data.get('health')
         experience = data.get('experience')
 
-        # query = db.session.query(Avatar).filter_by(id=id)
-        query = Avatar.query.filter_by(id=id)
+        avatar = Avatar.query.filter_by(id=id).one()
 
         if name:
-            query.update({Avatar.name: name})
+            avatar.name = name
         if child_id:
-            # child = self.child_dao.get(child_id)
-            query.update({Avatar.child: child_id})
+            child = self.child_dao.get(child_id)
+            avatar.child = child
         if tutor_id:
-            # tutor = self.tutor_dao.get(tutor_id)
-            query.update({Avatar.tutor: tutor_id})
+            tutor = self.tutor_dao.get(tutor_id)
+            avatar.tutor = tutor
         if level:
-            query.update({Avatar.level: level})
+            avatar.level = level
         if money:
-            query.update({Avatar.money: money})
+            avatar.money = money
         if health:
-            query.update({Avatar.health: health})
+            avatar.health = health
         if experience:
-            query.update({Avatar.experience: experience})
+            avatar.experience = experience
 
         db.session.commit()
+
+        return avatar

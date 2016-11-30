@@ -54,10 +54,10 @@ class Avatar(Resource):
         DAO.delete(id)
         return None, 204
 
-    @ns.response(204, 'Avatar updated')
+    @ns.response(200, 'Avatar updated')
     @api.expect(avatar_for_patch)
+    @ns.marshal_with(avatar)
     def patch(self, id):
         """Update Avatar given only its parameters that should be updated"""
         data = request.json
-        DAO.update(id, data)
-        return None, 204
+        return DAO.update(id, data), 200

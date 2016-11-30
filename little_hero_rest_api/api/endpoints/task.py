@@ -52,10 +52,10 @@ class Task(Resource):
         DAO.delete(id)
         return None, 204
 
-    @ns.response(204, 'Task updated')
+    @ns.response(200, 'Task updated')
     @api.expect(task_for_patch)
+    @ns.marshal_with(task)
     def patch(self, id):
         """Update task given only its parameters that should be updated"""
         data = request.json
-        DAO.update(id, data)
-        return None, 204
+        return DAO.update(id, data), 200

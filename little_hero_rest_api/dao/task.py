@@ -51,32 +51,33 @@ class TaskDAO(GenericDAO):
         is_archived = data.get('is_archived')
         reward = data.get('reward')
 
-        query = Task.query.filter_by(id=id)
-        task = query.one()
+        task = Task.query.filter_by(id=id).one()
 
         completed_date = None
         if not task.is_completed and not is_completed:
             completed_date = datetime.utcnow()
 
         if content:
-            query.update({Task.content: content})
+            task.content = content
         if avatar_id:
-            #avatar = self.avatar_dao.get(avatar_id)
-            query.update({Task.avatar: avatar_id})
+            avatar = self.avatar_dao.get(avatar_id)
+            task.avatar = avatar
         if tutor_id:
-            #tutor = self.tutor_dao.get(tutor_id)
-            query.update({Task.tutor: tutor_id})
+            tutor = self.tutor_dao.get(tutor_id)
+            task.tutor = tutor
         if difficulty:
-            query.update({Task.difficulty: difficulty})
+            task.difficulty = difficulty
         if experience:
-            query.update({Task.experience: experience})
+            task.experience = experience
         if is_completed:
-            query.update({Task.is_completed: is_completed})
+            task.is_completed = is_completed
         if is_archived:
-            query.update({Task.is_archived: is_archived})
+            task.is_archived = is_archived
         if reward:
-            query.update({Task.reward: reward})
+            task.reward = reward
         if completed_date:
-            query.update({Task.completed_date: completed_date})
+            task.completed_date = completed_date
 
         db.session.commit()
+
+        return task
