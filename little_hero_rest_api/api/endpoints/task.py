@@ -3,7 +3,8 @@ import logging
 from flask import request
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
-from little_hero_rest_api.api.serializers import task
+from little_hero_rest_api.api.serializers import task_full
+from little_hero_rest_api.api.serializers import task_for_post
 from little_hero_rest_api.api.serializers import task_for_patch
 from little_hero_rest_api.dao.task import TaskDAO
 
@@ -18,7 +19,7 @@ class TasksCollection(Resource):
     """Show a list of all tasks and lets you POST to add new task."""
     @ns.param('avatar_id', 'For filtering by avatar id', 'query')
     @ns.param('tutor_id', 'For filtering by tutor id', 'query')
-    @api.marshal_list_with(task)
+    @api.marshal_list_with(task_full)
     def get(self):
         """Returns list of tasks or filtered list of task given avatar id or tutor id."""
         avatar_id = request.args.get('avatar_id')
@@ -27,8 +28,8 @@ class TasksCollection(Resource):
         return tasks
 
     @api.response(201, 'task created.')
-    @api.expect(task)
-    @ns.marshal_with(task)
+    @api.expect(task_for_post)
+    @ns.marshal_with(task_full)
     def post(self):
         """Create task"""
         data = request.json
@@ -40,7 +41,7 @@ class TasksCollection(Resource):
 @ns.param('id', 'The task identifier')
 class Task(Resource):
     """Show a single task entity and lets you delete and update it"""
-    @ns.marshal_with(task)
+    @ns.marshal_with(task_full)
     def get(self, id):
         """Returns task"""
         task = DAO.get(id)
@@ -54,7 +55,7 @@ class Task(Resource):
 
     @ns.response(200, 'Task updated')
     @api.expect(task_for_patch)
-    @ns.marshal_with(task)
+    @ns.marshal_with(task_full)
     def patch(self, id):
         """Update task given only its parameters that should be updated"""
         data = request.json

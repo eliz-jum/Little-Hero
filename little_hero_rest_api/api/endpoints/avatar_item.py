@@ -3,7 +3,8 @@ import logging
 from flask import request
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.dao.avatar_item import AvatarItemDAO
-from little_hero_rest_api.api.serializers import avatar_item
+from little_hero_rest_api.api.serializers import avatar_item_full
+from little_hero_rest_api.api.serializers import avatar_item_for_post
 from little_hero_rest_api.api.serializers import avatar_item_for_patch
 from flask_restplus import Resource
 
@@ -18,7 +19,7 @@ DAO = AvatarItemDAO()
 @ns.route('/')
 class AvatarItemCollection(Resource):
     """Show a list of avatar-item links and lets you POST to add new."""
-    @api.marshal_list_with(avatar_item)
+    @api.marshal_list_with(avatar_item_full)
     @ns.param('avatar_id', 'For filtering by avatar id', 'query')
     @ns.param('item_id', 'For filtering by item id', 'query')
     def get(self):
@@ -29,8 +30,8 @@ class AvatarItemCollection(Resource):
         return avatars
 
     @api.response(201, 'Avatar-Item link created.')
-    @api.expect(avatar_item)
-    @ns.marshal_with(avatar_item)
+    @api.expect(avatar_item_for_post)
+    @ns.marshal_with(avatar_item_full)
     def post(self):
         """Create avatar"""
         data = request.json
@@ -42,7 +43,7 @@ class AvatarItemCollection(Resource):
 @ns.param('id', 'The avatar identifier')
 class AvatarItem(Resource):
     """Show a single avatar-item entity and lets you delete and update it"""
-    @ns.marshal_with(avatar_item)
+    @ns.marshal_with(avatar_item_full)
     def get(self, id):
         """Returns avatar-item entity"""
         avatar = DAO.get(id)
@@ -56,7 +57,7 @@ class AvatarItem(Resource):
 
     @ns.response(200, 'Avatar-Item updated')
     @api.expect(avatar_item_for_patch)
-    @ns.marshal_with(avatar_item)
+    @ns.marshal_with(avatar_item_full)
     def patch(self, id):
         """Update avatar_item entity given only its parameters that should be updated"""
         data = request.json
