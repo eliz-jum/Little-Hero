@@ -1,0 +1,28 @@
+<ion-view>
+  <ion-pane class="background">
+    <div class="bar bar-header orange">
+
+      <div class="row row-center orange">
+        <div class="col col-50 item item-select">
+          <select ng-model="currentAvatar" ng-change="checkForAvatar()" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+            <option value="">{{ user.nickname }}</option>
+          </select>
+        </div>
+          <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
+        </div>
+      </div>
+    </div>
+    <ion-content class="background padding has-header has-footer">
+      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+
+        <ion-item ng-repeat="item in items" item="item" href="#/children/tasks/{{item.id}}" class="item-remove-animate">
+           Dziecko nr {{ item.id }}
+          <ion-option-button class="button-assertive" ng-click="destroy(item)">
+            Destroy
+          </ion-option-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+        </ion-item>
+
+      </ion-list>
+  </ion-pane>
+</ion-view>

@@ -43,15 +43,6 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
                 user: null
             }
         })
-        .state('mainTutor', {
-            url: '/mainTutor',
-            templateUrl: 'mainTutor/mainTutor.html',
-            controller: 'MTController',
-            params: {
-                user : null,
-                currentAvatar: null
-            }
-        })
         .state('recoverPassword', {
             url: '/recoverPassword',
             templateUrl: 'recoverPass/recoverPass.html',
@@ -74,7 +65,24 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
                 currentAvatar : null,
                 user: null
             }
+
         })
+        .state('parentMain', {
+            url: '/parentMain',
+            templateUrl: 'parentMain/parentMain.html',
+            controller: 'ParentMainController',
+            params: {
+              allAvatars: null,
+              currentAvatar : null,
+              user: null
+           }
+        })
+		//ADDED
+      .state('taskChildren', {
+        url: '/children/tasks/:id',
+        templateUrl: 'tasksOfChild/tasksOfChild.html',
+        controller: 'TasksOfChildController',
+      })
         .state('settings', {
             url: '/settings',
             templateUrl: 'settings/settings.html',
@@ -83,20 +91,7 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
         .state('tasksCreator', {
           url: '/tasksCreator',
           templateUrl: 'tasksCreator/tasksCreator.html',
-          controller: 'TasksCreatorController',
-          params: {
-                user: null,
-                currentAvatar: null
-          }
-        })
-        .state('tasksView', {
-            url: '/tasksView',
-            templateUrl: 'tasksView/tasksView.html',
-            controller: 'tasksViewController',
-             params: {
-                user: null,
-                currentAvatar: null
-            }
+          controller: 'TasksCreatorController'
         })
         .state('notifications',{
           url: '/notifications',
@@ -107,51 +102,7 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             currentAvatar : null,
             user: null
           }
-       }),
-    $urlRouterProvider.otherwise('/login');
-});
+       })
 
-angular.module('littleHero').controller('MTController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
-
-    $scope.allAvatars = null;
-    $scope.currentAvatar = null;    
-
-    $scope.data = {
-        showDelete: false
-    };
-
-    $scope.onItemDelete = function(avatar) {
-        console.log(avatar);
-    };
-
-      $scope.text=[
-    "zaproszono Cię",
-    "masz nowe zadanie!",
-    "dostałeś nowy poziom!"
-  ];
-
-    $scope.$on('$ionicView.beforeEnter', function(){       
-        $scope.user = $stateParams.user;
-        $scope.getAvatars();   
-    });
-
-    $scope.getAvatars = function() {
-        dataService.getTutorAvatars($scope.user["id"]).then(function(res) {
-          $scope.allAvatars = res.data;
-      });
-
-    };
-
-    $scope.initTaskCreator = function(avatar) {
-        $state.go("tasksCreator", { "user" : $scope.user, "currentAvatar" : avatar });
-    };
-
-    $scope.initTaskView = function(avatar) {
-        $state.go("tasksView", { "user" : $scope.user, "currentAvatar" : avatar });
-    };
-
-
-    $scope.settings = function() {
-        $state.go("settings");
-    };
+    $urlRouterProvider.otherwise('/main');
 });

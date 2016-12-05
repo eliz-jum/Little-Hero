@@ -1,0 +1,57 @@
+<ion-view>
+  <ion-pane class="background">
+    <div class="bar bar-header orange" style="height: 10%;">
+      <div class="row row-center orange">
+        <div class="col col-20">
+          <img src="http://www.translationwebshop.com/wp-content/themes/translationwebshop/images/img_placeholder_avatar.jpg" width="50px" height="50px">
+        </div>
+        <div class="col col-70">
+          {children.name}
+          <div class="row row-100">
+            <div class="col col-100">
+              <div class="row row-50 row-center">
+                <i class="icon icon ion-star stats"></i>
+                <div class="progress-bar">
+                  <div class="progress-bar-indicator xp" ng-style="{'width' : currentAvatar.experience + '%'}"></div>
+                </div>
+              </div>
+
+              <div class="row row-50 row-center">
+                <i class="icon icon ion-android-favorite stats"></i>
+                <div class="progress-bar">
+                  <div class="progress-bar-indicator hp" ng-style="{'width' : currentAvatar.health + '%'}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-10">
+        <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
+        <span>
+           <button class="button button-icon icon ion-ios-plus-outline" ng-click="addNew()"></button>
+        </span>
+      </div>
+    </div>
+
+      <ion-content class="background has-header has-footer">
+        <ion-header-bar class="bar bar-header orange" style="margin-top: 50px;">
+          <div class="buttons">
+            <button class="button button-icon icon ion-checkmark-circled" ng-click="data.showCheck = !data.showCheck;"></button>
+          </div>
+          <span>Lista zadań</span>
+        </ion-header-bar>
+        <ion-list show-delete="data.showCheck" show-reorder="data.showReorder">
+
+          <ion-item ng-repeat="item in items" item="item" href="#" class="item-remove-animate">
+             Zadanie nr {{ item.id }}
+            <ion-delete-button class="button-icon icon ion-checkmark-circled" ng-click="check(item)"></ion-delete-button>
+            <ion-option-button class="button-assertive" ng-click="uncheck(item)">Usuń</ion-option-button>
+            <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+          </ion-item>
+
+        </ion-list>
+      </ion-content>
+
+  </ion-pane>
+</ion-view>
