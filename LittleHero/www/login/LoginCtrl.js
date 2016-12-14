@@ -16,10 +16,10 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
         if ($scope.login && $scope.password) {
             $scope.checkIfAccountExists();
-            if ($scope.type == 0)   {                   
-                $state.go("main", { 'user' : $scope.children[$scope.number] });    
+            if ($scope.type == 0)   {
+                $state.go("main", { 'user' : $scope.children[$scope.number] });
             }
-            else if ($scope.type == 1)                      
+            else if ($scope.type == 1)
                 $state.go("mainTutor", { 'user' : $scope.tutors[$scope.number] });
             else $scope.invalid = true;
         }
@@ -35,6 +35,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
         dataService.getChildren().then(function(res) {
           $scope.children = res.data;
+
       });
     };
 
@@ -46,11 +47,12 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     };
 
     $scope.checkIfAccountExists = function() {
-        
-        var flag = false;
 
+        var flag = false;
+        $scope.getChildren();
+      console.log("chiii  " + $scope.children)
         for (index in $scope.children) {
-            if ($scope.children[index].login == $scope.login && 
+            if ($scope.children[index].login == $scope.login &&
                     $scope.children[index].password == $scope.password) {
                         $scope.number = index;
                         $scope.type = 0;
@@ -67,11 +69,11 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
             }
         }
 
-        if (!flag) 
+        if (!flag)
             $scope.type = -1;
     }
 
     $scope.getChildren();
     $scope.getTutors();
-    
+
 });

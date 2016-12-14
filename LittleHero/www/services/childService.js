@@ -34,8 +34,8 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
   childService.addNewAvatar = function (name, calss, tutorId) {
     //w zaleznosci od klasy trzeba dodac ciuch do tablic ciuchowych
     //trzeba dodac do tablicy wornItems rzeczy z klasy default
-    //TODO: zrobic klase default w ekwipunku
-    var newAvatar = {}
+
+    var newAvatar = {};
     childService.avatarList.add();
     dataService.postChildAvatar(newAvatar);
   }
