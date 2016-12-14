@@ -14,11 +14,9 @@ from little_hero_rest_api.api.endpoints.task import ns as task_namespace
 from little_hero_rest_api.api.endpoints.avatar_item import ns as avatar_item_namespace
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.database import db
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 app = Flask(__name__)  # Create a Flask WSGI application
-#CORS(app)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 logging.config.fileConfig('logging.conf')
 log = logging.getLogger(__name__)
 
@@ -36,6 +34,7 @@ def initialize_app(flask_app):
     configure_app(flask_app)
 
     blueprint = Blueprint('api', __name__, url_prefix='/api')
+    CORS(blueprint)
     api.init_app(blueprint)
     api.add_namespace(children_namespace)
     api.add_namespace(avatar_namespace)
