@@ -17,7 +17,8 @@ from little_hero_rest_api.database import db
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)  # Create a Flask WSGI application
-CORS(app)
+#CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 logging.config.fileConfig('logging.conf')
 log = logging.getLogger(__name__)
 
