@@ -34,7 +34,7 @@ def initialize_app(flask_app):
     configure_app(flask_app)
 
     blueprint = Blueprint('api', __name__, url_prefix='/api')
-    CORS(blueprint)
+    #CORS(blueprint)
     api.init_app(blueprint)
     api.add_namespace(children_namespace)
     api.add_namespace(avatar_namespace)
