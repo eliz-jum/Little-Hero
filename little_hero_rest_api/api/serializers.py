@@ -25,6 +25,7 @@ avatar_for_post = api.model('Avatar for post', {
     'child_id': fields.Integer(required=True, description='Id of avatars owner (child)'),
     'tutor_id': fields.Integer(required=True, description='Id of tutors related to avatar'),
     'level': fields.Integer(required=True, description='Avatar level'),
+    'money': fields.Integer(required=True, description='Avatar money'),
     'health': fields.Integer(required=True, description='Avatar health'),
     'experience': fields.Integer(requried=True, description='Avatar experience points')
 })
@@ -39,6 +40,7 @@ avatar_for_patch = api.model('Avatar entity for patch request', {
     'child_id': fields.Integer(description='Id of avatars owner (child)'),
     'tutor_id': fields.Integer(description='Id of tutors related to avatar'),
     'level': fields.Integer(description='Avatar level'),
+    'money': fields.Integer(description='Avatar money'),
     'health': fields.Integer(description='Avatar health'),
     'experience': fields.Integer(description='Avatar experience points')
 })
@@ -103,11 +105,12 @@ task_for_patch = api.model('Task entity for patch request', {
 })
 
 item_for_post = api.model('Item for post', {
-'name': fields.String(required=True, description='Item name'),
     'price': fields.Integer(required=True, description='Item price'),
     'level': fields.Integer(required=True, description='Item level. Item is available from this level.'),
     'clazz': fields.String(required=True, description='Item class'),
-    'type': fields.String(required=True, description='Item type')
+    'type': fields.String(required=True, description='Item type'),
+    'imgSrc': fields.String(required=True, description='Path to item image'),
+    'iconSrc': fields.String(required=True, description='Path to item icon')
 })
 
 item_full = api.clone('Item entity', item_for_post, {
@@ -115,9 +118,10 @@ item_full = api.clone('Item entity', item_for_post, {
 })
 
 item_for_patch = api.model('Item entity for patch request', {
-    'name': fields.String(description='Item name'),
     'price': fields.Integer(description='Item price'),
     'level': fields.Integer(description='Item level. Item is available from this level.'),
     'clazz': fields.String(description='Item class'),
-    'type': fields.String(description='Item type')
+    'type': fields.String(description='Item type'),
+    'imgSrc': fields.String(description='Path to item image'),
+    'iconSrc': fields.String(description='Path to item icon')
 })

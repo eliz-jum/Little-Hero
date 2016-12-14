@@ -9,12 +9,13 @@ class ItemDAO(GenericDAO):
         super().__init__(Item)
 
     def create(self, data):
-        name = data.get('name')
         price = data.get('price')
         level = data.get('level')
         clazz = data.get('clazz')
         type = data.get('type')
-        item = Item(name, price, level, clazz, type)
+        imgSrc = data.get('imgSrc')
+        iconSrc = data.get('iconSrc')
+        item = Item(price, level, clazz, type, imgSrc, iconSrc)
 
         db.session.add(item)
         db.session.commit()

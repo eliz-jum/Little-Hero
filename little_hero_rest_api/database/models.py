@@ -33,11 +33,11 @@ class Child(BaseModel):
 
 class Avatar(BaseModel):
     name = db.Column(db.String(50), unique=True)
+    #class = default
     level = db.Column(db.Integer)
     money = db.Column(db.Integer)
     health = db.Column(db.Integer)
     experience = db.Column(db.Integer)
-
     child_id = db.Column(db.Integer, db.ForeignKey('child.id'))
     child = db.relationship('Child', back_populates='avatars', lazy='joined')
 
@@ -76,25 +76,27 @@ class Tutor(BaseModel):
         self.mail = mail
         self.creationDate = datetime.utcnow()
 
-
     def __repr__(self):
         return '<Tutor %r>' % self.login
 
 
 class Item(BaseModel):
-    name = db.Column(db.String(50), unique=True)
+    # name = db.Column(db.String(50), unique=True)
     price = db.Column(db.Integer)
     level = db.Column(db.Integer)
     clazz = db.Column(db.String(50))
     type = db.Column(db.String(50))
+    imgSrc = db.Column(db.String(50))
+    iconSrc = db.Column(db.String(50))
     #itemOfAvatars = db.relationship('AvatarItem', back_populates='item', lazy='dynamic')
 
-    def __init__(self, name, price, level, clazz, type):
-        self.name = name
+    def __init__(self, price, level, clazz, type, imgSrc, iconSrc):
         self.price = price
         self.level = level
         self.clazz = clazz
         self.type = type
+        self.imgSrc = imgSrc
+        self.iconSrc = iconSrc
         self.creationDate = datetime.utcnow()
 
     def __repr__(self):

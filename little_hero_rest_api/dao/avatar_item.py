@@ -11,13 +11,22 @@ class AvatarItemDAO(GenericDAO):
     def __init__(self):
         super().__init__(AvatarItem)
 
-    def get_all(self, avatar_id, item_id):
+    def get_all(self, avatar_id, item_id, state):
+        if avatar_id and item_id and state:
+            return AvatarItem.query.filter_by(avatar_id=avatar_id, item_id=item_id, state=state).all()
         if avatar_id and item_id:
             return AvatarItem.query.filter_by(avatar_id=avatar_id, item_id=item_id).all()
-        if item_id:
-            return AvatarItem.query.filter_by(item_id=item_id).all()
+        if avatar_id and state:
+            return AvatarItem.query.filter_by(avatar_id=avatar_id, state=state).all()
+        if item_id and state:
+            return AvatarItem.query.filter_by(item_id=item_id, state=state).all()
         if avatar_id:
             return AvatarItem.query.filter_by(avatar_id=avatar_id).all()
+        if item_id:
+            return AvatarItem.query.filter_by(item_id=item_id).all()
+        if state:
+            return AvatarItem.query.filter_by(state=state).all()
+
         return super().get_all()
 
     def create(self, data):

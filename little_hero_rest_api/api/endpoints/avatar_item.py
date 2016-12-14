@@ -22,11 +22,14 @@ class AvatarItemCollection(Resource):
     @api.marshal_list_with(avatar_item_full)
     @ns.param('avatar_id', 'For filtering by avatar id', 'query')
     @ns.param('item_id', 'For filtering by item id', 'query')
+    @ns.param('state', 'For filtering by item state', 'query')
     def get(self):
         """Returns list of avatar-item links or filtered list of links given avatar id or item id."""
         avatar_id = request.args.get('avatar_id')
         item_id = request.args.get('item_id')
-        avatars = DAO.get_all(avatar_id, item_id)
+        state = request.args.get('state')
+        avatars = DAO.get_all(avatar_id, item_id, state)
+        # wornItems, canBePutOnItems, canBePurchasedItems, unavailableItems
         return avatars
 
     @api.response(201, 'Avatar-Item link created.')
