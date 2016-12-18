@@ -216,7 +216,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
 
   $scope.getAvatars = function() {
-      dataService.getChildAvatars($scope.user["id"]).then(function(res) {
+      dataService.getAvatarsByChild($scope.user["id"]).then(function(res) {
           $scope.allAvatars = res.data;
       });
   }

@@ -14,11 +14,11 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
 
 
   childService.setChildId = function(){
-    childService.childId = dataService.getChild(childService.childId);
+    childService.childId = dataService.getChildById(childService.childId);
   };
 
   childService.setChild = function(){
-    childService.childObj = dataService.getChild(childService.childId);
+    childService.childObj = dataService.getChildById(childService.childId);
   };
 
   childService.setCurrentAvatarId = function (id) {
@@ -26,7 +26,7 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
   }
 
   childService.setAvatarList = function () {
-    childService.avatarList = dataService.getChildAvatars(childService.childId);
+    childService.avatarList = dataService.getAvatarsByChild(childService.childId);
   }
 
 
@@ -37,12 +37,12 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
 
     var newAvatar = {};
     childService.avatarList.add();
-    dataService.postChildAvatar(newAvatar);
+    dataService.postAvatar(newAvatar);
   }
 
 
   childService.setWornItems = function () {
-    childService.wornItems = dataService.getAvatarWornItems(currentAvatarId);
+    childService.wornItems = dataService.getAvatarWornItemsIds(currentAvatarId);
   }
 
   childService.changeWornItems = function (type) {
@@ -53,20 +53,20 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
   //delete
 
   childService.setCanBePutOnItems = function () {
-    childService.canBePutOnItems = dataService.getAvatarCanBePutOnItems(currentAvatarId);
+    childService.canBePutOnItems = dataService.getAvatarCanBePutOnItemsIds(currentAvatarId);
   }
 
   //add
 
   childService.setCanBePurchasedItems = function () {
-    childService.canBePurchasedItems = dataService.getAvatarCanBePurchasedItems(currentAvatarId);
+    childService.canBePurchasedItems = dataService.getAvatarCanBePurchasedItemsIds(currentAvatarId);
   }
 
   //delete
   //add
 
   childService.setUnavailableItems = function () {
-    childService.unavailableItems = dataService.getAvatarUnavailableItems(currentAvatarId);
+    childService.unavailableItems = dataService.getAvatarUnavailableItemsIds(currentAvatarId);
   }
 
   //delete

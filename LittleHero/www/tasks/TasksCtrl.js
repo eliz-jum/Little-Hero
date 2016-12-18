@@ -36,7 +36,7 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
         $scope.tasks.length = 0;
         $scope.tasksStyles.length = 0;
 
-        dataService.getAvatarTasks($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
+        dataService.getTasksByAvatar($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
             $scope.tasks = res.data;
         });
     }
