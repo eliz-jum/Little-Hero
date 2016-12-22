@@ -100,7 +100,7 @@ angular.module('littleHero').service("dataService", function($http) {
           return res;
         });
       },
-    //TODO wyrabac z task pole bool completet - nie trzymamy zrobionych zadan!
+    //TODO wyrabac z task pole bool completed - nie trzymamy zrobionych zadan!
 
 
 
@@ -144,38 +144,22 @@ angular.module('littleHero').service("dataService", function($http) {
             return $http.post(BASE_PATH + "tutors/", newTutor).then(function(res) {
                 return res;
             });
+        },
+
+      //-----------------T----ITEM---------------------------
+
+        getItem: function (itemId) {
+          return $http.get(BASE_PATH + "items/" + itemId).then(function(res) {
+            return res;
+          });
+
         }
-
-
-
-
 
       //TODO: zamienic nazwy stringow na zmienną np "avatar-item-links" itd
 
 
 
-      
 
 
-        /***
-        getItems: function() {
-            return $http.get(BASE_PATH + "/v1/items").then(function(res) {
-                return res;
-            });
-        },
-
-        postItem: function(newItem) {
-            return $http.get(BASE_PATH + "/v1/items", newItem).then(function(res) {
-                return res;
-            });
-        },
-
-        deleteItem function(deletedItem) {
-            return $http.delete(BASE_PATH + "/v1/items", deletedItem).then(function(res) {
-                return res;
-            });
-        }
-
-        ***/
     }
 });

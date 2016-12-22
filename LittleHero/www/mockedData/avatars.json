@@ -3,9 +3,7 @@
 	"name": "Avatar1",
   "class": "default",
 	"childId": 0,
-	"tutor": {
-		"id": 0
-	},
+	"tutorId": 0,
 	"level": 1,
 	"money": 12,
 	"health": 20,
@@ -17,21 +15,7 @@
 	"id": 2,
 	"name": "Avatar2",
   "class": "default",
-	"wornItems": [],
-	"canBePutOnItems": [],
-	"canBePurchasedItems": [],
-  "unavailableItems": [],
-	"tasks": [{
-		"id": 2
-	}, {
-		"id": 3
-	}],
-	"child": {
-		"id": 0
-	},
-	"tutor": {
-		"id": 1
-	},
+  "tutorId": 1,
 	"level": 3,
 	"money": 16,
 	"health": 60,

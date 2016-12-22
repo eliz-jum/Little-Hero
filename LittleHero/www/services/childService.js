@@ -35,7 +35,11 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
     //w zaleznosci od klasy trzeba dodac ciuch do tablic ciuchowych
     //trzeba dodac do tablicy wornItems rzeczy z klasy default
 
-    var newAvatar = {};
+    var newAvatar ={
+      name : name,
+      class : calss,
+      tutor : tutorId
+    };
     childService.avatarList.add();
     dataService.postAvatar(newAvatar);
   }
@@ -43,34 +47,84 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
 
   childService.setWornItems = function () {
     childService.wornItems = dataService.getAvatarWornItemsIds(currentAvatarId);
+    childService.wornItems.forEach(function (item, i) {
+      var avatarItemLinksId = item.id;
+      var itemId = item.item_id;
+      childService.wornItems[i] = dataService.getItem(itemId);
+      childService.wornItems[i].avatarItemLinksId = avatarItemLinksId;
+    })
   }
-
-  childService.changeWornItems = function (type) {
-    childService.wornItems
-  }
-
-  //add
-  //delete
 
   childService.setCanBePutOnItems = function () {
     childService.canBePutOnItems = dataService.getAvatarCanBePutOnItemsIds(currentAvatarId);
+    childService.canBePutOnItems.forEach(function (item, i) {
+      var avatarItemLinksId = item.id;
+      var itemId = item.item_id;
+      childService.canBePutOnItems[i] = dataService.getItem(itemId);
+      childService.canBePutOnItems[i].avatarItemLinksId = avatarItemLinksId;
+    })
   }
-
-  //add
 
   childService.setCanBePurchasedItems = function () {
     childService.canBePurchasedItems = dataService.getAvatarCanBePurchasedItemsIds(currentAvatarId);
+    childService.canBePurchasedItems.forEach(function (item, i) {
+      var avatarItemLinksId = item.id;
+      var itemId = item.item_id;
+      childService.canBePurchasedItems[i] = dataService.getItem(itemId);
+      childService.canBePurchasedItems[i].avatarItemLinksId = avatarItemLinksId;
+    })
   }
 
-  //delete
-  //add
 
   childService.setUnavailableItems = function () {
     childService.unavailableItems = dataService.getAvatarUnavailableItemsIds(currentAvatarId);
+    childService.unavailableItems.forEach(function (item, i) {
+      var avatarItemLinksId = item.id;
+      var itemId = item.item_id;
+      childService.unavailableItems[i] = dataService.getItem(itemId);
+      childService.unavailableItems[i].avatarItemLinksId = avatarItemLinksId;
+    })
   }
 
-  //delete
-  //add
+
+  //purchaseItem =  changeEquipmentItemState
+  childService.purchaseItem = function (itemId) {
+    //zmienic tablice a w bazie danych status itemu
+    var index;
+    var avatarItemLinksId;
+    childService.canBePurchasedItems.forEach(function (item) {
+      if (item.id == itemId){
+        index = i;
+        avatarItemLinksId = item.avatarItemLinksId;
+      }
+    })
+    canBePutOnItems.add(canBePurchasedItems[index]);
+    canBePurchasedItems.splice(index,1);
+
+    //TODO: drugi parametr to newState
+    dataService.changeEquipmentItemState(avatarItemLinksId, )
+  }
+
+
+  //putOnItem - zmiana w tablicach
+  childService.putOnItem = function (itemId) {
+    //zmienic tablice a w bazie danych status itemu
+    var index;
+    var avatarItemLinksId;
+    childService.canBePutOnItems.forEach(function (item) {
+      if (item.id == itemId){
+        index = i;
+        avatarItemLinksId = item.avatarItemLinksId;
+      }
+    })
+    wornItems.add(canBePutOnItems[index]);
+    canBePutOnItems.splice(index,1);
+
+    //TODO: drugi parametr to newState
+    dataService.changeEquipmentItemState(avatarItemLinksId, )
+  }
+
+
 
   return childService;
 
