@@ -38,7 +38,12 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
     var newAvatar ={
       name : name,
       class : calss,
-      tutor : tutorId
+      childId : childService.childId,
+      tutor : tutorId,
+      level : 1,
+      money: 0,
+      health : 100,
+      experience : 0
     };
     childService.avatarList.add();
     dataService.postAvatar(newAvatar);
@@ -102,7 +107,7 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
     canBePurchasedItems.splice(index,1);
 
     //TODO: drugi parametr to newState
-    dataService.changeEquipmentItemState(avatarItemLinksId, )
+    dataService.changeEquipmentItemState(avatarItemLinksId, {state: "canBePutOn"})
   }
 
 
@@ -121,7 +126,7 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
     canBePutOnItems.splice(index,1);
 
     //TODO: drugi parametr to newState
-    dataService.changeEquipmentItemState(avatarItemLinksId, )
+    dataService.changeEquipmentItemState(avatarItemLinksId, {state: "worn"})
   }
 
 
