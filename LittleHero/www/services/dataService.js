@@ -5,11 +5,17 @@ angular.module('littleHero').service("dataService", function($http) {
 
     return {
       //--------------------------------------------AVATARS--------------------------------------------------
-        getAvatars: function() {
-            return $http.get(BASE_PATH + "avatars/").then(function(res) {
-                return res;
-            });
-        },
+      getAvatars: function() {
+          return $http.get(BASE_PATH + "avatars/").then(function(res) {
+              return res;
+          });
+      },
+
+      getAvatarById: function(id) {
+        return $http.get(BASE_PATH + "avatars/" + id).then(function(res) {
+          return res;
+        });
+      },
 
       getAvatarsByChild: function(childId) {
         return $http.get(BASE_PATH + "avatars/?child_id=" + childId).then(function(res) {
@@ -67,6 +73,10 @@ angular.module('littleHero').service("dataService", function($http) {
       // {"state": "newState"}
       changeEquipmentItemState: function (avatarItemLinksId, newState) {
         return $http.patch(BASE_PATH + "avatar-item-links/" + avatarItemLinksId, newState)
+      },
+
+      patchAvatar: function (avatarId, changes) {
+        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes)
       },
 
 

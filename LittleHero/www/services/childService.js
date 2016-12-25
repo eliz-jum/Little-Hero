@@ -4,29 +4,41 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
 
   childService.childId;
   childService.childObj = {};
-  childService.avatarList = [];
 
+  childService.avatarList = [];
   childService.currentAvatarId;
+  childService.currentAvatar;
+
   childService.wornItems = [];
   childService.canBePutOnItems = [];
   childService.canBePurchasedItems = [];
   childService.unavailableItems = [];
 
+  childService.tasks = [];
 
+//todo trzeba miesc id??
   childService.setChildId = function(){
     childService.childId = dataService.getChildById(childService.childId);
-  };
+  }
 
   childService.setChild = function(){
     childService.childObj = dataService.getChildById(childService.childId);
-  };
-
+  }
+//todo trzeba id?
   childService.setCurrentAvatarId = function (id) {
     childService.currentAvatarId = id;
   }
 
   childService.setAvatarList = function () {
     childService.avatarList = dataService.getAvatarsByChild(childService.childId);
+  }
+
+  childService.setCurrentAvatar = function () {
+    childService.currentAvatar = dataService.getAvatarById(currentAvatarId);
+  }
+
+  childService.setTasks = function () {
+    childService.tasks = dataService.getTasksByAvatar(currentAvatarId);
   }
 
 
@@ -92,7 +104,7 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
   }
 
 
-  //purchaseItem =  changeEquipmentItemState
+  //purchaseItem =  changeEquipmentItemState ze statusem canBePutOn
   childService.purchaseItem = function (itemId) {
     //zmienic tablice a w bazie danych status itemu
     var index;
@@ -111,8 +123,7 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
   }
 
 
-  //putOnItem - zmiana w tablicach
-  childService.putOnItem = function (itemId) {
+  childService.putItemOn = function (itemId) {
     //zmienic tablice a w bazie danych status itemu
     var index;
     var avatarItemLinksId;
@@ -125,8 +136,36 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
     wornItems.add(canBePutOnItems[index]);
     canBePutOnItems.splice(index,1);
 
-    //TODO: drugi parametr to newState
+    //drugi parametr to newState
     dataService.changeEquipmentItemState(avatarItemLinksId, {state: "worn"})
+  },
+
+  childService.gainLevel = function (exp) {
+    childService.currentAvatar.level++;
+    childService.health = 100;
+    childService.experience = exp;
+    childService.unavailableItems.forEach(function (item, index) {
+      if (item.level == childService.currentAvatar.level) {
+        childService.canBePurchasedItems.add(item);
+        unavailableItems.splice(index, 1);
+      }
+    })
+  }
+
+  childService.loseHealth = function () {
+    childService.currentAvatar.level--;
+    childService.health = 100;
+    childService.experience = 0;
+    childService.canBePurchasedItems.forEach(function (item, index) {
+      if (item.level > childService.currentAvatar.level) {
+        childService.unavailableItems.add(item);
+        canBePurchasedItems.splice(index, 1);
+      }
+    })
+  }
+
+  childService.writeAllDataToDatabase = function () {
+
   }
 
 

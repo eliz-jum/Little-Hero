@@ -2,6 +2,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   var canBePutOnEquipment = [];
   var canBePurchasedEquipment = [];
   var unavailableEquipment = [];
+  var tasks = [];
 
     $scope.user = null;
     $scope.allAvatars = null;
@@ -166,7 +167,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   };
 
   $scope.putOn = function(item) {
-    
+
     var element = document.getElementsByClassName(item.type)[0];
     element.setAttribute("src", item.imgSrc);
     $scope.closeModal();
