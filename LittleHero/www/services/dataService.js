@@ -117,7 +117,7 @@ angular.module('littleHero').service("dataService", function($http) {
       //----------------------------------------------CHILDREN--------------------------------------------
         getChildren: function() {
             return $http.get(BASE_PATH + "children/").then(function(res) {
-                return res;
+                return res.data;
             });
         },
 

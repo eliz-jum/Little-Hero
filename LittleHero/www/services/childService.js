@@ -2,13 +2,15 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
   var childService = {};
 
 
-  childService.childId;
+  childService.tutorObj = {};
+  
   childService.childObj = {};
 
   childService.avatarList = [];
-  childService.currentAvatarId;
+  
   childService.currentAvatar;
-
+  childService.currentAvatarId;
+  
   childService.wornItems = [];
   childService.canBePutOnItems = [];
   childService.canBePurchasedItems = [];
@@ -16,29 +18,26 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
 
   childService.tasks = [];
 
-//todo trzeba miesc id??
-  childService.setChildId = function(){
-    childService.childId = dataService.getChildById(childService.childId);
+//todo za kazdym raze trzeba ise logowac? zapamietujey gdzies child i urzadzenie??
+//   childService.setChild = function(){
+//     childService.childObj = dataService.getChildById(childService.childId);
+//   }
+
+
+  childService.setCurrentAvatarId = function () {
+    childService.currentAvatarId = childService.currentAvatar.id;
   }
 
-  childService.setChild = function(){
-    childService.childObj = dataService.getChildById(childService.childId);
-  }
-//todo trzeba id?
-  childService.setCurrentAvatarId = function (id) {
-    childService.currentAvatarId = id;
+  childService.setChildAvatarList = function () {
+    childService.avatarList = dataService.getAvatarsByChild(childService.childObj.id);
   }
 
-  childService.setAvatarList = function () {
-    childService.avatarList = dataService.getAvatarsByChild(childService.childId);
-  }
-
-  childService.setCurrentAvatar = function () {
-    childService.currentAvatar = dataService.getAvatarById(currentAvatarId);
+  childService.setTutorAvatarList = function () {
+    childService.avatarList = dataService.getAvatarsByTutor(childService.tutorObj.id);
   }
 
   childService.setTasks = function () {
-    childService.tasks = dataService.getTasksByAvatar(currentAvatarId);
+    childService.tasks = dataService.getTasksByAvatar(childService.currentAvatarId);
   }
 
 
