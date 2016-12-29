@@ -1,8 +1,4 @@
-angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService, ionicToast){
-  var canBePutOnEquipment = [];
-  var canBePurchasedEquipment = [];
-  var unavailableEquipment = [];
-  var tasks = [];
+angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService, childService, ionicToast){
 
     $scope.user = null;
     $scope.allAvatars = null;
@@ -10,27 +6,16 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.showAvatar = false;
 
     $scope.$on('$ionicView.beforeEnter', function(){
-        $scope.user = $stateParams.user;
-        $scope.checkForAvatar();
+      $scope.checkForAvatar();
 
-        if ($stateParams.allAvatars != null) {
-            $scope.allAvatars = $stateParams.allAvatars;
-            $scope.currentAvatar = $stateParams.currentAvatar2;
-        }
-        else $scope.getAvatars();
-
-      getAssets();
     });
 
     $scope.checkForAvatar = function() {
-        if ($scope.currentAvatar != null) {
+        if (childService.currentAvatar != undefined) {
             $scope.showAvatar = true;
-            getAssets();
         }
-        else
-            $scope.showAvatar = false;
     };
-
+//todo swipy
     $scope.swipeLeft = function() {
         console.log("swipe left");
         $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
@@ -45,7 +30,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.settings = function() {
         $state.go("settings");
     };
-
+//todo co to jest????
   $scope.nextType = function() {
     var currentIndex = $scope.buttons.indexOf($scope.currentButton);
 
@@ -71,6 +56,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       $scope.filterDisplay(previous);
     }
   };
+//todo co to jest???? - koniec
 
   $scope.buttons = [
     {
@@ -170,7 +156,10 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
     var element = document.getElementsByClassName(item.type)[0];
     element.setAttribute("src", item.imgSrc);
+    //zmiana w tablicach lokalnych w serwisie
+    childService.putItemOn(item);
     $scope.closeModal();
+    
 
   }
 
@@ -212,31 +201,9 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
   $scope.closeModal = function () {
     $scope.modal.hide();
-    getAssets();
-  }
-
-
-  $scope.getAvatars = function() {
-      dataService.getAvatarsByChild($scope.user["id"]).then(function(res) {
-          $scope.allAvatars = res.data;
-      });
-  }
-
-  var getAssets = function() {
-    canBePutOnEquipment = [];
-    canBePurchasedEquipment = [];
-    unavailableEquipment = [];
-
-    dataService.getAvatars().then(function(res) {
-      var avatars = res.data;
-
-      canBePutOnEquipment = avatars[0]["canBePutOnItems"];
-      canBePurchasedEquipment = avatars[0]["canBePurchasedItems"];
-      unavailableEquipment = avatars[0]["unavailableItems"];
-
-    });
 
   }
+
 
   $scope.filterDisplay = function(item) {
     $scope.filteredCanBePutOnEquipment=[];
@@ -244,9 +211,9 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.filteredUnavailableEquipment=[];
 
     $scope.currentButton = item;
-    filterBy(item, canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
-    filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
-    filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
+    filterBy(item, childService.canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
+    filterBy(item, childService.canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
+    filterBy(item, childService.unavailableEquipment, $scope.filteredUnavailableEquipment);
 
   }
 

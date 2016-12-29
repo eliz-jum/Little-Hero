@@ -51,6 +51,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         if (children[index].login == $scope.login && children[index].password == $scope.password) {
           childService.childObj = children[index];
           childService.setChildAvatarList();
+          //jesli nie ma avatarow to undefined
           childService.currentAvatar = childService.avatarList[0];
           childService.setCurrentAvatarId();
           childService.setTasks();

@@ -3,14 +3,14 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
 
 
   childService.tutorObj = {};
-  
+
   childService.childObj = {};
 
   childService.avatarList = [];
-  
+
   childService.currentAvatar;
   childService.currentAvatarId;
-  
+
   childService.wornItems = [];
   childService.canBePutOnItems = [];
   childService.canBePurchasedItems = [];
@@ -122,21 +122,28 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
   }
 
 
-  childService.putItemOn = function (itemId) {
-    //zmienic tablice a w bazie danych status itemu
-    var index;
-    var avatarItemLinksId;
-    childService.canBePutOnItems.forEach(function (item) {
-      if (item.id == itemId){
-        index = i;
-        avatarItemLinksId = item.avatarItemLinksId;
+  childService.putItemOn = function (newItem) {
+
+    var oldItem;
+    var oldItemIndex;
+    var newItemIndex = childService.canBePutOnItems.indexOf(newItem);
+    
+    childService.wornItems.forEach(function (item, i) {
+      if (item.type == newItem.type){
+        oldItem = item;
+        oldItemIndex = i;
       }
     })
-    wornItems.add(canBePutOnItems[index]);
-    canBePutOnItems.splice(index,1);
+    //zmienic tablice a w bazie danych status itemu
+    childService.wornItems.splice(oldItemIndex, 1);
+    childService.wornItems.add(newItem);
+    childService.canBePutOnItems.splice(newItemIndex,1);
+    childService.canBePutOnItems.add(oldItem);
+
 
     //drugi parametr to newState
-    dataService.changeEquipmentItemState(avatarItemLinksId, {state: "worn"})
+    dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"})
+    dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"})
   },
 
   childService.gainLevel = function (exp) {
