@@ -1,4 +1,4 @@
-angular.module('littleHero').factory('childService',function($scope, $state, dataService){
+angular.module('littleHero').factory('childService',function($state, dataService){
   var childService = {};
 
 
@@ -127,7 +127,7 @@ angular.module('littleHero').factory('childService',function($scope, $state, dat
     var oldItem;
     var oldItemIndex;
     var newItemIndex = childService.canBePutOnItems.indexOf(newItem);
-    
+
     childService.wornItems.forEach(function (item, i) {
       if (item.type == newItem.type){
         oldItem = item;
