@@ -34,6 +34,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.getChildren = function() {
       dataService.getChildren().then(function(res) {
           children = res.data;
+        console.log("getchildren  " + children);
       });
     };
 
@@ -46,7 +47,15 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.checkIfAccountExists = function() {
 
       $scope.getChildren();
-      console.log("chiii  " + children)
+      console.log("chiii  " + children);
+
+      console.log("servis get children  " + dataService.getChildren());
+      var tmp = dataService.getChildren();
+      console.log("tmp  " + tmp);
+      console.log("tmp[0]  " + tmp.data);
+
+
+
       for (index in children) {
         if (children[index].login == $scope.login && children[index].password == $scope.password) {
           childService.childObj = children[index];
