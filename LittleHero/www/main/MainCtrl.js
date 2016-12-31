@@ -7,12 +7,14 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
     $scope.$on('$ionicView.beforeEnter', function(){
       $scope.checkForAvatar();
-
+      console.log(childService.avatarList);
     });
 
     $scope.checkForAvatar = function() {
         if (childService.currentAvatar != undefined) {
-            $scope.showAvatar = true;
+          $scope.currentAvatar = childService.currentAvatar;
+          $scope.allAvatars = childService.avatarList;
+          $scope.showAvatar = true;
         }
     };
 //todo swipy
@@ -158,8 +160,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     //zmiana w tablicach lokalnych w serwisie
     childService.putItemOn(item);
     $scope.closeModal();
-
-
   }
 
   $scope.buy = function(item) {
@@ -193,7 +193,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
 
   $scope.openModal = function(item) {
-    console.log("open modal item  "+item.type);
     $scope.filterDisplay(item);
     $scope.modal.show();
   };
@@ -219,5 +218,5 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
   $scope.showToast = function(message){
     ionicToast.show(message, 'bottom', false, 2500);
-  };
+  }
 });

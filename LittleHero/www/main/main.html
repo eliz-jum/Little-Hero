@@ -5,7 +5,7 @@
       <div class="row row-center orange">
         <div class="col col-50 item item-select">
             <select ng-model="currentAvatar" ng-change="checkForAvatar()" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
-                <option value="">{{ user.nickname }}</option>
+                <option value="">{{ currentAvatar.name }}</option>
             </select>
         </div>
 
