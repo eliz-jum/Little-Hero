@@ -153,13 +153,12 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   };
 
   $scope.putOn = function(item) {
-
     var element = document.getElementsByClassName(item.type)[0];
     element.setAttribute("src", item.imgSrc);
     //zmiana w tablicach lokalnych w serwisie
     childService.putItemOn(item);
     $scope.closeModal();
-    
+
 
   }
 
@@ -194,6 +193,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
 
   $scope.openModal = function(item) {
+    console.log("open modal item  "+item.type);
     $scope.filterDisplay(item);
     $scope.modal.show();
   };
@@ -211,9 +211,9 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     $scope.filteredUnavailableEquipment=[];
 
     $scope.currentButton = item;
-    filterBy(item, childService.canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
-    filterBy(item, childService.canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
-    filterBy(item, childService.unavailableEquipment, $scope.filteredUnavailableEquipment);
+    filterBy(item, childService.canBePutOnItems, $scope.filteredCanBePutOnEquipment);
+    filterBy(item, childService.canBePurchasedItems, $scope.filteredCanBePurchasedEquipment);
+    filterBy(item, childService.unavailableItems, $scope.filteredUnavailableEquipment);
 
   }
 

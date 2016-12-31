@@ -46,28 +46,32 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
     $scope.checkIfAccountExists = function() {
 
-      $scope.getChildren();
-      console.log("chiii  " + children);
+      // $scope.getChildren();
+      // console.log("chiii  " + children);
+      //
+      // console.log("servis get children  " + dataService.getChildren());
+      // console.log("avatars  " + dataService.getAvatars());
 
-      console.log("servis get children  " + dataService.getChildren());
-      var tmp = dataService.getChildren();
-      console.log("tmp  " + tmp);
-      console.log("tmp[0]  " + tmp.data);
-
+      //---------zahardkodowana wersja
+      childService.hardcodeChildObj();
+      children.push(childService.childObj);
 
 
       for (index in children) {
         if (children[index].login == $scope.login && children[index].password == $scope.password) {
           childService.childObj = children[index];
-          childService.setChildAvatarList();
+          childService.hardcodeAvatarList();
+          //childService.setChildAvatarList();
           //jesli nie ma avatarow to undefined
           childService.currentAvatar = childService.avatarList[0];
           childService.setCurrentAvatarId();
-          childService.setTasks();
-          childService.setWornItems();
-          childService.setCanBePutOnItems();
-          childService.setCanBePurchasedItems();
-          childService.setUnavailableItems();
+
+          //childService.setTasks();
+          // childService.setWornItems();
+          // childService.setCanBePutOnItems();
+          // childService.setCanBePurchasedItems();
+          // childService.setUnavailableItems();
+          childService.hardcodeAvatarItemArrays();
           type = 0;
         }
       }
@@ -84,7 +88,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
       }
     }
 
-    $scope.getChildren();
-    $scope.getTutors();
+    // $scope.getChildren();
+    // $scope.getTutors();
 
 });

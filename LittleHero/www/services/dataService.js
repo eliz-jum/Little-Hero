@@ -157,7 +157,14 @@ angular.module('littleHero').service("dataService", function($http) {
         },
 
       //-----------------T----ITEM---------------------------
+      getItems: function () {
+        return $http.get(BASE_PATH + "items/").then(function(res) {
+          return res;
+        });
 
+      },
+        
+      
         getItem: function (itemId) {
           return $http.get(BASE_PATH + "items/" + itemId).then(function(res) {
             return res;
