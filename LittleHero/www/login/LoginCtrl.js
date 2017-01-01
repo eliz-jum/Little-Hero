@@ -73,6 +73,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
           // childService.setCanBePurchasedItems();
           // childService.setUnavailableItems();
           childService.hardcodeAvatarItemArrays();
+          childService.hardcodeAvatarWornItemsArray();
           type = 0;
         }
       }

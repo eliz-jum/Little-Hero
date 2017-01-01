@@ -75,8 +75,14 @@ angular.module('littleHero').service("dataService", function($http) {
         return $http.patch(BASE_PATH + "avatar-item-links/" + avatarItemLinksId, newState)
       },
 
+      postAvatarItemLink: function (newLink) {
+        return $http.post(BASE_PATH + "avatar-item-links/", newLink)
+      },
+
+      //todo
+
       patchAvatar: function (avatarId, changes) {
-        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes)
+        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes);
       },
 
 
@@ -163,14 +169,18 @@ angular.module('littleHero').service("dataService", function($http) {
         });
 
       },
-        
-      
+
+
         getItem: function (itemId) {
           return $http.get(BASE_PATH + "items/" + itemId).then(function(res) {
             return res;
           });
 
-        }
+        },
+      patchItem: function (itemId, changes) {
+        return $http.patch(BASE_PATH + "items/" + itemId, changes);
+      }
+
 
       //TODO: zamienic nazwy stringow na zmienną np "avatar-item-links" itd
 

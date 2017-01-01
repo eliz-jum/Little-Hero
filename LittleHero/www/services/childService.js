@@ -66,13 +66,165 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
 
   }
+  //todo hardcode worn items tego NIE WYWALAC! potrzebne do tworzenia nowego avatara
+  childService.hardcodeAvatarWornItemsArray = function () {
+    childService.wornItems = [
+      {
+        id: 1,
+        type: "eyes",
+        class: "allClasses",
+        iconSrc: "img/eyes1_icon.svg",
+        imgSrc: "img/eyes1.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 4,
+        type: "nose",
+        class: "allClasses",
+        iconSrc: "img/nose1_icon.svg",
+        imgSrc: "img/nose1.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 7,
+        type: "mouth",
+        class: "allClasses",
+        iconSrc: "img/mouth1_icon.svg",
+        imgSrc: "img/mouth1.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 10,
+        type: "hair_front",
+        class: "allClasses",
+        iconSrc: "img/hair_front1_icon.svg",
+        imgSrc: "img/hair_front1.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 17,
+        type: "hair_back",
+        class: "empty",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 26,
+        type: "animal",
+        class: "empty",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 29,
+        type: "top",
+        class: "allClasses",
+        iconSrc: "img/tee1_icon.svg",
+        imgSrc: "img/tee1.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 34,
+        type: "bottom",
+        class: "allClasses",
+        iconSrc: "img/pants1_icon.svg",
+        imgSrc: "img/pants1.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 39,
+        type: "top_bottom",
+        class: "empty",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 45,
+        type: "misc_head",
+        class: "empty",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 49,
+        type: "misc_ear",
+        class: "empty",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 52,
+        type: "misc_neck",
+        class: "empty",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 56,
+        type: "prop_left",
+        class: "allClasses",
+        iconSrc: "img/prop1_left_icon.svg",
+        imgSrc: "img/prop1_left.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 58,
+        type: "prop_right",
+        class: "allClasses",
+        iconSrc: "img/prop1_right_icon.svg",
+        imgSrc: "img/prop1_right.svg",
+        lvl: 1,
+        price: 0
+      },
+      {
+        id: 62,
+        type: "sock",
+        class: "human",
+        iconSrc: "img/sock1_icon.svg",
+        imgSrc: "img/sock1.svg",
+        lvl: 1,
+        price: 20
+      },
+      {
+        id: 67,
+        type: "shoes",
+        class: "allClasses",
+        iconSrc: "img/shoes1_icon.svg",
+        imgSrc: "img/shoes1.svg",
+        lvl: 1,
+        price: 10
+      }
+
+
+
+    ];
+  }
 
   childService.hardcodeAvatarItemArrays = function () {
     var allItems = [
     {
       id: 2,
       type: "eyes",
-      class: "default",
+      class: "allClasses",
       iconSrc: "img/eyes2_icon.svg",
       imgSrc: "img/eyes2.svg",
       lvl: 1,
@@ -81,7 +233,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
     {
       id: 3,
       type: "eyes",
-      class: "default",
+      class: "allClasses",
       iconSrc: "img/eyes3_icon.svg",
       imgSrc: "img/eyes3.svg",
       lvl: 2,
@@ -90,7 +242,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 11,
         type: "hair_front",
-        class: "default",
+        class: "allClasses",
         iconSrc: "img/hair_front2_icon.svg",
         imgSrc: "img/hair_front2.svg",
         lvl: 1,
@@ -99,7 +251,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 12,
         type: "hair_front",
-        class: "default",
+        class: "allClasses",
         iconSrc: "img/hair_front3_icon.svg",
         imgSrc: "img/hair_front3.svg",
         lvl: 1,
@@ -108,7 +260,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 19,
         type: "hair_back",
-        class: "default",
+        class: "allClasses",
         iconSrc: "img/hair_back2_icon.svg",
         imgSrc: "img/hair_back2.svg",
         lvl: 1,
@@ -117,7 +269,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 20,
         type: "hair_back",
-        class: "default",
+        class: "allClasses",
         iconSrc: "img/hair_back3_icon.svg",
         imgSrc: "img/hair_back3.svg",
         lvl: 1,
@@ -173,161 +325,10 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
     ];
 
-    childService.wornItems = [
-      {
-        id: 1,
-        type: "eyes",
-        class: "default",
-        iconSrc: "img/eyes1_icon.svg",
-        imgSrc: "img/eyes1.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 4,
-        type: "nose",
-        class: "default",
-        iconSrc: "img/nose1_icon.svg",
-        imgSrc: "img/nose1.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 7,
-        type: "mouth",
-        class: "default",
-        iconSrc: "img/mouth1_icon.svg",
-        imgSrc: "img/mouth1.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 10,
-        type: "hair_front",
-        class: "default",
-        iconSrc: "img/hair_front1_icon.svg",
-        imgSrc: "img/hair_front1.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 17,
-        type: "hair_back",
-        class: "empty",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 26,
-        type: "animal",
-        class: "empty",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 29,
-        type: "top",
-        class: "default",
-        iconSrc: "img/tee1_icon.svg",
-        imgSrc: "img/tee1.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 34,
-        type: "bottom",
-        class: "default",
-        iconSrc: "img/pants1_icon.svg",
-        imgSrc: "img/pants1.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 39,
-        type: "top_bottom",
-        class: "empty",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 45,
-        type: "misc_head",
-        class: "empty",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 49,
-        type: "misc_ear",
-        class: "empty",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 52,
-        type: "misc_neck",
-        class: "empty",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 56,
-        type: "prop_left",
-        class: "default",
-        iconSrc: "img/prop1_left_icon.svg",
-        imgSrc: "img/prop1_left.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 58,
-        type: "prop_right",
-        class: "default",
-        iconSrc: "img/prop1_right_icon.svg",
-        imgSrc: "img/prop1_right.svg",
-        lvl: 1,
-        price: 0
-      },
-      {
-        id: 62,
-        type: "sock",
-        class: "human",
-        iconSrc: "img/sock1_icon.svg",
-        imgSrc: "img/sock1.svg",
-        lvl: 1,
-        price: 20
-      },
-      {
-        id: 67,
-        type: "shoes",
-        class: "default",
-        iconSrc: "img/shoes1_icon.svg",
-        imgSrc: "img/shoes1.svg",
-        lvl: 1,
-        price: 10
-      }
-
-
-
-    ];
-
-
     allItems.forEach(function (item) {
       if (item.price == 0)
         childService.canBePutOnItems.push(item);
-      else if (item.class == childService.currentAvatar.class || item.class == "default"){
+      else if (item.class == childService.currentAvatar.class || item.class == "allClasses"){
         if (item.lvl == 1)
           childService.canBePurchasedItems.push(item);
         else
@@ -395,7 +396,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.addNewAvatar = function (name, avatarClass, tutorId) {
     //w zaleznosci od klasy trzeba dodac ciuch do tablic ciuchowych
-    //trzeba dodac do tablicy wornItems rzeczy z klasy default
+    //trzeba dodac do tablicy wornItems rzeczy z klasy allClasses
 
     var newAvatar ={
       name : name,
@@ -408,23 +409,68 @@ angular.module('littleHero').factory('childService',function($state, dataService
       experience : 0
     };
     childService.avatarList.push(newAvatar);
-    //todo zakomentowane bo serwer nie dziala
-    //dataService.postAvatar(newAvatar);
+
+    dataService.postAvatar(newAvatar); //todo POTRZEBUJE JEGO ID!!!!
+
+    var newAvatarId; //TODO
+
+    childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
+
+
   }
 
-  childService.fillNewAvatarItemArrays = function (avatarClass) {
+
+
+  childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
+
     var allItems = dataService.getItems();
+    
     allItems.forEach(function (item) {
-      //todo !!! WAZNE !!! jak wypelnic tablice worn items? klasa nowa???
-
-
-      if (item.price == 0)
+      if (item.class == "wornByDefault"){
+        dataService.postAvatarItemLink({
+          avatar_id: newAvatarId,
+          state: "worn",
+          item_id: item.id
+        });
+        //todo musze jakos dostac id tego co wlasnie wlozylam!!!
+        var avatarItemLinksId;
+        item.avatarItemLinksId = avatarItemLinksId;
+        childService.wornItems.push(item);
+      }
+      else if (item.price == 0 && item.class == "allClasses") {
+        dataService.postAvatarItemLink({
+          avatar_id: newAvatarId,
+          state: "canBePutOn",
+          item_id: item.id
+        });
+        //todo musze jakos dostac id tego co wlasnie wlozylam!!!
+        var avatarItemLinksId;
+        item.avatarItemLinksId = avatarItemLinksId;
         childService.canBePutOnItems.push(item);
-      else if (item.class == avatarClass || item.class == "default"){
-        if (item.level == 1)
+      }
+      else if (item.class == avatarClass || item.class == "allClasses") {
+        if (item.level == 1){
+          dataService.postAvatarItemLink({
+            avatar_id: newAvatarId,
+            state: "canBePurchased",
+            item_id: item.id
+          });
+          //todo musze jakos dostac id tego co wlasnie wlozylam!!!
+          var avatarItemLinksId;
+          item.avatarItemLinksId = avatarItemLinksId;
           childService.canBePurchasedItems.push(item);
-        else
+        }
+        else {
+          dataService.postAvatarItemLink({
+            avatar_id: newAvatarId,
+            state: "unavailable",
+            item_id: item.id
+          });
+          //todo musze jakos dostac id tego co wlasnie wlozylam!!!
+          var avatarItemLinksId;
+          item.avatarItemLinksId = avatarItemLinksId;
           childService.unavailableItems.push(item);
+        }
       }
     })
   }
@@ -473,15 +519,19 @@ angular.module('littleHero').factory('childService',function($state, dataService
   }
 
 
-  //purchaseItem =  changeEquipmentItemState ze statusem canBePutOn
+
   childService.purchaseItem = function (item) {
+
     var itemIndex = childService.canBePurchasedItems.indexOf(item);
 
     //zmienic tablice a w bazie danych status itemu
+    //I ZMINEJSZYC PIENIADZE avatara i cene ekwipunku zmienić na zero
     childService.canBePurchasedItems.splice(itemIndex, 1);
     childService.canBePutOnItems.push(item);
 
-    dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"})
+    dataService.patchItem(item.id, {price: 0});
+    dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"});
+    dataService.patchAvatar(childService.currentAvatarId, {money: currentAvatar.money});
   }
 
 
@@ -505,8 +555,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
     //drugi parametr to newState
-    dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"})
-    dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"})
+    dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
+    dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
   },
 
   childService.gainLevel = function (exp) {
