@@ -7,7 +7,6 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 
     $scope.$on('$ionicView.beforeEnter', function(){
       $scope.checkForAvatar();
-      console.log(childService.canBePurchasedItems);
 
     });
 
@@ -21,13 +20,12 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
 //todo swipy
     $scope.swipeLeft = function() {
         console.log("swipe left");
-        $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
+        $state.go("tasks");
     };
 
     $scope.swipeRight = function() {
         console.log("swipe right");
-        $state.go("notifications", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar,
-            "user" : $scope.user });
+        $state.go("notifications");
     };
 
     $scope.settings = function() {
@@ -171,8 +169,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
       $scope.putOn(item);
     }
     else {
-      //todo tost!
-      console.log("nie masz piniądza!");
+      $scope.showToast("Masz za mało pieniędzy!");
     }
 
 

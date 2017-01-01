@@ -1,24 +1,26 @@
-angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService, ionicToast) {
+angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService, childService, ionicToast) {
 
-    $scope.user = null;
+
     $scope.tasks = [];
     $scope.tasksStyles = [];
     $scope.dynamicStyle = [];
 
     $scope.$on('$ionicView.beforeEnter', function(){
 
-        $scope.user = $stateParams.user;
-        $scope.allAvatars = $stateParams.allAvatars;
-        $scope.currentAvatar = $stateParams.currentAvatar;
+      $scope.currentAvatar = childService.currentAvatar;
+      $scope.allAvatars = childService.avatarList;
 
-        if ($scope.tasks.length == 0 && $scope.currentAvatar != null) {
-            $scope.getTasks();
-        }
+      //childService.setTasks();
+      childService.hardcodeAvatarTasks();
+
+      $scope.tasks = childService.tasks;
+      console.log(childService.tasks);
+
     });
 
     $scope.$on('$ionicView.afterEnter', function(){
 
-        $scope.updateTasks();
+        $scope.showTasks();
     });
 
     $scope.swipeRight = function() {
@@ -31,38 +33,16 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
         $state.go("settings");
     };
 
-    $scope.getTasks = function() {
 
-        $scope.tasks.length = 0;
-        $scope.tasksStyles.length = 0;
 
-        dataService.getTasksByAvatar($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
-            $scope.tasks = res.data;
-        });
-    }
-
-    $scope.updateTasks = function() {
-         if ($scope.tasks.length != 0) {
+    $scope.showTasks = function() {
+         if (childService.tasks.length != 0) {
             $scope.tasks.forEach(function(task) {
                 $scope.setTaskStyle(task);
             });
         }
     }
 
-    /*$scope.getTasksForAvatar = function() {
-
-        $scope.tasks.length = 0;
-        $scope.tasksStyles.length = 0;
-
-        $scope.currentAvatar["tasks"].forEach(function(element) {
-            $scope.allTasks.forEach(function(obj) {
-                if (obj["id"] == element["id"]) {
-                    $scope.tasks.push(obj);
-                    $scope.tasksStyles.push($scope.setTaskStyle(obj));
-                }
-            });
-        });
-    }*/
 
     $scope.setTaskStyle = function(task) {
         switch(task["difficulty"]) {

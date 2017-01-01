@@ -32,6 +32,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   }
   childService.hardcodeAvatarList = function () {
     childService.avatarList.push({
+      id: 1,
       money: 10,
       level: 1,
       class: "human",
@@ -42,6 +43,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       tutor_id: 1
     });
     childService.avatarList.push({
+      id: 2,
       money: 10,
       level: 2,
       class: "king",
@@ -52,6 +54,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       tutor_id: 2
     });
     childService.avatarList.push({
+      id: 3,
       money: 10,
       level: 3,
       class: "mage",
@@ -333,7 +336,37 @@ angular.module('littleHero').factory('childService',function($state, dataService
     })
   }
 
-
+  childService.hardcodeAvatarTasks = function () {
+    childService.tasks = [
+      {
+        content: "zmyj naczynia",
+        is_archived: false,
+        tutor_id: 1,
+        avatar_id: 1,
+        reward: 20,
+        experience: 50,
+        is_completed: false
+      },
+      {
+        content: "wynies smieci",
+        is_archived: false,
+        tutor_id: 1,
+        avatar_id: 1,
+        reward: 20,
+        experience: 50,
+        is_completed: false
+      },
+      {
+        content: "zmyj naczynia",
+        is_archived: false,
+        tutor_id: 1,
+        avatar_id: 1,
+        reward: 50,
+        experience: 110,
+        is_completed: false
+      }
+    ];
+  }
 
 
 //todo za kazdym raze trzeba ise logowac? zapamietujey gdzies child i urzadzenie??

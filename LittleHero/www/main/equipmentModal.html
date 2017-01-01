@@ -14,7 +14,7 @@
         <div class="price-tag"><i class="icon icon ion-social-bitcoin"></i> {{item.price}}</div>
       </div>
       <div class="equipment-item unavailable" ng-repeat="item in filteredUnavailableEquipment track by $index">
-        <img ng-src="{{item.iconSrc}}" ng-click="showToast("Jeszcze nie masz tego poziomu!")"/>
+        <img ng-src="{{item.iconSrc}}" ng-click="showToast('Masz za niski poziom!')"/>
         <div class="lvl-tag"><i class="icon icon ion-flash"></i> {{item.lvl}}</div>
         <div class="price-tag"><i class="icon icon ion-social-bitcoin"></i> {{item.price}}</div>
       </div>

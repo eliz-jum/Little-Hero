@@ -66,7 +66,8 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
           childService.currentAvatar = childService.avatarList[0];
           childService.setCurrentAvatarId();
 
-          //childService.setTasks();
+          //taski dopiero w widoku taskow
+          
           // childService.setWornItems();
           // childService.setCanBePutOnItems();
           // childService.setCanBePurchasedItems();
