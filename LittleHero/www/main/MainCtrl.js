@@ -1,13 +1,14 @@
 angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService, childService, ionicToast){
 
-    $scope.user = null;
+    //$scope.user = null;
     $scope.allAvatars = null;
     $scope.currentAvatar = null;
     $scope.showAvatar = false;
 
     $scope.$on('$ionicView.beforeEnter', function(){
       $scope.checkForAvatar();
-      console.log(childService.avatarList);
+      console.log(childService.canBePurchasedItems);
+
     });
 
     $scope.checkForAvatar = function() {
@@ -163,20 +164,14 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
   }
 
   $scope.buy = function(item) {
-    console.log($scope.currentAvatar);
-    console.log("masz pieniedzy:  "+$scope.currentAvatar.money);
-    console.log("rzecz kosztuje:  "+item.price);
     if ($scope.currentAvatar.money >= item.price) {
-      //usunac item z tablicy canBePurchasedItems
-      //wlozyc item do canBePutOnItems
-
-      //zmienic pieniadze w jsonie
-      $scope.currentAvatar.money -= item.price;
-      var element = document.getElementsByClassName(item.type)[0];
-      element.setAttribute("src", item.imgSrc);
-      $scope.closeModal();
+      childService.currentAvatar.money -= item.price;
+      item.price = 0;
+      childService.purchaseItem(item);
+      $scope.putOn(item);
     }
     else {
+      //todo tost!
       console.log("nie masz piniądza!");
     }
 

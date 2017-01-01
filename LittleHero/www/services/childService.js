@@ -24,7 +24,10 @@ angular.module('littleHero').factory('childService',function($state, dataService
       password: "a",
       nickname: "saatring",
       mail: "striaaang",
-      id: 1
+      id: 1,
+      updateTask: false,
+      updateNotifications: false,
+      updateInvitation: false
     }
   }
   childService.hardcodeAvatarList = function () {
@@ -322,7 +325,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       if (item.price == 0)
         childService.canBePutOnItems.push(item);
       else if (item.class == childService.currentAvatar.class || item.class == "default"){
-        if (item.level == 1)
+        if (item.lvl == 1)
           childService.canBePurchasedItems.push(item);
         else
           childService.unavailableItems.push(item);
@@ -438,26 +441,18 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
   //purchaseItem =  changeEquipmentItemState ze statusem canBePutOn
-  childService.purchaseItem = function (itemId) {
-    //zmienic tablice a w bazie danych status itemu
-    var index;
-    var avatarItemLinksId;
-    childService.canBePurchasedItems.forEach(function (item) {
-      if (item.id == itemId){
-        index = i;
-        avatarItemLinksId = item.avatarItemLinksId;
-      }
-    })
-    canBePutOnItems.push(canBePurchasedItems[index]);
-    canBePurchasedItems.splice(index,1);
+  childService.purchaseItem = function (item) {
+    var itemIndex = childService.canBePurchasedItems.indexOf(item);
 
-    //TODO: drugi parametr to newState
-    dataService.changeEquipmentItemState(avatarItemLinksId, {state: "canBePutOn"})
+    //zmienic tablice a w bazie danych status itemu
+    childService.canBePurchasedItems.splice(itemIndex, 1);
+    childService.canBePutOnItems.push(item);
+
+    dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"})
   }
 
 
   childService.putItemOn = function (newItem) {
-
     var oldItem;
     var oldItemIndex;
     var newItemIndex = childService.canBePutOnItems.indexOf(newItem);
