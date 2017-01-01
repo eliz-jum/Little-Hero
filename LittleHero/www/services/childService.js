@@ -72,7 +72,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 1,
         type: "eyes",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/eyes1_icon.svg",
         imgSrc: "img/eyes1.svg",
         lvl: 1,
@@ -81,7 +81,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 4,
         type: "nose",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/nose1_icon.svg",
         imgSrc: "img/nose1.svg",
         lvl: 1,
@@ -90,7 +90,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 7,
         type: "mouth",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/mouth1_icon.svg",
         imgSrc: "img/mouth1.svg",
         lvl: 1,
@@ -99,7 +99,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 10,
         type: "hair_front",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/hair_front1_icon.svg",
         imgSrc: "img/hair_front1.svg",
         lvl: 1,
@@ -108,7 +108,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 17,
         type: "hair_back",
-        class: "empty",
+        class: "wornByDefault",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
         lvl: 1,
@@ -117,7 +117,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 26,
         type: "animal",
-        class: "empty",
+        class: "wornByDefault",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
         lvl: 1,
@@ -126,7 +126,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 29,
         type: "top",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/tee1_icon.svg",
         imgSrc: "img/tee1.svg",
         lvl: 1,
@@ -135,7 +135,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 34,
         type: "bottom",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/pants1_icon.svg",
         imgSrc: "img/pants1.svg",
         lvl: 1,
@@ -144,7 +144,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 39,
         type: "top_bottom",
-        class: "empty",
+        class: "wornByDefault",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
         lvl: 1,
@@ -153,7 +153,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 45,
         type: "misc_head",
-        class: "empty",
+        class: "wornByDefault",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
         lvl: 1,
@@ -162,7 +162,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 49,
         type: "misc_ear",
-        class: "empty",
+        class: "wornByDefault",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
         lvl: 1,
@@ -171,7 +171,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 52,
         type: "misc_neck",
-        class: "empty",
+        class: "wornByDefault",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
         lvl: 1,
@@ -180,7 +180,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 56,
         type: "prop_left",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/prop1_left_icon.svg",
         imgSrc: "img/prop1_left.svg",
         lvl: 1,
@@ -189,7 +189,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 58,
         type: "prop_right",
-        class: "allClasses",
+        class: "wornByDefault",
         iconSrc: "img/prop1_right_icon.svg",
         imgSrc: "img/prop1_right.svg",
         lvl: 1,
@@ -198,20 +198,20 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 62,
         type: "sock",
-        class: "human",
-        iconSrc: "img/sock1_icon.svg",
-        imgSrc: "img/sock1.svg",
+        class: "wornByDefault",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
         lvl: 1,
-        price: 20
+        price: 0
       },
       {
         id: 67,
         type: "shoes",
-        class: "allClasses",
-        iconSrc: "img/shoes1_icon.svg",
-        imgSrc: "img/shoes1.svg",
+        class: "wornByDefault",
+        iconSrc: "img/empty_icon.svg",
+        imgSrc: "img/empty.svg",
         lvl: 1,
-        price: 10
+        price: 0
       }
 
 
