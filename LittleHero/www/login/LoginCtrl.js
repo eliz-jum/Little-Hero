@@ -33,7 +33,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
     $scope.getChildren = function() {
       dataService.getChildren().then(function(res) {
-          children = res.data;
+        children = res;
         console.log("getchildren  " + children);
       });
     };
@@ -61,7 +61,6 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
           childService.childObj = children[index];
           childService.setChildAvatarList();
           //jesli nie ma avatarow to undefined
-          childService.currentAvatar = childService.avatarList[0];
           childService.setCurrentAvatarId();
           childService.setTasks();
           childService.setWornItems();
