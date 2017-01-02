@@ -109,8 +109,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
         id: 17,
         type: "hair_back",
         class: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
+        iconSrc: "img/hair_back1_icon.svg",
+        imgSrc: "img/hair_back1.svg",
         lvl: 1,
         price: 0
       },
@@ -424,7 +424,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
 
     var allItems = dataService.getItems();
-    
+
     allItems.forEach(function (item) {
       if (item.class == "wornByDefault"){
         dataService.postAvatarItemLink({
@@ -529,9 +529,9 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.canBePurchasedItems.splice(itemIndex, 1);
     childService.canBePutOnItems.push(item);
 
-    dataService.patchItem(item.id, {price: 0});
-    dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"});
-    dataService.patchAvatar(childService.currentAvatarId, {money: currentAvatar.money});
+    //dataService.patchItem(item.id, {price: 0});
+    //dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"});
+    //dataService.patchAvatar(childService.currentAvatarId, {money: currentAvatar.money});
   }
 
 
@@ -555,8 +555,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
     //drugi parametr to newState
-    dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
-    dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
+    //dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
+    //dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
   },
 
   childService.gainLevel = function (exp) {

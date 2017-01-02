@@ -14,10 +14,11 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
         if (childService.currentAvatar != undefined) {
           $scope.currentAvatar = childService.currentAvatar;
           $scope.allAvatars = childService.avatarList;
+          dressAvatar();
           $scope.showAvatar = true;
         }
     };
-//todo swipy
+
     $scope.swipeLeft = function() {
         console.log("swipe left");
         $state.go("tasks");
@@ -114,6 +115,19 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     }
   ]
 
+  dressAvatar = function () {
+    var element;
+    childService.wornItems.forEach(function (item) {
+      element = document.getElementsByClassName(item.type)[0];
+      element.setAttribute("src", item.imgSrc);
+    });
+  }
+
+  //todo po wejsciu na innego avatara z menu wysowanego
+  //setDifferentAvatar(){
+  // current avatar
+  //set id
+  //set arrays
 
   var filterBy = function(item, array, filteredArray) {
     if (item.type == 'all') {
