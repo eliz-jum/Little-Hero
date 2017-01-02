@@ -5,16 +5,12 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.showAvatar = false;
 
   $scope.$on('$ionicView.beforeEnter', function () {
+    cleanAvatarArrays();
+
     childService.hardcodeAvatarList();
     //childService.setChildAvatarList();
-    childService.currentAvatar = childService.avatarList[0];
-    childService.setCurrentAvatarId();
-    // childService.setWornItems();
-    // childService.setCanBePutOnItems();
-    // childService.setCanBePurchasedItems();
-    // childService.setUnavailableItems();
-    childService.hardcodeAvatarItemArrays();
-    childService.hardcodeAvatarWornItemsArray();
+    $scope.setAvatarData(childService.avatarList[0]);
+
 
     $scope.checkForAvatar();
 
@@ -42,7 +38,15 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.settings = function () {
     $state.go("settings");
   };
-  
+
+  var cleanAvatarArrays = function () {
+    childService.avatarList = [];
+    childService.wornItems = [];
+    childService.canBePutOnItems = [];
+    childService.canBePurchasedItems = [];
+    childService.unavailableItems = [];
+  }
+
   $scope.nextType = function () {
     var currentIndex = $scope.buttons.indexOf($scope.currentButton);
 
@@ -133,14 +137,21 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   }
 
   //todo po wejsciu na innego avatara z menu wysowanego
-  $scope.setDifferentAvatar = function () {
+  $scope.setAvatarData = function (avatar) {
     console.log("hejo");
+
+    childService.currentAvatar = avatar;
+    childService.setCurrentAvatarId();
+    // childService.setWornItems();
+    // childService.setCanBePutOnItems();
+    // childService.setCanBePurchasedItems();
+    // childService.setUnavailableItems();
+    childService.hardcodeAvatarItemArrays();
+    childService.hardcodeAvatarWornItemsArray();
+
+
   }
-  
-  //todo
-  // current avatar
-  //set id
-  //set arrays
+
 
   var filterBy = function (item, array, filteredArray) {
     if (item.type == 'all') {

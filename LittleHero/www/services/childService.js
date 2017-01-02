@@ -44,7 +44,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
     childService.avatarList.push({
       id: 2,
-      money: 10,
+      money: 20,
       level: 2,
       class: "king",
       experience: 110,
@@ -55,7 +55,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
     childService.avatarList.push({
       id: 3,
-      money: 10,
+      money: 110,
       level: 3,
       class: "mage",
       experience: 110,

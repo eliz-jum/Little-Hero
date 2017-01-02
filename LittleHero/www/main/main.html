@@ -4,8 +4,9 @@
 
       <div class="row row-center orange">
         <div class="col col-50 item item-select">
-            <select ng-model="currentAvatar"  ng-options="avatar.name for avatar in allAvatars track by avatar.id">
-                <option value="" ng-click="setDifferentAvatar()">{{ currentAvatar.name }} </option>
+
+            <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+                <option value="">{{ currentAvatar.name }} </option>
             </select>
         </div>
 
