@@ -16,9 +16,11 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         if ($scope.login && $scope.password) {
             $scope.checkIfAccountExists();
             if (type == 0)   {
+                //$state.go("main", { 'user' : children[$scope.number] });
               $state.go("main");
             }
             else if (type == 1)
+                //$state.go("mainTutor", { 'user' : tutors[$scope.number] });
               $state.go("mainTutor");
             else $scope.invalid = true;
         }
@@ -32,7 +34,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.getChildren = function() {
       dataService.getChildren().then(function(res) {
         children = res;
-        console.log("getchildren  ", children);
+        console.log("getchildren  " + children);
       });
     };
 
@@ -44,20 +46,31 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
     $scope.checkIfAccountExists = function() {
 
-      $scope.getChildren();
+      // $scope.getChildren();
       // console.log("chiii  " + children);
       //
       // console.log("servis get children  " + dataService.getChildren());
       // console.log("avatars  " + dataService.getAvatars());
 
       //---------zahardkodowana wersja
-      //childService.hardcodeChildObj();
-      //children.push(childService.childObj);
+      childService.hardcodeChildObj();
+      children.push(childService.childObj);
 
 
       for (index in children) {
         if (children[index].login == $scope.login && children[index].password == $scope.password) {
           childService.childObj = children[index];
+<<<<<<< HEAD
+=======
+          childService.setChildAvatarList();
+          //jesli nie ma avatarow to undefined
+          childService.setCurrentAvatarId();
+          childService.setTasks();
+          childService.setWornItems();
+          childService.setCanBePutOnItems();
+          childService.setCanBePurchasedItems();
+          childService.setUnavailableItems();
+>>>>>>> origin/fix-server-requests
           type = 0;
         }
       }

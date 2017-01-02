@@ -37,7 +37,8 @@ angular.module('littleHero').service("dataService", function($http) {
 
 
       getAvatarWornItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=wornItems").then(function(res) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=worn").then(function(res) {
+          console.log("res", res);
           return res;
         });
       },
@@ -53,19 +54,19 @@ angular.module('littleHero').service("dataService", function($http) {
       //zapisując ciuch trzeba mu dodać pole avatarItemLinksId bo to potrzebne do pacha
       //pach zmienia stan itemu w item-links
       getAvatarCanBePutOnItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePutOnItems").then(function(res) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePutOn").then(function(res) {
           return res;
         });
       },
 
       getAvatarCanBePurchasedItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePurchasedItems").then(function(res) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePurchased").then(function(res) {
           return res;
         });
       },
 
       getAvatarUnavailableItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=unavailableItems").then(function(res) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=unavailable").then(function(res) {
           return res;
         });
       },

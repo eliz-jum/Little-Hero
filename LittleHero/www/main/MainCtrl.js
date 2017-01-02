@@ -7,9 +7,15 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.$on('$ionicView.beforeEnter', function () {
     cleanAvatarArrays();
 
-    childService.hardcodeAvatarList();
-    //childService.setChildAvatarList();
-    $scope.setAvatarData(childService.avatarList[0]);
+    //childService.hardcodeAvatarList();
+    childService.setChildAvatarList();
+    childService.setCurrentAvatarId();
+    // childService.setWornItems();
+    // childService.setCanBePutOnItems();
+    // childService.setCanBePurchasedItems();
+    // childService.setUnavailableItems();
+    childService.hardcodeAvatarItemArrays();
+    childService.hardcodeAvatarWornItemsArray();
 
 
     $scope.checkForAvatar();
