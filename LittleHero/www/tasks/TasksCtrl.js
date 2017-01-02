@@ -14,19 +14,17 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
       childService.hardcodeAvatarTasks();
 
       $scope.tasks = childService.tasks;
-      console.log(childService.tasks);
+      //console.log(childService.tasks);
 
     });
 
     $scope.$on('$ionicView.afterEnter', function(){
-
         $scope.showTasks();
     });
 
     $scope.swipeRight = function() {
-        console.log("swipe right");
-        $scope.tasks.length = 0;
-        $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
+        $scope.tasks.length = 0; //todo po co to???
+        $state.go("main");
     };
 
     $scope.settings = function() {
@@ -57,23 +55,6 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
                 break;
             }
     }
-
-    $scope.markTaskCompleted = function(task) {
-
-        var patchTask = {};
-        var patchContent = [];
-
-        patchTask["op"] = "replace";
-        patchTask["path"] = "/isCompleted";
-        patchTask["value"] = true;
-        patchContent.push(patchTask);
-
-        $scope.showToast("Opiekun został poinformowany");
-
-        dataService.patchTaskCompleted(task["id"], patchContent).then(function(res) {
-            console.log(res.data);
-        });
-    };
 
   $scope.showToast = function(message){
     ionicToast.show(message, 'bottom', false, 2500);

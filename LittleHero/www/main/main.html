@@ -4,12 +4,12 @@
 
       <div class="row row-center orange">
         <div class="col col-50 item item-select">
-            <select ng-model="currentAvatar" ng-change="checkForAvatar()" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
-                <option value="">{{ currentAvatar.name }}</option>
+            <select ng-model="currentAvatar"  ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+                <option value="" ng-click="setDifferentAvatar()">{{ currentAvatar.name }} </option>
             </select>
         </div>
 
-        <div class="col col-10"><i class="icon icon ion-flash"></i></div>
+        <div class="col col-10" ><i class="icon icon ion-flash"></i></div>
         <div class="col col-10"><span>{{ currentAvatar.level }}</span></div>
         <div class="col col-10"><i class="icon icon ion-cash"></i></div>
         <div class="col col-10"><span>{{ currentAvatar.money }}</span></div>

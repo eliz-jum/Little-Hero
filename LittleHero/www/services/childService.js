@@ -66,7 +66,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
 
   }
-  //todo hardcode worn items tego NIE WYWALAC! potrzebne do tworzenia nowego avatara
   childService.hardcodeAvatarWornItemsArray = function () {
     childService.wornItems = [
       {
@@ -218,7 +217,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
     ];
   }
-
   childService.hardcodeAvatarItemArrays = function () {
     var allItems = [
     {
@@ -336,7 +334,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
       }
     })
   }
-
   childService.hardcodeAvatarTasks = function () {
     childService.tasks = [
       {
@@ -393,11 +390,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   }
 
 
-
   childService.addNewAvatar = function (name, avatarClass, tutorId) {
-    //w zaleznosci od klasy trzeba dodac ciuch do tablic ciuchowych
-    //trzeba dodac do tablicy wornItems rzeczy z klasy allClasses
-
     var newAvatar ={
       name : name,
       class : avatarClass,
@@ -412,17 +405,13 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
     dataService.postAvatar(newAvatar); //todo POTRZEBUJE JEGO ID!!!!
 
-    var newAvatarId; //TODO
+    var newAvatarId; //TODO wyciagnac jego id
 
     childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
-
-
   }
 
 
-
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
-
     var allItems = dataService.getItems();
 
     allItems.forEach(function (item) {
@@ -521,11 +510,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
   childService.purchaseItem = function (item) {
-
     var itemIndex = childService.canBePurchasedItems.indexOf(item);
 
-    //zmienic tablice a w bazie danych status itemu
-    //I ZMINEJSZYC PIENIADZE avatara i cene ekwipunku zmienić na zero
     childService.canBePurchasedItems.splice(itemIndex, 1);
     childService.canBePutOnItems.push(item);
 
@@ -563,12 +549,14 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.currentAvatar.level++;
     childService.health = 100;
     childService.experience = exp;
-    childService.unavailableItems.forEach(function (item, index) {
+
+    for (i=childService.unavailableItems.length-1; i>=0; i--){
+      var item = childService.unavailableItems[i];
       if (item.level == childService.currentAvatar.level) {
         childService.canBePurchasedItems.push(item);
-        unavailableItems.splice(index, 1);//todo mozna tak? usowam to na czym jestem??
+        unavailableItems.splice(i, 1);
       }
-    })
+    }
   }
 
   childService.loseHealth = function () {

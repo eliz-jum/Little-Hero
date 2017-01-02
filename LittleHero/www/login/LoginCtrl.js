@@ -60,20 +60,6 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
       for (index in children) {
         if (children[index].login == $scope.login && children[index].password == $scope.password) {
           childService.childObj = children[index];
-          childService.hardcodeAvatarList();
-          //childService.setChildAvatarList();
-          //jesli nie ma avatarow to undefined
-          childService.currentAvatar = childService.avatarList[0];
-          childService.setCurrentAvatarId();
-
-          //taski dopiero w widoku taskow
-          
-          // childService.setWornItems();
-          // childService.setCanBePutOnItems();
-          // childService.setCanBePurchasedItems();
-          // childService.setUnavailableItems();
-          childService.hardcodeAvatarItemArrays();
-          childService.hardcodeAvatarWornItemsArray();
           type = 0;
         }
       }
