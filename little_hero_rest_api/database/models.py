@@ -142,8 +142,24 @@ class Task(BaseModel):
         return '<Task id: %r>' % self.id
 
 
-class AvatarItem(BaseModel):
+class Invitation(BaseModel):
+    kind = db.Column(db.String(50))
+    status = db.Column(db.String(50))
+    child_id = db.Column('child_id', db.Integer, db.ForeignKey('child.id'), nullable=False)
+    tutor_id = db.Column('tutor_id', db.Integer, db.ForeignKey('tutor.id'), nullable=False)
+    db.UniqueConstraint(child_id, tutor_id)
 
+    def __init__(self, kind, status, child_id, tutor_id):
+        self.kind = kind
+        self.status = status
+        self.child_id = child_id
+        self.tutor_id = tutor_id
+
+    def __repr__(self):
+        return '<Invitation id: %r>' % self.id
+
+
+class AvatarItem(BaseModel):
     avatar_id = db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id'), nullable=False)
     #avatar = db.relationship('Avatar', back_populates='item_avatars', lazy='dynamic')
     item_id = db.Column('item_id', db.Integer, db.ForeignKey('item.id'), nullable=False)

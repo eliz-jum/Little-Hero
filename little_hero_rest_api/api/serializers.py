@@ -133,3 +133,24 @@ item_for_patch = api.model('Item entity for patch request', {
     'imgSrc': fields.String(description='Path to item image'),
     'iconSrc': fields.String(description='Path to item icon')
 })
+
+child_invitation_for_post = api.clone('Child invitation for post', {
+    'kind': fields.String(required=True, description='Type of invitation'),
+    'tutor_id': fields.Integer(required=True, description='Tutor id')
+})
+
+tutor_invitation_for_post = api.clone('Tutor invitation for post', {
+    'kind': fields.String(required=True, description='Type of invitation'),
+    'child_id': fields.Integer(required=True, description='Child id')
+})
+
+invitation_full = api.clone('Invitation entity', {
+    'kind': fields.String(required=True, description='Type of invitation'),
+    'status': fields.String(required=True, description='Status of invitation'),
+    'child_id': fields.Integer(required=True, description='Child id'),
+    'tutor_id': fields.Integer(required=True, description='Tutor id')
+})
+
+invitation_for_patch = api.clone('Invitation for patch', {
+    'status': fields.String(description='Status of invitation')
+})

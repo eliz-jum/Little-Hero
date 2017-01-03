@@ -3,15 +3,19 @@ import logging
 from flask import request
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
+from little_hero_rest_api.dao.child import ChildDAO
 from little_hero_rest_api.api.serializers import child_for_post
 from little_hero_rest_api.api.serializers import child_full
 from little_hero_rest_api.api.serializers import child_for_patch
-from little_hero_rest_api.dao.child import ChildDAO
+from little_hero_rest_api.dao.invitation import InvitationDAO
+from little_hero_rest_api.api.serializers import invitation_full
+from little_hero_rest_api.api.serializers import child_invitation_for_post
 
 log = logging.getLogger(__name__)
 
 ns = api.namespace('v1/children', description='Operations related to children')
-DAO = ChildDAO()
+child_dao = ChildDAO()
+invitation_dao = InvitationDAO()
 
 
 @ns.route('/')
@@ -20,7 +24,7 @@ class ChildrenCollection(Resource):
     @api.marshal_list_with(child_full)
     def get(self):
         """Returns list of children."""
-        children = DAO.get_all()
+        children = child_dao.get_all()
         return children
 
     @api.response(201, 'Child created.')
@@ -29,7 +33,7 @@ class ChildrenCollection(Resource):
     def post(self):
         """Create child"""
         data = request.json
-        return DAO.create(data), 201
+        return child_dao.create(data), 201
 
 
 @ns.route('/<int:id>')
@@ -40,13 +44,13 @@ class Child(Resource):
     @ns.marshal_with(child_full)
     def get(self, id):
         """Returns child"""
-        child = DAO.get(id)
+        child = child_dao.get(id)
         return child
 
     @ns.response(204, 'Child deleted')
     def delete(self, id):
         """Delete a child given its identifier"""
-        DAO.delete(id)
+        child_dao.delete(id)
         return None, 204
 
     @ns.response(200, 'Child updated')
@@ -55,5 +59,31 @@ class Child(Resource):
     def patch(self, id):
         """Update child given only its parameters that should be updated"""
         data = request.json
-        DAO.update(id, data)
-        return DAO.update(id, data), 200
+        child_dao.update(id, data)
+        return child_dao.update(id, data), 200
+
+
+@ns.route('/<int:id>/invitations')
+@ns.response(404, 'Child not found')
+@ns.param('id', 'The child identifier')
+class ChildInvitationsCollection(Resource):
+    """Show a list of all child invitations and lets you POST to add new invitation."""
+    @api.marshal_list_with(invitation_full)
+    @ns.param('tutor_id', 'For filtering by tutor id', 'query')
+    @ns.param('kind', 'For filtering by type of invitation', 'query')
+    @ns.param('status', 'For filtering by status of invitation', 'query')
+    def get(self, id):
+        """Returns list of invitations."""
+        tutor_id = request.args.get('tutor_id')
+        kind = request.args.get('kind')
+        status = request.args.get('status')
+        invitations = invitation_dao.get_all(id, tutor_id, kind, status)
+        return invitations
+
+    @api.response(201, 'Invitation created.')
+    @api.expect(child_invitation_for_post)
+    @ns.marshal_with(invitation_full)
+    def post(self, id):
+        """Create invitations"""
+        data = request.json
+        return invitation_dao.create(data, id), 201
