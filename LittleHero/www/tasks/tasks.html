@@ -26,23 +26,16 @@
         <h2>Wyzwania</h2>
       </div>
 
-      <ion-list class="task-list" can-swipe="true" swipe-direction="right" scroll="false">
-        <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]">
-          <div class="drag"></div>
-          <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
-            <div class="task-name">
-              <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i>
-              </div>
-              <span>{{ task.content }}</span>
-            </div>
-          </ion-content>
-
-          <ion-option-button side="left" class="button orange"
-                             ng-click="markTaskCompleted(task)">
-            Complete!
-          </ion-option-button>
-        </ion-item>
-        <ion-list>
+      <ion-list class="task-list" scroll="false">
+            <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]">
+                <div class="drag"></div>
+                <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
+                    <div class="task-name">
+                        <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i></div><span>{{ task.content }}</span>
+                    </div>
+                </ion-content>
+            </ion-item>
+      <ion-list>
 
 
     </ion-content>

@@ -23,7 +23,7 @@ angular.module('littleHero').controller('tasksViewController', function($scope, 
     $scope.getTasks = function() {
         $scope.allAvatarTasks.length = 0;
 
-        dataService.getAvatarTutorTasks($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
+        dataService.getTasksByTutorAndAvatar($scope.user["id"],$scope.currentAvatar["id"]).then(function(res) {
             $scope.allAvatarTasks = res.data;
         });
 

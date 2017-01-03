@@ -22,9 +22,8 @@
   </ion-content>
 
   <ion-footer-bar class="button-footer">
-    <div>
-      <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)"
-           ng-class="{selected: item == currentButton}"/>
+    <div >
+      <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
     </div>
   </ion-footer-bar>
 </ion-modal-view>

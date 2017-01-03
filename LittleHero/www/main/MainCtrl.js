@@ -1,51 +1,55 @@
-angular.module('littleHero').controller('MainController', function($scope, $state, $stateParams, $ionicModal, $http, dataService, ionicToast){
-  var canBePutOnEquipment = [];
-  var canBePurchasedEquipment = [];
-  var unavailableEquipment = [];
+angular.module('littleHero').controller('MainController', function ($scope, $state, $stateParams, $ionicModal, $http, dataService, childService, ionicToast) {
 
-    $scope.user = null;
-    $scope.allAvatars = null;
-    $scope.currentAvatar = null;
-    $scope.showAvatar = false;
+  $scope.allAvatars = null;
+  $scope.currentAvatar = null;
+  $scope.showAvatar = false;
 
-    $scope.$on('$ionicView.beforeEnter', function(){
-        $scope.user = $stateParams.user;
-        $scope.checkForAvatar();
+  $scope.$on('$ionicView.beforeEnter', function () {
+    cleanAvatarArrays();
 
-        if ($stateParams.allAvatars != null) {
-            $scope.allAvatars = $stateParams.allAvatars;
-            $scope.currentAvatar = $stateParams.currentAvatar2;
-        }
-        else $scope.getAvatars();
+    // childService.hardcodeAvatarList();
+    // childService.setWornItems();
+    // childService.setCanBePutOnItems();
+    // childService.setCanBePurchasedItems();
+    // childService.setUnavailableItems();
+    childService.hardcodeAvatarItemArrays();
+    childService.hardcodeAvatarWornItemsArray();
 
-      getAssets();
-    });
+    checkForAvatar();
+  });
 
-    $scope.checkForAvatar = function() {
-        if ($scope.currentAvatar != null) {
-            $scope.showAvatar = true;
-            getAssets();
-        }
-        else
-            $scope.showAvatar = false;
-    };
+  var checkForAvatar = function () {
+    // if (typeof childService.currentAvatar.id !== "undefined") {
+      $scope.currentAvatar = childService.currentAvatar;
+      $scope.allAvatars = childService.avatarList;
+      dressAvatar();
+      $scope.showAvatar = true;
+    // }
+  };
 
-    $scope.swipeLeft = function() {
-        console.log("swipe left");
-        $state.go("tasks", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
-    };
+  $scope.swipeLeft = function () {
+    console.log("swipe left");
+    $state.go("tasks");
+  };
 
-    $scope.swipeRight = function() {
-        console.log("swipe right");
-        $state.go("notifications", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar,
-            "user" : $scope.user });
-    };
+  $scope.swipeRight = function () {
+    console.log("swipe right");
+    $state.go("notifications");
+  };
 
-    $scope.settings = function() {
-        $state.go("settings");
-    };
+  $scope.settings = function () {
+    $state.go("settings");
+  };
 
-  $scope.nextType = function() {
+  var cleanAvatarArrays = function () {
+    // childService.avatarList = [];
+    childService.wornItems = [];
+    childService.canBePutOnItems = [];
+    childService.canBePurchasedItems = [];
+    childService.unavailableItems = [];
+  }
+
+  $scope.nextType = function () {
     var currentIndex = $scope.buttons.indexOf($scope.currentButton);
 
     if (currentIndex > -1) {
@@ -58,7 +62,7 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     }
   };
 
-  $scope.previousType = function() {
+  $scope.previousType = function () {
     var currentIndex = $scope.buttons.indexOf($scope.currentButton);
 
     if (currentIndex > -1) {
@@ -126,129 +130,115 @@ angular.module('littleHero').controller('MainController', function($scope, $stat
     }
   ]
 
+  var dressAvatar = function () {
+    var element;
+    childService.wornItems.forEach(function (item) {
+      element = document.getElementsByClassName(item.type)[0];
+      element.setAttribute("src", item.imgSrc);
+    });
+  }
 
-  var filterBy = function(item, array, filteredArray) {
+  //todo po wejsciu na innego avatara z menu wysowanego
+  $scope.setAvatarData = function (avatar) {
+    if (typeof avatar !== "undefined") {
+      childService.currentAvatar = avatar;
+      childService.setCurrentAvatarId();
+      // childService.setWornItems();
+      // childService.setCanBePutOnItems();
+      // childService.setCanBePurchasedItems();
+      // childService.setUnavailableItems();
+      childService.hardcodeAvatarItemArrays();
+      childService.hardcodeAvatarWornItemsArray();
+      dressAvatar();
+    }
+  }
+
+
+  var filterBy = function (item, array, filteredArray) {
     if (item.type == 'all') {
-      array.forEach(function(listItem){
-        if (listItem.imgSrc!='img/empty.svg') {
+      array.forEach(function (listItem) {
+        if (listItem.imgSrc != 'img/empty.svg') {
           filteredArray.push(listItem);
         }
       });
     }
     else if (item.type == 'face') {
-      array.forEach(function(listItem){
-        if (listItem.type=='eyes' || listItem.type=='nose' || listItem.type=='mouth') {
+      array.forEach(function (listItem) {
+        if (listItem.type == 'eyes' || listItem.type == 'nose' || listItem.type == 'mouth') {
           filteredArray.push(listItem);
         }
       });
     }
     else if (item.type == 'hair') {
-      array.forEach(function(listItem){
-        if (listItem.type=='hair_back' || listItem.type=='hair_front') {
+      array.forEach(function (listItem) {
+        if (listItem.type == 'hair_back' || listItem.type == 'hair_front') {
           filteredArray.push(listItem);
         }
       });
     }
     else if (item.type == 'prop') {
-      array.forEach(function(listItem){
-        if (listItem.type=='prop_left' || listItem.type=='prop_right') {
+      array.forEach(function (listItem) {
+        if (listItem.type == 'prop_left' || listItem.type == 'prop_right') {
           filteredArray.push(listItem);
         }
       });
     }
     else {
-      array.forEach(function(listItem){
-        if (listItem.type==item.type) {
+      array.forEach(function (listItem) {
+        if (listItem.type == item.type) {
           filteredArray.push(listItem);
         }
       });
     }
   };
 
-  $scope.putOn = function(item) {
+  $scope.putOn = function (item) {
     var element = document.getElementsByClassName(item.type)[0];
     element.setAttribute("src", item.imgSrc);
+    childService.putItemOn(item);
     $scope.closeModal();
-
   }
 
-  $scope.buy = function(item) {
-    console.log($scope.currentAvatar);
-    console.log("masz pieniedzy:  "+$scope.currentAvatar.money);
-    console.log("rzecz kosztuje:  "+item.price);
+  $scope.buy = function (item) {
     if ($scope.currentAvatar.money >= item.price) {
-      //usunac item z tablicy canBePurchasedItems
-      //wlozyc item do canBePutOnItems
-
-      //zmienic pieniadze w jsonie
       $scope.currentAvatar.money -= item.price;
-      var element = document.getElementsByClassName(item.type)[0];
-      element.setAttribute("src", item.imgSrc);
-      $scope.closeModal();
+      item.price = 0;
+      childService.purchaseItem(item);
+      $scope.putOn(item);
     }
     else {
-      console.log("nie masz piniądza!");
+      $scope.showToast("Masz za mało pieniędzy!");
     }
-
-
   }
-
 
 
   $ionicModal.fromTemplateUrl('main/equipmentModal.html', {
     scope: $scope
-  }).then(function(modal) {
+  }).then(function (modal) {
     $scope.modal = modal;
   });
 
-
-  $scope.openModal = function(item) {
+  $scope.openModal = function (item) {
     $scope.filterDisplay(item);
     $scope.modal.show();
   };
 
-
   $scope.closeModal = function () {
     $scope.modal.hide();
-    getAssets();
   }
 
-
-  $scope.getAvatars = function() {
-      dataService.getChildAvatars($scope.user["id"]).then(function(res) {
-          $scope.allAvatars = res.data;
-      });
-  }
-
-  var getAssets = function() {
-    canBePutOnEquipment = [];
-    canBePurchasedEquipment = [];
-    unavailableEquipment = [];
-
-    dataService.getAvatars().then(function(res) {
-      var avatars = res.data;
-
-      canBePutOnEquipment = avatars[0]["canBePutOnItems"];
-      canBePurchasedEquipment = avatars[0]["canBePurchasedItems"];
-      unavailableEquipment = avatars[0]["unavailableItems"];
-
-    });
-
-  }
-
-  $scope.filterDisplay = function(item) {
-    $scope.filteredCanBePutOnEquipment=[];
-    $scope.filteredCanBePurchasedEquipment=[];
-    $scope.filteredUnavailableEquipment=[];
+  $scope.filterDisplay = function (item) {
+    $scope.filteredCanBePutOnEquipment = [];
+    $scope.filteredCanBePurchasedEquipment = [];
+    $scope.filteredUnavailableEquipment = [];
 
     $scope.currentButton = item;
-    filterBy(item, canBePutOnEquipment, $scope.filteredCanBePutOnEquipment);
-    filterBy(item, canBePurchasedEquipment, $scope.filteredCanBePurchasedEquipment);
-    filterBy(item, unavailableEquipment, $scope.filteredUnavailableEquipment);
-
+    filterBy(item, childService.canBePutOnItems, $scope.filteredCanBePutOnEquipment);
+    filterBy(item, childService.canBePurchasedItems, $scope.filteredCanBePurchasedEquipment);
+    filterBy(item, childService.unavailableItems, $scope.filteredUnavailableEquipment);
   }
 
-  $scope.showToast = function(message){
+  $scope.showToast = function (message) {
     ionicToast.show(message, 'bottom', false, 2500);
-  };
+  }
 });

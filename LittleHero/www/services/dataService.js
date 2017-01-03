@@ -1,124 +1,193 @@
 angular.module('littleHero').service("dataService", function($http) {
-    
-    var BASE_PATH = "http://littlehero-littlehero.rhcloud.com/v1/";
+
+    var BASE_PATH = "http://little-hero.herokuapp.com/api/v1/";
 
 
     return {
-        getAvatars: function() {
-            return $http.get("/mockedData/avatars.json").then(function(res) {              
-                return res;
-            });
-        },
+      //--------------------------------------------AVATARS--------------------------------------------------
+      getAvatars: function() {
+          return $http.get(BASE_PATH + "avatars/").then(function(res) {
+              return res;
+          });
+      },
 
+      getAvatarById: function(id) {
+        return $http.get(BASE_PATH + "avatars/" + id).then(function(res) {
+          return res;
+        });
+      },
+
+      getAvatarsByChild: function(childId) {
+        return $http.get(BASE_PATH + "avatars/?child_id=" + childId).then(function(res) {
+          return res;
+        });
+      },
+
+      getAvatarsByTutor: function(tutorId) {
+        return $http.get(BASE_PATH + "avatars/?tutor_id=" + tutorId).then(function(res) {
+          return res;
+        });
+      },
+
+      postAvatar: function(newAvatar) {
+        return $http.post(BASE_PATH + "avatars/", newAvatar).then(function(res) {
+          return res;
+        });
+      },
+
+
+      getAvatarWornItemsIds: function(avatarId) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=worn").then(function(res) {
+          console.log("res", res);
+          return res;
+        });
+      },
+      //to nam daje obiekty item-links a nie obiekty item
+      // {
+      //   avatar_id
+      //   sate = worn
+      //   item_id
+      //   id
+      // }
+      // id ciuchow sa w srodku
+      //tzreba petlą pojsc po calej tablicy i wywolywac getItem(id=item_id)
+      //zapisując ciuch trzeba mu dodać pole avatarItemLinksId bo to potrzebne do pacha
+      //pach zmienia stan itemu w item-links
+      getAvatarCanBePutOnItemsIds: function(avatarId) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePutOn").then(function(res) {
+          return res;
+        });
+      },
+
+      getAvatarCanBePurchasedItemsIds: function(avatarId) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePurchased").then(function(res) {
+          return res;
+        });
+      },
+
+      getAvatarUnavailableItemsIds: function(avatarId) {
+        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=unavailable").then(function(res) {
+          return res;
+        });
+      },
+
+      // {"state": "newState"}
+      changeEquipmentItemState: function (avatarItemLinksId, newState) {
+        return $http.patch(BASE_PATH + "avatar-item-links/" + avatarItemLinksId, newState)
+      },
+
+      postAvatarItemLink: function (newLink) {
+        return $http.post(BASE_PATH + "avatar-item-links/", newLink)
+      },
+
+      //todo
+
+      patchAvatar: function (avatarId, changes) {
+        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes);
+      },
+
+
+      //---------------------------------------------TASKS----------------------------------------------------
         getTasks: function() {
-            return $http.get("/mockedData/tasks.json").then(function(res) {              
+            return $http.get(BASE_PATH + "tasks/").then(function(res) {
                 return res;
             });
         },
 
+      getTasksByAvatar: function(avatarId) {
+        return $http.get(BASE_PATH + "tasks/?avatar_id=" + avatarId).then(function(res) {
+          return res;
+        });
+      },
+
+      getTasksByTutorAndAvatar: function(tutorId, avatarId) {
+        return $http.get(BASE_PATH + "tasks/?avatar_id=" + avatarId + "&tutor_id=" + tutorId).then(function(res) {
+          return res;
+        });
+      },
+
+      postTask: function(newTask) {
+        return $http.post(BASE_PATH + "tasks/", newTask).then(function(res) {
+          return res;
+        });
+      },
+
+      deleteTask: function(taskId) {
+        return $http.delete(BASE_PATH + "tasks/" + taskId).then(function(res) {
+          return res;
+        });
+      },
+    //TODO wyrabac z task pole bool completed - nie trzymamy zrobionych zadan!
+
+
+
+      //----------------------------------------------CHILDREN--------------------------------------------
         getChildren: function() {
-            return $http.get(BASE_PATH + "childs").then(function(res) {              
-                return res;
+            return $http.get(BASE_PATH + "children/").then(function(res) {
+                return res.data;
             });
         },
 
-        getChild: function(childId) {
-            return $http.get(BASE_PATH + "childs/" + childId).then(function(res) {              
+        getChildById: function(childId) {
+            return $http.get(BASE_PATH + "children/" + childId).then(function(res) {
                 return res;
             });
         },
 
         postChild: function(newChild) {
-            return $http.post(BASE_PATH + "childs", newChild).then(function(res) {              
+            return $http.post(BASE_PATH + "children/", newChild).then(function(res) {
                 return res;
             });
         },
 
+
+
+
+
+      //-----------------TUTOR---------------------------
         getTutors: function() {
-            return $http.get(BASE_PATH + "tutors").then(function(res) {              
+            return $http.get(BASE_PATH + "tutors/").then(function(res) {
                 return res;
             });
         },
 
-        getTutor: function(tutorId) {
-            return $http.get(BASE_PATH + "tutors/" + tutorId).then(function(res) {              
+        getTutorById: function(tutorId) {
+            return $http.get(BASE_PATH + "tutors/" + tutorId).then(function(res) {
                 return res;
             });
         },
 
         postTutor: function(newTutor) {
-            return $http.post(BASE_PATH + "tutors", newTutor).then(function(res) {              
+            return $http.post(BASE_PATH + "tutors/", newTutor).then(function(res) {
                 return res;
             });
         },
 
-        getChildAvatars: function(childId) {
-            return $http.get(BASE_PATH + "childs/" + childId + "/avatars").then(function(res) {              
-                return res;
-            });
-        },   
-    
-        getAvatarTasks: function(childId, avatarId) {
-            return $http.get(BASE_PATH + "childs/" + childId + "/avatars/" + avatarId + "/tasks").then(function(res) {              
-                return res;
-            });
+      //-----------------T----ITEM---------------------------
+      getItems: function () {
+        return $http.get(BASE_PATH + "items/").then(function(res) {
+          return res;
+        });
+
+      },
+
+
+        getItem: function (itemId) {
+          return $http.get(BASE_PATH + "items/" + itemId).then(function(res) {
+            return res;
+          });
+
         },
+      patchItem: function (itemId, changes) {
+        return $http.patch(BASE_PATH + "items/" + itemId, changes);
+      }
 
-        getAvatarTutorTasks: function(tutorId) {
-            return $http.get(BASE_PATH + "tutors/" + tutorId + "/tasks").then(function(res) {              
-                return res;
-            });
-        },
 
-        getTutorAvatars: function(tutorId) {
-            return $http.get(BASE_PATH + "tutors/" + tutorId + "/avatars").then(function(res) {              
-                return res;
-            });
-        }, 
-        
-        postTask: function(tutorId, newTask) {
-            return $http.post(BASE_PATH + "tutors/" + tutorId + "/tasks", newTask).then(function(res) {              
-                return res;
-            });
-        },
+      //TODO: zamienic nazwy stringow na zmienną np "avatar-item-links" itd
 
-        deleteTask: function(tutorId, taskId) {
-            return $http.delete(BASE_PATH + "tutors/" + tutorId + "/tasks/" + taskId).then(function(res) {              
-                return res;
-            });
-        },
 
-        patchTaskCompleted: function(taskId, valueArray) {
-            return $http.patch(BASE_PATH + "tutors/11/tasks/" + taskId, valueArray).then(function(res) {              
-                return res;
-            });
-        },
 
-        patchTaskFullyCompleted: function(avatarId, valueArray) {
-        return $http.patch(BASE_PATH + "childs/13/avatars/" + avatarId, valueArray).then(function(res) {              
-                return res;
-            });
-        }
 
-        /***
-        getItems: function() {
-            return $http.get(BASE_PATH + "/v1/items").then(function(res) {              
-                return res;
-            });
-        },
 
-        postItem: function(newItem) {
-            return $http.get(BASE_PATH + "/v1/items", newItem).then(function(res) {              
-                return res;
-            });
-        },
-
-        deleteItem function(deletedItem) {
-            return $http.delete(BASE_PATH + "/v1/items", deletedItem).then(function(res) {              
-                return res;
-            });
-        }
-
-        ***/
     }
 });
