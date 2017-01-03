@@ -25,6 +25,7 @@ class AvatarDAO(GenericDAO):
 
     def create(self, data):
         name = data.get('name')
+        clazz = data.get('clazz')
         child_id = data.get('child_id')
         child = self.child_dao.get(child_id)
         tutor_id = data.get('tutor_id')
@@ -36,7 +37,7 @@ class AvatarDAO(GenericDAO):
         health = data.get('health')
         experience = data.get('experience')
 
-        avatar = Avatar(name, child, tutor, level, money, health, experience)
+        avatar = Avatar(name, clazz, child, tutor, level, money, health, experience)
 
         db.session.add(avatar)
         db.session.commit()
@@ -44,6 +45,12 @@ class AvatarDAO(GenericDAO):
 
     def update(self, id, data):
         name = data.get('name')
+
+        clazz = data.get('clazz')
+        update_task = data.get('update_task')
+        update_invitation = data.get('update_invitation')
+        update_notification = data.get('update_notification')
+
         child_id = data.get('child_id')
         tutor_id = data.get('tutor_id')
         level = data.get('level')
@@ -53,8 +60,18 @@ class AvatarDAO(GenericDAO):
 
         avatar = Avatar.query.filter_by(id=id).one()
 
+        if clazz:
+            avatar.clazz = clazz
+        if update_task:
+            avatar.update_task = update_task
+        if update_invitation:
+            avatar.update_invitation = update_invitation
+        if update_notification:
+            avatar.update_notification = update_notification
+
         if name:
             avatar.name = name
+
         if child_id:
             child = self.child_dao.get(child_id)
             avatar.child = child

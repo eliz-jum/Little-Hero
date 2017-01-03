@@ -22,6 +22,7 @@ child_for_patch = api.model('Child entity for patch request', {
 
 avatar_for_post = api.model('Avatar for post', {
     'name': fields.String(required=True, description='Avatar name'),
+    'clazz': fields.String(required=True, description='Avatar class'),
     'child_id': fields.Integer(required=True, description='Id of avatars owner (child)'),
     'tutor_id': fields.Integer(required=True, description='Id of tutors related to avatar'),
     'level': fields.Integer(required=True, description='Avatar level'),
@@ -32,11 +33,18 @@ avatar_for_post = api.model('Avatar for post', {
 
 avatar_full = api.clone('Avatar entity', avatar_for_post, {
     'id': fields.Integer(readOnly=True, description='Id of avatar'),
+    'update_task': fields.Boolean(required=True, description='Flag indicating if update of task is required'),
+    'update_invitation': fields.Boolean(required=True, description='Flag indicating if invitations changed'),
+    'update_notification': fields.Boolean(required=True, description='Flag indicating if notification is required'),
 })
 
 avatar_for_patch = api.model('Avatar entity for patch request', {
     #'id': fields.Integer(readOnly=True, description='Id of avatar'),
     'name': fields.String(description='Avatar name'),
+    'clazz': fields.String(description='Avatar class'),
+    'update_task': fields.Boolean(description='Flag indicating if update of task is required'),
+    'update_invitation': fields.Boolean(description='Flag indicating if invitations changed'),
+    'update_notification': fields.Boolean(description='Flag indicating if notification is required'),
     'child_id': fields.Integer(description='Id of avatars owner (child)'),
     'tutor_id': fields.Integer(description='Id of tutors related to avatar'),
     'level': fields.Integer(description='Avatar level'),

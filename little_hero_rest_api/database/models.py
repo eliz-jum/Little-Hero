@@ -33,7 +33,12 @@ class Child(BaseModel):
 
 class Avatar(BaseModel):
     name = db.Column(db.String(50), unique=True)
-    #class = default
+
+    clazz = db.Column(db.String(50))
+    update_task = db.Column(db.Boolean)
+    update_invitation = db.Column(db.Boolean)
+    update_notification = db.Column(db.Boolean)
+
     level = db.Column(db.Integer)
     money = db.Column(db.Integer)
     health = db.Column(db.Integer)
@@ -48,8 +53,12 @@ class Avatar(BaseModel):
 
     #avatar_items = db.relationship('AvatarItem', lazy='dynamic')
 
-    def __init__(self, name, child, tutor, level, money, health, experience):
+    def __init__(self, name, clazz, child, tutor, level, money, health, experience):
         self.name = name
+        self.clazz = clazz
+        self.update_notification = False
+        self.update_task = False
+        self.update_invitation = False
         self.child = child
         self.tutor = tutor
         self.level = level
