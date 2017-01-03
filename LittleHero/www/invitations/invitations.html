@@ -20,7 +20,7 @@
   <ion-list>
     <ion-item class="background" ng-repeat="invite in invites | filter:filters">
       {{invite.id}}
-      <button class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite.id)
+      <button class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite.id)"
               ng-if="invite.kind == 'RECEIVED' && invite.status == 'PENDING'">👍</button>
     </ion-item>
   </ion-list>
