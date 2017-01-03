@@ -45,7 +45,7 @@ def initialize_app(flask_app):
 
     db.init_app(flask_app)
     with flask_app.app_context(): #see why http://flask-sqlalchemy.pocoo.org/2.1/api/
-        db.drop_all()
+        #db.drop_all()
         db.create_all()
 
 
