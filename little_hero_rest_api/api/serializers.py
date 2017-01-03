@@ -145,6 +145,7 @@ tutor_invitation_for_post = api.clone('Tutor invitation for post', {
 })
 
 invitation_full = api.clone('Invitation entity', {
+    'id': fields.Integer(readOnly=True, description='Id of item'),
     'kind': fields.String(required=True, description='Type of invitation'),
     'status': fields.String(required=True, description='Status of invitation'),
     'child_id': fields.Integer(required=True, description='Child id'),
