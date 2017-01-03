@@ -1,9 +1,26 @@
 angular.module('littleHero').controller('InvitationsController', function($scope, $state, $stateParams, $ionicModal){
+  $scope.filters = { };
+
   $scope.invites = [
-    "invite 1",
-    "invite 2",
-    "invite 3",
-    "invite 4",
-    "invite 5"
+    {
+      id: "1",
+      type: "SENT",
+      status: "ACCEPTED"
+    },
+    {
+      id: "2",
+      type: "RECEIVED",
+      status: "PENDING"
+    },
+    {
+      id: "3",
+      type: "SENT",
+      status: "REJECTED"
+    },
+    {
+      id: "4",
+      type: "SENT",
+      status: "PENDING"
+    }
   ];
 });
