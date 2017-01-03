@@ -4,22 +4,22 @@ angular.module('littleHero').controller('InvitationsController', function($scope
   $scope.invites = [
     {
       id: "1",
-      type: "SENT",
+      kind: "SENT",
       status: "ACCEPTED"
     },
     {
       id: "2",
-      type: "RECEIVED",
+      kind: "RECEIVED",
       status: "PENDING"
     },
     {
       id: "3",
-      type: "SENT",
+      kind: "SENT",
       status: "REJECTED"
     },
     {
       id: "4",
-      type: "SENT",
+      kind: "SENT",
       status: "PENDING"
     }
   ];
