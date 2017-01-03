@@ -6,7 +6,9 @@ from flask_restplus import Resource
 from little_hero_rest_api.api.serializers import tutor_for_post
 from little_hero_rest_api.api.serializers import tutor_full
 from little_hero_rest_api.api.serializers import tutor_for_patch
+from little_hero_rest_api.api.serializers import child_full
 from little_hero_rest_api.dao.tutor import TutorDAO
+
 
 log = logging.getLogger(__name__)
 
@@ -36,7 +38,7 @@ class TutorsCollection(Resource):
 @ns.route('/<int:id>')
 @ns.response(404, 'Tutor not found')
 @ns.param('id', 'The tutor identifier')
-class Item(Resource):
+class Tutor(Resource):
     """Show a single tutor entity and lets you delete and update it"""
     @ns.marshal_with(tutor_full)
     def get(self, id):
@@ -58,3 +60,12 @@ class Item(Resource):
         data = request.json
         return DAO.update(id, data), 201
 
+
+@ns.route('/<int:id>/children')
+@ns.response(404, 'Tutor not found')
+@ns.param('id', 'The tutor identifier')
+class TutorChildren(Resource):
+    """Returns list of tutor children"""
+    @ns.marshal_list_with(child_full)
+    def get(self, id):
+        return DAO.get_all_children(id)

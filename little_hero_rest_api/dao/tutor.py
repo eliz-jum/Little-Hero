@@ -1,5 +1,7 @@
 from little_hero_rest_api.database import db
 from little_hero_rest_api.database.models import Tutor
+from little_hero_rest_api.database.models import Avatar
+from little_hero_rest_api.database.models import Child
 from little_hero_rest_api.dao.generic import GenericDAO
 
 
@@ -29,3 +31,12 @@ class TutorDAO(GenericDAO):
 
         return tutor
 
+    def get_all_children(self, id):
+        result = db.session.query(Child, Tutor, Avatar).\
+            filter(Tutor.id == Avatar.tutor_id).\
+            filter(Child.id == Avatar.child_id).all()
+
+        children_set = set()
+        for (child, tutor, avatar) in result:
+            children_set.add(child)
+        return list(children_set)
