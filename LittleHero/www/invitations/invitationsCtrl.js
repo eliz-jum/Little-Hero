@@ -23,4 +23,8 @@ angular.module('littleHero').controller('InvitationsController', function($scope
       status: "PENDING"
     }
   ];
+
+  $scope.settings = function () {
+    $state.go("settings");
+  }
 });

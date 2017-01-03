@@ -19,7 +19,7 @@ angular.module('littleHero').controller('SettingsController', function($scope, $
     },
     {
       title: "Zaproszenia",
-      state: "invites"
+      state: "invitations"
     },
     {
       title: "Wyloguj",
