@@ -10,6 +10,7 @@ from little_hero_rest_api.api.serializers import child_for_patch
 from little_hero_rest_api.dao.invitation import InvitationDAO
 from little_hero_rest_api.api.serializers import invitation_full
 from little_hero_rest_api.api.serializers import child_invitation_for_post
+from little_hero_rest_api.api.serializers import invitation_for_patch
 
 log = logging.getLogger(__name__)
 
@@ -59,8 +60,8 @@ class Child(Resource):
     def patch(self, id):
         """Update child given only its parameters that should be updated"""
         data = request.json
-        child_dao.update(id, data)
-        return child_dao.update(id, data), 200
+        updated_child = child_dao.update(id, data)
+        return updated_child, 200
 
 
 @ns.route('/<int:id>/invitations')
@@ -87,3 +88,32 @@ class ChildInvitationsCollection(Resource):
         """Create invitations"""
         data = request.json
         return invitation_dao.create(data, id), 201
+
+
+@ns.route('/<int:child_id>/invitations/<int:invitation_id>')
+@ns.response(404, 'Child not found')
+@ns.param('child_id', 'The child identifier')
+@ns.param('invitation_id', 'The invitation identifier')
+class ChildInvitation(Resource):
+    """Show a single invitation entity and lets you delete and update it"""
+    @api.marshal_with(invitation_full)
+    def get(self, child_id, invitation_id):
+        """Return invitation"""
+        #child_id = request.args.get('child_id')
+        #invitation_id = request.args.get('invitation_id')
+        return invitation_dao.get(invitation_id)
+
+    @ns.response(204, 'Invitation deleted')
+    def delete(self, child_id, invitation_id):
+        """Delete an invitation given its identifier"""
+        invitation_dao.delete(invitation_id)
+        return None, 204
+
+    @ns.response(200, 'Invitation updated')
+    @api.expect(invitation_for_patch)
+    @ns.marshal_with(invitation_full)
+    def patch(self, child_id, invitation_id):
+        """Update status of invitation"""
+        data = request.json
+        updated_invitation = invitation_dao.update(invitation_id, data)
+        return updated_invitation, 200
