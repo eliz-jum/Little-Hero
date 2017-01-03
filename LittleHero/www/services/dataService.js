@@ -180,14 +180,28 @@ angular.module('littleHero').service("dataService", function($http) {
         },
       patchItem: function (itemId, changes) {
         return $http.patch(BASE_PATH + "items/" + itemId, changes);
-      }
+      },
 
 
       //TODO: zamienic nazwy stringow na zmienną np "avatar-item-links" itd
 
+        //-----------------------INVITES---------------------------------
+        getInvitesByUser: function(userType, userId) {
+            return $http.get(BASE_PATH + userType + "/" + userId + "/invitations").then(function(res) {
+                return res.data;
+            });
+        },
 
+        getInviteByUserAndId: function(userType, userId, inviteId) {
+            return $http.get(BASE_PATH + userType + "/" + userId + "/invitations/" + inviteId).then(function(res) {
+                return res;
+            });
+        },
 
-
-
+        postInvites: function(userType, userId, newInvite) {
+            return $http.post(BASE_PATH + userId + "/invitations", newInvite).then(function(res) {
+                return res.data;
+            });
+        }
     }
 });

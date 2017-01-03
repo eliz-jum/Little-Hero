@@ -9,7 +9,7 @@
 
     <div class="col col-10"><i class="icon icon ion-flash"></i></div>
     <div class="col col-10"><span>{{ currentAvatar.level }}</span></div>
-    <div class="col col-10"><i class="icon icon ion-social-bitcoin"></i></div>
+    <div class="col col-10"><i class="icon icon ion-cash"></i></div>
     <div class="col col-10"><span>{{ currentAvatar.money }}</span></div>
     <div class="col col-10">
       <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
@@ -19,9 +19,9 @@
 <ion-content class="background has-header">
   <ion-list>
     <ion-item class="background" ng-repeat="invite in invites | filter:filters">
-      {{invite.id}}
-      <button class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite.id)"
-              ng-if="invite.kind == 'RECEIVED' && invite.status == 'PENDING'">👍</button>
+      {{invite.tutor_id}}, {{invite.kind}}, {{invite.status}}
+      <button class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite)"
+              ng-if="invite.kind.toLowerCase() == 'received' && invite.status.toLowerCase() == 'pending'">👍</button>
     </ion-item>
   </ion-list>
 </ion-content>
