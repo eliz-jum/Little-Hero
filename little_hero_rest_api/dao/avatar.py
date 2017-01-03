@@ -20,7 +20,7 @@ class AvatarDAO(GenericDAO):
             avatars = Avatar.query.filter_by(child_id=child_id).all()
             return avatars
         if tutor_id:
-            return Avatar.query.filter_by(child_id=tutor_id).all()
+            return Avatar.query.filter_by(tutor_id=tutor_id).all()
         return super().get_all()
 
     def create(self, data):
