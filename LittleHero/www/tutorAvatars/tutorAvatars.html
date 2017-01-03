@@ -1,9 +1,9 @@
 <ion-view ng-app="littleHero">
-    <ion-pane class="background">
+  <ion-pane class="background">
     <div class="bar bar-header orange">
 
       <div class="row row-center orange">
-        <span class="col col-50 orange">{{ tutor.name }}</span>
+        <span class="col col-50 orange">{{ user.name }}</span>
         <div class="col col-40"></div>
         <div class="col col-10">
           <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
@@ -20,16 +20,16 @@
 
 
       <ion-list class="task-list" can-swipe="true" swipe-direction="right" scroll="false" show-delete="data.showDelete">
-            <ion-item ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
-                <ion-content scroll="false">
+        <ion-item ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
+          <ion-content scroll="false">
 
-                    <div class="tutor-avatar-list">
-                        <span> {{ child.login }}</span>
-                    </div>
+            <div class="tutor-avatar-list">
+              <span> {{ child.login }}</span>
+            </div>
 
-                </ion-content>
-            </ion-item>
-      <ion-list>
+          </ion-content>
+        </ion-item>
+        <ion-list>
 
 
     </ion-content>

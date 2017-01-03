@@ -6,6 +6,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.childObj = {};
 
+  childService.tutorChildren = []; //todo!!!
+
   childService.avatarList = [];
 
   childService.currentAvatar = {};
@@ -373,6 +375,13 @@ angular.module('littleHero').factory('childService',function($state, dataService
 //   }
 
 
+  childService.setTutorChildren = function () {
+    dataService.getChildrenByTutorId(childService.tutorObj.id).then(function (res) {
+      childService.tutorChildren = res.data;
+    });
+
+  }
+
   childService.setCurrentAvatarId = function () {
     childService.currentAvatarId = childService.currentAvatar.id;
   }
@@ -385,10 +394,10 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
   }
 
-  childService.setTutorAvatarList = function () {
-      dataService.getAvatarsByTutor(childService.tutorObj.id).then(function (res) {
-          childService.avatarList = res.data;
-      });
+  childService.setTutorAvatarListByChildId = function () {
+    dataService.getAvatarsByChildAndTutor(childService.childObj.id, childService.tutorObj.id).then(function (res) {
+      childService.avatarList = res.data;
+    });
   }
 
   childService.setTasks = function () {
