@@ -18,9 +18,18 @@
 </div>
 <ion-content class="background has-header">
   <ion-list>
-    <ion-item class="background" ng-repeat="invite in invites">
-      {{invite}}
+    <ion-item class="background" ng-repeat="invite in invites | filter:filters">
+      {{invite.id}}
     </ion-item>
   </ion-list>
-
 </ion-content>
+<ion-footer-bar>
+  <ion-tabs class="orange">
+    <ion-tab title="Wszystkie" ng-click="filters.type = ''">
+    </ion-tab>
+    <ion-tab title="Wysłane" ng-click="filters.type = 'sent'">
+    </ion-tab>
+    <ion-tab title="Otrzymane" ng-click="filters.type = 'received'">
+    </ion-tab>
+  </ion-tabs>
+</ion-footer-bar>
