@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService, childService, ionicToast) {
+angular.module('littleHero').controller('TasksController', function($scope, $state, $window, dataService, childService, ionicToast) {
 
 
     $scope.tasks = [];

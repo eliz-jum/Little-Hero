@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('MainController', function ($scope, $state, $stateParams, $ionicModal, $http, dataService, childService, ionicToast) {
+angular.module('littleHero').controller('MainController', function ($scope, $state, $ionicModal, $http, dataService, childService, ionicToast) {
 
   $scope.allAvatars = null;
   $scope.currentAvatar = null;
@@ -20,10 +20,6 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
       dressAvatar();
       $scope.showAvatar = true;
     // }
-
-
-
-
   });
 
 

@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('LoginController', function($scope, $state, $http, $stateParams, dataService, childService){
+angular.module('littleHero').controller('LoginController', function($scope, $state, $http, dataService, childService){
 
     /***
         DONE:
@@ -48,6 +48,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.getTutors = function() {
       dataService.getTutors().then(function(res) {
           tutors = res.data;
+        console.log("getTutors",tutors);
 
         for (index in tutors) {
           if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {

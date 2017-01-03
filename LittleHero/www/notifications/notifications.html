@@ -1,32 +1,36 @@
-<div class="bar bar-header orange">
+<ion-view>
+  <ion-pane class="background">
+    <div class="bar bar-header orange">
+      <div class="row row-center orange">
+        <div class="col col-50 item item-select">
+          <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+            <option value="">{{ currentAvatar.name }} </option>
+          </select>
+        </div>
 
-  <div class="row row-center orange">
-    <div class="col col-50 item item-select">
-      <select ng-model="currentAvatar" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
-                <option value="">{{ user.nickname }}</option>
-            </select>
+        <div class="col col-10"><i class="icon icon ion-flash"></i></div>
+        <div class="col col-10"><span>{{ currentAvatar.level }}</span></div>
+        <div class="col col-10"><i class="icon icon ion-social-bitcoin"></i></div>
+        <div class="col col-10"><span>{{ currentAvatar.money }}</span></div>
+        <div class="col col-10">
+          <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
+        </div>
+      </div>
     </div>
 
-      <div class="col col-10"><i class="icon icon ion-flash"></i></div>
-      <div class="col col-10"><span>{{ currentAvatar.level }}</span></div>
-      <div class="col col-10"><i class="icon icon ion-social-bitcoin"></i></div>
-      <div class="col col-10"><span>{{ currentAvatar.money }}</span></div>
-      <div class="col col-10">
-          <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
-     </div>
-  </div>
-</div>
+    <ion-content on-swipe-left="swipeLeft()" class="background has-header">
 
-<ion-content on-swipe-left="swipeLeft()" class="background has-header">
+      <div class="title">
+        <h2>Powiadomienia</h2>
+      </div>
 
-  <div class="title">
-    <h2>Powiadomienia</h2>
-  </div>
+      <ion-list>
+        <ion-item class="background" ng-repeat="notification in notifications track by $index" >
+          {{notification}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
 
-  <ion-list>
-    <ion-item class="background" ng-repeat="notification in notifications" >
-      {{notification}}
-    </ion-item>
-  </ion-list>
-</ion-content>
+  </ion-pane>
+</ion-view>
 
