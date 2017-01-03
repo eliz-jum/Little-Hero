@@ -39,7 +39,6 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
           if (children[index].login == $scope.login && children[index].password == $scope.password) {
             childService.childObj = children[index];
             childService.setChildAvatarList();
-            childService.setCurrentAvatarId();
             type = 0;
           }
         }
