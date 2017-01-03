@@ -14,13 +14,15 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
     $scope.validate = function() {
         if ($scope.login && $scope.password) {
-            $scope.checkIfAccountExists();
-            if (type == 0)   {
+          $scope.checkIfAccountExists();
+          setTimeout(function () {
+            if (type == 0) {
               $state.go("main");
             }
             else if (type == 1)
               $state.go("mainTutor");
             else $scope.invalid = true;
+          }, 500);
         }
         else $scope.invalid = true;
     };
@@ -32,49 +34,40 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.getChildren = function() {
       dataService.getChildren().then(function(res) {
         children = res;
-        console.log("getchildren  ", children);
+
+        for (index in children) {
+          if (children[index].login == $scope.login && children[index].password == $scope.password) {
+            childService.childObj = children[index];
+            childService.setChildAvatarList();
+            childService.setCurrentAvatarId();
+            type = 0;
+          }
+        }
       });
     };
 
     $scope.getTutors = function() {
       dataService.getTutors().then(function(res) {
           tutors = res.data;
+
+        for (index in tutors) {
+          if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
+            childService.tutorObj = tutors[index];
+            childService.setTutorAvatarList();
+            childService.setCurrentAvatarId();
+            childService.setTasks();
+            type = 1;
+          }
+        }
       });
     };
 
     $scope.checkIfAccountExists = function() {
-
       $scope.getChildren();
-      // console.log("chiii  " + children);
-      //
-      // console.log("servis get children  " + dataService.getChildren());
-      // console.log("avatars  " + dataService.getAvatars());
+      $scope.getTutors();
 
       //---------zahardkodowana wersja
       //childService.hardcodeChildObj();
       //children.push(childService.childObj);
-
-
-      for (index in children) {
-        if (children[index].login == $scope.login && children[index].password == $scope.password) {
-          childService.childObj = children[index];
-          type = 0;
-        }
-      }
-      $scope.getTutors();
-      for (index in tutors) {
-        if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
-          childService.tutorObj = tutors[index];
-          childService.setTutorAvatarList();
-          childService.currentAvatar = childService.avatarList[0];
-          childService.setCurrentAvatarId();
-          childService.setTasks();
-          type = 1;
-        }
-      }
     }
-
-    // $scope.getChildren();
-    // $scope.getTutors();
-
 });

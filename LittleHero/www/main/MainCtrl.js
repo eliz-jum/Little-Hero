@@ -7,9 +7,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.$on('$ionicView.beforeEnter', function () {
     cleanAvatarArrays();
 
-    //childService.hardcodeAvatarList();
-    childService.setChildAvatarList();
-    childService.setCurrentAvatarId();
+    // childService.hardcodeAvatarList();
     // childService.setWornItems();
     // childService.setCanBePutOnItems();
     // childService.setCanBePurchasedItems();
@@ -17,18 +15,16 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     childService.hardcodeAvatarItemArrays();
     childService.hardcodeAvatarWornItemsArray();
 
-
-    $scope.checkForAvatar();
-
+    checkForAvatar();
   });
 
-  $scope.checkForAvatar = function () {
-    if (childService.currentAvatar != undefined) {
+  var checkForAvatar = function () {
+    // if (typeof childService.currentAvatar.id !== "undefined") {
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
       dressAvatar();
       $scope.showAvatar = true;
-    }
+    // }
   };
 
   $scope.swipeLeft = function () {
@@ -46,7 +42,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   };
 
   var cleanAvatarArrays = function () {
-    childService.avatarList = [];
+    // childService.avatarList = [];
     childService.wornItems = [];
     childService.canBePutOnItems = [];
     childService.canBePurchasedItems = [];
@@ -134,7 +130,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     }
   ]
 
-  dressAvatar = function () {
+  var dressAvatar = function () {
     var element;
     childService.wornItems.forEach(function (item) {
       element = document.getElementsByClassName(item.type)[0];
@@ -144,18 +140,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
 
   //todo po wejsciu na innego avatara z menu wysowanego
   $scope.setAvatarData = function (avatar) {
-    console.log("hejo");
-
-    childService.currentAvatar = avatar;
-    childService.setCurrentAvatarId();
-    // childService.setWornItems();
-    // childService.setCanBePutOnItems();
-    // childService.setCanBePurchasedItems();
-    // childService.setUnavailableItems();
-    childService.hardcodeAvatarItemArrays();
-    childService.hardcodeAvatarWornItemsArray();
-
-
+    if (typeof avatar !== "undefined") {
+      childService.currentAvatar = avatar;
+      childService.setCurrentAvatarId();
+      // childService.setWornItems();
+      // childService.setCanBePutOnItems();
+      // childService.setCanBePurchasedItems();
+      // childService.setUnavailableItems();
+      childService.hardcodeAvatarItemArrays();
+      childService.hardcodeAvatarWornItemsArray();
+      dressAvatar();
+    }
   }
 
 
