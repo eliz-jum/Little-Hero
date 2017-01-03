@@ -142,7 +142,7 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
     });
 
     $scope.getAvatars = function() {
-        dataService.getTutorAvatars($scope.user["id"]).then(function(res) {
+        dataService.getAvatarsByTutor($scope.user["id"]).then(function(res) {
           $scope.allAvatars = res.data;
       });
 

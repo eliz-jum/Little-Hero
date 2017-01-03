@@ -1,0 +1,673 @@
+
+//ostatni obiekt id: 69
+
+
+[
+  {
+    "id": 1,
+    "type": "eyes",
+    "class": "wornByDefault",
+    "iconSrc": "img/eyes1_icon.svg",
+    "imgSrc": "img/eyes1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 2,
+    "type": "eyes",
+    "class": "allClasses",
+    "iconSrc": "img/eyes2_icon.svg",
+    "imgSrc": "img/eyes2.svg",
+    "lvl": 1,
+    "price": 3
+  },
+  {
+    "id": 3,
+    "type": "eyes",
+    "class": "allClasses",
+    "iconSrc": "img/eyes3_icon.svg",
+    "imgSrc": "img/eyes3.svg",
+    "lvl": 2,
+    "price": 5
+  },
+
+
+  {
+    "id": 4,
+    "type": "nose",
+    "class": "wornByDefault",
+    "iconSrc": "img/nose1_icon.svg",
+    "imgSrc": "img/nose1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 5,
+    "type": "nose",
+    "class": "allClasses",
+    "iconSrc": "img/nose2_icon.svg",
+    "imgSrc": "img/nose2.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 6,
+    "type": "nose",
+    "class": "allClasses",
+    "iconSrc": "img/nose3_icon.svg",
+    "imgSrc": "img/nose3.svg",
+    "lvl": 1,
+    "price": 8
+  },
+
+
+
+  {
+    "id": 7,
+    "type": "mouth",
+    "class": "wornByDefault",
+    "iconSrc": "img/mouth1_icon.svg",
+    "imgSrc": "img/mouth1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 8,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth2_icon.svg",
+    "imgSrc": "img/mouth2.svg",
+    "lvl": 1,
+    "price": 3
+  },
+  {
+    "id": 9,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth3_icon.svg",
+    "imgSrc": "img/mouth3.svg",
+    "lvl": 1,
+    "price": 5
+  },
+
+
+
+  {
+    "id": 10,
+    "type": "hair_front",
+    "class": "wornByDefault",
+    "iconSrc": "img/hair_front1_icon.svg",
+    "imgSrc": "img/hair_front1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 11,
+    "type": "hair_front",
+    "class": "allClasses",
+    "iconSrc": "img/hair_front2_icon.svg",
+    "imgSrc": "img/hair_front2.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 12,
+    "type": "hair_front",
+    "class": "allClasses",
+    "iconSrc": "img/hair_front3_icon.svg",
+    "imgSrc": "img/hair_front3.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 13,
+    "type": "hair_front",
+    "class": "allClasses",
+    "iconSrc": "img/hair_front4_icon.svg",
+    "imgSrc": "img/hair_front4.svg",
+    "lvl": 2,
+    "price": 5
+  },
+  {
+    "id": 14,
+    "type": "hair_front",
+    "class": "allClasses",
+    "iconSrc": "img/hair_front5_icon.svg",
+    "imgSrc": "img/hair_front5.svg",
+    "lvl": 2,
+    "price": 7
+  },
+  {
+    "id": 15,
+    "type": "hair_front",
+    "iconSrc": "img/hair_front6_icon.svg",
+    "imgSrc": "img/hair_front6.svg",
+    "lvl": 3,
+    "price": 10
+  },
+  {
+    "id": 16,
+    "type": "hair_front",
+    "class": "allClasses",
+    "iconSrc": "img/hair_front7_icon.svg",
+    "imgSrc": "img/hair_front7.svg",
+    "lvl": 3,
+    "price": 13
+  },
+
+
+
+
+
+  {
+    "id": 18,
+    "type": "hair_back",
+    "class": "wornByDefault",
+    "iconSrc": "img/hair_back1_icon.svg",
+    "imgSrc": "img/hair_back1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 19,
+    "type": "hair_back",
+    "class": "allClasses",
+    "iconSrc": "img/hair_back2_icon.svg",
+    "imgSrc": "img/hair_back2.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 20,
+    "type": "hair_back",
+    "class": "allClasses",
+    "iconSrc": "img/hair_back3_icon.svg",
+    "imgSrc": "img/hair_back3.svg",
+    "lvl": 1,
+    "price": 8
+  },
+  {
+    "id": 21,
+    "type": "hair_back",
+    "class": "allClasses",
+    "iconSrc": "img/hair_back4_icon.svg",
+    "imgSrc": "img/hair_back4.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 22,
+    "type": "hair_back",
+    "class": "allClasses",
+    "iconSrc": "img/hair_back5_icon.svg",
+    "imgSrc": "img/hair_back5.svg",
+    "lvl": 2,
+    "price": 13
+  },
+  {
+    "id": 23,
+    "type": "hair_back",
+    "class": "allClasses",
+    "iconSrc": "img/hair_back6_icon.svg",
+    "imgSrc": "img/hair_back6.svg",
+    "lvl": 2,
+    "price": 15
+  },
+  {
+    "id": 24,
+    "type": "hair_back",
+    "class": "allClasses",
+    "iconSrc": "img/hair_back7_icon.svg",
+    "imgSrc": "img/hair_back7.svg",
+    "lvl": 3,
+    "price": 17
+  },
+  {
+    "id": 25,
+    "type": "hair_back",
+    "class": "allClasses",
+    "iconSrc": "img/hair_back8_icon.svg",
+    "imgSrc": "img/hair_back8.svg",
+    "lvl": 3,
+    "price": 20
+  },
+
+
+  {
+    "id": 26,
+    "type": "animal",
+    "class": "wornByDefault",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 27,
+    "type": "animal",
+    "class": "human",
+    "iconSrc": "img/animal1_icon.svg",
+    "imgSrc": "img/animal1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+
+
+
+
+
+  {
+    "id": 28,
+    "type": "top",
+    "class": "empty",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 29,
+    "type": "top",
+    "class": "wornByDefault",
+    "iconSrc": "img/tee1_icon.svg",
+    "imgSrc": "img/tee1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 30,
+    "type": "top",
+    "class": "human",
+    "iconSrc": "img/tee2_icon.svg",
+    "imgSrc": "img/tee2.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 31,
+    "type": "top",
+    "class": "human",
+    "iconSrc": "img/tee3_icon.svg",
+    "imgSrc": "img/tee3.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 32,
+    "type": "top",
+    "class": "human",
+    "iconSrc": "img/tee4_icon.svg",
+    "imgSrc": "img/tee4.svg",
+    "lvl": 3,
+    "price": 15
+  },
+
+
+
+  {
+    "id": 33,
+    "type": "bottom",
+    "class": "empty",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 34,
+    "type": "bottom",
+    "class": "wornByDefault",
+    "iconSrc": "img/pants1_icon.svg",
+    "imgSrc": "img/pants1.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 35,
+    "type": "bottom",
+    "class": "human",
+    "iconSrc": "img/pants2_icon.svg",
+    "imgSrc": "img/pants2.svg",
+    "lvl": 1,
+    "price": 8
+  },
+  {
+    "id": 36,
+    "type": "bottom",
+    "class": "human",
+    "iconSrc": "img/pants3_icon.svg",
+    "imgSrc": "img/pants3.svg",
+    "lvl": 2,
+    "price": 11
+  },
+  {
+    "id": 37,
+    "type": "bottom",
+    "class": "human",
+    "iconSrc": "img/skirt1_icon.svg",
+    "imgSrc": "img/skirt1.svg",
+    "lvl": 2,
+    "price": 15
+  },
+  {
+    "id": 38,
+    "type": "bottom",
+    "class": "human",
+    "iconSrc": "img/skirt2_icon.svg",
+    "imgSrc": "img/skirt2.svg",
+    "lvl": 3,
+    "price": 20
+  },
+
+
+
+
+
+  {
+    "id": 39,
+    "type": "top_bottom",
+    "class": "wornByDefault",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 40,
+    "type": "top_bottom",
+    "class": "human",
+    "iconSrc": "img/top_bottom1_icon.svg",
+    "imgSrc": "img/top_bottom1.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 41,
+    "type": "top_bottom",
+    "class": "human",
+    "iconSrc": "img/top_bottom2_icon.svg",
+    "imgSrc": "img/top_bottom2.svg",
+    "lvl": 1,
+    "price": 15
+  },
+  {
+    "id": 42,
+    "type": "top_bottom",
+    "class": "human",
+    "iconSrc": "img/top_bottom3_icon.svg",
+    "imgSrc": "img/top_bottom3.svg",
+    "lvl": 2,
+    "price": 20
+  },
+  {
+    "id": 43,
+    "type": "top_bottom",
+    "class": "human",
+    "iconSrc": "img/top_bottom4_icon.svg",
+    "imgSrc": "img/top_bottom4.svg",
+    "lvl": 2,
+    "price": 23
+  },
+  {
+    "id": 44,
+    "type": "top_bottom",
+    "class": "king",
+    "iconSrc": "img/top_bottom5_icon.svg",
+    "imgSrc": "img/top_bottom5.svg",
+    "lvl": 3,
+    "price": 28
+  },
+
+
+
+
+
+  {
+    "id": 45,
+    "type": "misc_head",
+    "class": "wornByDefault",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 46,
+    "type": "misc_head",
+    "class": "king",
+    "iconSrc": "img/hat1_icon.svg",
+    "imgSrc": "img/hat1.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 47,
+    "type": "misc_head",
+    "class": "human",
+    "iconSrc": "img/hat2_icon.svg",
+    "imgSrc": "img/hat2.svg",
+    "lvl": 1,
+    "price": 18
+  },
+  {
+    "id": 48,
+    "type": "misc_head",
+    "class": "human",
+    "iconSrc": "img/hat3_icon.svg",
+    "imgSrc": "img/hat3.svg",
+    "lvl": 2,
+    "price": 33
+  },
+
+
+
+  {
+    "id": 49,
+    "type": "misc_ear",
+    "class": "wornByDefault",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 50,
+    "type": "misc_ear",
+    "class": "human",
+    "iconSrc": "img/ears1_icon.svg",
+    "imgSrc": "img/ears1.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 51,
+    "type": "misc_ear",
+    "class": "human",
+    "iconSrc": "img/ears2_icon.svg",
+    "imgSrc": "img/ears2.svg",
+    "lvl": 3,
+    "price": 15
+  },
+
+
+
+  {
+    "id": 52,
+    "type": "misc_neck",
+    "class": "wornByDefault",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 53,
+    "type": "misc_neck",
+    "class": "human",
+    "iconSrc": "img/neck1_icon.svg",
+    "imgSrc": "img/neck1.svg",
+    "lvl": 1,
+    "price": 20
+  },
+  {
+    "id": 54,
+    "type": "misc_neck",
+    "class": "human",
+    "iconSrc": "img/neck2_icon.svg",
+    "imgSrc": "img/neck2.svg",
+    "lvl": 2,
+    "price": 23
+  },
+  {
+    "id": 55,
+    "type": "misc_neck",
+    "class": "human",
+    "iconSrc": "img/neck3_icon.svg",
+    "imgSrc": "img/neck3.svg",
+    "lvl": 3,
+    "price": 28
+  },
+
+
+
+  {
+    "id": 56,
+    "type": "prop_left",
+    "class": "wornByDefault",
+    "iconSrc": "img/prop1_left_icon.svg",
+    "imgSrc": "img/prop1_left.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 57,
+    "type": "prop_left",
+    "class": "human",
+    "iconSrc": "img/prop2_left_icon.svg",
+    "imgSrc": "img/prop2_left.svg",
+    "lvl": 1,
+    "price": 10
+  },
+
+
+
+  {
+    "id": 58,
+    "type": "prop_right",
+    "class": "wornByDefault",
+    "iconSrc": "img/prop1_right_icon.svg",
+    "imgSrc": "img/prop1_right.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 59,
+    "type": "prop_right",
+    "class": "mage",
+    "iconSrc": "img/prop2_right_icon.svg",
+    "imgSrc": "img/prop2_right.svg",
+    "lvl": 1,
+    "price": 6
+  },
+  {
+    "id": 60,
+    "type": "prop_right",
+    "class": "mage",
+    "iconSrc": "img/prop3_right_icon.svg",
+    "imgSrc": "img/prop3_right.svg",
+    "lvl": 2,
+    "price": 20
+  },
+
+
+
+
+  {
+    "id": 61,
+    "type": "sock",
+    "class": "wornByDefault",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 62,
+    "type": "sock",
+    "class": "human",
+    "iconSrc": "img/sock1_icon.svg",
+    "imgSrc": "img/sock1.svg",
+    "lvl": 1,
+    "price": 20
+  },
+  {
+    "id": 63,
+    "type": "sock",
+    "class": "human",
+    "iconSrc": "img/sock2_icon.svg",
+    "imgSrc": "img/sock2.svg",
+    "lvl": 2,
+    "price": 28
+  },
+  {
+    "id": 64,
+    "type": "sock",
+    "class": "human",
+    "iconSrc": "img/sock3_icon.svg",
+    "imgSrc": "img/sock3.svg",
+    "lvl": 2,
+    "price": 30
+  },
+  {
+    "id": 65,
+    "type": "sock",
+    "class": "human",
+    "iconSrc": "img/tights1_icon.svg",
+    "imgSrc": "img/tights1.svg",
+    "lvl": 3,
+    "price": 30
+  },
+
+
+
+
+  {
+    "id": 66,
+    "type": "shoes",
+    "class": "wornByDefault",
+    "iconSrc": "img/empty_icon.svg",
+    "imgSrc": "img/empty.svg",
+    "lvl": 1,
+    "price": 0
+  },
+  {
+    "id": 67,
+    "type": "shoes",
+    "class": "allClasses",
+    "iconSrc": "img/shoes1_icon.svg",
+    "imgSrc": "img/shoes1.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 68,
+    "type": "shoes",
+    "class": "cowboy",
+    "iconSrc": "img/shoes2_icon.svg",
+    "imgSrc": "img/shoes2.svg",
+    "lvl": 1,
+    "price": 12
+  },
+  {
+    "id": 69,
+    "type": "shoes",
+    "class": "king ",
+    "iconSrc": "img/shoes3_icon.svg",
+    "imgSrc": "img/shoes3.svg",
+    "lvl": 2,
+    "price": 15
+  }
+
+
+
+]
