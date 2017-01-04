@@ -36,6 +36,7 @@ class ItemDAO(GenericDAO):
         for dict in data:
             item = self.__create_item_from_dict(dict)
             list_of_items.append(item)
+        Item.query.delete()
         db.session.add_all(list_of_items)
         db.session.commit()
 
