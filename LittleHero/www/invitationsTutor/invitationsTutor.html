@@ -1,0 +1,38 @@
+<div class="bar bar-header orange">
+
+  <div class="row row-center orange">
+    <div class="col col-90">
+        {{ user.email }}
+    </div>
+      <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
+    </div>
+  </div>
+</div>
+<ion-content class="background has-header has-footer" style="margin-top:16px">
+  <ion-list>
+    <ion-item class="background" ng-repeat="invite in invites | filter:filters | orderBy:invite.kind">
+        <div style="display: inline-block">
+        <div ng-if="invite.kind.toLowerCase()=='sent'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
+        <div ng-if="invite.kind.toLowerCase()=='received'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
+        <div style="opacity: 0.5">
+            <div ng-if="invite.status.toLowerCase()=='pending'">oczekujące</div>
+            <div ng-if="invite.status.toLowerCase()=='accepted'">zaakceptowane</div>
+            <div ng-if="invite.status.toLowerCase()=='rejected'">odrzucone</div>
+        </div>
+        </div>
+      <div class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite)"
+              ng-if="invite.kind.toLowerCase() == 'received' && invite.status.toLowerCase() == 'pending'">OKEJ</div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer-bar class="button-footer orange">
+    <div class="invite-filter-button" ng-click="filters.kind = ''">
+      Wszystkie
+    </div>
+    <div class="invite-filter-button" ng-click="filters.kind = 'sent'">
+      Wysłane
+    </div>
+    <div class="invite-filter-button" ng-click="filters.kind = 'received'">
+      Otrzymane
+    </div>
+</ion-footer-bar>

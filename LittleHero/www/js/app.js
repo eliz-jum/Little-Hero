@@ -118,6 +118,12 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
         templateUrl: 'invitations/invitations.html',
         controller: 'InvitationsController',
         params: {}
+      })
+      .state('invitationsTutor', {
+        url: '/invitationsTutor',
+        templateUrl: 'invitationsTutor/invitationsTutor.html',
+        controller: 'InvitationsTutorController',
+        params: {}
       }),
       $urlRouterProvider.otherwise('/login');
   });
