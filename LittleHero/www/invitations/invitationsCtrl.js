@@ -8,9 +8,11 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     ];
 
     $scope.newAvatar = {};
+    console.log(childService.childObj);
+    $scope.user = childService.childObj;
 
     $scope.$on('$ionicView.beforeEnter', function () {
-        dataService.getInvitesByUser("children", 1).then(function (res) {
+        dataService.getInvitesByUser("children", childService.childObj.id).then(function (res) {
             $scope.invites = res;
         });
     });

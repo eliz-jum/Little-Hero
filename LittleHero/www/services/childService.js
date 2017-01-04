@@ -400,9 +400,9 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.addNewAvatar = function (name, avatarClass, tutorId) {
     var newAvatar ={
       name : name,
-      class : avatarClass,
-      childId : childService.childId,
-      tutor : tutorId,
+      clazz : avatarClass,
+      child_id : childService.childObj.id,
+      tutor_id : tutorId,
       level : 1,
       money: 0,
       health : 100,
@@ -411,8 +411,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.avatarList.push(newAvatar);
     console.log(newAvatar);
     dataService.postAvatar(newAvatar).then( function(res) {
-      console.log(res);
-      var newAvatarId = res.id;
+      console.log("postAvatar", res);
+      var newAvatarId = res.data.id;
       childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
     });
   }
