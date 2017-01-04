@@ -589,19 +589,23 @@ angular.module('littleHero').factory('childService',function($state, dataService
     // }
   }
 
-  childService.loseHealth = function () {
-    childService.currentAvatar.level--;
+  childService.loseLevel = function () {
+    if (childService.currentAvatar.level!=1)
+      childService.currentAvatar.level--;
     childService.currentAvatar.health = 100;
     childService.currentAvatar.experience = 0;
-    childService.canBePurchasedItems.forEach(function (item, index) {
-      if (item.level > childService.currentAvatar.level) {
-        childService.unavailableItems.push(item);
-        canBePurchasedItems.splice(index, 1);
-      }
-    })
+    childService.currentAvatar.money = 0;
+    // childService.setCanBePurchasedItems();
+    // childService.canBePurchasedItems.forEach(function (item) {
+    //   if (item.level > childService.currentAvatar.level) {
+    //     childService.unavailableItems.push(item);
+    //     dataService.changeEquipmentItemState(item.avatarItemLinksId, "unavailable");
+    //   }
+    // })
   }
 
   childService.completeTask = function (task) {
+
     var index = childService.tasks.indexOf(task);
     childService.tasks.splice(index, 1);
     dataService.deleteTask(task.id);
@@ -613,10 +617,34 @@ angular.module('littleHero').factory('childService',function($state, dataService
     }
     else {
       childService.currentAvatar.experience += task.experience;
-
     }
-    //todo notification Tutor taki powiedzial ze wykonales zadanie takie! Zyskales tyle pieniadza i tyle exp
+
+    //todo notification Tutor taki powiedzial ze wykonales zadanie takie!
+    // Zyskales tyle pieniadza i tyle exp
     dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
+  }
+
+
+
+  childService.failTask = function (task) {
+    var index = childService.tasks.indexOf(task);
+    childService.tasks.splice(index, 1);
+    dataService.deleteTask(task.id);
+
+    if (childService.currentAvatar.health <= task.experience){
+      childService.loseLevel();
+    }
+    else {
+      childService.currentAvatar.money -= task.reward;
+      if (childService.currentAvatar.money<0){
+        childService.currentAvatar.money = 0;
+      }
+      childService.currentAvatar.health -= task.experience;
+    }
+    //todo notification Tutor taki powiedzial ze nie wykonales zadanie takie!
+    // Straciles tyle pieniadza i tyle zdrowia
+    dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
+
   }
 
 

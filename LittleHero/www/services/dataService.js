@@ -89,7 +89,9 @@ angular.module('littleHero').service("dataService", function($http) {
       //todo
 
       patchAvatar: function (avatarId, changes) {
-        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes);
+        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes).then(function(res) {
+          console.log("patch", res.data);
+        });
       },
 
 
