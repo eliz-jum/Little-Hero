@@ -577,14 +577,16 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.currentAvatar.level++;
     childService.health = 100;
     childService.experience = exp;
+    //todo masz nowy pozion! sprawdz ekwipunek, dostepne sa nowa rzeczy!
 
-    for (i=childService.unavailableItems.length-1; i>=0; i--){
-      var item = childService.unavailableItems[i];
-      if (item.level == childService.currentAvatar.level) {
-        childService.canBePurchasedItems.push(item);
-        unavailableItems.splice(i, 1);
-      }
-    }
+    //todo JAK BEDA ITEMY to odkomentowac
+    // childService.setUnavailableItems();
+    // for (var i=childService.unavailableItems.length-1; i>=0; i--){
+    //   var item = childService.unavailableItems[i];
+    //   if (item.level == childService.currentAvatar.level) {
+    //     dataService.changeEquipmentItemState(item.avatarItemLinksId, "canBePurchased");
+    //   }
+    // }
   }
 
   childService.loseHealth = function () {
@@ -598,6 +600,25 @@ angular.module('littleHero').factory('childService',function($state, dataService
       }
     })
   }
+
+  childService.completeTask = function (task) {
+    var index = childService.tasks.indexOf(task);
+    childService.tasks.splice(index, 1);
+    dataService.deleteTask(task.id);
+
+    childService.currentAvatar.money += task.reward;
+    if (childService.currentAvatar.experience + task.experience >= 100){
+      var exp = childService.currentAvatar.experience + task.experience - 100;
+      childService.gainLevel(exp);
+    }
+    else {
+      childService.currentAvatar.experience += task.experience;
+
+    }
+    //todo notification Tutor taki powiedzial ze wykonales zadanie takie! Zyskales tyle pieniadza i tyle exp
+    dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
+  }
+
 
   childService.writeAllDataToDatabase = function () {
 
