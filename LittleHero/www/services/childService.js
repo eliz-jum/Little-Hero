@@ -575,8 +575,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.gainLevel = function (exp) {
     childService.currentAvatar.level++;
-    childService.health = 100;
-    childService.experience = exp;
+    childService.currentAvatar.health = 100;
+    childService.currentAvatar.experience = exp;
     //todo masz nowy pozion! sprawdz ekwipunek, dostepne sa nowa rzeczy!
 
     //todo JAK BEDA ITEMY to odkomentowac
@@ -591,8 +591,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.loseHealth = function () {
     childService.currentAvatar.level--;
-    childService.health = 100;
-    childService.experience = 0;
+    childService.currentAvatar.health = 100;
+    childService.currentAvatar.experience = 0;
     childService.canBePurchasedItems.forEach(function (item, index) {
       if (item.level > childService.currentAvatar.level) {
         childService.unavailableItems.push(item);
