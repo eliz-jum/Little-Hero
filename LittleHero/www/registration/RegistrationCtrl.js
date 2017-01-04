@@ -1,8 +1,18 @@
-angular.module('littleHero').controller('RegistrationController', function($scope, $state, $http, $stateParams, dataService){
+angular.module('littleHero').controller('RegistrationController', function($scope, $state, $http, $stateParams, dataService, ionicToast){
 
     $scope.children = [];
     $scope.tutors = [];
     $scope.newAccount = {};
+
+    $scope.$on('$ionicView.beforeEnter', function () {
+        dataService.getTutors().then(function (res) {
+            tutors = res.data;
+        });
+
+        dataService.getChildren().then(function (res) {
+            children = res;
+        });
+    });
 
      $scope.validate = function() {
 
@@ -14,33 +24,20 @@ angular.module('littleHero').controller('RegistrationController', function($scop
                 $scope.newAccount["mail"] = $scope.email;
 
                 if ($scope.opiekun) {
-                    $scope.newAccount["name"] = $scope.login;
                     $scope.createTutorAccount();                    
-                    $state.go("login"); 
+                    $state.go("login");
+                    $scope.showToast("Teraz możesz się zalogować");
                 }
                 else {
                     $scope.newAccount["nickname"] = $scope.login;
                     $scope.createChildAccount(); 
-                    $state.go("login"); 
+                    $state.go("login");
+                    $scope.showToast("Teraz możesz się zalogować");
                 }
             }
-            else $scope.invalid = true;
+            else $scope.invalidExists = true;
         }
-        else $scope.invalid = true;
-    };
-
-    $scope.getChildren = function() {
-
-        dataService.getChildren().then(function(res) {
-          $scope.children = res.data;
-      });
-    };
-
-    $scope.getTutors = function() {
-
-        dataService.getTutors().then(function(res) {
-          $scope.tutors = res.data;
-      });
+        else $scope.invalidData = true;
     };
 
     $scope.createChildAccount = function() {
@@ -63,7 +60,7 @@ angular.module('littleHero').controller('RegistrationController', function($scop
 
         for (index in $scope.children) {
             if ($scope.children[index].login == $scope.login && 
-                    $scope.children[index].password == $scope.password) {                       
+                    $scope.children[index].password == $scope.password) {
                         flag = true;
             }
         }
@@ -83,6 +80,7 @@ angular.module('littleHero').controller('RegistrationController', function($scop
         }
     }
 
-    $scope.getChildren();
-    $scope.getTutors();
+    $scope.showToast = function (message) {
+        ionicToast.show(message, 'bottom', false, 2500);
+    }
 });

@@ -12,17 +12,39 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     var type = -1; //0 - child, 1 - tutor, -1 - account does not exist
     $scope.number = -1;
 
+    $scope.$on('$ionicView.beforeEnter', function () {
+        dataService.getTutors().then(function(res) {
+            tutors = res.data;
+        });
+
+        dataService.getChildren().then(function(res) {
+            children = res;
+        });
+
+        //---------zahardkodowana wersja
+        //childService.hardcodeChildObj();
+        //children.push(childService.childObj);
+    });
+
     $scope.validate = function() {
-        if ($scope.login && $scope.password) {
-          $scope.checkIfAccountExists();
-          setTimeout(function () {
+        setTimeout(function () {
             if (type == 0) {
-              $state.go("main");
+                $scope.password = null;
+                $scope.login =  null;
+                $state.go("main");
             }
-            else if (type == 1)
-              $state.go("mainTutor");
-            else $scope.invalid = true;
-          }, 500);
+            else if (type == 1) {
+                $scope.password = null;
+                $scope.login =  null;
+                $state.go("mainTutor");
+            }
+            else {
+                $scope.invalid = true;
+            }
+        }, 500);
+
+        if ($scope.login && $scope.password) {
+            $scope.checkIfAccountExists();
         }
         else $scope.invalid = true;
     };
@@ -31,43 +53,24 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         $state.go("registration");
     };
 
-    $scope.getChildren = function() {
-      dataService.getChildren().then(function(res) {
-        children = res;
+    $scope.checkIfAccountExists = function() {
+        for (index in tutors) {
+            if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
+                childService.tutorObj = tutors[index];
+                childService.setTutorAvatarList();
+                childService.setCurrentAvatarId();
+                childService.setTasks();
+                type = 1;
+            }
+        }
 
         for (index in children) {
-          if (children[index].login == $scope.login && children[index].password == $scope.password) {
-            childService.childObj = children[index];
-            childService.setChildAvatarList();
-            childService.setCurrentAvatarId();
-            type = 0;
-          }
+            if (children[index].login == $scope.login && children[index].password == $scope.password) {
+                childService.childObj = children[index];
+                childService.setChildAvatarList();
+                childService.setCurrentAvatarId();
+                type = 0;
+            }
         }
-      });
     };
-
-    $scope.getTutors = function() {
-      dataService.getTutors().then(function(res) {
-          tutors = res.data;
-
-        for (index in tutors) {
-          if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
-            childService.tutorObj = tutors[index];
-            childService.setTutorAvatarList();
-            childService.setCurrentAvatarId();
-            childService.setTasks();
-            type = 1;
-          }
-        }
-      });
-    };
-
-    $scope.checkIfAccountExists = function() {
-      $scope.getChildren();
-      $scope.getTutors();
-
-      //---------zahardkodowana wersja
-      //childService.hardcodeChildObj();
-      //children.push(childService.childObj);
-    }
 });
