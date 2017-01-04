@@ -15,7 +15,9 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
     //}
   });
 
-
+  $scope.back = function () {
+    $state.go("tutorAvatars");
+  }
 
 
 
