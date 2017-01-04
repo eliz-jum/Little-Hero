@@ -24,7 +24,7 @@ class ItemsCollection(Resource):
         items = DAO.get_all()
         return items
 
-    @api.response(201, 'item created.')
+    @api.response(201, 'Item created.')
     @api.expect(item_for_post)
     @ns.marshal_with(item_full)
     def post(self):
@@ -32,9 +32,17 @@ class ItemsCollection(Resource):
         data = request.json
         return DAO.create(data), 201
 
+    @api.response(204, 'No content')
+    @api.expect([item_for_post])
+    def put(self):
+        """Bulk update items"""
+        data = request.json
+        DAO.bulk_update(data)
+        return None, 204
+
 
 @ns.route('/<int:id>')
-@ns.response(404, 'item not found')
+@ns.response(404, 'Item not found')
 @ns.param('id', 'The item identifier')
 class Item(Resource):
     """Show a single item entity and lets you delete and update it"""

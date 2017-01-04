@@ -109,7 +109,7 @@ class Item(BaseModel):
         self.creationDate = datetime.utcnow()
 
     def __repr__(self):
-        return '<Item %r>' % self.item
+        return '<Item %r>' % self.imgSrc
 
 
 class Task(BaseModel):
