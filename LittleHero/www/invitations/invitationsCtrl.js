@@ -1,12 +1,11 @@
 angular.module('littleHero').controller('InvitationsController', function ($scope, $state, $stateParams, $ionicModal, childService, dataService) {
-    $scope.filters = {};
     $scope.classes = [
         "human",
         "cowboy",
         "king",
         "mage"
     ];
-
+    $scope.filters = {};
     $scope.newAvatar = {};
     $scope.newTutor = {};
     $scope.user = childService.childObj;
@@ -44,19 +43,19 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     };
 
 
-        $ionicModal.fromTemplateUrl('invitations/newAvatarModal.html', {
-            id: 'newAvatar',
-            scope: $scope
-        }).then(function (modal) {
-            $scope.newAvatarModal = modal;
-        });
+    $ionicModal.fromTemplateUrl('invitations/newAvatarModal.html', {
+        id: 'newAvatar',
+        scope: $scope
+    }).then(function (modal) {
+        $scope.newAvatarModal = modal;
+    });
 
-        $ionicModal.fromTemplateUrl('invitations/inviteModal.html', {
-            id: 'invite',
-            scope: $scope
-        }).then(function (modal) {
-            $scope.inviteModal = modal;
-        });
+    $ionicModal.fromTemplateUrl('invitations/inviteModal.html', {
+        id: 'invite',
+        scope: $scope
+    }).then(function (modal) {
+        $scope.inviteModal = modal;
+    });
 
     $scope.openModal = function (id) {
         if (id === "newAvatar") {
