@@ -1,7 +1,8 @@
 <div class="bar bar-header orange">
-    <div class="row row-center orange">
+
+  <div class="row row-center orange">
     <div class="col col-70">
-        {{ user.nickname }}
+        {{ user.login }}
     </div>
       <div class="button col col-20" ng-click="invite()">
           Zaproś
@@ -14,8 +15,8 @@
   <ion-list>
     <ion-item class="background" ng-repeat="invite in invites | filter:filters | orderBy:invite.kind">
         <div style="display: inline-block">
-        <div ng-if="invite.kind.toLowerCase()=='child'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
-        <div ng-if="invite.kind.toLowerCase()=='tutor'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
+        <div ng-if="invite.kind.toLowerCase()=='tutor'">Zaprosiłeś dziecko nr {{invite.tutor_id}}</div>
+        <div ng-if="invite.kind.toLowerCase()=='child'">Zaprosiło cię dziecko nr {{invite.tutor_id}}</div>
         <div style="opacity: 0.5">
             <div ng-if="invite.status.toLowerCase()=='pending'">oczekujące</div>
             <div ng-if="invite.status.toLowerCase()=='accepted'">zaakceptowane</div>
@@ -23,7 +24,7 @@
         </div>
         </div>
       <div class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite)"
-              ng-if="invite.kind.toLowerCase() == 'tutor' && invite.status.toLowerCase() == 'pending'">OKEJ</div>
+              ng-if="invite.kind.toLowerCase() == 'child' && invite.status.toLowerCase() == 'pending'">OKEJ</div>
     </ion-item>
   </ion-list>
 </ion-content>
