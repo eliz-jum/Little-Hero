@@ -33,9 +33,9 @@ angular.module('littleHero').controller('RegistrationController', function($scop
                     $state.go("login"); 
                 }
             }
-            else $scope.invalid = true;
+            else $scope.invalidExists = true;
         }
-        else $scope.invalid = true;
+        else $scope.invalidData = true;
     };
 
     $scope.createChildAccount = function() {
@@ -58,7 +58,7 @@ angular.module('littleHero').controller('RegistrationController', function($scop
 
         for (index in $scope.children) {
             if ($scope.children[index].login == $scope.login && 
-                    $scope.children[index].password == $scope.password) {                       
+                    $scope.children[index].password == $scope.password) {
                         flag = true;
             }
         }
