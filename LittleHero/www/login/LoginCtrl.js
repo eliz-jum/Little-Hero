@@ -29,9 +29,13 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.validate = function() {
         setTimeout(function () {
             if (type == 0) {
+                $scope.password = null;
+                $scope.login =  null;
                 $state.go("main");
             }
             else if (type == 1) {
+                $scope.password = null;
+                $scope.login =  null;
                 $state.go("mainTutor");
             }
             else {
