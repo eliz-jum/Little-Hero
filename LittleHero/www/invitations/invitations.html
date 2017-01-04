@@ -8,12 +8,20 @@
     </div>
   </div>
 </div>
-<ion-content class="background has-header has-footer">
+<ion-content class="background has-header has-footer" style="margin-top:16px">
   <ion-list>
-    <ion-item class="background" ng-repeat="invite in invites | filter:filters">
-      {{invite.tutor_id}}, {{invite.kind}}, {{invite.status}}
-      <button class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite)"
-              ng-if="invite.kind.toLowerCase() == 'received' && invite.status.toLowerCase() == 'pending'">👍</button>
+    <ion-item class="background" ng-repeat="invite in invites | filter:filters | orderBy:invite.kind">
+        <div style="display: inline-block">
+        <div ng-if="invite.kind.toLowerCase()=='sent'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
+        <div ng-if="invite.kind.toLowerCase()=='received'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
+        <div style="opacity: 0.5">
+            <div ng-if="invite.status.toLowerCase()=='pending'">oczekujące</div>
+            <div ng-if="invite.status.toLowerCase()=='accepted'">zaakceptowane</div>
+            <div ng-if="invite.status.toLowerCase()=='rejected'">odrzucone</div>
+        </div>
+        </div>
+      <div class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite)"
+              ng-if="invite.kind.toLowerCase() == 'received' && invite.status.toLowerCase() == 'pending'">OKEJ</div>
     </ion-item>
   </ion-list>
 </ion-content>
