@@ -14,7 +14,7 @@
         <ion-list class="search-results">
             <ion-item ng-repeat="tutor in matchingTutors track by tutor.id">
                 {{tutor.login}}
-                <div class="button button-balanced" style="float:right">Zaproś</div>
+                <div class="button button-balanced" ng-click="sendInvite(tutor)" style="float:right">Zaproś</div>
             </ion-item>
         </ion-list>
     </ion-content>

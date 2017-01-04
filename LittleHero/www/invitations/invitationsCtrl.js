@@ -38,7 +38,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.createNewAvatar = function () {
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
         dataService.patchInvite('children', $scope.user.id, $scope.inviteId, {status: "accepted"});
-        $scope.closeModal();
+        $scope.closeModal("newAvatar");
         $state.go('main');
     };
 
@@ -73,7 +73,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         }
     };
 
-    $scope.search = function() {
+    $scope.search = function () {
         tutors.forEach( function(item) {
             if (item.login === $scope.newTutor.login) {
                 $scope.newTutor = item;
@@ -87,4 +87,9 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         /// może chcesz zaprosić - podaj maila tej osoby
         //po potwierdzeniu zaproszenia modal się chowa i pojawia tost z odpowiednią wiadomością
     };
+
+    $scope.sendInvite = function (tutor) {
+        dataService.postInvites('children', childService.childObj.id, {tutor_id: tutor.id, kind: "child"});
+        $scope.closeModal("invite");
+    }
 });
