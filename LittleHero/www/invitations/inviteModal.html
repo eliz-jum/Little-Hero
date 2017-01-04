@@ -1,0 +1,15 @@
+<ion-modal-view>
+    <ion-header-bar class="bar">
+        <a class="button button-icon icon ion-android-arrow-back" ng-click="closeModal('invite')"></a>
+        <h1 class="title">Zaproś opiekuna</h1>
+    </ion-header-bar>
+    <ion-content>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Wyszukaj</span>
+            <input type="text" placeholder="Wpisz login użytkownika" ng-model="newTutor.login">
+        </label>
+        <button class="button button-full button-balanced" ng-click="search()">
+            OKEJ!
+        </button>
+    </ion-content>
+</ion-modal-view>

@@ -17,6 +17,10 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         });
     });
 
+    $scope.invite = function() {
+        $scope.openModal("invite");
+    }
+
     $scope.settings = function () {
         $state.go("settings");
     };
@@ -24,7 +28,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.acceptInvite = function (invite) {
         $scope.tutorId = invite.tutor_id;
         $scope.inviteId = invite.id;
-        $scope.openModal();
+        $scope.openModal("newAvatar");
     };
 
     $scope.createNewAvatar = function () {
@@ -34,17 +38,34 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         $state.go('main');
     };
 
-    $ionicModal.fromTemplateUrl('invitations/newAvatarModal.html', {
-        scope: $scope
-    }).then(function (modal) {
-        $scope.modal = modal;
-    });
 
-    $scope.openModal = function () {
-        $scope.modal.show();
-    };
+        $ionicModal.fromTemplateUrl('invitations/newAvatarModal.html', {
+            id: 'newAvatar',
+            scope: $scope
+        }).then(function (modal) {
+            $scope.newAvatarModal = modal;
+        });
 
-    $scope.closeModal = function () {
-        $scope.modal.hide();
+        $ionicModal.fromTemplateUrl('invitations/inviteModal.html', {
+            id: 'invite',
+            scope: $scope
+        }).then(function (modal) {
+            $scope.inviteModal = modal;
+        });
+
+    $scope.openModal = function (id) {
+        if (id === "newAvatar") {
+            $scope.newAvatarModal.show();
+        } else {
+            $scope.inviteModal.show();
+        }
+    }
+
+    $scope.closeModal = function (id) {
+        if (id === "newAvatar") {
+            $scope.newAvatarModal.hide();
+        } else {
+            $scope.inviteModal.hide();
+        }
     }
 });
