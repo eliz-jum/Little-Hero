@@ -199,7 +199,19 @@ angular.module('littleHero').service("dataService", function($http) {
         },
 
         postInvites: function(userType, userId, newInvite) {
-            return $http.post(BASE_PATH + userId + "/invitations", newInvite).then(function(res) {
+            return $http.post(BASE_PATH + userType + "/" + userId + "/invitations", newInvite).then(function(res) {
+                return res.data;
+            });
+        },
+
+        patchInvite: function(userType, userId, inviteId, newStatus) {
+            return $http.patch(BASE_PATH + userType + "/" + userId + "/invitations/" + inviteId, newStatus).then(function(res) {
+                return res.data;
+            });
+        },
+
+        deleteInvite: function(userType, userId, inviteId) {
+            return $http.delete(BASE_PATH + userType + "/" + userId + "/invitations/" + inviteId).then(function(res) {
                 return res.data;
             });
         }

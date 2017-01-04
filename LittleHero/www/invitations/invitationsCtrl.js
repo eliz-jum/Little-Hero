@@ -24,13 +24,14 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.acceptInvite = function (invite) {
         // jeśli dziecko - modal z nowym awatarem
         $scope.tutorId = invite.tutor_id;
+        $scope.inviteId = invite.id;
         $scope.openModal();
         //jeśli tutor - toast z info, że dziecko musi stworzyć awatar
     };
 
     $scope.createNewAvatar = function () {
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
-        // update tego zapro na serwerze
+        dataService.patchInvite('children', $scope.user.id, $scope.inviteId, {status: "accepted"});
         // update zapro drugiej osoby na serwerze
         $scope.closeModal();
         $state.go('main');
