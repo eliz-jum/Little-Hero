@@ -59,21 +59,21 @@ class TaskDAO(GenericDAO):
 
         if content:
             task.content = content
-        if avatar_id:
+        if isinstance(avatar_id, int):
             avatar = self.avatar_dao.get(avatar_id)
             task.avatar = avatar
-        if tutor_id:
+        if isinstance(tutor_id, int):
             tutor = self.tutor_dao.get(tutor_id)
             task.tutor = tutor
-        if difficulty:
+        if isinstance(difficulty, int):
             task.difficulty = difficulty
-        if experience:
+        if isinstance(experience, int):
             task.experience = experience
-        if is_completed:
+        if isinstance(is_completed, bool):
             task.is_completed = is_completed
-        if is_archived:
+        if isinstance(is_archived, bool):
             task.is_archived = is_archived
-        if reward:
+        if isinstance(reward, int):
             task.reward = reward
         if completed_date:
             task.completed_date = completed_date

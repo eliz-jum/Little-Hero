@@ -72,19 +72,19 @@ class AvatarDAO(GenericDAO):
         if name:
             avatar.name = name
 
-        if child_id:
+        if isinstance(child_id, int):
             child = self.child_dao.get(child_id)
             avatar.child = child
-        if tutor_id:
+        if isinstance(tutor_id, int):
             tutor = self.tutor_dao.get(tutor_id)
             avatar.tutor = tutor
-        if level:
+        if isinstance(level, int):
             avatar.level = level
-        if money:
+        if isinstance(money, int):
             avatar.money = money
-        if health:
+        if isinstance(health, int):
             avatar.health = health
-        if experience:
+        if isinstance(experience, int):
             avatar.experience = experience
 
         db.session.commit()
