@@ -409,12 +409,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
       experience : 0
     };
     childService.avatarList.push(newAvatar);
-
-    dataService.postAvatar(newAvatar); //todo POTRZEBUJE JEGO ID!!!!
-
-    var newAvatarId; //TODO wyciagnac jego id
-
-    childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
+    console.log(newAvatar);
+    dataService.postAvatar(newAvatar).then( function(res) {
+      console.log(res);
+      var newAvatarId = res.id;
+      childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
+    });
   }
 
 

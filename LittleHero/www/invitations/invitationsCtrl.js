@@ -1,10 +1,10 @@
 angular.module('littleHero').controller('InvitationsController', function ($scope, $state, $stateParams, $ionicModal, childService, dataService) {
     $scope.filters = {};
     $scope.classes = [
-        "CZŁOWIEK",
-        "KOWBOJ",
-        "KRÓL",
-        "MAG"
+        "human",
+        "cowboy",
+        "king",
+        "mage"
     ];
 
     $scope.newAvatar = {};
@@ -12,7 +12,6 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.$on('$ionicView.beforeEnter', function () {
         dataService.getInvitesByUser("children", 1).then(function (res) {
             $scope.invites = res;
-            console.log(res);
         });
     });
 
@@ -20,19 +19,18 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         $state.go("settings");
     };
 
-    $scope.acceptInvite = function () {
+    $scope.acceptInvite = function (invite) {
         // jeśli dziecko - modal z nowym awatarem
+        $scope.tutorId = invite.tutor_id;
         $scope.openModal();
         //jeśli tutor - toast z info, że dziecko musi stworzyć awatar
     };
 
     $scope.createNewAvatar = function () {
+        childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
         // update tego zapro na serwerze
         // update zapro drugiej osoby na serwerze
-        // stworzenie nowego awatara(?)
-        // zamknęcie modalu
         $scope.closeModal();
-        // przejście do ekranu głównego z otwartym nowym awatarem
         $state.go('main');
     };
 
