@@ -81,9 +81,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
             }
             console.log(item);
         });
-        // jeśli jest taki login
-        /// wyświetl z jakims buttonem zapro
-        // jeśli nie ma
+        // jeśli nie ma wyników
         /// może chcesz zaprosić - podaj maila tej osoby
         //po potwierdzeniu zaproszenia modal się chowa i pojawia tost z odpowiednią wiadomością
     };
@@ -91,5 +89,10 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.sendInvite = function (tutor) {
         dataService.postInvites('children', childService.childObj.id, {tutor_id: tutor.id, kind: "child"});
         $scope.closeModal("invite");
-    }
+        $scope.showToast("Zaproszenie wysłane");
+    };
+
+    $scope.showToast = function(message){
+        ionicToast.show(message, 'bottom', false, 2500);
+    };
 });

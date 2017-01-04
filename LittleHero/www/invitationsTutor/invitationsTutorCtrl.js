@@ -1,9 +1,9 @@
 angular.module('littleHero').controller('InvitationsTutorController', function ($scope, $state, $stateParams, $ionicModal, childService, dataService, ionicToast) {
     $scope.filters = {};
-
-    $scope.newAvatar = {};
-    console.log(childService.tutorObj);
+    $scope.newChild = {};
     $scope.user = childService.tutorObj;
+    $scope.matchingChildren = [];
+    var children;
 
     $scope.$on('$ionicView.beforeEnter', function () {
         dataService.getInvitesByUser("tutors", childService.tutorObj.id).then(function (res) {
@@ -11,8 +11,15 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
         });
     });
 
+    $scope.invite = function() {
+        dataService.getChildren().then(function(res) {
+            children = res.data;
+        });
+        $scope.openModal("invite");
+    };
+
     $scope.settings = function () {
-        $state.go("settings");
+        $state.go("settingsTutor");
     };
 
     $scope.acceptInvite = function (invite) {
@@ -22,7 +29,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
         dataService.patchInvite('tutors', $scope.user.id, $scope.inviteId, {status: "accepted"});
     };
 
-    $ionicModal.fromTemplateUrl('invitations/newAvatarModal.html', {
+    $ionicModal.fromTemplateUrl('invitationsTutor/inviteModal.html', {
         scope: $scope
     }).then(function (modal) {
         $scope.modal = modal;
@@ -34,7 +41,26 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.closeModal = function () {
         $scope.modal.hide();
-    }
+    };
+
+    $scope.search = function () {
+        children.forEach( function(item) {
+            if (item.login === $scope.newChild.login) {
+                $scope.newChild = item;
+                $scope.matchingChildren.push(item);
+            }
+            console.log(item);
+        });
+        // jeśli nie ma wyników
+        /// może chcesz zaprosić - podaj maila tej osoby
+        //po potwierdzeniu zaproszenia modal się chowa i pojawia tost z odpowiednią wiadomością
+    };
+
+    $scope.sendInvite = function (child) {
+        dataService.postInvites('tutors', childService.TutorObj.id, {child_id: child.id, kind: "tutor"});
+        $scope.closeModal("invite");
+        $scope.showToast("Zaproszenie wysłane");
+    };
 
     $scope.showToast = function(message){
         ionicToast.show(message, 'bottom', false, 2500);
