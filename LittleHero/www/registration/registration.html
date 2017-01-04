@@ -9,7 +9,8 @@
       </label>
       <label class="item item-input">
         <span class="input-label"><b>E-mail</b></span>
-        <input type="email" ng-model="email">
+        <!-- TODO: zmienić typ na email po skończonym developmencie żeby blokowało niemailowe stringi-->
+        <input type="text" ng-model="email">
       </label>
       <label class="item item-input">
         <span class="input-label"><b>Hasło</b></span>
@@ -21,16 +22,19 @@
 
     <!-- switch taki trochę switch -->
 
-    <ion-radio ng-model="Opiekun" ng-value=TRUE>Opiekun</ion-radio>
-    <ion-radio ng-model="Opiekun" ng-value=FALSE>Dziecko</ion-radio>
+    <ion-radio ng-model="opiekun" ng-value=TRUE>Opiekun</ion-radio>
+    <ion-radio ng-model="opiekun" ng-value=FALSE>Dziecko</ion-radio>
 
     <div class="accept-button-container">
       <button class="button button-block orange accept-button" ng-click="validate()">
         Zarejestruj
       </button>
     </div>
-    <div ng-show="invalid">
-      BTakie konto już istnieje
+    <div ng-show="invalidExists">
+      Takie konto już istnieje
+    </div>
+    <div ng-show="invalidData">
+      Brak/nieprawidłowe dane
     </div>
     <a ui-sref="login">Masz już konto?</a>
   </form>
