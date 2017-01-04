@@ -4,7 +4,7 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
   $scope.avatars = [];
 
   $scope.$on('$ionicView.beforeEnter', function () {
-
+    $scope.tutor = childService.tutorObj;
     // if (typeof childService.tutorChildren !== "undefined") {
     $scope.children = childService.tutorChildren;
 
@@ -19,8 +19,9 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
   $scope.showChildAvatars = function (child) {
     childService.childObj = child;
     childService.setTutorAvatarListByChildId();
-    console.log("tutor ide do avatars",childService);
+    
     setTimeout(function () {
+      console.log("tutor ide do avatars",childService);
       $state.go("tutorAvatars");
     }, 1000);
 
