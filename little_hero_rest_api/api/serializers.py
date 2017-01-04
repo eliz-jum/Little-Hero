@@ -71,6 +71,7 @@ avatar_item_for_patch = api.model('Avatar-Item entity for patch request', {
 })
 
 tutor_for_post = api.model('Tutor for post', {
+    'login': fields.String(description='Tutor login'),
     'password': fields.String(required=True, description='Tutor password'),
     'mail': fields.String(required=True, description='Tutor e-mail')
 })
