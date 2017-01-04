@@ -12,8 +12,8 @@
   <ion-list>
     <ion-item class="background" ng-repeat="invite in invites | filter:filters | orderBy:invite.kind">
         <div style="display: inline-block">
-        <div ng-if="invite.kind.toLowerCase()=='sent'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
-        <div ng-if="invite.kind.toLowerCase()=='received'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
+        <div ng-if="invite.kind.toLowerCase()=='child'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
+        <div ng-if="invite.kind.toLowerCase()=='tutor'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
         <div style="opacity: 0.5">
             <div ng-if="invite.status.toLowerCase()=='pending'">oczekujące</div>
             <div ng-if="invite.status.toLowerCase()=='accepted'">zaakceptowane</div>

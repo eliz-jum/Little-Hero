@@ -16,8 +16,6 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.acceptInvite = function (invite) {
-        // jeśli dziecko - modal z nowym awatarem
-        //jeśli tutor - toast z info, że dziecko musi stworzyć awatar
         $scope.childId = invite.child_id;
         $scope.inviteId = invite.id;
         $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + $scope.childId);
