@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('RegistrationController', function($scope, $state, $http, $stateParams, dataService){
+angular.module('littleHero').controller('RegistrationController', function($scope, $state, $http, $stateParams, dataService, ionicToast){
 
     $scope.children = [];
     $scope.tutors = [];
@@ -25,12 +25,14 @@ angular.module('littleHero').controller('RegistrationController', function($scop
 
                 if ($scope.opiekun) {
                     $scope.createTutorAccount();                    
-                    $state.go("login"); 
+                    $state.go("login");
+                    $scope.showToast("Teraz możesz się zalogować");
                 }
                 else {
                     $scope.newAccount["nickname"] = $scope.login;
                     $scope.createChildAccount(); 
-                    $state.go("login"); 
+                    $state.go("login");
+                    $scope.showToast("Teraz możesz się zalogować");
                 }
             }
             else $scope.invalidExists = true;
@@ -76,5 +78,9 @@ angular.module('littleHero').controller('RegistrationController', function($scop
         else {
             return true;
         }
+    }
+
+    $scope.showToast = function (message) {
+        ionicToast.show(message, 'bottom', false, 2500);
     }
 });
