@@ -11,5 +11,11 @@
         <button class="button button-full button-balanced" ng-click="search()">
             OKEJ!
         </button>
+        <ion-list class="search-results">
+            <ion-item ng-repeat="tutor in matchingTutors">
+                {{tutor.login}}
+                <div class="button button-balanced" style="float:right">Zaproś</div>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-modal-view>

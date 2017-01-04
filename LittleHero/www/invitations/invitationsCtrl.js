@@ -8,8 +8,10 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     ];
 
     $scope.newAvatar = {};
-    console.log(childService.childObj);
+    $scope.newTutor = {};
     $scope.user = childService.childObj;
+    $scope.matchingTutors = [];
+    var tutors;
 
     $scope.$on('$ionicView.beforeEnter', function () {
         dataService.getInvitesByUser("children", childService.childObj.id).then(function (res) {
@@ -18,8 +20,11 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     });
 
     $scope.invite = function() {
+        dataService.getTutors().then(function(res) {
+            tutors = res.data;
+        });
         $scope.openModal("invite");
-    }
+    };
 
     $scope.settings = function () {
         $state.go("settings");
@@ -59,7 +64,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         } else {
             $scope.inviteModal.show();
         }
-    }
+    };
 
     $scope.closeModal = function (id) {
         if (id === "newAvatar") {
@@ -67,5 +72,20 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         } else {
             $scope.inviteModal.hide();
         }
-    }
+    };
+
+    $scope.search = function() {
+        tutors.forEach( function(item) {
+            if (item.login === $scope.newTutor.login) {
+                $scope.newTutor = item;
+                $scope.matchingTutors.push(item);
+            }
+            console.log(item);
+        });
+        // jeśli jest taki login
+        /// wyświetl z jakims buttonem zapro
+        // jeśli nie ma
+        /// może chcesz zaprosić - podaj maila tej osoby
+        //po potwierdzeniu zaproszenia modal się chowa i pojawia tost z odpowiednią wiadomością
+    };
 });
