@@ -22,7 +22,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
             else if (type == 1)
               $state.go("mainTutor");
             else $scope.invalid = true;
-          }, 500);
+          }, 1000);
         }
         else $scope.invalid = true;
     };
@@ -48,7 +48,6 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.getTutors = function() {
       dataService.getTutors().then(function(res) {
           tutors = res.data;
-        console.log("getTutors",tutors);
 
         for (index in tutors) {
           if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {

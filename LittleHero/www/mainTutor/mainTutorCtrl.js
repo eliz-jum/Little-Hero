@@ -4,29 +4,29 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
   $scope.avatars = [];
 
   $scope.$on('$ionicView.beforeEnter', function () {
-    
+
     // if (typeof childService.tutorChildren !== "undefined") {
     $scope.children = childService.tutorChildren;
-    
+
     childService.setTutorAvatarListByChildId();
-    
-    
+
     $scope.currentAvatar = childService.currentAvatar;
     $scope.allAvatars = childService.avatarList;
-    childService.setTasks();
-    
+
     // }
   });
 
   $scope.showChildAvatars = function (child) {
     childService.childObj = child;
-    dataService.setTutorAvatarListByChildId();
-    
-    
-    
+    childService.setTutorAvatarListByChildId();
+    console.log("tutor ide do avatars",childService);
+    setTimeout(function () {
+      $state.go("tutorAvatars");
+    }, 1000);
+
+
+
   }
-
-
 
 
 

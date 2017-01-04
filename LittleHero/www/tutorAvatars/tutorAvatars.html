@@ -14,17 +14,17 @@
     <ion-content on-swipe-right="swipeRight()" class="background has-header">
 
       <div class="title">
-        <h2>Wszystkie avatary</h2>
+        <h2>{{child.login}}</h2>
       </div>
 
 
 
       <ion-list class="task-list" can-swipe="true" swipe-direction="right" scroll="false" show-delete="data.showDelete">
-        <ion-item ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
+        <ion-item ng-click="showAvatarTasks(avatar)" ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate">
           <ion-content scroll="false">
 
             <div class="tutor-avatar-list">
-              <span> {{ child.login }}</span>
+              <span> {{ avatar.name }}</span>
             </div>
 
           </ion-content>
