@@ -16,7 +16,7 @@
     </div>
   </div>
 </div>
-<ion-content class="background has-header">
+<ion-content class="background has-header has-footer">
   <ion-list>
     <ion-item class="background" ng-repeat="invite in invites | filter:filters">
       {{invite.tutor_id}}, {{invite.kind}}, {{invite.status}}
@@ -25,13 +25,14 @@
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-footer-bar>
-  <ion-tabs class="orange">
-    <ion-tab title="Wszystkie" ng-click="filters.kind = ''">
-    </ion-tab>
-    <ion-tab title="Wysłane" ng-click="filters.kind = 'sent'">
-    </ion-tab>
-    <ion-tab title="Otrzymane" ng-click="filters.kind = 'received'">
-    </ion-tab>
-  </ion-tabs>
+<ion-footer-bar class="button-footer orange">
+    <div class="invite-filter-button" ng-click="filters.kind = ''">
+      Wszystkie
+    </div>
+    <div class="invite-filter-button" ng-click="filters.kind = 'sent'">
+      Wysłane
+    </div>
+    <div class="invite-filter-button" ng-click="filters.kind = 'received'">
+      Otrzymane
+    </div>
 </ion-footer-bar>
