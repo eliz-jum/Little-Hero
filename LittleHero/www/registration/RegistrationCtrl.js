@@ -4,6 +4,16 @@ angular.module('littleHero').controller('RegistrationController', function($scop
     $scope.tutors = [];
     $scope.newAccount = {};
 
+    $scope.$on('$ionicView.beforeEnter', function () {
+        dataService.getTutors().then(function (res) {
+            tutors = res.data;
+        });
+
+        dataService.getChildren().then(function (res) {
+            children = res;
+        });
+    });
+
      $scope.validate = function() {
 
         if ($scope.login && $scope.password && $scope.email) {
@@ -14,7 +24,6 @@ angular.module('littleHero').controller('RegistrationController', function($scop
                 $scope.newAccount["mail"] = $scope.email;
 
                 if ($scope.opiekun) {
-                    $scope.newAccount["name"] = $scope.login;
                     $scope.createTutorAccount();                    
                     $state.go("login"); 
                 }
@@ -27,20 +36,6 @@ angular.module('littleHero').controller('RegistrationController', function($scop
             else $scope.invalid = true;
         }
         else $scope.invalid = true;
-    };
-
-    $scope.getChildren = function() {
-
-        dataService.getChildren().then(function(res) {
-          $scope.children = res.data;
-      });
-    };
-
-    $scope.getTutors = function() {
-
-        dataService.getTutors().then(function(res) {
-          $scope.tutors = res.data;
-      });
     };
 
     $scope.createChildAccount = function() {
@@ -82,7 +77,4 @@ angular.module('littleHero').controller('RegistrationController', function($scop
             return true;
         }
     }
-
-    $scope.getChildren();
-    $scope.getTutors();
 });
