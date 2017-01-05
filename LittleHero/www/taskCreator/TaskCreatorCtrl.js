@@ -11,17 +11,14 @@ angular.module('littleHero').controller('TaskCreatorController', function($scope
     $state.go("tutorTasks");
   }
 
-
-
-
+  $scope.settings = function() {
+    $state.go("settings");
+  };
+  
   $scope.validate=function() {
     var description = document.getElementById("new-task-description").value;
     var money = parseInt(document.getElementById("new-task-money").value);
-    var exp = parseInt(document.getElementById("new-task-experience").value);
-
-    console.log(description);
-    console.log(money);
-    console.log(exp);
+    var experience = parseInt(document.getElementById("new-task-experience").value);
 
     if (description && money && exp) {
       //todo lepsza walidacja powinna byc
@@ -31,7 +28,7 @@ angular.module('littleHero').controller('TaskCreatorController', function($scope
         avatar_id: childService.currentAvatarId,
         is_completed: false,
         reward: money,
-        experience: exp,
+        experience: experience,
         content: description
       };
       console.log("newTask",newTask);

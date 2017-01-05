@@ -34,7 +34,8 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
   }
 
   $scope.editTask = function (task) {
-    
+    childService.currentTask = task;
+    $state.go("tutorEditTask");
   }
   
   $scope.newTask = function () {

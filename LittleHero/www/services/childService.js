@@ -6,7 +6,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.childObj = {};
 
-  childService.tutorChildren = []; //todo!!!
+  childService.tutorChildren = [];
 
   childService.avatarList = [];
 
@@ -19,6 +19,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.unavailableItems = [];
 
   childService.tasks = [];
+  childService.currentTask = {};
 
   childService.hardcodeChildObj = function () {
     childService.childObj = {
