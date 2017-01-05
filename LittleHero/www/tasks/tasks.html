@@ -1,11 +1,10 @@
 <ion-view>
   <ion-pane class="background">
     <div class="bar bar-header orange">
-
       <div class="row row-center orange">
         <div class="col col-50 item item-select">
-          <select ng-model="currentAvatar" ng-options="avatar.name for avatar in allAvatars track by avatar.id" ng-change="getTasks()">
-                <option value="">{{ user.nickname }}</option>
+          <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+            <option value="">{{ currentAvatar.name }} </option>
           </select>
         </div>
 
@@ -26,16 +25,15 @@
       </div>
 
       <ion-list class="task-list" scroll="false">
-            <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]">
-                <div class="drag"></div>
-                <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
-                    <div class="task-name">
-                        <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i></div><span>{{ task.content }}</span>
-                    </div>
-                </ion-content>
-            </ion-item>
+        <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]">
+          <div class="drag"></div>
+          <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
+            <div class="task-name">
+              <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i></div><span>{{ task.content }}</span>
+            </div>
+          </ion-content>
+        </ion-item>
       <ion-list>
-
 
     </ion-content>
   </ion-pane>

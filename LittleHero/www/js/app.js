@@ -80,24 +80,10 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
         templateUrl: 'settings/settings.html',
         controller: 'SettingsController'
       })
-      .state('settingsTutor', {
-        url: '/settingsTutor',
-        templateUrl: 'settingsTutor/settingsTutor.html',
-        controller: 'SettingsTutorController'
-      })
-      .state('tasksCreator', {
-        url: '/tasksCreator',
-        templateUrl: 'tasksCreator/tasksCreator.html',
-        controller: 'TasksCreatorController',
-        params: {
-          user: null,
-          currentAvatar: null
-        }
-      })
-      .state('tasksView', {
-        url: '/tasksView',
-        templateUrl: 'tasksView/tasksView.html',
-        controller: 'tasksViewController',
+      .state('taskCreator', {
+        url: '/taskCreator',
+        templateUrl: 'taskCreator/taskCreator.html',
+        controller: 'TaskCreatorController',
         params: {
           user: null,
           currentAvatar: null
@@ -112,69 +98,12 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
           currentAvatar: null,
           user: null
         }
-      })
-      .state('invitations', {
-        url: '/invitations',
-        templateUrl: 'invitations/invitations.html',
-        controller: 'InvitationsController',
-        params: {}
-      })
-      .state('invitationsTutor', {
-        url: '/invitationsTutor',
-        templateUrl: 'invitationsTutor/invitationsTutor.html',
-        controller: 'InvitationsTutorController',
-        params: {}
+
       })
       .state('avatars', {
         url: '/avatars',
         templateUrl: 'avatars/avatars.html',
         controller: 'AvatarsController',
         params: {}
-      }),
-      $urlRouterProvider.otherwise('/login');
+      }),$urlRouterProvider.otherwise('/login');
   });
-
-angular.module('littleHero').controller('MTController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
-
-    $scope.allAvatars = null;
-    $scope.currentAvatar = null;
-
-    $scope.data = {
-        showDelete: false
-    };
-
-    $scope.onItemDelete = function(avatar) {
-        console.log(avatar);
-    };
-
-      $scope.text=[
-    "zaproszono Cię",
-    "masz nowe zadanie!",
-    "dostałeś nowy poziom!"
-  ];
-
-    $scope.$on('$ionicView.beforeEnter', function(){
-        $scope.user = $stateParams.user;
-        $scope.getAvatars();
-    });
-
-    $scope.getAvatars = function() {
-        dataService.getAvatarsByTutor($scope.user["id"]).then(function(res) {
-          $scope.allAvatars = res.data;
-      });
-
-    };
-
-    $scope.initTaskCreator = function(avatar) {
-        $state.go("tasksCreator", { "user" : $scope.user, "currentAvatar" : avatar });
-    };
-
-    $scope.initTaskView = function(avatar) {
-        $state.go("tasksView", { "user" : $scope.user, "currentAvatar" : avatar });
-    };
-
-
-    $scope.settings = function() {
-        $state.go("settings");
-    };
-});

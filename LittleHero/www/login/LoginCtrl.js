@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('LoginController', function($scope, $state, $http, $stateParams, dataService, childService){
+angular.module('littleHero').controller('LoginController', function($scope, $state, $http, dataService, childService){
 
     /***
         DONE:

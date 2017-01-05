@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('MainController', function ($scope, $state, $stateParams, $ionicModal, $http, dataService, childService, ionicToast) {
+angular.module('littleHero').controller('MainController', function ($scope, $state, $ionicModal, $http, dataService, childService, ionicToast) {
 
   $scope.allAvatars = null;
   $scope.currentAvatar = null;
@@ -7,25 +7,21 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.$on('$ionicView.beforeEnter', function () {
     cleanAvatarArrays();
 
-    // childService.hardcodeAvatarList();
-    // childService.setWornItems();
-    // childService.setCanBePutOnItems();
-    // childService.setCanBePurchasedItems();
-    // childService.setUnavailableItems();
-    childService.hardcodeAvatarItemArrays();
-    childService.hardcodeAvatarWornItemsArray();
-
-    checkForAvatar();
-  });
-
-  var checkForAvatar = function () {
     // if (typeof childService.currentAvatar.id !== "undefined") {
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
+      // childService.setWornItems();
+      // childService.setCanBePutOnItems();
+      // childService.setCanBePurchasedItems();
+      // childService.setUnavailableItems();
+      childService.hardcodeAvatarItemArrays();
+      childService.hardcodeAvatarWornItemsArray();
+      childService.setAvatarTasks();
       dressAvatar();
       $scope.showAvatar = true;
     // }
-  };
+  });
+
 
   $scope.swipeLeft = function () {
     console.log("swipe left");
@@ -42,7 +38,6 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   };
 
   var cleanAvatarArrays = function () {
-    // childService.avatarList = [];
     childService.wornItems = [];
     childService.canBePutOnItems = [];
     childService.canBePurchasedItems = [];
@@ -138,19 +133,20 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     });
   }
 
-  //todo po wejsciu na innego avatara z menu wysowanego
   $scope.setAvatarData = function (avatar) {
-    if (typeof avatar !== "undefined") {
-      childService.currentAvatar = avatar;
-      childService.setCurrentAvatarId();
-      // childService.setWornItems();
-      // childService.setCanBePutOnItems();
-      // childService.setCanBePurchasedItems();
-      // childService.setUnavailableItems();
-      childService.hardcodeAvatarItemArrays();
-      childService.hardcodeAvatarWornItemsArray();
-      dressAvatar();
-    }
+    cleanAvatarArrays();
+    childService.currentAvatar = avatar;
+    childService.currentAvatarId = childService.currentAvatar.id;
+
+    // childService.setWornItems();
+    // childService.setCanBePutOnItems();
+    // childService.setCanBePurchasedItems();
+    // childService.setUnavailableItems();
+    childService.setAvatarTasks();
+    childService.hardcodeAvatarItemArrays();
+    childService.hardcodeAvatarWornItemsArray();
+    dressAvatar();
+
   }
 
 

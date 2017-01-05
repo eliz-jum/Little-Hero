@@ -3,51 +3,27 @@
     <div class="bar bar-header orange">
 
       <div class="row row-center orange">
-        <span class="col col-50 orange">{{ user.name }}</span>
+        <span class="col col-50 orange">{{ tutor.mail }}</span>
         <div class="col col-40"></div>
         <div class="col col-10">
           <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
         </div>
       </div>
     </div>
-
     <ion-content on-swipe-right="swipeRight()" class="background has-header">
 
       <div class="title">
         <h2>Wszystkie avatary</h2>
       </div>
 
-      <div class="buttons hard-task row row-100">
-        <button class="button button-icon icon ion-ios-minus-outline"
-                ng-click="data.showDelete = !data.showDelete"></button>
-      </div>
+                
 
-      <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false" show-delete="data.showDelete">
-        <ion-item ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate">
-          <ion-content scroll="false">
-            <ion-delete-button class="ion-minus-circled"
-                               ng-click="onItemDelete(item)">
-            </ion-delete-button>
-            <div class="tutor-avatar-list" scroll="false">
-              <span> {{ avatar.name }}</span>
-            </div>
-          </ion-content>
+      <ion-list class="task-list" can-swipe="false" scroll="false" >
+            <ion-item class="background" ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
+                <ion-content scroll="false">
 
-          <ion-option-button side="left" class="button medium-task"
-                             ng-click="initTaskCreator(avatar)">
-            Nowe zadanie
-          </ion-option-button>
-
-          <ion-option-button side="right" class="button easy-task"
-                             ng-click="initTaskView(avatar)">
-            Podgląd
-          </ion-option-button>
-
-          <ion-delete-button class="ion-minus-circled"
-                             ng-click="">
-          </ion-delete-button>
-        </ion-item>
-        <ion-list>
+            </ion-item>
+      <ion-list>
 
 
     </ion-content>

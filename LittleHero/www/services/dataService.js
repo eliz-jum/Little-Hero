@@ -29,6 +29,12 @@ angular.module('littleHero').service("dataService", function($http) {
         });
       },
 
+      getAvatarsByChildAndTutor: function (childId, tutorId) {
+        return $http.get(BASE_PATH + "avatars/?child_id=" + childId + "&?tutor_id=" + tutorId).then(function(res) {
+          return res;
+        });
+      },
+
       postAvatar: function(newAvatar) {
         return $http.post(BASE_PATH + "avatars/", newAvatar).then(function(res) {
           return res;
@@ -83,7 +89,9 @@ angular.module('littleHero').service("dataService", function($http) {
       //todo
 
       patchAvatar: function (avatarId, changes) {
-        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes);
+        return $http.patch(BASE_PATH + "avatars/" + avatarId, changes).then(function(res) {
+          console.log("patch", res.data);
+        });
       },
 
 
@@ -112,6 +120,11 @@ angular.module('littleHero').service("dataService", function($http) {
         });
       },
 
+      patchTask: function (taskId, changes) {
+        return $http.patch(BASE_PATH + "tasks/" + taskId, changes);
+      },
+
+
       deleteTask: function(taskId) {
         return $http.delete(BASE_PATH + "tasks/" + taskId).then(function(res) {
           return res;
@@ -132,6 +145,12 @@ angular.module('littleHero').service("dataService", function($http) {
             return $http.get(BASE_PATH + "children/" + childId).then(function(res) {
                 return res;
             });
+        },
+
+        getChildrenByTutorId: function (tutorId) {
+          return $http.get(BASE_PATH + "tutors/" + tutorId + "/children").then(function(res) {
+            return res;
+          });
         },
 
         postChild: function(newChild) {

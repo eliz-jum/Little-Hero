@@ -1,15 +1,19 @@
-angular.module('littleHero').controller('NotificationsController', function($scope, $state, $stateParams){
-  
+angular.module('littleHero').controller('NotificationsController', function($scope, $state, childService){
+
+  $scope.notifications = [];
+
+  $scope.$on('$ionicView.beforeEnter', function(){
+    $scope.currentAvatar = childService.currentAvatar;
+    $scope.allAvatars = childService.avatarList;
+
+  });
+
   $scope.swipeLeft = function() {
     console.log("swipe left");
-    $state.go("main", { "allAvatars" : $scope.allAvatars, "currentAvatar" : $scope.currentAvatar, "user" : $scope.user });
+    $state.go("main");
   };
 
-  $scope.$on('$ionicView.beforeEnter', function(){  
-        $scope.allAvatars = $stateParams.allAvatars;
-        $scope.currentAvatar = $stateParams.currentAvatar;
-        $scope.user = $stateParams.user;
-  });
+
 
   $scope.settings = function() {
         $state.go("settings");
