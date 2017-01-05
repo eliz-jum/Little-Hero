@@ -135,17 +135,17 @@ item_for_patch = api.model('Item entity for patch request', {
     'iconSrc': fields.String(description='Path to item icon')
 })
 
-child_invitation_for_post = api.clone('Child invitation for post', {
+child_invitation_for_post = api.model('Child invitation for post', {
     'kind': fields.String(required=True, description='Type of invitation'),
     'tutor_id': fields.Integer(required=True, description='Tutor id')
 })
 
-tutor_invitation_for_post = api.clone('Tutor invitation for post', {
+tutor_invitation_for_post = api.model('Tutor invitation for post', {
     'kind': fields.String(required=True, description='Type of invitation'),
     'child_id': fields.Integer(required=True, description='Child id')
 })
 
-invitation_full = api.clone('Invitation entity', {
+invitation_full = api.model('Invitation entity', {
     'id': fields.Integer(readOnly=True, description='Id of item'),
     'kind': fields.String(required=True, description='Type of invitation'),
     'status': fields.String(required=True, description='Status of invitation'),
@@ -153,6 +153,22 @@ invitation_full = api.clone('Invitation entity', {
     'tutor_id': fields.Integer(required=True, description='Tutor id')
 })
 
-invitation_for_patch = api.clone('Invitation for patch', {
+invitation_for_patch = api.model('Invitation for patch', {
     'status': fields.String(description='Status of invitation')
 })
+
+notification_for_patch = api.model('Notification for patch', {
+    'avatar_id': fields.Integer(description='Id of avatar who has that notification'),
+    'content': fields.String(description='Content of notification')
+})
+
+notification_for_post = api.model('Notification for post', {
+    'content': fields.String(required=True, description='Content of notification')
+})
+
+notification_full = api.clone('Full notification', notification_for_post, {
+    'id': fields.Integer(readOnly=True, description='Id of notification'),
+    'avatar_id': fields.Integer(required=True, description='Id of avatar who has that notification')
+})
+
+

@@ -1,7 +1,6 @@
 from little_hero_rest_api.database import db
 from little_hero_rest_api.database.models import Item
 from little_hero_rest_api.dao.generic import GenericDAO
-import json
 
 class ItemDAO(GenericDAO):
 

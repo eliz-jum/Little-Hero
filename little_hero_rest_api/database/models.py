@@ -109,7 +109,7 @@ class Item(BaseModel):
         self.creationDate = datetime.utcnow()
 
     def __repr__(self):
-        return '<Item %r>' % self.imgSrc
+        return '<Item %r>' % self.id
 
 
 class Task(BaseModel):
@@ -177,6 +177,18 @@ class AvatarItem(BaseModel):
     def __repr__(self):
         return '<AvatarItem  avatar_id: {0!r}, item_id: {0!r}, state: {0!r}>'\
             .format(self.avatar_id,  self.item_id, self.state)
+
+
+class Notification(BaseModel):
+    avatar_id = db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id'), nullable=False)
+    content = db.Column(db.String(200))
+
+    def __init__(self, avatar_id, content):
+        self.avatar_id = avatar_id
+        self.content = content
+
+    def __repr__(self):
+        return '<Notification id: %r>' % self.id
 
     # class ItemState(Enum):
     #     on = 1

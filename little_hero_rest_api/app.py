@@ -13,7 +13,7 @@ from little_hero_rest_api.api.endpoints.task import ns as task_namespace
 from little_hero_rest_api.api.endpoints.avatar_item import ns as avatar_item_namespace
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.database import db
-from little_hero_rest_api.database.models import Invitation
+from little_hero_rest_api.database.models import Notification
 from flask_cors import CORS
 
 app = Flask(__name__)  # Create a Flask WSGI application
@@ -47,7 +47,7 @@ def initialize_app(flask_app):
     db.init_app(flask_app)
     with flask_app.app_context(): #see why http://flask-sqlalchemy.pocoo.org/2.1/api/
         #db.drop_all()
-        #Invitation.__table__.drop(db.engine)
+        #Notification.__table__.drop(db.engine)
         db.create_all()
 
 
