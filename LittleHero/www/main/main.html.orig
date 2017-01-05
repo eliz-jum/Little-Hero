@@ -1,0 +1,93 @@
+<ion-view>
+  <ion-pane class="background">
+    <div class="bar bar-header orange">
+
+      <div class="row row-center orange">
+        <div class="col col-50 item item-select">
+<<<<<<< HEAD
+          <select ng-model="currentAvatar" ng-change="checkForAvatar()"
+                  ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+            <option value="">{{ user.nickname }}</option>
+          </select>
+        </div>
+
+        <div class="col col-10">
+          <i class="icon icon ion-flash"></i>
+        </div>
+        <div class="col col-10">
+          <span>{{ currentAvatar.level }}</span>
+        </div>
+        <div class="col col-10">
+          <i class="icon icon ion-cash"></i>
+        </div>
+        <div class="col col-10">
+          <span>{{ currentAvatar.money }}</span>
+        </div>
+=======
+
+            <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+                <option value="">{{ currentAvatar.name }} </option>
+            </select>
+        </div>
+
+        <div class="col col-10" ><i class="icon icon ion-flash"></i></div>
+        <div class="col col-10"><span>{{ currentAvatar.level }}</span></div>
+        <div class="col col-10"><i class="icon icon ion-cash"></i></div>
+        <div class="col col-10"><span>{{ currentAvatar.money }}</span></div>
+>>>>>>> childService
+        <div class="col col-10">
+          <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
+        </div>
+      </div>
+    </div>
+    <ion-content on-swipe-left="swipeLeft()" on-swipe-right="swipeRight()"
+                 class="background padding has-header has-footer">
+      <div class="row row-100">
+        <div class="col col-100">
+          <div class="row row-50 row-center">
+            <i class="icon icon ion-star stats"></i>
+            <div class="progress-bar">
+              <div class="progress-bar-indicator xp" ng-style="{'width' : currentAvatar.experience + '%'}"></div>
+            </div>
+          </div>
+
+          <div class="row row-50 row-center">
+            <i class="icon icon ion-android-favorite stats"></i>
+            <div class="progress-bar">
+              <div class="progress-bar-indicator hp" ng-style="{'width' : currentAvatar.health + '%'}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-90 row-center" ng-show="showAvatar" ng-hide="!showAvatar">
+        <div class="avatar col col-100" align="center" ng-click="dragRight()">
+          <img class="asset animal" src="img/empty.svg" alt="animal">
+          <img class="asset hair_back" src="img/hair_back1.svg" alt="hair_back">
+          <img class="asset body" src="img/baza.svg" alt="body">
+          <img class="asset hair_front" src="img/hair_front1.svg" alt="hair_front">
+          <img class="asset prop_left" src="img/prop1_left.svg" alt="prop_left">
+          <img class="asset prop_right" src="img/prop1_right.svg" alt="prop_right">
+          <img class="asset eyes" src="img/eyes1.svg" alt="eyes">
+          <img class="asset nose" src="img/nose1.svg" alt="nose">
+          <img class="asset mouth" src="img/mouth1.svg" alt="mouth">
+          <img class="asset sock" src="img/sock1.svg" alt="sock">
+          <img class="asset bottom" src="img/pants1.svg" alt="bottom">
+          <img class="asset shoes" src="img/shoes1.svg" alt="shoes">
+          <img class="asset top" src="img/tee1.svg" alt="top">
+          <img class="asset top_bottom" src="img/empty.svg" alt="top_bottom">
+          <img class="asset misc_head" src="img/empty.svg" alt="misc">
+          <img class="asset misc_ear" src="img/empty.svg" alt="misc">
+          <img class="asset misc_neck" src="img/empty.svg" alt="misc">
+
+          <!--<img class="asset misc" src="img/empty.svg" alt="misc">-->
+        </div>
+      </div>
+    </ion-content>
+
+
+    <ion-footer-bar class="button-footer orange">
+      <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="openModal(item)"/>
+    </ion-footer-bar>
+
+  </ion-pane>
+</ion-view>

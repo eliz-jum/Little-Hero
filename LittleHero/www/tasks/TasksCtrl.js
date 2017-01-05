@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('TasksController', function($scope, $state, $stateParams, $window, dataService, childService, ionicToast) {
+angular.module('littleHero').controller('TasksController', function($scope, $state, $window, dataService, childService, ionicToast) {
 
 
     $scope.tasks = [];
@@ -6,16 +6,10 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
     $scope.dynamicStyle = [];
 
     $scope.$on('$ionicView.beforeEnter', function(){
-
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
-
-      //childService.setTasks();
-      childService.hardcodeAvatarTasks();
-
       $scope.tasks = childService.tasks;
-      //console.log(childService.tasks);
-
+      console.log("tasks", childService.tasks)
     });
 
     $scope.$on('$ionicView.afterEnter', function(){
