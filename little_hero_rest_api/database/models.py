@@ -116,10 +116,7 @@ class Task(BaseModel):
     content = db.Column(db.String(1000))
     difficulty = db.Column(db.Integer)
     experience = db.Column(db.Integer)
-    is_completed = db.Column(db.Boolean)
-    is_archived = db.Column(db.Boolean)
     reward = db.Column(db.Integer)
-    completed_date = db.Column(db.DateTime)
 
     avatar_id = db.Column(db.Integer, db.ForeignKey('avatar.id'))
     avatar = db.relationship('Avatar', back_populates='tasks', lazy='joined')
@@ -127,14 +124,12 @@ class Task(BaseModel):
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutor.id'))
     tutor = db.relationship('Tutor', back_populates='tasks', lazy='joined')
 
-    def __init__(self, content, avatar, tutor, difficulty, experience, completed, archived, reward):
+    def __init__(self, content, avatar, tutor, difficulty, experience, reward):
         self.content = content
         self.avatar = avatar
         self.tutor = tutor
         self.difficulty = difficulty
         self.experience = experience
-        self.completed = completed
-        self.archived = archived
         self.reward = reward
         self.creationDate = datetime.utcnow()
 

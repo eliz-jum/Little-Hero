@@ -91,14 +91,11 @@ task_for_post = api.model('Task for post', {
     'avatar_id': fields.Integer(required=True, description='Id of avatar who was given this task'),
     'tutor_id': fields.Integer(required=True, description='Id of tutor who was gave the task'),
     'experience': fields.Integer(required=True, description='Experience to be gained after completing task'),
-    'is_completed': fields.Boolean(required=True, description='Informs if the task is completed or not'),
-    'is_archived': fields.Boolean(required=True, description='Informs if the task is archived or not'),
     'reward': fields.Integer(required=True, description='Money reward after completing task'),
 })
 
 task_full = api.clone('Task entity', task_for_post, {
     'id': fields.Integer(readOnly=True, description='Id of item'),
-    'completed_date': fields.DateTime(required=True, description='Task date completion')
 })
 
 task_for_patch = api.model('Task entity for patch request', {
@@ -107,10 +104,7 @@ task_for_patch = api.model('Task entity for patch request', {
     'avatar_id': fields.Integer(description='Id of avatar who was given this task'),
     'tutor_id': fields.Integer(description='Id of tutor who was gave the task'),
     'experience': fields.Integer(description='Experience to be gained after completing task'),
-    'is_completed': fields.Boolean(description='Informs if the task is completed or not'),
-    'is_archived': fields.Boolean(description='Informs if the task is archived or not'),
     'reward': fields.Integer(description='Money reward after completing task'),
-    'completed_date': fields.DateTime(description='Task date completion')
 })
 
 item_for_post = api.model('Item for post', {

@@ -5,6 +5,7 @@ from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.generic import GenericDAO
 from datetime import datetime
 
+
 class TaskDAO(GenericDAO):
 
     avatar_dao = AvatarDAO()
@@ -30,11 +31,9 @@ class TaskDAO(GenericDAO):
         tutor = self.tutor_dao.get(tutor_id)
         difficulty = data.get('difficulty')
         experience = data.get('experience')
-        is_completed = data.get('is_completed')
-        is_archived = data.get('is_archived')
         reward = data.get('reward')
 
-        task = Task(content, avatar, tutor, difficulty, experience, is_completed, is_archived, reward)
+        task = Task(content, avatar, tutor, difficulty, experience, reward)
 
         db.session.add(task)
         db.session.commit()
@@ -47,15 +46,9 @@ class TaskDAO(GenericDAO):
         tutor_id = data.get('tutor_id')
         difficulty = data.get('difficulty')
         experience = data.get('experience')
-        is_completed = data.get('is_completed')
-        is_archived = data.get('is_archived')
         reward = data.get('reward')
 
         task = Task.query.filter_by(id=id).one()
-
-        completed_date = None
-        if not task.is_completed and not is_completed:
-            completed_date = datetime.utcnow()
 
         if content:
             task.content = content
@@ -69,14 +62,8 @@ class TaskDAO(GenericDAO):
             task.difficulty = difficulty
         if isinstance(experience, int):
             task.experience = experience
-        if isinstance(is_completed, bool):
-            task.is_completed = is_completed
-        if isinstance(is_archived, bool):
-            task.is_archived = is_archived
         if isinstance(reward, int):
             task.reward = reward
-        if completed_date:
-            task.completed_date = completed_date
 
         db.session.commit()
 
