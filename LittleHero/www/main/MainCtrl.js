@@ -133,20 +133,19 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     });
   }
 
-  //todo po wejsciu na innego avatara z menu wysowanego
   $scope.setAvatarData = function (avatar) {
+    cleanAvatarArrays();
+    childService.currentAvatar = avatar;
+    childService.currentAvatarId = childService.currentAvatar.id;
 
-      childService.currentAvatar = avatar;
-      childService.currentAvatarId = childService.currentAvatar.id;
-      
-      // childService.setWornItems();
-      // childService.setCanBePutOnItems();
-      // childService.setCanBePurchasedItems();
-      // childService.setUnavailableItems();
-      childService.setAvatarTasks();
-      childService.hardcodeAvatarItemArrays();
-      childService.hardcodeAvatarWornItemsArray();
-      dressAvatar();
+    // childService.setWornItems();
+    // childService.setCanBePutOnItems();
+    // childService.setCanBePurchasedItems();
+    // childService.setUnavailableItems();
+    childService.setAvatarTasks();
+    childService.hardcodeAvatarItemArrays();
+    childService.hardcodeAvatarWornItemsArray();
+    dressAvatar();
 
   }
 
