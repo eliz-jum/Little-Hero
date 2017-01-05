@@ -1,0 +1,23 @@
+<div class="bar bar-header orange">
+    <div class="row row-center orange">
+        <div class="col col-70">
+            {{ user.nickname }}
+        </div>
+        <button class="button button-icon icon ion-plus" ng-click="addAvatar()"></button>
+        <button class="button button-icon icon ion-gear-b" ui-sref="settings"></button>
+    </div>
+</div>
+</div>
+<ion-content class="background has-header" style="margin-top:16px">
+    <ion-list>
+        <ion-item class="background" ng-repeat="avatar in avatars">
+            <div style="display: inline-block">
+                <div style="display: inline">{{avatar.name}}:</div>
+                <div style="display: inline; margin: 0 5px;"><i class="icon icon ion-flash"></i> {{avatar.level}}</div>
+                <div style="display: inline; margin: 0 5px;"><i class="icon icon ion-cash"></i> {{avatar.money}}</div>
+            </div>
+            <div class="button button-icon accept-invite-button ion-edit" ng-click="edit(avatar)">
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
