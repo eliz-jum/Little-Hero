@@ -120,6 +120,10 @@ angular.module('littleHero').service("dataService", function($http) {
         });
       },
 
+      patchTask: function () {
+
+      },
+
       deleteTask: function(taskId) {
         return $http.delete(BASE_PATH + "tasks/" + taskId).then(function(res) {
           return res;

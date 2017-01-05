@@ -401,13 +401,19 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
   }
 
-  childService.setTasks = function () {
+  childService.setAvatarTasksByTutor = function () {
+    dataService.getTasksByTutorAndAvatar(childService.tutorObj.id, childService.currentAvatarId).then(function (res) {
+      childService.tasks = res.data;
+    });
+  }
+  
+  childService.setAvatarTasks = function () {
       dataService.getTasksByAvatar(childService.currentAvatarId).then(function (res) {
           childService.tasks = res.data;
-        console.log("jes", childService.tasks);
       });
   }
 
+  
 
   childService.addNewAvatar = function (name, avatarClass, tutorId) {
     var newAvatar ={

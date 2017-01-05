@@ -70,6 +70,15 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
           currentAvatar: null
         }
       })
+      .state('taskCreator', {
+        url: '/taskCreator',
+        templateUrl: 'taskCreator/taskCreator.html',
+        controller: 'TaskCreatorController',
+        params: {
+          user: null,
+          currentAvatar: null
+        }
+      })
         .state('recoverPassword', {
             url: '/recoverPassword',
             templateUrl: 'recoverPass/recoverPass.html',
@@ -98,24 +107,6 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             templateUrl: 'settings/settings.html',
             controller: 'SettingsController'
         })
-        .state('tasksCreator', {
-          url: '/tasksCreator',
-          templateUrl: 'tasksCreator/tasksCreator.html',
-          controller: 'TasksCreatorController',
-          params: {
-                user: null,
-                currentAvatar: null
-          }
-        })
-        .state('tasksView', {
-            url: '/tasksView',
-            templateUrl: 'tasksView/tasksView.html',
-            controller: 'tasksViewController',
-             params: {
-                user: null,
-                currentAvatar: null
-            }
-        })
         .state('notifications',{
           url: '/notifications',
           templateUrl: 'notifications/notifications.html',
@@ -132,7 +123,7 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
 angular.module('littleHero').controller('MTController', function($scope, $state, $stateParams, $ionicModal, $http, dataService){
 
     $scope.allAvatars = null;
-    $scope.currentAvatar = null;    
+    $scope.currentAvatar = null;
 
     $scope.data = {
         showDelete: false
@@ -148,9 +139,9 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
     "dostałeś nowy poziom!"
   ];
 
-    $scope.$on('$ionicView.beforeEnter', function(){       
+    $scope.$on('$ionicView.beforeEnter', function(){
         $scope.user = $stateParams.user;
-        $scope.getAvatars();   
+        $scope.getAvatars();
     });
 
     $scope.getAvatars = function() {
@@ -160,13 +151,9 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
 
     };
 
-    $scope.initTaskCreator = function(avatar) {
-        $state.go("tasksCreator", { "user" : $scope.user, "currentAvatar" : avatar });
-    };
 
-    $scope.initTaskView = function(avatar) {
-        $state.go("tasksView", { "user" : $scope.user, "currentAvatar" : avatar });
-    };
+
+
 
 
     $scope.settings = function() {

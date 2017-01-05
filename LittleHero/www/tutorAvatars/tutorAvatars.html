@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <ion-content on-swipe-right="swipeRight()" class="background has-header">
+    <ion-content on-swipe-right="back()" class="background has-header">
 
       <div class="title">
         <h2>{{child.login}}</h2>
@@ -19,8 +19,8 @@
 
 
 
-      <ion-list class="task-list" can-swipe="true" swipe-direction="right" scroll="false" show-delete="data.showDelete">
-        <ion-item ng-click="showAvatarTasks(avatar)" ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate">
+      <ion-list class="task-list" can-swipe="false" scroll="false">
+        <ion-item class="background" ng-click="showAvatarTasks(avatar)" ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate">
           <ion-content scroll="false">
 
             <div class="tutor-avatar-list">

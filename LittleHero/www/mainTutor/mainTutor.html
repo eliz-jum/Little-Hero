@@ -19,8 +19,8 @@
 
 
 
-      <ion-list class="task-list" can-swipe="true" swipe-direction="right" scroll="false" show-delete="data.showDelete">
-            <ion-item ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
+      <ion-list class="task-list" can-swipe="false" scroll="false" >
+            <ion-item class="background" ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
                 <ion-content scroll="false">
 
                     <div class="tutor-avatar-list">

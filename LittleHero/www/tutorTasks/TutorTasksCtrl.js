@@ -33,4 +33,12 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
     childService.failTask(task)
   }
 
+  $scope.editTask = function (task) {
+    
+  }
+  
+  $scope.newTask = function () {
+    $state.go("taskCreator");
+  }
+  
 });

@@ -14,7 +14,7 @@ angular.module('littleHero').controller('TutorAvatarsController', function($scop
   $scope.showAvatarTasks = function (avatar) {
     childService.currentAvatar = avatar;
     childService.currentAvatarId = avatar.id;
-    childService.setTasks();
+    childService.setAvatarTasksByTutor();
 
     setTimeout(function () {
       console.log("tutor ide do tasks",childService.tasks);
