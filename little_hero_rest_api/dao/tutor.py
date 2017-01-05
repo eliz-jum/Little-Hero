@@ -34,7 +34,8 @@ class TutorDAO(GenericDAO):
     def get_all_children(self, id):
         result = db.session.query(Child, Tutor, Avatar).\
             filter(Tutor.id == Avatar.tutor_id).\
-            filter(Child.id == Avatar.child_id).all()
+            filter(Child.id == Avatar.child_id).\
+            filter(Tutor.id == id).all()
 
         children_set = set()
         for (child, tutor, avatar) in result:

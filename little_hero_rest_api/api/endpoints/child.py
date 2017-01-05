@@ -11,6 +11,7 @@ from little_hero_rest_api.dao.invitation import InvitationDAO
 from little_hero_rest_api.api.serializers import invitation_full
 from little_hero_rest_api.api.serializers import child_invitation_for_post
 from little_hero_rest_api.api.serializers import invitation_for_patch
+from little_hero_rest_api.api.serializers import tutor_full
 
 log = logging.getLogger(__name__)
 
@@ -63,6 +64,15 @@ class Child(Resource):
         updated_child = child_dao.update(id, data)
         return updated_child, 200
 
+
+@ns.route('/<int:id>/tutors')
+@ns.response(404, 'Child not found')
+@ns.param('id', 'The child identifier')
+class ChildTutors(Resource):
+    """Returns list of child tutors"""
+    @ns.marshal_list_with(tutor_full)
+    def get(self, id):
+        return child_dao.get_all_tutors(id)
 
 @ns.route('/<int:id>/invitations')
 @ns.response(404, 'Child not found')
