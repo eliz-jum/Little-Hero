@@ -79,6 +79,15 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
           currentAvatar: null
         }
       })
+      .state('tutorEditTask', {
+        url: '/editTask',
+        templateUrl: 'taskCreator/taskCreator.html',
+        controller: 'TaskCreatorController',
+        params: {
+          user: null,
+          currentAvatar: null
+        }
+      })
         .state('recoverPassword', {
             url: '/recoverPassword',
             templateUrl: 'recoverPass/recoverPass.html',

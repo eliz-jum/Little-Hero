@@ -16,8 +16,8 @@ angular.module('littleHero').controller('TaskCreatorController', function($scope
 
   $scope.validate=function() {
     var description = document.getElementById("new-task-description").value;
-    var money = document.getElementById("new-task-money").value;
-    var exp = document.getElementById("new-task-experience").value;
+    var money = parseInt(document.getElementById("new-task-money").value);
+    var exp = parseInt(document.getElementById("new-task-experience").value);
 
     console.log(description);
     console.log(money);
