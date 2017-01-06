@@ -24,16 +24,5 @@ angular.module('littleHero').controller('MTController', function($scope, $state,
       console.log("tutor ide do avatars",childService);
       $state.go("tutorAvatars");
     }, 1000);
-
-
-
   }
-
-
-
-
-  $scope.settings = function() {
-      $state.go("settingsTutor");
-  };
-
 });
