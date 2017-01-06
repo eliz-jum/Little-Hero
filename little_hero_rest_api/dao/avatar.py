@@ -31,7 +31,7 @@ class AvatarDAO(GenericDAO):
         tutor_id = data.get('tutor_id')
         tutor = None
         if tutor_id:
-            tutor = self.tutor_dao.get(tutor_id)  # todo: jak nie ma to dać NOT_FOUND
+            tutor = self.tutor_dao.get(tutor_id)
         level = data.get('level')
         money = data.get('money')
         health = data.get('health')

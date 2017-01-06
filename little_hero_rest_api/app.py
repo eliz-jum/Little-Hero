@@ -5,7 +5,7 @@ import os
 
 from flask import Flask, Blueprint
 from little_hero_rest_api import settings
-from little_hero_rest_api.api.endpoints.child import ns as children_namespace
+from little_hero_rest_api.api.endpoints.child import ns as child_namespace
 from little_hero_rest_api.api.endpoints.avatar import ns as avatar_namespace
 from little_hero_rest_api.api.endpoints.tutor import ns as tutor_namespace
 from little_hero_rest_api.api.endpoints.item import ns as item_namespace
@@ -13,7 +13,7 @@ from little_hero_rest_api.api.endpoints.task import ns as task_namespace
 from little_hero_rest_api.api.endpoints.avatar_item import ns as avatar_item_namespace
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.database import db
-from little_hero_rest_api.database.models import Task
+#from little_hero_rest_api.database.models import Task
 from flask_cors import CORS
 
 app = Flask(__name__)  # Create a Flask WSGI application
@@ -36,7 +36,7 @@ def initialize_app(flask_app):
     blueprint = Blueprint('api', __name__, url_prefix='/api')
     CORS(blueprint)
     api.init_app(blueprint)
-    api.add_namespace(children_namespace)
+    api.add_namespace(child_namespace)
     api.add_namespace(avatar_namespace)
     api.add_namespace(tutor_namespace)
     api.add_namespace(item_namespace)

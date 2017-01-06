@@ -4,6 +4,8 @@ import traceback
 from flask_restplus import Api
 from little_hero_rest_api import settings
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import IntegrityError
+import json
 
 log = logging.getLogger(__name__)
 
@@ -23,4 +25,21 @@ def default_error_handler(e):
 @api.errorhandler(NoResultFound)
 def database_not_found_error_handler(e):
     log.warning(traceback.format_exc())
-    return {'message': 'A database result was required but none was found.'}, 404
+    return {
+               'code': 404,
+               'message': 'A database result was required but none was found.'
+           }, 404
+
+
+@api.errorhandler(IntegrityError)
+def integrity_error_handler(e):
+    log.warning(traceback.format_exc())
+    return {
+               'code': 400,
+               'message': __format_error_message(str(e.orig))
+           }, 400
+
+
+def __format_error_message(message):
+    message = message.replace('\n', ' ').replace('\"', '\'')
+    return message
