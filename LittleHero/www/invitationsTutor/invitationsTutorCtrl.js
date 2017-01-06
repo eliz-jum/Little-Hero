@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('InvitationsTutorController', function ($scope, $state, $stateParams, $ionicModal, childService, dataService, ionicToast) {
+angular.module('littleHero').controller('InvitationsTutorController', function ($scope, $state, $ionicModal, childService, dataService, ionicToast) {
     $scope.filters = {};
     $scope.newChild = {};
     $scope.user = childService.tutorObj;

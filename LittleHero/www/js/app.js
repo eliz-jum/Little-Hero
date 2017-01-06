@@ -28,29 +28,17 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             .state('login', {
                 url: '/login',
                 templateUrl: 'login/login.html',
-                controller: 'LoginController',
-                params: {
-                    user: null
-                }
+                controller: 'LoginController'
             })
             .state('main', {
                 url: '/main',
                 templateUrl: 'main/main.html',
-                controller: 'MainController',
-                params: {
-                    allAvatars: null,
-                    currentAvatar: null,
-                    user: null
-                }
+                controller: 'MainController'
             })
             .state('mainTutor', {
                 url: '/mainTutor',
                 templateUrl: 'mainTutor/mainTutor.html',
-                controller: 'MTController',
-                params: {
-                    user : null,
-                    currentAvatar: null
-                }
+                controller: 'MTController'
             })
             .state('recoverPassword', {
                 url: '/recoverPassword',
@@ -60,20 +48,12 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             .state('registration', {
                 url: '/registration',
                 templateUrl: 'registration/registration.html',
-                controller: 'RegistrationController',
-                params: {
-                    username: null
-                }
+                controller: 'RegistrationController'
             })
             .state('tasks', {
                 url: '/tasks',
                 templateUrl: 'tasks/tasks.html',
-                controller: 'TasksController',
-                params: {
-                    allAvatars: null,
-                    currentAvatar : null,
-                    user: null
-                }
+                controller: 'TasksController'
             })
             .state('settings', {
                 url: '/settings',
@@ -83,48 +63,32 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
             .state('tasksCreator', {
                 url: '/tasksCreator',
                 templateUrl: 'tasksCreator/tasksCreator.html',
-                controller: 'TasksCreatorController',
-                params: {
-                    user: null,
-                    currentAvatar: null
-                }
+                controller: 'TasksCreatorController'
             })
             .state('tasksView', {
                 url: '/tasksView',
                 templateUrl: 'tasksView/tasksView.html',
-                controller: 'tasksViewController',
-                params: {
-                    user: null,
-                    currentAvatar: null
-                }
+                controller: 'tasksViewController'
             })
             .state('notifications',{
                 url: '/notifications',
                 templateUrl: 'notifications/notifications.html',
-                controller: 'NotificationsController',
-                params: {
-                    allAvatars: null,
-                    currentAvatar : null,
-                    user: null
-                }
+                controller: 'NotificationsController'
             })
             .state('invitations', {
                 url: '/invitations',
                 templateUrl: 'invitations/invitations.html',
-                controller: 'InvitationsController',
-                params: {}
+                controller: 'InvitationsController'
             })
             .state('invitationsTutor', {
                 url: '/invitationsTutor',
                 templateUrl: 'invitationsTutor/invitationsTutor.html',
-                controller: 'InvitationsTutorController',
-                params: {}
+                controller: 'InvitationsTutorController'
             })
             .state('avatars', {
                 url: '/avatars',
                 templateUrl: 'avatars/avatars.html',
-                controller: 'AvatarsController',
-                params: {}
+                controller: 'AvatarsController'
             }),
             $urlRouterProvider.otherwise('/login');
     });

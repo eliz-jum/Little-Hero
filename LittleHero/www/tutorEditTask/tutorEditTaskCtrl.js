@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('TutorEditTaskController', function($scope, $state, $stateParams, $http, dataService, childService){
+angular.module('littleHero').controller('TutorEditTaskController', function($scope, $state, $http, dataService, childService){
 
   $scope.newTask = {};
 

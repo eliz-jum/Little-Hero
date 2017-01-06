@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('RegistrationController', function($scope, $state, $http, $stateParams, dataService, ionicToast){
+angular.module('littleHero').controller('RegistrationController', function($scope, $state, $http, dataService, ionicToast){
 
     $scope.children = [];
     $scope.tutors = [];

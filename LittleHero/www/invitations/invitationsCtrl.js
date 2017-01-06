@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('InvitationsController', function ($scope, $state, $stateParams, $ionicModal, childService, dataService) {
+angular.module('littleHero').controller('InvitationsController', function ($scope, $state, $ionicModal, childService, dataService) {
     $scope.classes = [
         "human",
         "cowboy",
