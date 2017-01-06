@@ -2,7 +2,8 @@ from flask_restplus import fields
 from little_hero_rest_api.api.restplus import api
 
 STATES_OF_ITEM = ['worn', 'canBePutOn', 'canBePurchased', 'unavailable'] #todo: uppercase
-CLASSES = ['wornByDefault', 'allclazzes', 'human', 'empty', 'king', 'mage', 'cowboy']
+CLASSES_OF_ITEM = ['wornByDefault', 'allclazzes', 'human', 'empty', 'king', 'mage', 'cowboy']
+CLASSES_OF_AVATAR = ['human', 'king', 'mage', 'cowboy']
 TYPES_OF_ITEM = ['shoes', 'sock', 'prop_right', 'prop_left', 'misc_neck', 'misc_ear', 'misc_head', 'top_bottom',
                  'bottom', 'top', 'animal', 'hair_back', 'hair_front', 'mouth', 'nose', 'eyes']
 KINDS_OF_INVITATION = ['child-avatar', 'child', 'tutor', 'tutor-avatar']
@@ -38,7 +39,7 @@ child_for_patch = api.model('Child entity for patch request', {
 
 avatar_for_post = api.model('Avatar for post', {
     'name': fields.String(required=True, description='Avatar name'),
-    'clazz': fields.String(required=True, description='Avatar class', enum=CLASSES), #todo: enum for class
+    'clazz': fields.String(required=True, description='Avatar class', enum=CLASSES_OF_AVATAR), #todo: enum for class
     'child_id': fields.Integer(required=True, description='Id of avatars owner (child)'),
     'tutor_id': fields.Integer(required=True, description='Id of tutors related to avatar'),
     'level': fields.Integer(required=True, description='Avatar level', min=0),
@@ -57,7 +58,7 @@ avatar_full = api.clone('Avatar entity', avatar_for_post, {
 avatar_for_patch = api.model('Avatar entity for patch request', {
     #'id': fields.Integer(readOnly=True, description='Id of avatar'),
     'name': fields.String(description='Avatar name'),
-    'clazz': fields.String(description='Avatar class', enum=CLASSES),
+    'clazz': fields.String(description='Avatar class', enum=CLASSES_OF_AVATAR),
     'update_task': fields.Boolean(description='Flag indicating if update of task is required'),
     'update_invitation': fields.Boolean(description='Flag indicating if invitations changed'),
     'update_notification': fields.Boolean(description='Flag indicating if notification is required'),
@@ -129,7 +130,7 @@ task_for_patch = api.model('Task entity for patch request', {
 item_for_post = api.model('Item for post', {
     'price': fields.Integer(required=True, description='Item price', min=0),
     'level': fields.Integer(required=True, description='Item level. Item is available from this level.', min=0),
-    'clazz': fields.String(required=True, description='Item class', enum=CLASSES),
+    'clazz': fields.String(required=True, description='Item class', enum=CLASSES_OF_ITEM),
     'type': fields.String(required=True, description='Item type', enum=TYPES_OF_ITEM),
     'imgSrc': fields.String(required=True, description='Path to item image'),
     'iconSrc': fields.String(required=True, description='Path to item icon')
@@ -142,7 +143,7 @@ item_full = api.clone('Item entity', item_for_post, {
 item_for_patch = api.model('Item entity for patch request', {
     'price': fields.Integer(description='Item price', min=0),
     'level': fields.Integer(description='Item level. Item is available from this level.', min=0),
-    'clazz': fields.String(description='Item class', enum=CLASSES),
+    'clazz': fields.String(description='Item class', enum=CLASSES_OF_ITEM),
     'type': fields.String(description='Item type', enum=TYPES_OF_ITEM),
     'imgSrc': fields.String(description='Path to item image'),
     'iconSrc': fields.String(description='Path to item icon')
