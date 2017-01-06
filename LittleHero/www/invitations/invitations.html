@@ -21,7 +21,8 @@
                 <div ng-if="invite.status=='rejected'">odrzucone</div>
             </div>
         </div>
-        <div ng-if="(invite.kind=='tutor' || invite.kind=='tutor-avatar') && invite.status=='pending'">
+        <div ng-if="((invite.kind=='tutor' || invite.kind=='tutor-avatar') && invite.status=='pending') ||
+                    ((invite.kind=='child' || invite.kind=='child-avatar') && invite.status=='accepted')">
             <ion-option-button side="left" class="button button-balanced" ng-click="acceptInvite(invite)">
                 <i class="icon ion-checkmark-round"></i>
             </ion-option-button>
