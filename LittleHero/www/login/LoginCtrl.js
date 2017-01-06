@@ -57,9 +57,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         for (index in tutors) {
             if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
                 childService.tutorObj = tutors[index];
-                childService.setTutorAvatarList();
-                childService.setCurrentAvatarId();
-                childService.setTasks();
+                childService.setTutorChildren();
                 type = 1;
             }
         }
@@ -68,7 +66,6 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
             if (children[index].login == $scope.login && children[index].password == $scope.password) {
                 childService.childObj = children[index];
                 childService.setChildAvatarList();
-                childService.setCurrentAvatarId();
                 type = 0;
             }
         }
