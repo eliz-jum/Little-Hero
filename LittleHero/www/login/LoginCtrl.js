@@ -20,10 +20,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         dataService.getChildren().then(function(res) {
             children = res;
         });
-
-        //---------zahardkodowana wersja
-        //childService.hardcodeChildObj();
-        //children.push(childService.childObj);
+      
     });
 
     $scope.validate = function() {

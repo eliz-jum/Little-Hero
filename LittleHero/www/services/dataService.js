@@ -86,7 +86,6 @@ angular.module('littleHero').service("dataService", function($http) {
         return $http.post(BASE_PATH + "avatar-item-links/", newLink)
       },
 
-      //todo
 
       patchAvatar: function (avatarId, changes) {
         return $http.patch(BASE_PATH + "avatars/" + avatarId, changes).then(function(res) {
@@ -130,8 +129,6 @@ angular.module('littleHero').service("dataService", function($http) {
           return res;
         });
       },
-    //TODO wyrabac z task pole bool completed - nie trzymamy zrobionych zadan!
-
 
 
       //----------------------------------------------CHILDREN--------------------------------------------
@@ -163,7 +160,7 @@ angular.module('littleHero').service("dataService", function($http) {
 
 
 
-      //-----------------TUTOR---------------------------
+      //------------------------------------------TUTOR--------------------------------------
         getTutors: function() {
             return $http.get(BASE_PATH + "tutors/").then(function(res) {
                 return res;
@@ -188,7 +185,7 @@ angular.module('littleHero').service("dataService", function($http) {
             });
         },
 
-      //-----------------T----ITEM---------------------------
+      //------------------------------------------------ITEM---------------------------------------
       getItems: function () {
         return $http.get(BASE_PATH + "items/").then(function(res) {
           return res;
@@ -210,7 +207,7 @@ angular.module('littleHero').service("dataService", function($http) {
 
       //TODO: zamienic nazwy stringow na zmienną np "avatar-item-links" itd
 
-        //-----------------------INVITES---------------------------------
+        //-----------------------------------------INVITES---------------------------------
         getInvitesByUser: function(userType, userId) {
             return $http.get(BASE_PATH + userType + "/" + userId + "/invitations").then(function(res) {
                 return res.data;
@@ -239,6 +236,21 @@ angular.module('littleHero').service("dataService", function($http) {
             return $http.delete(BASE_PATH + userType + "/" + userId + "/invitations/" + inviteId).then(function(res) {
                 return res.data;
             });
-        }
+        },
+
+      //----------------------------------------------NOTIFICATIONS--------------------------------------------
+
+      getNotificationsByAvatar: function (avatarId) {
+        return $http.get(BASE_PATH + "avatars/" + avatarId + "/notifications").then(function(res) {
+          return res;
+        });
+      },
+
+      postNotification: function (avatarId, notification) {
+        return $http.post(BASE_PATH + "avatars/" + avatarId + "/notifications", notification).then(function(res) {
+          return res;
+        });
+      }
+
     }
 });

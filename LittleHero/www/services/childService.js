@@ -20,6 +20,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.tasks = [];
   childService.currentTask = {};
+  childService.notifications = [];
 
   childService.hardcodeChildObj = function () {
     childService.childObj = {
@@ -579,7 +580,21 @@ angular.module('littleHero').factory('childService',function($state, dataService
     //dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
     //dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
   },
-
+    
+  childService.setNotificationsArray = function () {
+    dataService.getNotificationsByAvatar(childService.currentAvatarId).then(function (res) {
+      childService.notifications = res.data;
+    });
+  }
+  
+  childService.addNotification = function (content) {
+    var notification = {
+      content: content
+    }
+    dataService.postNotification(childService.currentAvatarId, notification);
+  }
+    
+    
   childService.gainLevel = function (exp) {
     childService.currentAvatar.level++;
     childService.currentAvatar.health = 100;
@@ -654,10 +669,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   }
 
-
-  childService.writeAllDataToDatabase = function () {
-
-  }
+  
 
 
 
