@@ -5,7 +5,7 @@ angular.module('littleHero').controller('NotificationsController', function($sco
   $scope.$on('$ionicView.beforeEnter', function(){
     $scope.currentAvatar = childService.currentAvatar;
     $scope.allAvatars = childService.avatarList;
-
+    $scope.notifications = childService.notifications;
   });
 
   $scope.swipeLeft = function() {
@@ -13,15 +13,8 @@ angular.module('littleHero').controller('NotificationsController', function($sco
     $state.go("main");
   };
 
-
-
   $scope.settings = function() {
-        $state.go("settings");
+    $state.go("settings");
   };
 
-  $scope.notifications=[
-    "zaproszono Cię",
-    "masz nowe zadanie!",
-    "dostałeś nowy poziom!"
-  ];
 });

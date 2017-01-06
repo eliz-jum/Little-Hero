@@ -17,6 +17,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
       childService.hardcodeAvatarItemArrays();
       childService.hardcodeAvatarWornItemsArray();
       childService.setAvatarTasks();
+      childService.setNotificationsArray();
       dressAvatar();
       $scope.showAvatar = true;
     // }
@@ -143,6 +144,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     // childService.setCanBePurchasedItems();
     // childService.setUnavailableItems();
     childService.setAvatarTasks();
+    childService.setNotificationsArray();
     childService.hardcodeAvatarItemArrays();
     childService.hardcodeAvatarWornItemsArray();
     dressAvatar();
