@@ -497,10 +497,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
       dataService.getAvatarWornItemsIds(childService.currentAvatarId).then(function (res) {
         childService.wornItems = res.data;
         result.forEach(function (item, i) {
-            var avatarItemLinksId = item.id;
-            var itemId = item.item_id;
-            childService.wornItems[i] = dataService.getItem(itemId);
+          var avatarItemLinksId = item.id;
+          var itemId = item.item_id;
+          dataService.getItem(itemId).then(function (res) {
+            childService.wornItems[i] = res.data;
             childService.wornItems[i].avatarItemLinksId = avatarItemLinksId;
+          })
         })
       }
     )
@@ -510,10 +512,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
       dataService.getAvatarCanBePutOnItemsIds(childService.currentAvatarId).then(function(res) {
         childService.canBePutOnItems = res.data;
         childService.canBePutOnItems.forEach(function (item, i) {
-            var avatarItemLinksId = item.id;
-            var itemId = item.item_id;
-            childService.canBePutOnItems[i] = dataService.getItem(itemId);
+          var avatarItemLinksId = item.id;
+          var itemId = item.item_id;
+          dataService.getItem(itemId).then(function (res) {
+            childService.canBePutOnItems[i] = res.data;
             childService.canBePutOnItems[i].avatarItemLinksId = avatarItemLinksId;
+          })
         })
     })
   }
@@ -522,10 +526,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
      dataService.getAvatarCanBePurchasedItemsIds(childService.currentAvatarId).then(function(res) {
           childService.canBePurchasedItems = res.data;
           childService.canBePurchasedItems.forEach(function (item, i) {
-              var avatarItemLinksId = item.id;
-              var itemId = item.item_id;
-              childService.canBePurchasedItems[i] = dataService.getItem(itemId);
+            var avatarItemLinksId = item.id;
+            var itemId = item.item_id;
+            dataService.getItem(itemId).then(function (res) {
+              childService.canBePurchasedItems[i] = res.data;
               childService.canBePurchasedItems[i].avatarItemLinksId = avatarItemLinksId;
+            })
           })
       })
   }
@@ -535,10 +541,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
     dataService.getAvatarUnavailableItemsIds(childService.currentAvatarId).then(function(res) {
         childService.unavailableItems = res.data;
         childService.unavailableItems.forEach(function (item, i) {
-            var avatarItemLinksId = item.id;
-            var itemId = item.item_id;
-            childService.unavailableItems[i] = dataService.getItem(itemId);
+          var avatarItemLinksId = item.id;
+          var itemId = item.item_id;
+          dataService.getItem(itemId).then(function (res) {
+            childService.unavailableItems[i] = res.data;
             childService.unavailableItems[i].avatarItemLinksId = avatarItemLinksId;
+          })
         })
     })
   }
