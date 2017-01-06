@@ -221,7 +221,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
 
   $scope.closeModal = function () {
     $scope.modal.hide();
-  }
+  };
 
   $scope.filterDisplay = function (item) {
     $scope.filteredCanBePutOnEquipment = [];

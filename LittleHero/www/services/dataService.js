@@ -176,6 +176,12 @@ angular.module('littleHero').service("dataService", function($http) {
             });
         },
 
+        getTutorsByChildId: function(childId) {
+            return $http.get(BASE_PATH + "children/" + childId + "/tutors").then(function(res) {
+                return res;
+            });
+        },
+
         postTutor: function(newTutor) {
             return $http.post(BASE_PATH + "tutors/", newTutor).then(function(res) {
                 return res;
