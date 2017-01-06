@@ -81,15 +81,14 @@ class TutorChildren(Resource):
 class TutorInvitationsCollection(Resource):
     """Show a list of all tutor invitations and lets you POST to add new invitation."""
     @api.marshal_list_with(invitation_full)
-    @ns.param('tutor_id', 'For filtering by tutor id', 'query')
     @ns.param('kind', 'For filtering by type of invitation', 'query')
     @ns.param('status', 'For filtering by status of invitation', 'query')
     def get(self, id):
         """Returns list of invitations."""
-        tutor_id = request.args.get('tutor_id')
+        #tutor_id = request.args.get('tutor_id')
         kind = request.args.get('kind')
         status = request.args.get('status')
-        invitations = invitation_dao.get_all(id, tutor_id, kind, status)
+        invitations = invitation_dao.get_all(None, id, kind, status)
         return invitations
 
     @api.response(201, 'Invitation created.')

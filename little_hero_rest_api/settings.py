@@ -10,4 +10,5 @@ RESTPLUS_ERROR_404_HELP = False
 
 # SQLAlchemy settings
 SQLALCHEMY_DATABASE_URI = 'postgres://quwrbyzkcxxzwa:cueQfkHYBKCJTrOiwoDnfZkO1E@ec2-54-235-124-2.compute-1.amazonaws.com:5432/dcdvmp6lvciurs'
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
