@@ -16,24 +16,50 @@ angular.module('littleHero').controller('AvatarsController', function($scope, $s
     $scope.avatars = childService.avatarList;
 
     $scope.edit = function (avatar) {
+        $scope.editedAvatar = avatar;
+        $scope.openModal("edit");
+    };
+
+    $scope.patchAvatar = function (editedAvatar) {
+        dataService.patchAvatar(editedAvatar.id, editedAvatar);
+        $scope.closeModal("edit");
     };
 
     $scope.requestAvatar = function(tutorId) {
-        dataService.postInvites("children", $scope.user.id, {tutor_id: tutorId, kind: "child-avatar"})
-        $scope.closeModal();
+        console.log(tutorId);
+        dataService.postInvites("children", $scope.user.id, {tutor_id: tutorId, kind: "child-avatar"}).then(function(res) {
+            console.log(res);
+        });
+        $scope.closeModal("request");
     };
 
-    $ionicModal.fromTemplateUrl('avatars/requestAvatar.html', {
-        scope: $scope
+    $ionicModal.fromTemplateUrl('avatars/requestAvatarModal.html', {
+        scope: $scope,
+        id: "request"
     }).then(function (modal) {
-        $scope.modal = modal;
+        $scope.requestModal = modal;
     });
 
-    $scope.openModal = function () {
-        $scope.modal.show();
+    $ionicModal.fromTemplateUrl('avatars/editAvatarModal.html', {
+        scope: $scope,
+        id: "edit"
+    }).then(function (modal) {
+        $scope.editModal = modal;
+    });
+
+    $scope.openModal = function (id) {
+        if (id === "request") {
+            $scope.requestModal.show();
+        } else {
+            $scope.editModal.show();
+        }
     };
 
-    $scope.closeModal = function () {
-        $scope.modal.hide();
-    }
+    $scope.closeModal = function (id) {
+        if (id === "request") {
+            $scope.requestModal.hide();
+        } else {
+            $scope.editModal.hide();
+        }
+    };
 });
