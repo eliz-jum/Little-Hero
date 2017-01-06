@@ -9,20 +9,26 @@
   </div>
 </div>
 <ion-content class="background has-header has-footer" style="margin-top:16px">
-  <ion-list>
-    <ion-item class="background" ng-repeat="invite in invites | filter:filters">
-        <div style="display: inline-block">
-        <div ng-if="invite.kind=='child'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
-        <div ng-if="invite.kind=='child-avatar'">Poprosiłeś opiekuna nr {{invite.tutor_id}} o nowy awatar</div>
-        <div ng-if="invite.kind=='tutor'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
-        <div style="opacity: 0.5">
-            <div ng-if="invite.status=='pending'">oczekujące</div>
-            <div ng-if="invite.status=='accepted'">zaakceptowane</div>
-            <div ng-if="invite.status=='rejected'">odrzucone</div>
+  <ion-list class="background" can-swipe="true" swipe-direction="both" scroll="false">
+    <ion-item class="item-remove-animate item item-complex item-right-editable" ng-repeat="invite in invites | filter:filters">
+        <div>
+            <div ng-if="invite.kind=='child'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
+            <div ng-if="invite.kind=='child-avatar'">Poprosiłeś opiekuna nr {{invite.tutor_id}} o nowy awatar</div>
+            <div ng-if="invite.kind=='tutor'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
+            <div style="opacity: 0.5">
+                <div ng-if="invite.status=='pending'">oczekujące</div>
+                <div ng-if="invite.status=='accepted'">zaakceptowane</div>
+                <div ng-if="invite.status=='rejected'">odrzucone</div>
+            </div>
         </div>
+        <div ng-if="(invite.kind=='tutor' || invite.kind=='tutor-avatar') && invite.status=='pending'">
+            <ion-option-button side="left" class="button button-balanced" ng-click="acceptInvite(invite)">
+                <i class="icon ion-checkmark-round"></i>
+            </ion-option-button>
+            <ion-option-button side="right" class="button button-assertive" ng-click="rejectInvite(invite)">
+                <i class="icon ion-close-round"></i>
+            </ion-option-button>
         </div>
-      <div class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite)"
-              ng-if="(invite.kind=='tutor' || invite.kind=='tutor-avatar') && invite.status=='pending'">OKEJ</div>
     </ion-item>
   </ion-list>
 </ion-content>
