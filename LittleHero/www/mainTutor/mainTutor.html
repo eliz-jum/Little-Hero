@@ -3,31 +3,34 @@
     <div class="bar bar-header orange">
 
       <div class="row row-center orange">
-        <span class="col col-50 orange">{{ tutor.mail }}</span>
+        <span class="col col-50 orange">{{ tutor.login }}</span>
         <div class="col col-40"></div>
         <div class="col col-10">
           <button class="button button-icon icon ion-gear-b" ui-sref="settingsTutor"></button>
         </div>
       </div>
     </div>
+
+
     <ion-content on-swipe-right="swipeRight()" class="background has-header">
 
       <div class="title">
-        <h2>Wszystkie avatary</h2>
+        <h2>Wszystkie dzieci</h2>
       </div>
-
-                
 
       <ion-list class="task-list" can-swipe="false" scroll="false" >
             <ion-item class="background" ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
                 <ion-content scroll="false">
 
+                    <div class="tutor-avatar-list">
+                        <span> {{ child.login }}</span>
+                    </div>
+
+                </ion-content>
             </ion-item>
       <ion-list>
 
-
     </ion-content>
-
 
     <ion-footer-bar class="button-footer orange"/>
   </ion-pane>
