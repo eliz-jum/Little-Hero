@@ -1,8 +1,5 @@
 angular.module('littleHero').controller('TutorEditTaskController', function($scope, $state, $http, dataService, childService){
 
-  $scope.newTask = {};
-
-
   $scope.$on('$ionicView.beforeEnter', function(){
     $scope.tutor = childService.tutorObj;
     $scope.description = childService.currentTask.content;
@@ -35,8 +32,9 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
         experience: experience,
         content: description
       };
-      console.log("changes",changes);
       dataService.patchTask(childService.currentTask.id, changes);
+      childService.addNotification(childService.tutorObj.login + " dokonał zmian w wyzwaniu:  " + childService.currentTask.content);
+
       $state.go("tutorTasks");
     }
     else {

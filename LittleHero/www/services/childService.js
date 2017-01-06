@@ -588,26 +588,27 @@ angular.module('littleHero').factory('childService',function($state, dataService
     //dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
     //dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
   },
-    
+
   childService.setNotificationsArray = function () {
     dataService.getNotificationsByAvatar(childService.currentAvatarId).then(function (res) {
       childService.notifications = res.data;
     });
   }
-  
+
   childService.addNotification = function (content) {
     var notification = {
       content: content
     }
     dataService.postNotification(childService.currentAvatarId, notification);
   }
-    
-    
+
+
   childService.gainLevel = function (exp) {
     childService.currentAvatar.level++;
     childService.currentAvatar.health = 100;
     childService.currentAvatar.experience = exp;
-    //todo masz nowy pozion! sprawdz ekwipunek, dostepne sa nowa rzeczy!
+
+    childService.addNotification("Masz nowy poziom! Sprawdz ekwipunek, dostepne sa nowa rzeczy!");
 
     //todo JAK BEDA ITEMY to odkomentowac
     // childService.setUnavailableItems();
@@ -625,6 +626,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.currentAvatar.health = 100;
     childService.currentAvatar.experience = 0;
     childService.currentAvatar.money = 0;
+    childService.addNotification("Straciłeś poziom i pieniądze. Ale nie martw się, masz znowu pełne zdrowie, zacznij od nowa. Powodzenia!");
+
     // childService.setCanBePurchasedItems();
     // childService.canBePurchasedItems.forEach(function (item) {
     //   if (item.level > childService.currentAvatar.level) {
@@ -635,7 +638,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
   }
 
   childService.completeTask = function (task) {
-
     var index = childService.tasks.indexOf(task);
     childService.tasks.splice(index, 1);
     dataService.deleteTask(task.id);
@@ -648,9 +650,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
     else {
       childService.currentAvatar.experience += task.experience;
     }
-
-    //todo notification Tutor taki powiedzial ze wykonales zadanie takie!
-    // Zyskales tyle pieniadza i tyle exp
     dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
   }
 
@@ -671,13 +670,10 @@ angular.module('littleHero').factory('childService',function($state, dataService
       }
       childService.currentAvatar.health -= task.experience;
     }
-    //todo notification Tutor taki powiedzial ze nie wykonales zadanie takie!
-    // Straciles tyle pieniadza i tyle zdrowia
     dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
-
   }
 
-  
+
 
 
 

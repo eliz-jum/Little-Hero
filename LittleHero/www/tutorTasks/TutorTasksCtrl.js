@@ -26,20 +26,23 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
 
   $scope.taskCompleted = function (task) {
     childService.completeTask(task);
+    childService.addNotification("Udało się! Wykonałeś wyzwanie:  " + task.content +
+      "  Dostajesz " + task.reward + " pieniędzy i " + task.experience + " doświadczenia!");
   }
 
   $scope.taskFailed = function (task) {
-    console.log("task NOT completed");
-    childService.failTask(task)
+    childService.failTask(task);
+    childService.addNotification("Nie podołałeś wyzwaniu:  " + task.content +
+      "  Tracisz " + task.reward + " pieniędzy i " + task.experience + " doświadczenia.");
   }
 
   $scope.editTask = function (task) {
     childService.currentTask = task;
     $state.go("tutorEditTask");
   }
-  
+
   $scope.newTask = function () {
     $state.go("taskCreator");
   }
-  
+
 });

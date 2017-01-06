@@ -25,7 +25,7 @@
       </div>
 
       <ion-list>
-        <ion-item class="background" ng-repeat="notification in notifications track by $index" >
+        <ion-item class="background" ng-repeat="notification in notifications | orderBy: notification.id :true track by $index" >
           {{notification.content}}
         </ion-item>
       </ion-list>

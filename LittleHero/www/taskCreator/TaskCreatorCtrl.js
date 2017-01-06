@@ -44,7 +44,7 @@ angular.module('littleHero').controller('TaskCreatorController', function($scope
       task = res.data;
       childService.tasks.push(task);
     });
-
+    childService.addNotification(childService.tutorObj.login + " dał ci nowe wyzwanie!   " + newTask.content);
 
     $state.go("tutorTasks");
 
