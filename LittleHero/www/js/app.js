@@ -107,6 +107,24 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
                     currentAvatar : null,
                     user: null
                 }
+            })
+            .state('invitations', {
+                url: '/invitations',
+                templateUrl: 'invitations/invitations.html',
+                controller: 'InvitationsController',
+                params: {}
+            })
+            .state('invitationsTutor', {
+                url: '/invitationsTutor',
+                templateUrl: 'invitationsTutor/invitationsTutor.html',
+                controller: 'InvitationsTutorController',
+                params: {}
+            })
+            .state('avatars', {
+                url: '/avatars',
+                templateUrl: 'avatars/avatars.html',
+                controller: 'AvatarsController',
+                params: {}
             }),
             $urlRouterProvider.otherwise('/login');
     });
