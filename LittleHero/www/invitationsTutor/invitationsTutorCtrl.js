@@ -2,6 +2,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     $scope.filters = {};
     $scope.newChild = {};
     $scope.user = childService.tutorObj;
+    console.log($scope.user);
     $scope.matchingChildren = [];
     var children;
 
@@ -23,10 +24,17 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.acceptInvite = function (invite) {
-        $scope.childId = invite.child_id;
-        $scope.inviteId = invite.id;
-        $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + $scope.childId);
-        dataService.patchInvite('tutors', $scope.user.id, $scope.inviteId, {status: "accepted"});
+        $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + invite.child_id);
+        dataService.patchInvite('tutors', $scope.user.id, invite.id, {status: "accepted"});
+    };
+
+    $scope.rejectInvite = function (invite) {
+        var index = $scope.invites.indexOf(invite);
+        $scope.invites.splice(index, 1);
+        dataService.patchInvite('tutors', $scope.user.id, invite.id, {status: "rejected"}).then( function(res) {
+            console.log(res);
+            $scope.showToast("Zaproszenie odrzucone");
+        });
     };
 
     $ionicModal.fromTemplateUrl('invitationsTutor/inviteModal.html', {
