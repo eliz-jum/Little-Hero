@@ -31,7 +31,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     $scope.rejectInvite = function (invite) {
         var index = $scope.invites.indexOf(invite);
         $scope.invites.splice(index, 1);
-        dataService.patchInvite('tutors', $scope.user.id, invite.id, {status: "rejected"}).then( function(res) {
+        dataService.deleteInvite('tutors', $scope.user.id, invite.id).then( function(res) {
             console.log(res);
             $scope.showToast("Zaproszenie odrzucone");
         });

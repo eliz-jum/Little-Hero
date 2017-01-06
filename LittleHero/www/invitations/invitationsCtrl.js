@@ -35,6 +35,15 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         $scope.openModal("newAvatar");
     };
 
+    $scope.rejectInvite = function (invite) {
+        var index = $scope.invites.indexOf(invite);
+        $scope.invites.splice(index, 1);
+        dataService.deleteInvite('tutors', $scope.user.id, invite.id).then( function(res) {
+            console.log(res);
+            $scope.showToast("Zaproszenie odrzucone");
+        });
+    };
+
     $scope.createNewAvatar = function () {
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
         dataService.patchInvite('children', $scope.user.id, $scope.inviteId, {status: "accepted"});
