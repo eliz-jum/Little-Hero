@@ -1,30 +1,38 @@
 <div class="bar bar-header orange">
-
-  <div class="row row-center orange">
-    <div class="col col-70">
-        {{ user.login }}
+    <div class="row row-center orange">
+        <div class="col col-70">
+            {{ user.login }}
+        </div>
+        <button class="button button-icon icon ion-plus" ng-click="invite()"></button>
+        <button class="button button-icon icon ion-gear-b" ui-sref="settingsTutor"></button>
     </div>
-      <div class="button col col-20" ng-click="invite()">
-          Zaproś
-      </div>
-      <button class="button button-icon icon ion-gear-b" ng-click="settings()"></button>
-    </div>
-  </div>
+</div>
 </div>
 <ion-content class="background has-header has-footer" style="margin-top:16px">
-  <ion-list>
-    <ion-item class="background" ng-repeat="invite in invites | filter:filters | orderBy:invite.kind">
-        <div style="display: inline-block">
-        <div ng-if="invite.kind.toLowerCase()=='tutor'">Zaprosiłeś dziecko nr {{invite.tutor_id}}</div>
-        <div ng-if="invite.kind.toLowerCase()=='child'">Zaprosiło cię dziecko nr {{invite.tutor_id}}</div>
-        <div style="opacity: 0.5">
-            <div ng-if="invite.status.toLowerCase()=='pending'">oczekujące</div>
-            <div ng-if="invite.status.toLowerCase()=='accepted'">zaakceptowane</div>
-            <div ng-if="invite.status.toLowerCase()=='rejected'">odrzucone</div>
-        </div>
-        </div>
-      <div class="button button-balanced accept-invite-button" ng-click="acceptInvite(invite)"
-              ng-if="invite.kind.toLowerCase() == 'child' && invite.status.toLowerCase() == 'pending'">OKEJ</div>
+  <ion-list class="background" can-swipe="true" swipe-direction="both" scroll="false">
+      <ion-item class="item-remove-animate item item-complex item-right-editable" ng-repeat="invite in invites | filter:filters | orderBy:invite.kind">
+          <div>
+              <div ng-if="invite.kind=='tutor'">Zaprosiłeś dziecko nr {{invite.child_id}}</div>
+              <div ng-if="invite.kind=='child'">Zaprosiło cię dziecko nr {{invite.child_id}}</div>
+              <div ng-if="invite.kind=='child-avatar'">Dziecko nr {{invite.child_id}} prosi o nowy awatar</div>
+              <div style="opacity: 0.5">
+                  <div ng-if="invite.status=='pending'">oczekujące</div>
+                  <div ng-if="invite.status=='accepted'">zaakceptowane</div>
+                  <div ng-if="invite.status=='rejected'">odrzucone</div>
+              </div>
+          </div>
+          <div ng-if="(invite.kind=='child' || invite.kind=='child-avatar') && invite.status=='pending'">
+              <ion-option-button side="left" class="button button-balanced" ng-click="acceptInvite(invite)">
+                  <i class="icon ion-checkmark-round"></i>
+              </ion-option-button>
+              <ion-option-button side="right" class="button button-assertive" ng-click="rejectInvite(invite)">
+                  <i class="icon ion-close-round"></i>
+              </ion-option-button>
+          </div>
+          <div ng-if="(invite.kind=='tutor' || invite.kind=='tutor-avatar') && invite.status=='accepted'"
+          ng-click="hideInvite(invite)">
+              Ukryj
+          </div>
     </ion-item>
   </ion-list>
 </ion-content>
@@ -32,10 +40,10 @@
     <div class="invite-filter-button" ng-click="filters.kind = ''">
       Wszystkie
     </div>
-    <div class="invite-filter-button" ng-click="filters.kind = 'sent'">
+    <div class="invite-filter-button" ng-click="filters.kind = 'tutor'">
       Wysłane
     </div>
-    <div class="invite-filter-button" ng-click="filters.kind = 'received'">
+    <div class="invite-filter-button" ng-click="filters.kind = 'child'">
       Otrzymane
     </div>
 </ion-footer-bar>

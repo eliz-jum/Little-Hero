@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('InvitationsController', function ($scope, $state, $ionicModal, childService, dataService) {
+angular.module('littleHero').controller('InvitationsController', function ($scope, $state, $ionicModal, childService, dataService, ionicToast) {
     $scope.classes = [
         "human",
         "cowboy",
@@ -31,15 +31,38 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
 
     $scope.acceptInvite = function (invite) {
         $scope.tutorId = invite.tutor_id;
-        $scope.inviteId = invite.id;
+        $scope.invite = invite;
         $scope.openModal("newAvatar");
     };
 
-    $scope.createNewAvatar = function () {
+    $scope.rejectInvite = function (invite) {
+        var index = $scope.invites.indexOf(invite);
+        $scope.invites.splice(index, 1);
+        dataService.deleteInvite('children', childService.childObj.id, invite.id).then( function(res) {
+            console.log(res);
+            $scope.showToast("Zaproszenie odrzucone");
+        });
+    };
+
+    $scope.createNewAvatar = function (invite) {
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
-        dataService.patchInvite('children', $scope.user.id, $scope.inviteId, {status: "accepted"});
-        $scope.closeModal("newAvatar");
-        $state.go('main');
+
+        if ($scope.invite.kind=="child" || $scope.invite.kind=="child-avatar") {
+            dataService.deleteInvite('children', childService.childObj.id, invite.id).then( function() {
+                var index = $scope.invites.indexOf($scope.invite);
+                $scope.invites.splice(index, 1);
+                $scope.closeModal("newAvatar");
+                $scope.showToast("Utworzono awatar " + $scope.newAvatar.name);
+            });
+        }
+        else {
+            dataService.patchInvite('children', childService.childObj.id, $scope.invite.id, {status: "accepted"}).then( function() {
+                invite.status = "accepted";
+                $scope.closeModal("newAvatar");
+                $scope.showToast("Utworzono awatar " + $scope.newAvatar.name);
+            });
+        }
+
     };
 
 
