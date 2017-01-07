@@ -20,7 +20,6 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
 
     $scope.back = function () {
       $state.go("settings");
-      $state.go("settings");
     }
 
     $scope.invite = function() {
