@@ -1,6 +1,8 @@
 import logging
 
 from flask import request
+from passlib.handlers.pbkdf2 import pbkdf2_sha512
+
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
 from little_hero_rest_api.dao.child import ChildDAO
@@ -12,10 +14,14 @@ from little_hero_rest_api.api.serializers import invitation_full
 from little_hero_rest_api.api.serializers import child_invitation_for_post
 from little_hero_rest_api.api.serializers import invitation_for_patch
 from little_hero_rest_api.api.serializers import tutor_full
+from flask_httpauth import HTTPBasicAuth
+
 
 log = logging.getLogger(__name__)
 
 ns = api.namespace('v1/children', description='Operations related to children')
+auth = HTTPBasicAuth()
+
 child_dao = ChildDAO()
 invitation_dao = InvitationDAO()
 
@@ -44,6 +50,7 @@ class ChildrenCollection(Resource):
 class Child(Resource):
     """Show a single child entity and lets you delete and update it"""
     @ns.marshal_with(child_full)
+    @auth.login_required
     def get(self, id):
         """Returns child"""
         child = child_dao.get(id)
@@ -73,6 +80,7 @@ class ChildTutors(Resource):
     @ns.marshal_list_with(tutor_full)
     def get(self, id):
         return child_dao.get_all_tutors(id)
+
 
 @ns.route('/<int:id>/invitations')
 @ns.response(404, 'Child not found')
@@ -125,3 +133,9 @@ class ChildInvitation(Resource):
         data = request.json
         updated_invitation = invitation_dao.update(invitation_id, data)
         return updated_invitation, 200
+
+
+@auth.verify_password
+def verify_password(login, password):
+    password_hash = child_dao.get_password_hash(login)
+    return pbkdf2_sha512.verify(password, password_hash)

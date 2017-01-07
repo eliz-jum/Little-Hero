@@ -3,6 +3,7 @@
 from enum import Enum
 from datetime import datetime
 from little_hero_rest_api.database import db
+from passlib.hash import pbkdf2_sha512
 
 
 class BaseModel(db.Model):
@@ -12,7 +13,11 @@ class BaseModel(db.Model):
     # created = db.Column()
 
 
-class Child(BaseModel):
+class SecurityBaseModel(BaseModel):
+    __abstract__ = True
+
+
+class Child(SecurityBaseModel):
     login = db.Column(db.String(50), unique=True)
     nickname = db.Column(db.String(50))
     password = db.Column(db.String(50))
@@ -23,7 +28,7 @@ class Child(BaseModel):
     def __init__(self, login, nickname, password, mail):
         self.login = login
         self.nickname = nickname
-        self.password = password
+        self.password = pbkdf2_sha512.hash(password)
         self.mail = mail
         self.creationDate = datetime.utcnow()
 
@@ -71,7 +76,7 @@ class Avatar(BaseModel):
         return '<Avatar %r>' % self.name
 
 
-class Tutor(BaseModel):
+class Tutor(SecurityBaseModel):
     login = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(50))
     mail = db.Column(db.String(50))
@@ -81,7 +86,7 @@ class Tutor(BaseModel):
 
     def __init__(self, login, password, mail):
         self.login = login
-        self.password = password
+        self.password = pbkdf2_sha512.hash(password)
         self.mail = mail
         self.creationDate = datetime.utcnow()
 
@@ -184,6 +189,7 @@ class Notification(BaseModel):
 
     def __repr__(self):
         return '<Notification id: %r>' % self.id
+
 
     # class ItemState(Enum):
     #     on = 1
