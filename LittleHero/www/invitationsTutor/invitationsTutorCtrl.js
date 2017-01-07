@@ -2,7 +2,6 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     $scope.filters = {};
     $scope.newChild = {};
     $scope.user = childService.tutorObj;
-    console.log($scope.user);
     $scope.matchingChildren = [];
     var children;
 
@@ -24,16 +23,23 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.acceptInvite = function (invite) {
-        $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + invite.child_id);
-        dataService.patchInvite('tutors', $scope.user.id, invite.id, {status: "accepted"});
+        dataService.patchInvite('tutors', $scope.user.id, invite.id, {status: "accepted"}).then( function() {
+            $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + invite.child_id);
+        });
     };
 
     $scope.rejectInvite = function (invite) {
-        var index = $scope.invites.indexOf(invite);
-        $scope.invites.splice(index, 1);
-        dataService.deleteInvite('tutors', $scope.user.id, invite.id).then( function(res) {
-            console.log(res);
+        dataService.deleteInvite('tutors', childService.tutorObj.id, invite.id).then( function() {
+            var index = $scope.invites.indexOf(invite);
+            $scope.invites.splice(index, 1);
             $scope.showToast("Zaproszenie odrzucone");
+        });
+    };
+
+    $scope.hideInvite = function (invite) {
+        dataService.deleteInvite('tutors', childService.tutorObj.id, invite.id).then( function() {
+            var index = $scope.invites.indexOf(invite);
+            $scope.invites.splice(index, 1);
         });
     };
 

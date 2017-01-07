@@ -29,6 +29,10 @@
                   <i class="icon ion-close-round"></i>
               </ion-option-button>
           </div>
+          <div ng-if="(invite.kind=='tutor' || invite.kind=='tutor-avatar') && invite.status=='accepted'"
+          ng-click="hideInvite(invite)">
+              Ukryj
+          </div>
     </ion-item>
   </ion-list>
 </ion-content>
