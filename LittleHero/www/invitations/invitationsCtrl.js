@@ -50,6 +50,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     };
 
     $scope.createNewAvatar = function (invite) {
+      console.log("invite",invite);
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
 
         if ($scope.invite.kind=="child" || $scope.invite.kind=="child-avatar") {
