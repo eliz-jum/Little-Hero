@@ -17,5 +17,8 @@
                 <div class="button button-balanced" ng-click="sendInvite(tutor)" style="float:right">Zaproś</div>
             </ion-item>
         </ion-list>
+        <div class="search-failed-msg" ng-if="searched && !found">
+            Nie ma opiekuna o takim loginie :^(
+        </div>
     </ion-content>
 </ion-modal-view>
