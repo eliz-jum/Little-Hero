@@ -1,7 +1,6 @@
 angular.module('littleHero').controller('InvitationsTutorController', function ($scope, $state, $ionicModal, childService, dataService, ionicToast) {
     $scope.filters = {};
     $scope.newChild = {};
-    $scope.user = childService.tutorObj;
     $scope.matchingChildren = [];
     $scope.searched = false;
     $scope.found = false;
@@ -12,9 +11,9 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
         });
     });
 
-  $scope.back = function () {
-    $state.go("settingsTutor");
-  }
+    $scope.back = function () {
+        $state.go("settingsTutor");
+    };
 
     $scope.invite = function() {
         $scope.openModal("invite");
@@ -25,7 +24,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.acceptInvite = function (invite) {
-        dataService.patchInvite('tutors', $scope.user.id, invite.id, {status: "accepted"}).then( function() {
+        dataService.patchInvite('tutors', childService.tutorObj.id, invite.id, {status: "accepted"}).then( function() {
             $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + invite.child_id);
         });
     };
@@ -72,10 +71,10 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.clearSearch = function() {
-      $scope.searched = false;
-      $scope.found = false;
-      $scope.matchingChildren = [];
-      $scope.newChild = {};
+        $scope.searched = false;
+        $scope.found = false;
+        $scope.matchingChildren = [];
+        $scope.newChild = {};
     };
 
     $scope.sendInvite = function (child) {
