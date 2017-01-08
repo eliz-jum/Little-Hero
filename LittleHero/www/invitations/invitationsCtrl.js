@@ -95,8 +95,10 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.closeModal = function (id) {
         if (id === "newAvatar") {
             $scope.newAvatarModal.hide();
+            $scope.newAvatar = {};
         } else {
             $scope.inviteModal.hide();
+            $scope.newTutor = {};
         }
     };
 
