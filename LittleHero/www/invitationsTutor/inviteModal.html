@@ -6,7 +6,7 @@
     <ion-content>
         <div>
             <input type="text" placeholder="Wpisz login użytkownika, aby wyszukać" ng-model="newChild.login"
-                   style="padding: 0 20px; width:100%">
+                   style="padding: 0 20px; width:100%" ng-click="clearSearch()">
         </div>
         <button class="button button-full button-balanced" ng-click="search()">
             OKEJ!
@@ -14,8 +14,11 @@
         <ion-list class="search-results">
             <ion-item ng-repeat="child in matchingChildren track by child.id">
                 {{child.login}}
-                <div class="button button-balanced" ng-click="sendInvite(tutor)" style="float:right">Zaproś</div>
+                <div class="button button-balanced" ng-click="sendInvite(child)" style="float:right">Zaproś</div>
             </ion-item>
         </ion-list>
+        <div ng-if="searched && !found">
+          Nie ma dziecka o takim loginie :^(
+        </div>
     </ion-content>
 </ion-modal-view>

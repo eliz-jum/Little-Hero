@@ -3,6 +3,8 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     $scope.newChild = {};
     $scope.user = childService.tutorObj;
     $scope.matchingChildren = [];
+    $scope.searched = false;
+    $scope.found = false;
 
     $scope.$on('$ionicView.beforeEnter', function () {
         dataService.getInvitesByUser("tutors", childService.tutorObj.id).then(function (res) {
@@ -55,7 +57,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.closeModal = function () {
         $scope.modal.hide();
-        $scope.newChild = {};
+        $scope.clearSearch();
     };
 
     $scope.search = function () {
@@ -63,12 +65,17 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
             if (item.login === $scope.newChild.login) {
                 $scope.newChild = item;
                 $scope.matchingChildren.push(item);
+                $scope.found = true;
             }
-            console.log(item);
         });
-        // jeśli nie ma wyników
-        /// może chcesz zaprosić - podaj maila tej osoby
-        //po potwierdzeniu zaproszenia modal się chowa i pojawia tost z odpowiednią wiadomością
+        $scope.searched = true;
+    };
+
+    $scope.clearSearch = function() {
+      $scope.searched = false;
+      $scope.found = false;
+      $scope.matchingChildren = [];
+      $scope.newChild = {};
     };
 
     $scope.sendInvite = function (child) {
