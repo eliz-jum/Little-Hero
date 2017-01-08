@@ -55,6 +55,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.closeModal = function () {
         $scope.modal.hide();
+        $scope.newChild = {};
     };
 
     $scope.search = function () {
@@ -72,7 +73,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.sendInvite = function (child) {
         dataService.postInvites('tutors', childService.TutorObj.id, {child_id: child.id, kind: "tutor"});
-        $scope.closeModal("invite");
+        $scope.closeModal();
         $scope.showToast("Zaproszenie wysłane");
     };
 
