@@ -18,9 +18,11 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.invite = function() {
         dataService.getChildren().then(function(res) {
-            allChildren = res.data;
+            allChildren = res;
+          console.log("allchildrean", res);
+          $scope.openModal();
         });
-        $scope.openModal();
+
     };
 
     $scope.settings = function () {
