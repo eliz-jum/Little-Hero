@@ -4,6 +4,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     $scope.matchingChildren = [];
     $scope.searched = false;
     $scope.found = false;
+    var allChildren;
 
     $scope.$on('$ionicView.beforeEnter', function () {
         dataService.getInvitesByUser("tutors", childService.tutorObj.id).then(function (res) {
@@ -16,7 +17,10 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.invite = function() {
-        $scope.openModal("invite");
+        dataService.getChildren().then(function(res) {
+            allChildren = res.data;
+        });
+        $scope.openModal();
     };
 
     $scope.settings = function () {
@@ -60,7 +64,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.search = function () {
-        childService.tutorChildren.forEach( function(item) {
+        allChildren.forEach( function(item) {
             if (item.login === $scope.newChild.login) {
                 $scope.newChild = item;
                 $scope.matchingChildren.push(item);
