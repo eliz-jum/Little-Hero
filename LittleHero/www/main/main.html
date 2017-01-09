@@ -2,7 +2,7 @@
   <ion-pane class="background">
     <div class="bar bar-header orange">
       <div class="row row-center orange">
-        <div class="col col-50 item item-select">
+        <div class="col col-50 item item-select avatar-select">
           <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
               <option value="">{{ currentAvatar.name }} </option>
           </select>
