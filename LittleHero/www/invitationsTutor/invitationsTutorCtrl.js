@@ -1,9 +1,10 @@
 angular.module('littleHero').controller('InvitationsTutorController', function ($scope, $state, $ionicModal, childService, dataService, ionicToast) {
     $scope.filters = {};
     $scope.newChild = {};
-    $scope.user = childService.tutorObj;
     $scope.matchingChildren = [];
-    var children;
+    $scope.searched = false;
+    $scope.found = false;
+    var allChildren;
 
     $scope.$on('$ionicView.beforeEnter', function () {
         dataService.getInvitesByUser("tutors", childService.tutorObj.id).then(function (res) {
@@ -11,11 +12,17 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
         });
     });
 
+    $scope.back = function () {
+        $state.go("settingsTutor");
+    };
+
     $scope.invite = function() {
         dataService.getChildren().then(function(res) {
-            children = res.data;
+            allChildren = res;
+          console.log("allchildrean", res);
+          $scope.openModal();
         });
-        $scope.openModal("invite");
+
     };
 
     $scope.settings = function () {
@@ -23,8 +30,9 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
     };
 
     $scope.acceptInvite = function (invite) {
-        dataService.patchInvite('tutors', $scope.user.id, invite.id, {status: "accepted"}).then( function() {
-            $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + invite.child_id);
+        dataService.patchInvite('tutors', childService.tutorObj.id, invite.id, {status: "accepted"}).then( function() {
+          invite.status = "accepted";
+          $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr " + invite.child_id);
         });
     };
 
@@ -55,25 +63,33 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.closeModal = function () {
         $scope.modal.hide();
+        $scope.clearSearch();
     };
 
     $scope.search = function () {
-        children.forEach( function(item) {
+        allChildren.forEach( function(item) {
             if (item.login === $scope.newChild.login) {
                 $scope.newChild = item;
                 $scope.matchingChildren.push(item);
+                $scope.found = true;
             }
-            console.log(item);
         });
-        // jeśli nie ma wyników
-        /// może chcesz zaprosić - podaj maila tej osoby
-        //po potwierdzeniu zaproszenia modal się chowa i pojawia tost z odpowiednią wiadomością
+        $scope.searched = true;
+    };
+
+    $scope.clearSearch = function() {
+        $scope.searched = false;
+        $scope.found = false;
+        $scope.matchingChildren = [];
+        $scope.newChild = {};
     };
 
     $scope.sendInvite = function (child) {
-        dataService.postInvites('tutors', childService.TutorObj.id, {child_id: child.id, kind: "tutor"});
-        $scope.closeModal("invite");
-        $scope.showToast("Zaproszenie wysłane");
+        dataService.postInvites('tutors', childService.tutorObj.id, {child_id: child.id, kind: "tutor"}).then(function(res) {
+            $scope.invites.push(res);
+            $scope.closeModal();
+            $scope.showToast("Zaproszenie wysłane");
+        });
     };
 
     $scope.showToast = function(message){
