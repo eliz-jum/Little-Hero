@@ -4,10 +4,10 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="300px" height="300px" viewBox="388 141.132 300 300" enable-background="new 388 141.132 300 300" xml:space="preserve">
 <g>
-	
-		<circle fill="#FBF5B9" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="496.506" cy="302" r="3.5"/>
-	
-		<circle fill="#FBF5B9" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="579.506" cy="302" r="3.5"/>
+
+		<circle fill="#000000" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="496.506" cy="302" r="3.5"/>
+
+		<circle fill="#000000" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="579.506" cy="302" r="3.5"/>
 	<path fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M480.063,276.764c11.889,8.644,27.848,9.215,32.875,8.736"/>
 	<path fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
