@@ -31,7 +31,8 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.acceptInvite = function (invite) {
         dataService.patchInvite('tutors', childService.tutorObj.id, invite.id, {status: "accepted"}).then( function() {
-            $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr" + invite.child_id);
+          invite.status = "accepted";
+          $scope.showToast("Zaakceptowałeś zaproszenie od dziecka nr " + invite.child_id);
         });
     };
 
