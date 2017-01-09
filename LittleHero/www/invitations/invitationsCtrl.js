@@ -123,9 +123,11 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     };
 
     $scope.sendInvite = function (tutor) {
-        dataService.postInvites('children', childService.childObj.id, {tutor_id: tutor.id, kind: "child"});
-        $scope.closeModal("invite");
-        $scope.showToast("Zaproszenie wysłane");
+        dataService.postInvites('children', childService.childObj.id, {tutor_id: tutor.id, kind: "child"}).then(function(res) {
+          $scope.invites.push(res);
+          $scope.closeModal("invite");
+          $scope.showToast("Zaproszenie wysłane");
+        });
     };
 
     $scope.showToast = function(message){
