@@ -17,6 +17,7 @@ DAO = AvatarItemDAO()
 
 
 @ns.route('/')
+@ns.response(400, 'Bad request')
 class AvatarItemCollection(Resource):
     """Show a list of avatar-item links and lets you POST to add new."""
     @api.marshal_list_with(avatar_item_full)
@@ -43,6 +44,7 @@ class AvatarItemCollection(Resource):
 
 @ns.route('/<int:id>')
 @ns.response(404, 'Avatar-Item link not found')
+@ns.response(400, 'Bad request')
 @ns.param('id', 'The avatar identifier')
 class AvatarItem(Resource):
     """Show a single avatar-item entity and lets you delete and update it"""

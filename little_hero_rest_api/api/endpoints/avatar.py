@@ -22,6 +22,7 @@ notification_dao = NotificationDAO()
 
 
 @ns.route('/')
+@ns.response(400, 'Bad request')
 class AvatarsCollection(Resource):
     """Show a list of avatars and lets you POST to add new avatar."""
     @api.marshal_list_with(avatar_full)
@@ -45,6 +46,7 @@ class AvatarsCollection(Resource):
 
 @ns.route('/<int:id>')
 @ns.response(404, 'Avatar not found')
+@ns.response(400, 'Bad request')
 @ns.param('avatar_id', 'The avatar identifier')
 class Avatar(Resource):
     """Show a single avatar entity and lets you delete and update it"""
@@ -71,6 +73,7 @@ class Avatar(Resource):
 
 @ns.route('/<int:avatar_id>/notifications')
 @ns.response(404, 'Avatar not found')
+@ns.response(400, 'Bad request')
 @ns.param('avatar_id', 'The avatar identifier')
 class AvatarNotificationsCollection(Resource):
     """Show a list of all avatar notifications and lets you POST to add new notification."""
@@ -91,6 +94,7 @@ class AvatarNotificationsCollection(Resource):
 
 @ns.route('/<int:avatar_id>/notifications/<int:notification_id>')
 @ns.response(404, 'Avatar or notification not found')
+@ns.response(400, 'Bad request')
 @ns.param('avatar_id', 'The avatar identifier')
 @ns.param('notification_id', 'The notification identifier')
 class AvatarNotification(Resource):

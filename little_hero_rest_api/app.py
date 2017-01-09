@@ -11,6 +11,7 @@ from little_hero_rest_api.api.endpoints.tutor import ns as tutor_namespace
 from little_hero_rest_api.api.endpoints.item import ns as item_namespace
 from little_hero_rest_api.api.endpoints.task import ns as task_namespace
 from little_hero_rest_api.api.endpoints.avatar_item import ns as avatar_item_namespace
+from little_hero_rest_api.api.endpoints.documentation import ns as documentation_namespace
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.database import db
 #from little_hero_rest_api.database.models import Task
@@ -43,6 +44,7 @@ def initialize_app(flask_app):
     api.add_namespace(item_namespace)
     api.add_namespace(task_namespace)
     api.add_namespace(avatar_item_namespace)
+    api.add_namespace(documentation_namespace)
     flask_app.register_blueprint(blueprint)
 
     db.init_app(flask_app)
@@ -60,7 +62,6 @@ def main():
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
     app.run(debug=settings.FLASK_DEBUG)
-
 
 if __name__ == "__main__":
     main()

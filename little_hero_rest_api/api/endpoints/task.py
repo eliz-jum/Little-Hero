@@ -15,6 +15,7 @@ DAO = TaskDAO()
 
 
 @ns.route('/')
+@ns.response(400, 'Bad request')
 class TasksCollection(Resource):
     """Show a list of all tasks and lets you POST to add new task."""
     @ns.param('avatar_id', 'For filtering by avatar id', 'query')
@@ -38,6 +39,7 @@ class TasksCollection(Resource):
 
 @ns.route('/<int:id>')
 @ns.response(404, 'Task not found')
+@ns.response(400, 'Bad request')
 @ns.param('id', 'The task identifier')
 class Task(Resource):
     """Show a single task entity and lets you delete and update it"""

@@ -15,6 +15,7 @@ DAO = ItemDAO()
 
 
 @ns.route('/')
+@ns.response(400, 'Bad request')
 class ItemsCollection(Resource):
     """Show a list of all items and lets you POST to add new item."""
 
@@ -43,6 +44,7 @@ class ItemsCollection(Resource):
 
 @ns.route('/<int:id>')
 @ns.response(404, 'Item not found')
+@ns.response(400, 'Bad request')
 @ns.param('id', 'The item identifier')
 class Item(Resource):
     """Show a single item entity and lets you delete and update it"""

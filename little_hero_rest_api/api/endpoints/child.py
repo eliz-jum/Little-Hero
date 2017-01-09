@@ -1,21 +1,15 @@
 import logging
 
 from flask import request
-from passlib.handlers.pbkdf2 import pbkdf2_sha512
 
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
 from little_hero_rest_api.dao.child import ChildDAO
-from little_hero_rest_api.api.serializers import child_for_post
-from little_hero_rest_api.api.serializers import child_full
-from little_hero_rest_api.api.serializers import child_for_patch
 from little_hero_rest_api.dao.invitation import InvitationDAO
-from little_hero_rest_api.api.serializers import invitation_full
-from little_hero_rest_api.api.serializers import child_invitation_for_post
-from little_hero_rest_api.api.serializers import invitation_for_patch
-from little_hero_rest_api.api.serializers import tutor_full
+from little_hero_rest_api.database.models import Child as ChildModel
+from little_hero_rest_api.api.serializers import (child_for_post, child_full, child_for_patch, invitation_full,
+                                                  child_invitation_for_post, invitation_for_patch, tutor_full)
 from flask_httpauth import HTTPBasicAuth
-
 
 log = logging.getLogger(__name__)
 
@@ -27,8 +21,10 @@ invitation_dao = InvitationDAO()
 
 
 @ns.route('/')
+@ns.response(400, 'Bad request')
 class ChildrenCollection(Resource):
     """Show a list of all children and lets you POST to add new child."""
+
     @api.marshal_list_with(child_full)
     def get(self):
         """Returns list of children."""
@@ -46,9 +42,11 @@ class ChildrenCollection(Resource):
 
 @ns.route('/<int:id>')
 @ns.response(404, 'Child not found')
+@ns.response(400, 'Bad request')
 @ns.param('id', 'The child identifier')
 class Child(Resource):
     """Show a single child entity and lets you delete and update it"""
+
     @ns.marshal_with(child_full)
     @auth.login_required
     def get(self, id):
@@ -74,9 +72,11 @@ class Child(Resource):
 
 @ns.route('/<int:id>/tutors')
 @ns.response(404, 'Child not found')
+@ns.response(400, 'Bad request')
 @ns.param('id', 'The child identifier')
 class ChildTutors(Resource):
     """Returns list of child tutors"""
+
     @ns.marshal_list_with(tutor_full)
     def get(self, id):
         return child_dao.get_all_tutors(id)
@@ -84,9 +84,11 @@ class ChildTutors(Resource):
 
 @ns.route('/<int:id>/invitations')
 @ns.response(404, 'Child not found')
+@ns.response(400, 'Bad request')
 @ns.param('id', 'The child identifier')
 class ChildInvitationsCollection(Resource):
     """Show a list of all child invitations and lets you POST to add new invitation."""
+
     @api.marshal_list_with(invitation_full)
     @ns.param('kind', 'For filtering by type of invitation', 'query')
     @ns.param('status', 'For filtering by status of invitation', 'query')
@@ -108,15 +110,17 @@ class ChildInvitationsCollection(Resource):
 
 @ns.route('/<int:child_id>/invitations/<int:invitation_id>')
 @ns.response(404, 'Child not found')
+@ns.response(400, 'Bad request')
 @ns.param('child_id', 'The child identifier')
 @ns.param('invitation_id', 'The invitation identifier')
 class ChildInvitation(Resource):
     """Show a single invitation entity and lets you delete and update it"""
+
     @api.marshal_with(invitation_full)
     def get(self, child_id, invitation_id):
         """Return invitation"""
-        #child_id = request.args.get('child_id')
-        #invitation_id = request.args.get('invitation_id')
+        # child_id = request.args.get('child_id')
+        # invitation_id = request.args.get('invitation_id')
         return invitation_dao.get(invitation_id)
 
     @ns.response(204, 'Invitation deleted')
@@ -138,4 +142,4 @@ class ChildInvitation(Resource):
 @auth.verify_password
 def verify_password(login, password):
     password_hash = child_dao.get_password_hash(login)
-    return pbkdf2_sha512.verify(password, password_hash)
+    return ChildModel.verify_password(password, password_hash)  # pbkdf2_sha512.verify(password, password_hash)

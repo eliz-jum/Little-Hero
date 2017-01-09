@@ -1,20 +1,33 @@
 # reference
 # http://flask-sqlalchemy.pocoo.org/2.1/quickstart/#simple-relationships
-from enum import Enum
 from datetime import datetime
 from little_hero_rest_api.database import db
 from passlib.hash import pbkdf2_sha512
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
+from little_hero_rest_api import settings
 
 
 class BaseModel(db.Model):
     __abstract__ = True #sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
-    creationDate = db.Column(db.DateTime) # todo: add creation date
+    creation_date = db.Column(db.DateTime) # todo: add creation date
     # created = db.Column()
 
 
 class SecurityBaseModel(BaseModel):
     __abstract__ = True
+
+    @classmethod
+    def verify_password(cls, password, hash):
+        return pbkdf2_sha512.verify(password, hash)
+
+    @classmethod
+    def hash_password(cls, password):
+        return pbkdf2_sha512.hash(password)
+
+    def generate_auth_token(self, expiration = 1200):
+        s = Serializer(settings.SECRET_KEY)
+        return s.dumps({'id': self.id})
 
 
 class Child(SecurityBaseModel):
@@ -28,7 +41,7 @@ class Child(SecurityBaseModel):
     def __init__(self, login, nickname, password, mail):
         self.login = login
         self.nickname = nickname
-        self.password = pbkdf2_sha512.hash(password)
+        self.password = super().hash_password(password)
         self.mail = mail
         self.creationDate = datetime.utcnow()
 
@@ -86,7 +99,7 @@ class Tutor(SecurityBaseModel):
 
     def __init__(self, login, password, mail):
         self.login = login
-        self.password = pbkdf2_sha512.hash(password)
+        self.password = super().hash_password(password)
         self.mail = mail
         self.creationDate = datetime.utcnow()
 
