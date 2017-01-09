@@ -10,6 +10,10 @@
   height: 60px;
 }
 
+.has-header {
+  top: 60px;
+}
+
 .row-center {
   text-align: center;
 }
@@ -26,6 +30,10 @@
     text-align: left;
     background-color: $orange;
   }
+}
+
+.avatar-select .ng-binding{
+  display: none;
 }
 
 .bar-header {

@@ -2,7 +2,7 @@
   <ion-pane class="background">
     <div class="bar bar-header orange">
       <div class="row row-center orange">
-        <div class="col col-50 item item-select">
+        <div class="col col-50 item item-select avatar-select">
           <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
             <option value="">{{ currentAvatar.name }} </option>
           </select>
@@ -24,7 +24,7 @@
         <h2>Powiadomienia</h2>
       </div>
 
-      <ion-list>
+      <ion-list class="notification-list">
         <ion-item class="background" ng-repeat="notification in notifications | orderBy: notification.id :true track by $index" >
           {{notification.content}}
         </ion-item>
