@@ -9,7 +9,6 @@ angular.module('littleHero').controller('AvatarsController', function($scope, $s
     $scope.classes = [
         "human",
         "cowboy",
-        "king",
         "mage"
     ];
     $scope.user = childService.childObj;

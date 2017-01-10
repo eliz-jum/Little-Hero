@@ -50,9 +50,9 @@ angular.module('littleHero').factory('childService',function($state, dataService
       id: 2,
       money: 20,
       level: 2,
-      clazz: "king",
+      clazz: "human",
       experience: 110,
-      name: "super duper king",
+      name: "super duper human",
       health: 0,
       child_id: 1,
       tutor_id: 2
@@ -300,7 +300,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 46,
         type: "misc_head",
-        clazz: "king",
+        clazz: "human",
         iconSrc: "img/hat1_icon.svg",
         imgSrc: "img/hat1.svg",
         level: 1,

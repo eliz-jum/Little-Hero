@@ -2,7 +2,6 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.classes = [
         "human",
         "cowboy",
-        "king",
         "mage"
     ];
     $scope.filters = {};
