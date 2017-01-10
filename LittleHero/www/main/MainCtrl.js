@@ -43,6 +43,8 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     childService.canBePutOnItems = [];
     childService.canBePurchasedItems = [];
     childService.unavailableItems = [];
+    childService.allAvatars = [];
+    childService.notifications = [];
   }
 
   $scope.nextType = function () {
