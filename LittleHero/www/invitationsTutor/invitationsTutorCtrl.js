@@ -1,5 +1,4 @@
 angular.module('littleHero').controller('InvitationsTutorController', function ($scope, $state, $ionicModal, childService, dataService, ionicToast) {
-    $scope.filters = {};
     $scope.newChild = {};
     $scope.matchingChildren = [];
     $scope.searched = false;
@@ -44,10 +43,11 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
         });
     };
 
-    $scope.hideInvite = function (invite) {
+    $scope.cancelInvite = function (invite) {
         dataService.deleteInvite('tutors', childService.tutorObj.id, invite.id).then( function() {
             var index = $scope.invites.indexOf(invite);
             $scope.invites.splice(index, 1);
+            $scope.showToast("Zaproszenie anulowane");
         });
     };
 
