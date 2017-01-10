@@ -1,6 +1,6 @@
 import logging
 
-from flask import request
+from flask import request, jsonify, g
 
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
@@ -46,9 +46,9 @@ class ChildrenCollection(Resource):
 @ns.param('id', 'The child identifier')
 class Child(Resource):
     """Show a single child entity and lets you delete and update it"""
-
-    @ns.marshal_with(child_full)
     @auth.login_required
+    @api.doc(security='Basic')
+    @ns.marshal_with(child_full)
     def get(self, id):
         """Returns child"""
         child = child_dao.get(id)
@@ -107,6 +107,22 @@ class ChildInvitationsCollection(Resource):
         data = request.json
         return invitation_dao.create(data, id), 201
 
+from flask_restplus import reqparse
+
+parser = reqparse.RequestParser()
+parser.add_argument('Authorization', location='headers')
+
+@ns.route('/token')
+@ns.response(400, 'Bad request')
+class ChildSecurity(Resource):
+    @auth.login_required
+    @api.doc(security='Basic')
+    @api.expect(parser)
+    def get(self):
+        """Get token for authentication"""
+        token = g.child.generate_auth_token()
+        return jsonify({'token': token.decode('ascii')})
+
 
 @ns.route('/<int:child_id>/invitations/<int:invitation_id>')
 @ns.response(404, 'Child not found')
@@ -140,6 +156,12 @@ class ChildInvitation(Resource):
 
 
 @auth.verify_password
-def verify_password(login, password):
-    password_hash = child_dao.get_password_hash(login)
-    return ChildModel.verify_password(password, password_hash)  # pbkdf2_sha512.verify(password, password_hash)
+def verify_password(login_or_token, password):
+    child = ChildModel.verify_auth_token(login_or_token)
+    if not child:
+        child = child_dao.get_child_by_login(login_or_token)
+        password_hash = child.password
+        if not child or not ChildModel.verify_password(password, password_hash):
+            return False
+    g.child = child
+    return True

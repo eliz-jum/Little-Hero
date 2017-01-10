@@ -11,5 +11,6 @@ ns = api.namespace('v1/documentation', description='Documentation')
 
 @ns.route('/')
 class Documentation(Resource):
+    """Alternative way to get swagger.json Api documentation"""
     def get(self):
         return json.loads(json.dumps(api.__schema__))

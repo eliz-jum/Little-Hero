@@ -5,12 +5,20 @@ from flask_restplus import Api
 from little_hero_rest_api import settings
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
-import json
 
 log = logging.getLogger(__name__)
 
-api = Api(version='1.0', title='Little Hero API',
-          description='Little Hero API for Little Hero mobile application')
+authorizations = {
+    'Basic': {
+        'type': 'basic',
+        'in': 'header',
+        'name': 'Authorization'
+    }
+}
+
+api = Api(version='1.2', title='Little Hero API', authorizations=authorizations,
+          security='Basic', description='Little Hero API for Little Hero mobile application',
+          contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl')
 
 
 @api.errorhandler

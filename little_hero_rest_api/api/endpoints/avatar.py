@@ -47,7 +47,7 @@ class AvatarsCollection(Resource):
 @ns.route('/<int:id>')
 @ns.response(404, 'Avatar not found')
 @ns.response(400, 'Bad request')
-@ns.param('avatar_id', 'The avatar identifier')
+@ns.param('id', 'The avatar identifier')
 class Avatar(Resource):
     """Show a single avatar entity and lets you delete and update it"""
     @ns.marshal_with(avatar_full)

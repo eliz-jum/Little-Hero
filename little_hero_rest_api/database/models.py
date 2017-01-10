@@ -8,9 +8,9 @@ from little_hero_rest_api import settings
 
 
 class BaseModel(db.Model):
-    __abstract__ = True #sqlAlchemy will not create table for this model
+    __abstract__ = True  # sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
-    creation_date = db.Column(db.DateTime) # todo: add creation date
+    creation_date = db.Column(db.DateTime)  # todo: add creation date
     # created = db.Column()
 
 
@@ -25,9 +25,21 @@ class SecurityBaseModel(BaseModel):
     def hash_password(cls, password):
         return pbkdf2_sha512.hash(password)
 
-    def generate_auth_token(self, expiration = 1200):
-        s = Serializer(settings.SECRET_KEY)
+    def generate_auth_token(self, expiration=1200):
+        s = Serializer(settings.SECRET_KEY, expires_in=expiration)
         return s.dumps({'id': self.id})
+
+    @classmethod
+    def verify_auth_token(cls, token):
+        s = Serializer(settings.SECRET_KEY)
+        try:
+            data = s.loads(token)
+        except SignatureExpired:
+            return None  # valid token, but expired
+        except BadSignature:
+            return None  # invalid token
+        entity = cls.query.get(data['id'])
+        return entity
 
 
 class Child(SecurityBaseModel):
@@ -69,7 +81,7 @@ class Avatar(BaseModel):
 
     tasks = db.relationship('Task', back_populates='avatar', lazy='dynamic')
 
-    #avatar_items = db.relationship('AvatarItem', lazy='dynamic')
+    # avatar_items = db.relationship('AvatarItem', lazy='dynamic')
 
     def __init__(self, name, clazz, child, tutor, level, money, health, experience):
         self.name = name
@@ -115,7 +127,8 @@ class Item(BaseModel):
     type = db.Column(db.String(50))
     imgSrc = db.Column(db.String(50))
     iconSrc = db.Column(db.String(50))
-    #itemOfAvatars = db.relationship('AvatarItem', back_populates='item', lazy='dynamic')
+
+    # itemOfAvatars = db.relationship('AvatarItem', back_populates='item', lazy='dynamic')
 
     def __init__(self, price, level, clazz, type, imgSrc, iconSrc):
         self.price = price
@@ -174,12 +187,13 @@ class Invitation(BaseModel):
 
 class AvatarItem(BaseModel):
     avatar_id = db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id'), nullable=False)
-    #avatar = db.relationship('Avatar', back_populates='item_avatars', lazy='dynamic')
+    # avatar = db.relationship('Avatar', back_populates='item_avatars', lazy='dynamic')
     item_id = db.Column('item_id', db.Integer, db.ForeignKey('item.id'), nullable=False)
-    #item = db.relationship('Item', back_populates='', lazy='dynamic')
+    # item = db.relationship('Item', back_populates='', lazy='dynamic')
     state = db.Column(db.String(50))
     db.UniqueConstraint('avatar_id', 'item_id')
-    #updateDate = db.Column(db.DateTime)
+
+    # updateDate = db.Column(db.DateTime)
 
     def __init__(self, avatar_id, item_id, state):
         self.avatar_id = avatar_id
@@ -188,8 +202,8 @@ class AvatarItem(BaseModel):
         self.creationDate = datetime.utcnow()
 
     def __repr__(self):
-        return '<AvatarItem  avatar_id: {0!r}, item_id: {0!r}, state: {0!r}>'\
-            .format(self.avatar_id,  self.item_id, self.state)
+        return '<AvatarItem  avatar_id: {0!r}, item_id: {0!r}, state: {0!r}>' \
+            .format(self.avatar_id, self.item_id, self.state)
 
 
 class Notification(BaseModel):
@@ -204,11 +218,12 @@ class Notification(BaseModel):
         return '<Notification id: %r>' % self.id
 
 
-    # class ItemState(Enum):
-    #     on = 1
-    #     bought = 2
-    #     available = 3
-    #     unavailable = 4
+        # class ItemState(Enum):
+        #     on = 1
+        #     bought = 2
+        #     available = 3
+        #     unavailable = 4
+
 # avatarAvailableItems = db.Table('avatarAvailableItems',
 #     db.Column('avatar_id', db.Integer, db.ForeignKey('avatar.id')),
 #     db.Column('item_id', db.Integer, db.ForeignKey('item.id'))

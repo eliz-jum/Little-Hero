@@ -60,7 +60,10 @@ class ChildDAO(GenericDAO):
             tutor_set.add(tutor)
         return list(tutor_set)
 
-    def get_password_hash(self, login):
+    def get_child_by_login(self, login):
         child = Child.query.filter_by(login=login).one()
-        password_hash = child.password
-        return password_hash
+        return child
+        #password_hash = child.password
+        #return password_hash
+
+
