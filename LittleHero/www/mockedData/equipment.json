@@ -1224,8 +1224,8 @@
     "id": 59,
     "type": "prop_right",
     "clazz": "mage",
-    "iconSrc": "img/mage/prop2_right_icon.svg",
-    "imgSrc": "img/mage/prop2_right.svg",
+    "iconSrc": "img/mage/prop_right2_icon.svg",
+    "imgSrc": "img/mage/prop_right2.svg",
     "level": 1,
     "price": 4
   },
@@ -1233,8 +1233,8 @@
     "id": 60,
     "type": "prop_right",
     "clazz": "mage",
-    "iconSrc": "img/mage/prop7_right_icon.svg",
-    "imgSrc": "img/mage/prop7_right.svg",
+    "iconSrc": "img/mage/prop_right7_icon.svg",
+    "imgSrc": "img/mage/prop_right7.svg",
     "level": 1,
     "price": 8
   },
@@ -1269,8 +1269,8 @@
     "id": 144,
     "type": "prop_right",
     "clazz": "mage",
-    "iconSrc": "img/mage/prop_right6_icon.svg",
-    "imgSrc": "img/mage/prop_right6.svg",
+    "iconSrc": "img/mage/prop_right4_icon.svg",
+    "imgSrc": "img/mage/prop_right4.svg",
     "level": 3,
     "price": 30
   },
