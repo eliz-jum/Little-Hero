@@ -3,7 +3,6 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
 
     $scope.tasks = [];
     $scope.tasksStyles = [];
-    $scope.dynamicStyle = [];
 
     $scope.$on('$ionicView.beforeEnter', function(){
       $scope.currentAvatar = childService.currentAvatar;
@@ -33,21 +32,6 @@ angular.module('littleHero').controller('TasksController', function($scope, $sta
                 $scope.setTaskStyle(task);
             });
         }
-    }
-
-
-    $scope.setTaskStyle = function(task) {
-        switch(task["difficulty"]) {
-            case (1):
-                $scope.dynamicStyle.push('easy-task');
-                break;
-            case (2):
-                $scope.dynamicStyle.push('medium-task');
-                break;
-            case (3):
-                $scope.dynamicStyle.push('hard-task');
-                break;
-            }
     }
 
   $scope.showToast = function(message){

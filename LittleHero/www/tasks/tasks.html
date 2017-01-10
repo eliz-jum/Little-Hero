@@ -25,10 +25,11 @@
       </div>
 
       <ion-list class="task-list" scroll="false">
-        <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]" class="background">
-          <ion-content ng-class="dynamicStyle[$index]" scroll="false">
-            <div class="task-name">
-              <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i></div><span>{{ task.content }}</span>
+        <ion-item ng-repeat="task in tasks track by $index" class="background">
+          <ion-content class="task-item" scroll="false">
+              <span class="task-name">{{ task.content }}</span>
+              <span class="task-details">${{task.reward}}</span>
+              <span class="task-details">{{task.experience}}XP</span>
             </div>
           </ion-content>
         </ion-item>
