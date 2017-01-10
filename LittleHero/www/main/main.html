@@ -23,16 +23,20 @@
       <div class="row row-100">
         <div class="col col-100">
           <div class="row row-50 row-center">
+            <div class="col col-10"></div>
             <i class="icon icon ion-star stats"></i>
             <div class="progress-bar">
               <div class="progress-bar-indicator xp" ng-style="{'width' : currentAvatar.experience + '%'}"></div>
             </div>
+            <span class="col-20 col">{{currentAvatar.experience}} XP</span>
           </div>
           <div class="row row-50 row-center">
+            <div class="col col-10"></div>
             <i class="icon icon ion-android-favorite stats"></i>
             <div class="progress-bar">
               <div class="progress-bar-indicator hp" ng-style="{'width' : currentAvatar.health + '%'}"></div>
             </div>
+            <span class="col-20 col">{{currentAvatar.health}} HP</span>
           </div>
         </div>
       </div>
