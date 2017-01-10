@@ -466,6 +466,57 @@
 
 
 
+
+
+  {
+    "id": 88,
+    "type": "top",
+    "class": "mage",
+    "iconSrc": "img/mage/top1_icon.svg",
+    "imgSrc": "img/mage/top1.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 89,
+    "type": "top",
+    "class": "mage",
+    "iconSrc": "img/mage/top2_icon.svg",
+    "imgSrc": "img/mage/top2.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 90,
+    "type": "top",
+    "class": "mage",
+    "iconSrc": "img/mage/top3_icon.svg",
+    "imgSrc": "img/mage/top3.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 91,
+    "type": "top",
+    "class": "mage",
+    "iconSrc": "img/mage/top4_icon.svg",
+    "imgSrc": "img/mage/top4.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 92,
+    "type": "top",
+    "class": "mage",
+    "iconSrc": "img/mage/top6_icon.svg",
+    "imgSrc": "img/mage/top6.svg",
+    "lvl": 2,
+    "price": 15
+  },
+
+
+
+
   {
     "id": 33,
     "type": "bottom",
@@ -503,6 +554,71 @@
     "price": 11
   },
   {
+    "id": 93,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/pants8_icon.svg",
+    "imgSrc": "img/mage/pants8.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 94,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/pants9_icon.svg",
+    "imgSrc": "img/mage/pants9.svg",
+    "lvl": 1,
+    "price": 8
+  },
+  {
+    "id": 95,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/pants5_icon.svg",
+    "imgSrc": "img/mage/pants5.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 96,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/pants6_icon.svg",
+    "imgSrc": "img/mage/pants6.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 97,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/pants8_icon.svg",
+    "imgSrc": "img/mage/pants8.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 98,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/pants10_icon.svg",
+    "imgSrc": "img/mage/pants10.svg",
+    "lvl": 3,
+    "price": 15
+  },
+  {
+    "id": 99,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/pants11_icon.svg",
+    "imgSrc": "img/mage/pants11.svg",
+    "lvl": 3,
+    "price": 15
+  },
+
+
+  {
     "id": 37,
     "type": "bottom",
     "class": "human",
@@ -520,7 +636,24 @@
     "lvl": 3,
     "price": 20
   },
-
+  {
+    "id": 100,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/skirt4_icon.svg",
+    "imgSrc": "img/mage/skirt4.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 101,
+    "type": "bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/skirt3_icon.svg",
+    "imgSrc": "img/mage/skirt3.svg",
+    "lvl": 2,
+    "price": 15
+  },
 
 
 
@@ -573,13 +706,48 @@
   {
     "id": 44,
     "type": "top_bottom",
-    "class": "king",
+    "class": "human",
     "iconSrc": "img/top_bottom5_icon.svg",
     "imgSrc": "img/top_bottom5.svg",
     "lvl": 3,
     "price": 28
   },
-
+  {
+    "id": 102,
+    "type": "top_bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/top_bottom6_icon.svg",
+    "imgSrc": "img/mage/top_bottom6.svg",
+    "lvl": 1,
+    "price": 15
+  },
+  {
+    "id": 103,
+    "type": "top_bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/top_bottom8_icon.svg",
+    "imgSrc": "img/mage/top_bottom8.svg",
+    "lvl": 1,
+    "price": 20
+  },
+  {
+    "id": 104,
+    "type": "top_bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/top_bottom7_icon.svg",
+    "imgSrc": "img/mage/top_bottom7.svg",
+    "lvl": 2,
+    "price": 25
+  },
+  {
+    "id": 105,
+    "type": "top_bottom",
+    "class": "mage",
+    "iconSrc": "img/mage/top_bottom9_icon.svg",
+    "imgSrc": "img/mage/top_bottom9.svg",
+    "lvl": 2,
+    "price": 28
+  },
 
 
 
@@ -620,6 +788,79 @@
     "lvl": 2,
     "price": 33
   },
+  {
+    "id": 106,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head4_icon.svg",
+    "imgSrc": "img/mage/head4.svg",
+    "lvl": 1,
+    "price": 1
+  },
+  {
+    "id": 107,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head6_icon.svg",
+    "imgSrc": "img/mage/head6.svg",
+    "lvl": 1,
+    "price": 3
+  },
+  {
+    "id": 108,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head5_icon.svg",
+    "imgSrc": "img/mage/head5.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 109,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head8_icon.svg",
+    "imgSrc": "img/mage/head8.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 110,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head3_icon.svg",
+    "imgSrc": "img/mage/head3.svg",
+    "lvl": 2,
+    "price": 13
+  },
+  {
+    "id": 111,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head2_icon.svg",
+    "imgSrc": "img/mage/head2.svg",
+    "lvl": 2,
+    "price": 17
+  },
+  {
+    "id": 112,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head1_icon.svg",
+    "imgSrc": "img/mage/head1.svg",
+    "lvl": 3,
+    "price": 22
+  },
+  {
+    "id": 113,
+    "type": "misc_head",
+    "class": "mage",
+    "iconSrc": "img/mage/head10_icon.svg",
+    "imgSrc": "img/mage/head10.svg",
+    "lvl": 3,
+    "price": 26
+  },
+
 
 
 
@@ -647,6 +888,137 @@
     "class": "human",
     "iconSrc": "img/ears2_icon.svg",
     "imgSrc": "img/ears2.svg",
+    "lvl": 3,
+    "price": 15
+  },
+
+
+
+
+
+  {
+    "id": 113,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears3_icon.svg",
+    "imgSrc": "img/mage/earss3.svg",
+    "lvl": 1,
+    "price": 2
+  },
+  {
+    "id": 114,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears4_icon.svg",
+    "imgSrc": "img/mage/ears4.svg",
+    "lvl": 1,
+    "price": 3
+  },
+  {
+    "id": 115,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears5_icon.svg",
+    "imgSrc": "img/mage/ears5.svg",
+    "lvl": 1,
+    "price": 3
+  },
+  {
+    "id": 116,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears11_icon.svg",
+    "imgSrc": "img/mage/ears11.svg",
+    "lvl": 1,
+    "price": 4
+  },
+  {
+    "id": 117,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears12_icon.svg",
+    "imgSrc": "img/mage/ears12.svg",
+    "lvl": 1,
+    "price": 4
+  },
+  {
+    "id": 118,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears6_icon.svg",
+    "imgSrc": "img/mage/ears6.svg",
+    "lvl": 2,
+    "price": 8
+  },
+  {
+    "id": 119,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears7_icon.svg",
+    "imgSrc": "img/mage/ears7.svg",
+    "lvl": 2,
+    "price": 8
+  },
+  {
+    "id": 120,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears8_icon.svg",
+    "imgSrc": "img/mage/ears8.svg",
+    "lvl": 2,
+    "price": 8
+  },
+  {
+    "id": 121,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears9_icon.svg",
+    "imgSrc": "img/mage/ears9.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 122,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears10_icon.svg",
+    "imgSrc": "img/mage/ears10.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 123,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears1_icon.svg",
+    "imgSrc": "img/mage/ears1.svg",
+    "lvl": 3,
+    "price": 15
+  },
+  {
+    "id": 124,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears14_icon.svg",
+    "imgSrc": "img/mage/ears14.svg",
+    "lvl": 3,
+    "price": 18
+  },
+  {
+    "id": 125,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears13_icon.svg",
+    "imgSrc": "img/mage/ears13.svg",
+    "lvl": 3,
+    "price": 15
+  },
+  {
+    "id": 126,
+    "type": "misc_ear",
+    "class": "mage",
+    "iconSrc": "img/mage/ears2_icon.svg",
+    "imgSrc": "img/mage/ears2.svg",
     "lvl": 3,
     "price": 15
   },
@@ -689,6 +1061,69 @@
     "lvl": 3,
     "price": 28
   },
+  {
+    "id": 127,
+    "type": "misc_neck",
+    "class": "mage",
+    "iconSrc": "img/mage/neck1_icon.svg",
+    "imgSrc": "img/mage/neck1.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 128,
+    "type": "misc_neck",
+    "class": "mage",
+    "iconSrc": "img/mage/neck2_icon.svg",
+    "imgSrc": "img/mage/neck2.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 129,
+    "type": "misc_neck",
+    "class": "mage",
+    "iconSrc": "img/mage/neck3_icon.svg",
+    "imgSrc": "img/mage/neck3.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 130,
+    "type": "misc_neck",
+    "class": "mage",
+    "iconSrc": "img/mage/neck4_icon.svg",
+    "imgSrc": "img/mage/neck4.svg",
+    "lvl": 1,
+    "price": 12
+  },
+  {
+    "id": 131,
+    "type": "misc_neck",
+    "class": "mage",
+    "iconSrc": "img/mage/neck5_icon.svg",
+    "imgSrc": "img/mage/neck5.svg",
+    "lvl": 2,
+    "price": 15
+  },
+  {
+    "id": 132,
+    "type": "misc_neck",
+    "class": "mage",
+    "iconSrc": "img/mage/neck6_icon.svg",
+    "imgSrc": "img/mage/neck6.svg",
+    "lvl": 2,
+    "price": 20
+  },
+  {
+    "id": 133,
+    "type": "misc_neck",
+    "class": "mage",
+    "iconSrc": "img/mage/neck7_icon.svg",
+    "imgSrc": "img/mage/neck7.svg",
+    "lvl": 2,
+    "price": 22
+  },
 
 
 
@@ -710,6 +1145,69 @@
     "lvl": 1,
     "price": 10
   },
+  {
+    "id": 134,
+    "type": "prop_left",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_left3_icon.svg",
+    "imgSrc": "img/mage/prop_left3.svg",
+    "lvl": 1,
+    "price": 2
+  },
+  {
+    "id": 135,
+    "type": "prop_left",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_left4_icon.svg",
+    "imgSrc": "img/mage/prop_left4.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 136,
+    "type": "prop_left",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_left5_icon.svg",
+    "imgSrc": "img/mage/prop_left5.svg",
+    "lvl": 1,
+    "price": 10
+  },
+  {
+    "id": 137,
+    "type": "prop_left",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_left6_icon.svg",
+    "imgSrc": "img/mage/prop_left6.svg",
+    "lvl": 1,
+    "price": 15
+  },
+  {
+    "id": 138,
+    "type": "prop_left",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_left7_icon.svg",
+    "imgSrc": "img/mage/prop_left7.svg",
+    "lvl": 2,
+    "price": 18
+  },
+  {
+    "id": 139,
+    "type": "prop_left",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_left8_icon.svg",
+    "imgSrc": "img/mage/prop_left8.svg",
+    "lvl": 2,
+    "price": 20
+  },
+  {
+    "id": 140,
+    "type": "prop_left",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_left1_icon.svg",
+    "imgSrc": "img/mage/prop_left1.svg",
+    "lvl": 2,
+    "price": 22
+  },
 
 
 
@@ -726,19 +1224,55 @@
     "id": 59,
     "type": "prop_right",
     "class": "mage",
-    "iconSrc": "img/prop2_right_icon.svg",
-    "imgSrc": "img/prop2_right.svg",
+    "iconSrc": "img/mage/prop2_right_icon.svg",
+    "imgSrc": "img/mage/prop2_right.svg",
     "lvl": 1,
-    "price": 6
+    "price": 4
   },
   {
     "id": 60,
     "type": "prop_right",
     "class": "mage",
-    "iconSrc": "img/prop3_right_icon.svg",
-    "imgSrc": "img/prop3_right.svg",
+    "iconSrc": "img/mage/prop7_right_icon.svg",
+    "imgSrc": "img/mage/prop7_right.svg",
+    "lvl": 1,
+    "price": 8
+  },
+  {
+    "id": 141,
+    "type": "prop_right",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_right6_icon.svg",
+    "imgSrc": "img/mage/prop_right6.svg",
+    "lvl": 2,
+    "price": 15
+  },
+  {
+    "id": 142,
+    "type": "prop_right",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_right5_icon.svg",
+    "imgSrc": "img/mage/prop_right5.svg",
     "lvl": 2,
     "price": 20
+  },
+  {
+    "id": 143,
+    "type": "prop_right",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_right3_icon.svg",
+    "imgSrc": "img/mage/prop_right3.svg",
+    "lvl": 3,
+    "price": 22
+  },
+  {
+    "id": 144,
+    "type": "prop_right",
+    "class": "mage",
+    "iconSrc": "img/mage/prop_right6_icon.svg",
+    "imgSrc": "img/mage/prop_right6.svg",
+    "lvl": 3,
+    "price": 30
   },
 
 
@@ -789,6 +1323,60 @@
     "lvl": 3,
     "price": 30
   },
+  {
+    "id": 145,
+    "type": "sock",
+    "class": "mage",
+    "iconSrc": "img/mage/sock5_icon.svg",
+    "imgSrc": "img/mage/sock5.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 146,
+    "type": "sock",
+    "class": "mage",
+    "iconSrc": "img/mage/sock4_icon.svg",
+    "imgSrc": "img/mage/sock4.svg",
+    "lvl": 1,
+    "price": 8
+  },
+  {
+    "id": 147,
+    "type": "sock",
+    "class": "mage",
+    "iconSrc": "img/mage/sock6_icon.svg",
+    "imgSrc": "img/mage/sock6.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 148,
+    "type": "sock",
+    "class": "mage",
+    "iconSrc": "img/mage/sock9_icon.svg",
+    "imgSrc": "img/mage/sock9.svg",
+    "lvl": 2,
+    "price": 12
+  },
+  {
+    "id": 149,
+    "type": "sock",
+    "class": "mage",
+    "iconSrc": "img/mage/sock8_icon.svg",
+    "imgSrc": "img/mage/sock8.svg",
+    "lvl": 3,
+    "price": 15
+  },
+  {
+    "id": 150,
+    "type": "sock",
+    "class": "mage",
+    "iconSrc": "img/mage/sock7_icon.svg",
+    "imgSrc": "img/mage/sock7.svg",
+    "lvl": 3,
+    "price": 18
+  },
 
 
 
@@ -828,8 +1416,61 @@
     "imgSrc": "img/shoes3.svg",
     "lvl": 2,
     "price": 15
+  },
+  {
+    "id": 150,
+    "type": "shoes",
+    "class": "mage",
+    "iconSrc": "img/mage/shoes4_icon.svg",
+    "imgSrc": "img/mage/shoes4.svg",
+    "lvl": 1,
+    "price": 5
+  },
+  {
+    "id": 151,
+    "type": "shoes",
+    "class": "mage",
+    "iconSrc": "img/mage/shoes5_icon.svg",
+    "imgSrc": "img/mage/shoes5.svg",
+    "lvl": 1,
+    "price": 8
+  },
+  {
+    "id": 152,
+    "type": "shoes",
+    "class": "mage",
+    "iconSrc": "img/mage/shoes6_icon.svg",
+    "imgSrc": "img/mage/shoes6.svg",
+    "lvl": 2,
+    "price": 12
+  },
+  {
+    "id": 153,
+    "type": "shoes",
+    "class": "mage",
+    "iconSrc": "img/mage/shoes7_icon.svg",
+    "imgSrc": "img/mage/shoes7.svg",
+    "lvl": 2,
+    "price": 16
+  },
+  {
+    "id": 154,
+    "type": "shoes",
+    "class": "mage",
+    "iconSrc": "img/mage/shoes8_icon.svg",
+    "imgSrc": "img/mage/shoes8.svg",
+    "lvl": 3,
+    "price": 20
+  },
+  {
+    "id": 155,
+    "type": "shoes",
+    "class": "mage",
+    "iconSrc": "img/mage/shoes9_icon.svg",
+    "imgSrc": "img/mage/shoes9.svg",
+    "lvl": 3,
+    "price": 23
   }
-
 
 
 ]
