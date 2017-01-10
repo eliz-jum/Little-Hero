@@ -20,6 +20,7 @@ ns = api.namespace('v1/tutors', description='Operations related to tutors')
 tutor_dao = TutorDAO()
 invitation_dao = InvitationDAO()
 
+
 @ns.route('/')
 @ns.response(400, 'Bad request')
 class TutorsCollection(Resource):

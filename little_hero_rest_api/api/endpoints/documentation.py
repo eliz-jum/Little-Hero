@@ -6,7 +6,7 @@ import json
 
 log = logging.getLogger(__name__)
 
-ns = api.namespace('v1/documentation', description='Documentation')
+ns = api.namespace('v1/documentation', description='Endpoint for getting documentation in json')
 
 
 @ns.route('/')

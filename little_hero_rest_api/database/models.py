@@ -53,7 +53,7 @@ class Child(SecurityBaseModel):
     def __init__(self, login, nickname, password, mail):
         self.login = login
         self.nickname = nickname
-        self.password = super().hash_password(password)
+        self.password = password
         self.mail = mail
         self.creationDate = datetime.utcnow()
 
@@ -111,7 +111,7 @@ class Tutor(SecurityBaseModel):
 
     def __init__(self, login, password, mail):
         self.login = login
-        self.password = super().hash_password(password)
+        self.password = password
         self.mail = mail
         self.creationDate = datetime.utcnow()
 

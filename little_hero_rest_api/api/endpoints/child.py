@@ -9,12 +9,12 @@ from little_hero_rest_api.dao.invitation import InvitationDAO
 from little_hero_rest_api.database.models import Child as ChildModel
 from little_hero_rest_api.api.serializers import (child_for_post, child_full, child_for_patch, invitation_full,
                                                   child_invitation_for_post, invitation_for_patch, tutor_full)
-from flask_httpauth import HTTPBasicAuth
+#from flask_httpauth import HTTPBasicAuth
 
 log = logging.getLogger(__name__)
 
 ns = api.namespace('v1/children', description='Operations related to children')
-auth = HTTPBasicAuth()
+#auth = HTTPBasicAuth()
 
 child_dao = ChildDAO()
 invitation_dao = InvitationDAO()
@@ -46,7 +46,7 @@ class ChildrenCollection(Resource):
 @ns.param('id', 'The child identifier')
 class Child(Resource):
     """Show a single child entity and lets you delete and update it"""
-    @auth.login_required
+    #@auth.login_required
     @api.doc(security='Basic')
     @ns.marshal_with(child_full)
     def get(self, id):
@@ -112,16 +112,16 @@ from flask_restplus import reqparse
 parser = reqparse.RequestParser()
 parser.add_argument('Authorization', location='headers')
 
-@ns.route('/token')
-@ns.response(400, 'Bad request')
-class ChildSecurity(Resource):
-    @auth.login_required
-    @api.doc(security='Basic')
-    @api.expect(parser)
-    def get(self):
-        """Get token for authentication"""
-        token = g.child.generate_auth_token()
-        return jsonify({'token': token.decode('ascii')})
+# @ns.route('/token')
+# @ns.response(400, 'Bad request')
+# class ChildSecurity(Resource):
+#     @auth.login_required
+#     @api.doc(security='Basic')
+#     @api.expect(parser)
+#     def get(self):
+#         """Get token for authentication"""
+#         token = g.child.generate_auth_token()
+#         return jsonify({'token': token.decode('ascii')})
 
 
 @ns.route('/<int:child_id>/invitations/<int:invitation_id>')
@@ -155,13 +155,13 @@ class ChildInvitation(Resource):
         return updated_invitation, 200
 
 
-@auth.verify_password
-def verify_password(login_or_token, password):
-    child = ChildModel.verify_auth_token(login_or_token)
-    if not child:
-        child = child_dao.get_child_by_login(login_or_token)
-        password_hash = child.password
-        if not child or not ChildModel.verify_password(password, password_hash):
-            return False
-    g.child = child
-    return True
+# @auth.verify_password
+# def verify_password(login_or_token, password):
+#     child = ChildModel.verify_auth_token(login_or_token)
+#     if not child:
+#         child = child_dao.get_child_by_login(login_or_token)
+#         password_hash = child.password
+#         if not child or not ChildModel.verify_password(password, password_hash):
+#             return False
+#     g.child = child
+#     return True

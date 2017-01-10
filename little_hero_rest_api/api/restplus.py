@@ -8,17 +8,20 @@ from sqlalchemy.exc import IntegrityError
 
 log = logging.getLogger(__name__)
 
-authorizations = {
-    'Basic': {
-        'type': 'basic',
-        'in': 'header',
-        'name': 'Authorization'
-    }
-}
+# authorizations = {
+#     'Basic': {
+#         'type': 'basic',
+#         'in': 'header',
+#         'name': 'Authorization'
+#     }
+# }
 
-api = Api(version='1.2', title='Little Hero API', authorizations=authorizations,
-          security='Basic', description='Little Hero API for Little Hero mobile application',
-          contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl')
+# api = Api(version='1.2', title='Little Hero API', authorizations=authorizations,
+#           security='Basic', description='Little Hero API for Little Hero mobile application',
+#           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl')
+api = Api(version='1.2', title='Little Hero API', description='API for Little Hero mobile application',
+          contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl',
+          contact_url='https://github.com/siulkilulki')
 
 
 @api.errorhandler
