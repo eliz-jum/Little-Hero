@@ -433,7 +433,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
     dataService.postAvatar(newAvatar).then( function(res) {
       console.log("postAvatar", res);
       var newAvatarId = res.data.id;
-      childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
+      // childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
+      childService.hardcodeAvatarItemArrays();
     });
   }
 
