@@ -43,7 +43,6 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     childService.canBePutOnItems = [];
     childService.canBePurchasedItems = [];
     childService.unavailableItems = [];
-    childService.allAvatars = [];
     childService.notifications = [];
   }
 
@@ -139,6 +138,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.setAvatarData = function (avatar) {
     cleanAvatarArrays();
     childService.currentAvatar = avatar;
+    console.log("level", childService.currentAvatar);
     childService.currentAvatarId = childService.currentAvatar.id;
 
     // childService.setWornItems();

@@ -1691,16 +1691,13 @@ angular.module('littleHero').factory('childService',function($state, dataService
         level: 3,
         price: 23
       }
-
-
-
     ];
-
+    
     allItems.forEach(function (item) {
       if (item.price == 0)
         childService.canBePutOnItems.push(item);
       else if (item.clazz == childService.currentAvatar.clazz || item.clazz == "allClasses"){
-        if (item.level == childService.currentAvatar.level)
+        if (item.level <= childService.currentAvatar.level)
           childService.canBePurchasedItems.push(item);
         else
           childService.unavailableItems.push(item);
