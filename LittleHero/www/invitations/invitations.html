@@ -9,9 +9,12 @@
     </div>
   </div>
 </div>
-<ion-content class="background has-header has-footer">
+<ion-content class="background has-header">
+  <div class="title">
+    <h2>Zaproszenia</h2>
+  </div>
   <ion-list class="background" can-swipe="true" swipe-direction="both" scroll="false">
-    <ion-item class="item-remove-animate item item-complex item-right-editable" ng-repeat="invite in invites | filter:filters">
+    <ion-item class="item-remove-animate item item-complex item-right-editable" ng-repeat="invite in invites">
         <div>
             <div ng-if="invite.kind=='child'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
             <div ng-if="invite.kind=='child-avatar'">Poprosiłeś opiekuna nr {{invite.tutor_id}} o nowy awatar</div>
@@ -19,11 +22,9 @@
             <div style="opacity: 0.5">
                 <div ng-if="invite.status=='pending'">oczekujące</div>
                 <div ng-if="invite.status=='accepted'">zaakceptowane</div>
-                <div ng-if="invite.status=='rejected'">odrzucone</div>
             </div>
         </div>
-        <div ng-if="((invite.kind=='tutor' || invite.kind=='tutor-avatar') && invite.status=='pending') ||
-                    ((invite.kind=='child' || invite.kind=='child-avatar') && invite.status=='accepted')">
+        <div ng-if="invite.kind=='tutor' || invite.status=='accepted'">
             <ion-option-button side="left" class="button button-balanced" ng-click="acceptInvite(invite)">
                 <i class="icon ion-checkmark-round"></i>
             </ion-option-button>
@@ -31,17 +32,11 @@
                 <i class="icon ion-close-round"></i>
             </ion-option-button>
         </div>
+        <div ng-if="invite.kind!='tutor' && invite.status!='accepted'">
+            <ion-option-button side="right" class="button button-assertive" ng-click="cancelInvite(invite)">
+              <i class="icon ion-close-round"></i>
+            </ion-option-button>
+        </div>
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-footer-bar class="button-footer orange">
-    <div class="invite-filter-button" ng-click="filters.kind = ''">
-      Wszystkie
-    </div>
-    <div class="invite-filter-button" ng-click="filters.kind ='child'">
-      Wysłane
-    </div>
-    <div class="invite-filter-button" ng-click="filters.kind = 'tutor'">
-      Otrzymane
-    </div>
-</ion-footer-bar>
