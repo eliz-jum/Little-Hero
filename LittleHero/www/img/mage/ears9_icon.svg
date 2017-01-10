@@ -5,18 +5,18 @@
 	 width="288px" height="288px" viewBox="0 0 288 288" enable-background="new 0 0 288 288" xml:space="preserve">
 <g>
 	
-		<line fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="435.224" y1="363.5" x2="435.224" y2="337.389"/>
+		<line fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="40.217" y1="134.5" x2="40.217" y2="108.389"/>
 	
-		<line fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="643.04" y1="360.595" x2="643.224" y2="337.838"/>
+		<line fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="248.033" y1="131.595" x2="248.217" y2="108.838"/>
 	<g>
 		
 			<path fill="#F9FF00" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-			M423.53,367.227c11.003,6.868,3.973,22.548-6.948,21.584c3.395,8.71,20.613,12.475,27.343-2.152
-			C450.027,373.395,436.488,355.698,423.53,367.227z"/>
+			M28.524,138.227c11.003,6.868,3.973,22.549-6.948,21.584c3.395,8.71,20.613,12.476,27.343-2.151
+			C55.021,144.395,41.482,126.698,28.524,138.227z"/>
 		
 			<path fill="#F9FF00" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-			M654.485,367.227c-11.003,6.868-3.976,22.548,6.946,21.584c-3.395,8.71-20.611,12.475-27.343-2.152
-			C627.988,373.395,641.527,355.698,654.485,367.227z"/>
+			M259.479,138.227c-11.002,6.868-3.977,22.549,6.945,21.584c-3.395,8.71-20.609,12.476-27.342-2.151
+			C232.982,144.395,246.521,126.698,259.479,138.227z"/>
 	</g>
 </g>
 </svg>

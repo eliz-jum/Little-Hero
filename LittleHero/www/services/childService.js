@@ -224,15 +224,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.hardcodeAvatarItemArrays = function () {
     var allItems = [
       {
-        id: 1,
-        type: "eyes",
-        clazz: "wornByDefault",
-        iconSrc: "img/eyes1_icon.svg",
-        imgSrc: "img/eyes1.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 2,
         type: "eyes",
         clazz: "allClasses",
@@ -298,15 +289,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 4,
-        type: "nose",
-        clazz: "wornByDefault",
-        iconSrc: "img/nose1_icon.svg",
-        imgSrc: "img/nose1.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 5,
         type: "nose",
         clazz: "allClasses",
@@ -336,15 +318,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
 
-      {
-        id: 7,
-        type: "mouth",
-        clazz: "wornByDefault",
-        iconSrc: "img/mouth1_icon.svg",
-        imgSrc: "img/mouth1.svg",
-        level: 1,
-        price: 0
-      },
       {
         id: 8,
         type: "mouth",
@@ -475,15 +448,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 10,
-        type: "hair_front",
-        clazz: "wornByDefault",
-        iconSrc: "img/hair_front1_icon.svg",
-        imgSrc: "img/hair_front1.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 11,
         type: "hair_front",
         clazz: "allClasses",
@@ -522,6 +486,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 15,
         type: "hair_front",
+        clazz: "allClasses",
         iconSrc: "img/hair_front6_icon.svg",
         imgSrc: "img/hair_front6.svg",
         level: 3,
@@ -541,15 +506,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
 
-      {
-        id: 18,
-        type: "hair_back",
-        clazz: "wornByDefault",
-        iconSrc: "img/hair_back1_icon.svg",
-        imgSrc: "img/hair_back1.svg",
-        level: 1,
-        price: 0
-      },
       {
         id: 19,
         type: "hair_back",
@@ -616,15 +572,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 26,
-        type: "animal",
-        clazz: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 27,
         type: "animal",
         clazz: "human",
@@ -644,15 +591,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
         clazz: "empty",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
-      {
-        id: 29,
-        type: "top",
-        clazz: "wornByDefault",
-        iconSrc: "img/tee1_icon.svg",
-        imgSrc: "img/tee1.svg",
         level: 1,
         price: 0
       },
@@ -683,11 +621,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
         level: 3,
         price: 15
       },
-
-
-
-
-
       {
         id: 88,
         type: "top",
@@ -743,15 +676,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
         clazz: "empty",
         iconSrc: "img/empty_icon.svg",
         imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
-      {
-        id: 34,
-        type: "bottom",
-        clazz: "wornByDefault",
-        iconSrc: "img/pants1_icon.svg",
-        imgSrc: "img/pants1.svg",
         level: 1,
         price: 0
       },
@@ -879,15 +803,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 39,
-        type: "top_bottom",
-        clazz: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 40,
         type: "top_bottom",
         clazz: "human",
@@ -972,15 +887,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
 
-      {
-        id: 45,
-        type: "misc_head",
-        clazz: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
       {
         id: 46,
         type: "misc_head",
@@ -1084,15 +990,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
 
-      {
-        id: 49,
-        type: "misc_ear",
-        clazz: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
       {
         id: 50,
         type: "misc_ear",
@@ -1246,15 +1143,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 52,
-        type: "misc_neck",
-        clazz: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 53,
         type: "misc_neck",
         clazz: "human",
@@ -1348,15 +1236,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 56,
-        type: "prop_left",
-        clazz: "wornByDefault",
-        iconSrc: "img/prop1_left_icon.svg",
-        imgSrc: "img/prop1_left.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 57,
         type: "prop_left",
         clazz: "human",
@@ -1432,20 +1311,11 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 58,
-        type: "prop_right",
-        clazz: "wornByDefault",
-        iconSrc: "img/prop1_right_icon.svg",
-        imgSrc: "img/prop1_right.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 59,
         type: "prop_right",
         clazz: "mage",
-        iconSrc: "img/mage/prop2_right_icon.svg",
-        imgSrc: "img/mage/prop2_right.svg",
+        iconSrc: "img/mage/prop_right2_icon.svg",
+        imgSrc: "img/mage/prop_right2.svg",
         level: 1,
         price: 4
       },
@@ -1453,8 +1323,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
         id: 60,
         type: "prop_right",
         clazz: "mage",
-        iconSrc: "img/mage/prop7_right_icon.svg",
-        imgSrc: "img/mage/prop7_right.svg",
+        iconSrc: "img/mage/prop_right7_icon.svg",
+        imgSrc: "img/mage/prop_right7.svg",
         level: 1,
         price: 8
       },
@@ -1489,8 +1359,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
         id: 144,
         type: "prop_right",
         clazz: "mage",
-        iconSrc: "img/mage/prop_right6_icon.svg",
-        imgSrc: "img/mage/prop_right6.svg",
+        iconSrc: "img/mage/prop_right4_icon.svg",
+        imgSrc: "img/mage/prop_right4.svg",
         level: 3,
         price: 30
       },
@@ -1498,15 +1368,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
 
-      {
-        id: 61,
-        type: "sock",
-        clazz: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
       {
         id: 62,
         type: "sock",
@@ -1602,15 +1463,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
       {
-        id: 66,
-        type: "shoes",
-        clazz: "wornByDefault",
-        iconSrc: "img/empty_icon.svg",
-        imgSrc: "img/empty.svg",
-        level: 1,
-        price: 0
-      },
-      {
         id: 67,
         type: "shoes",
         clazz: "allClasses",
@@ -1631,7 +1483,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       {
         id: 69,
         type: "shoes",
-        clazz: "king ",
+        clazz: "human",
         iconSrc: "img/shoes3_icon.svg",
         imgSrc: "img/shoes3.svg",
         level: 2,
@@ -1692,7 +1544,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
         price: 23
       }
     ];
-    
+
     allItems.forEach(function (item) {
       if (item.price == 0)
         childService.canBePutOnItems.push(item);
@@ -1928,7 +1780,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
     //dataService.patchItem(item.id, {price: 0});
     //dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"});
-    //dataService.patchAvatar(childService.currentAvatarId, {money: currentAvatar.money});
+    dataService.patchAvatar(childService.currentAvatarId, {money: childService.currentAvatar.money});
   }
 
 
