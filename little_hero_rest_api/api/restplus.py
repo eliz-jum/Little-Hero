@@ -5,6 +5,7 @@ from flask_restplus import Api
 from little_hero_rest_api import settings
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
+from flask_restplus import fields
 
 log = logging.getLogger(__name__)
 
@@ -23,18 +24,31 @@ api = Api(version='1.2', title='Little Hero API', description='API for Little He
           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl',
           contact_url='https://github.com/siulkilulki')
 
+#todo: move to serializers
+error_fields = api.model('Errors fields', {
+    'code': fields.Integer(required=True, description='HTTP status code'),
+    'message': fields.String(required=True, description='Error message')
+})
 
-@api.errorhandler
+
+@api.errorhandler(BaseException)
+@api.marshal_with(error_fields)
 def default_error_handler(e):
+    """Raised when internal unhandled server error"""
     message = 'An unhandled exception occurred.'
     log.exception(message)
 
     if not settings.FLASK_DEBUG:
-        return {'message': message}, 500
+        return {
+                   'code': 500,
+                   'message': message
+               }, 500
 
 
 @api.errorhandler(NoResultFound)
+@api.marshal_with(error_fields)
 def database_not_found_error_handler(e):
+    """Raised when no result in database found"""
     log.warning(traceback.format_exc())
     return {
                'code': 404,
@@ -43,7 +57,10 @@ def database_not_found_error_handler(e):
 
 
 @api.errorhandler(IntegrityError)
+@api.marshal_with(error_fields)
 def integrity_error_handler(e):
+    """Raised when the relational integrity of the database is affected, e.g.
+    a foreign key check fails, duplicate key, etc."""
     log.warning(traceback.format_exc())
     return {
                'code': 400,

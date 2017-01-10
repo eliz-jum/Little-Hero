@@ -1,12 +1,11 @@
 import logging
 
-from flask import request, jsonify, g
+from flask import request
 
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
 from little_hero_rest_api.dao.child import ChildDAO
 from little_hero_rest_api.dao.invitation import InvitationDAO
-from little_hero_rest_api.database.models import Child as ChildModel
 from little_hero_rest_api.api.serializers import (child_for_post, child_full, child_for_patch, invitation_full,
                                                   child_invitation_for_post, invitation_for_patch, tutor_full)
 #from flask_httpauth import HTTPBasicAuth
