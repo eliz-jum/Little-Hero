@@ -29,6 +29,11 @@
                   <i class="icon ion-close-round"></i>
               </ion-option-button>
           </div>
+          <div ng-if="invite.kind=='tutor'">
+              <ion-option-button side="right" class="button button-assertive" ng-click="cancelInvite(invite)">
+                  <i class="icon ion-close-round"></i>
+              </ion-option-button>
+          </div>
     </ion-item>
   </ion-list>
 </ion-content>
