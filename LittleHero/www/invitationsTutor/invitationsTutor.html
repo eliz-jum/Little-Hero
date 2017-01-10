@@ -9,7 +9,7 @@
     </div>
 </div>
 </div>
-<ion-content class="background has-header has-footer">
+<ion-content class="background has-header">
   <ion-list class="background" can-swipe="true" swipe-direction="both" scroll="false">
       <ion-item class="item-remove-animate item item-complex item-right-editable" ng-repeat="invite in invites | filter:filters | orderBy:invite.kind track by invite.id">
           <div>
@@ -37,14 +37,3 @@
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-footer-bar class="button-footer orange">
-    <div class="invite-filter-button" ng-click="filters.kind = ''">
-      Wszystkie
-    </div>
-    <div class="invite-filter-button" ng-click="filters.kind = 'tutor'">
-      Wysłane
-    </div>
-    <div class="invite-filter-button" ng-click="filters.kind = 'child'">
-      Otrzymane
-    </div>
-</ion-footer-bar>

@@ -1,5 +1,4 @@
 angular.module('littleHero').controller('InvitationsTutorController', function ($scope, $state, $ionicModal, childService, dataService, ionicToast) {
-    $scope.filters = {};
     $scope.newChild = {};
     $scope.matchingChildren = [];
     $scope.searched = false;

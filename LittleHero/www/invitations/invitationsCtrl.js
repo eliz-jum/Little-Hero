@@ -5,7 +5,6 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         "king",
         "mage"
     ];
-    $scope.filters = {};
     $scope.newAvatar = {};
     $scope.newTutor = {};
     $scope.matchingTutors = [];
