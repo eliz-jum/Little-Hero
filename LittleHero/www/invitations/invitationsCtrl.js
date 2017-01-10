@@ -43,29 +43,29 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     $scope.rejectInvite = function (invite) {
         var index = $scope.invites.indexOf(invite);
         $scope.invites.splice(index, 1);
-        dataService.deleteInvite('children', childService.childObj.id, invite.id).then( function(res) {
+        dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then( function(res) {
             console.log(res);
             $scope.showToast("Zaproszenie odrzucone");
         });
     };
 
     $scope.createNewAvatar = function (invite) {
-      console.log("invite",invite);
+      console.log("invite",$scope.invite);
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
 
         if ($scope.invite.kind=="child" || $scope.invite.kind=="child-avatar") {
-            dataService.deleteInvite('children', childService.childObj.id, invite.id).then( function() {
+            dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then( function() {
                 var index = $scope.invites.indexOf($scope.invite);
                 $scope.invites.splice(index, 1);
                 $scope.closeModal("newAvatar");
-                $scope.showToast("Utworzono awatar " + $scope.newAvatar.name);
+                // $scope.showToast("Utworzono awatar " + $scope.newAvatar.name);
             });
         }
         else {
             dataService.patchInvite('children', childService.childObj.id, $scope.invite.id, {status: "accepted"}).then( function() {
-                invite.status = "accepted";
+                $scope.invite.status = "accepted";
                 $scope.closeModal("newAvatar");
-                $scope.showToast("Utworzono awatar " + $scope.newAvatar.name);
+                // $scope.showToast("Utworzono awatar " + $scope.newAvatar.name);
             });
         }
 
