@@ -1,5 +1,5 @@
 
-//ostatni obiekt id: 69
+//ostatni obiekt id: 87
 
 
 [
@@ -30,6 +30,51 @@
     "lvl": 2,
     "price": 5
   },
+  {
+    "id": 70,
+    "type": "eyes",
+    "class": "allClasses",
+    "iconSrc": "img/eyes4_icon.svg",
+    "imgSrc": "img/eyes4.svg",
+    "lvl": 2,
+    "price": 5
+  },
+  {
+    "id": 71,
+    "type": "eyes",
+    "class": "allClasses",
+    "iconSrc": "img/eyes5_icon.svg",
+    "imgSrc": "img/eyes5.svg",
+    "lvl": 3,
+    "price": 8
+  },
+  {
+    "id": 72,
+    "type": "eyes",
+    "class": "allClasses",
+    "iconSrc": "img/eyes6_icon.svg",
+    "imgSrc": "img/eyes6.svg",
+    "lvl": 3,
+    "price": 8
+  },
+  {
+    "id": 73,
+    "type": "eyes",
+    "class": "allClasses",
+    "iconSrc": "img/eyes7_icon.svg",
+    "imgSrc": "img/eyes7.svg",
+    "lvl": 4,
+    "price": 15
+  },
+  {
+    "id": 74,
+    "type": "eyes",
+    "class": "allClasses",
+    "iconSrc": "img/eyes8_icon.svg",
+    "imgSrc": "img/eyes8.svg",
+    "lvl": 4,
+    "price": 15
+  },
 
 
   {
@@ -58,6 +103,15 @@
     "imgSrc": "img/nose3.svg",
     "lvl": 1,
     "price": 8
+  },
+  {
+    "id": 75,
+    "type": "nose",
+    "class": "allClasses",
+    "iconSrc": "img/nose4_icon.svg",
+    "imgSrc": "img/nose4.svg",
+    "lvl": 2,
+    "price": 10
   },
 
 
@@ -88,6 +142,114 @@
     "imgSrc": "img/mouth3.svg",
     "lvl": 1,
     "price": 5
+  },
+  {
+    "id": 76,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth4_icon.svg",
+    "imgSrc": "img/mouth4.svg",
+    "lvl": 2,
+    "price": 8
+  },
+  {
+    "id": 77,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth5_icon.svg",
+    "imgSrc": "img/mouth5.svg",
+    "lvl": 2,
+    "price": 8
+  },
+  {
+    "id": 78,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth6_icon.svg",
+    "imgSrc": "img/mouth6.svg",
+    "lvl": 2,
+    "price": 10
+  },
+  {
+    "id": 79,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth7_icon.svg",
+    "imgSrc": "img/mouth7.svg",
+    "lvl": 3,
+    "price": 10
+  },
+  {
+    "id": 80,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth8_icon.svg",
+    "imgSrc": "img/mouth8.svg",
+    "lvl": 3,
+    "price": 13
+  },
+  {
+    "id": 81,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth9_icon.svg",
+    "imgSrc": "img/mouth9.svg",
+    "lvl": 4,
+    "price": 15
+  },
+  {
+    "id": 82,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth10_icon.svg",
+    "imgSrc": "img/mouth10.svg",
+    "lvl": 4,
+    "price": 16
+  },
+  {
+    "id": 83,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth11_icon.svg",
+    "imgSrc": "img/mouth11.svg",
+    "lvl": 5,
+    "price": 20
+  },
+  {
+    "id": 84,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth12_icon.svg",
+    "imgSrc": "img/mouth12.svg",
+    "lvl": 5,
+    "price": 18
+  },
+  {
+    "id": 85,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth13_icon.svg",
+    "imgSrc": "img/mouth13.svg",
+    "lvl": 6,
+    "price": 22
+  },
+  {
+    "id": 86,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth14_icon.svg",
+    "imgSrc": "img/mouth14.svg",
+    "lvl": 6,
+    "price": 24
+  },
+  {
+    "id": 87,
+    "type": "mouth",
+    "class": "allClasses",
+    "iconSrc": "img/mouth15_icon.svg",
+    "imgSrc": "img/mouth15.svg",
+    "lvl": 6,
+    "price": 25
   },
 
 
