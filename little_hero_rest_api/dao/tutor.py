@@ -41,3 +41,7 @@ class TutorDAO(GenericDAO):
         for (child, tutor, avatar) in result:
             children_set.add(child)
         return list(children_set)
+
+    def get_tutor_by_login(self, login):
+        tutor = Tutor.query.filter_by(login=login).one()
+        return tutor

@@ -112,6 +112,7 @@ from flask_restplus import reqparse
 parser = reqparse.RequestParser()
 parser.add_argument('Authorization', location='headers')
 
+
 @ns.route('/token')
 @ns.response(400, 'Bad request')
 class ChildSecurity(Resource):

@@ -1,8 +1,9 @@
 import logging
 
-from flask import request
+from flask import request, jsonify, g
 from little_hero_rest_api.api.restplus import api
 from flask_restplus import Resource
+from little_hero_rest_api.database.models import Tutor as TutorModel
 from little_hero_rest_api.api.serializers import tutor_for_post
 from little_hero_rest_api.api.serializers import tutor_full
 from little_hero_rest_api.api.serializers import tutor_for_patch
@@ -13,6 +14,9 @@ from little_hero_rest_api.api.serializers import tutor_invitation_for_post
 from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.invitation import InvitationDAO
 
+from flask_httpauth import HTTPBasicAuth
+
+auth = HTTPBasicAuth()
 
 log = logging.getLogger(__name__)
 
@@ -133,3 +137,14 @@ class TutorInvitation(Resource):
         updated_invitation = invitation_dao.update(invitation_id, data)
         return updated_invitation, 200
 
+
+@auth.verify_password
+def verify_password(login_or_token, password):
+    child = TutorModel.verify_auth_token(login_or_token)
+    if not child:
+        child = tutor_dao.get_tutor_by_login(login_or_token)
+        password_hash = child.password
+        if not child or not TutorModel.verify_password(password, password_hash):
+            return False
+    g.child = child
+    return True
