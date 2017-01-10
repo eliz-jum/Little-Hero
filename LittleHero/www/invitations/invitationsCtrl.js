@@ -48,6 +48,15 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
         });
     };
 
+    $scope.cancelInvite = function (invite) {
+        var index = $scope.invites.indexOf(invite);
+        $scope.invites.splice(index, 1);
+        dataService.deleteInvite('children', childService.childObj.id, invite.id).then( function(res) {
+            console.log(res);
+            $scope.showToast("Zaproszenie anulowane");
+        });
+    };
+
   $scope.createNewAvatar = function () {
       console.log("invite", $scope.invite);
       childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
