@@ -26,7 +26,7 @@
 
       <ion-list class="task-list" scroll="false">
         <ion-item ng-repeat="task in tasks track by $index" ng-class="dynamicStyle[$index]">
-          <ion-content ng-class="dynamicStyle[$index]" can-scroll="false">
+          <ion-content ng-class="dynamicStyle[$index]" scroll="false">
             <div class="task-name">
               <div ng-show=task.completed><i style="margin: 10px 10px 10px 0px" class="icon ion-checkmark-round"></i></div><span>{{ task.content }}</span>
             </div>
