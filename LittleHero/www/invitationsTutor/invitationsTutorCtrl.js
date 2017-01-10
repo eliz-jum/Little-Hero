@@ -47,6 +47,7 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
         dataService.deleteInvite('tutors', childService.tutorObj.id, invite.id).then( function() {
             var index = $scope.invites.indexOf(invite);
             $scope.invites.splice(index, 1);
+          $scope.showToast("Zaproszenie anulowane");
         });
     };
 
