@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('NotificationsController', function($scope, $state, childService){
+angular.module('littleHero').controller('NotificationsController', function($scope, $state, dataService, childService){
 
   $scope.notifications = [];
 
@@ -16,5 +16,11 @@ angular.module('littleHero').controller('NotificationsController', function($sco
   $scope.settings = function() {
     $state.go("settings");
   };
+
+  $scope.deleteNotification = function (notification) {
+    var index = childService.notifications.indexOf(notification);
+    childService.notifications.splice(index, 1);
+    dataService.deleteNotification(childService.currentAvatarId, notification.id);
+  }
 
 });

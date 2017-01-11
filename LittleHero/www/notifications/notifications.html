@@ -2,10 +2,8 @@
   <ion-pane class="background">
     <div class="bar bar-header orange">
       <div class="row row-center orange">
-        <div class="col col-40 item item-select avatar-select">
-          <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
-            <option value="">{{ currentAvatar.name }} </option>
-          </select>
+        <div class="col col-40">
+          {{ currentAvatar.name }}
         </div>
 
         <div class="col col-10"><i class="icon icon ion-flash"></i></div>
@@ -24,9 +22,18 @@
         <h2>Powiadomienia</h2>
       </div>
 
-      <ion-list class="notification-list">
-        <ion-item class="background" ng-repeat="notification in notifications | orderBy: notification.id :true track by $index" >
-          {{notification.content}}
+      <ion-list can-swipe="true" swipe-direction="right" scroll="false">
+        <ion-item ng-repeat="notification in notifications | orderBy: notification.id :true track by notification.id" >
+          <ion-content class="background" scroll="false">
+            <div >
+              {{notification.content}}
+             </div>
+            <ion-option-button side="right" class="button orange" ng-click="deleteNotification(notification)">
+              <i class="icon ion-ios-trash"></i>
+            </ion-option-button>
+
+          </ion-content>
+
         </ion-item>
       </ion-list>
     </ion-content>
