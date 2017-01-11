@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('MainController', function ($scope, $state, $ionicModal, $http, dataService, childService, ionicToast) {
+angular.module('littleHero').controller('MainController', function ($scope, $state, $interval, $ionicModal, $http, dataService, childService, ionicToast) {
 
   $scope.allAvatars = null;
   $scope.currentAvatar = null;
@@ -241,4 +241,15 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.showToast = function (message) {
     ionicToast.show(message, 'bottom', false, 2500);
   }
+
+  $interval(function () {
+    dataService.getAvatarById(childService.currentAvatarId).then(function (res) {
+      childService.currentAvatar = res.data;
+      if (childService.currentAvatar.update_task == true) {
+        childService.currentAvatar.update_task ==false;
+        $scope.currentAvatar = childService.currentAvatar;
+      }
+    });
+  },60000);
+
 });

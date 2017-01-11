@@ -26,6 +26,7 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
 
   $scope.taskCompleted = function (task) {
     childService.completeTask(task);
+    dataService.patchAvatar(childService.currentAvatarId, {update_task: true});
     childService.addNotification("Udało się! Wykonałeś wyzwanie:  " + task.content +
       "  Dostajesz " + task.reward + " pieniędzy i " + task.experience + " doświadczenia!");
   }
