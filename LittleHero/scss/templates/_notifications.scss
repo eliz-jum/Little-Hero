@@ -1,4 +1,10 @@
-.notification-list .item {
-  overflow: auto;
-  white-space: normal;
+.notification-list {
+  .item-content {
+    min-height: 80px;
+  }
+
+  .ng-binding {
+    white-space: normal;
+    padding: 10px;
+  }
 }

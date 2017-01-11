@@ -22,7 +22,7 @@
         <h2>Powiadomienia</h2>
       </div>
 
-      <ion-list can-swipe="true" swipe-direction="right" scroll="false">
+      <ion-list class="notification-list" can-swipe="true" swipe-direction="right" scroll="false">
         <ion-item ng-repeat="notification in notifications | orderBy: notification.id :true track by notification.id" >
           <ion-content class="background" scroll="false">
             <div >
@@ -36,6 +36,7 @@
 
         </ion-item>
       </ion-list>
+      <div class="empty-msg" ng-if="!notifications.length">Nie masz żadnych powiadomień</div>
     </ion-content>
 
   </ion-pane>
