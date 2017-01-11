@@ -24,16 +24,16 @@
 
           <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false">
             <ion-item ng-click="editTask(task)" ng-repeat="task in avatarTasks track by task.id" class="item-remove-animate">
-              <ion-content scroll="false">
+              <ion-content class="task-item background" scroll="false">
 
-                <div class="background tutor-avatar-list">
-                  <span> {{ task.content}} money: {{task.reward}} exp: {{task.experience}}</span>
-                </div>
+                <span class="task-name">{{ task.content }}</span>
+                <span class="task-details">${{task.reward}}</span>
+                <span class="task-details">{{task.experience}}XP</span>
 
-                <ion-option-button side="left" class="button orange" ng-click="taskCompleted(task)">
+                <ion-option-button side="left" class="button button-balanced" ng-click="taskCompleted(task)">
                   <i class="icon ion-checkmark-round"></i>
                 </ion-option-button>
-                <ion-option-button side="right" class="button orange" ng-click="taskFailed(task)">
+                <ion-option-button side="right" class="button button-assertive" ng-click="taskFailed(task)">
                   <i class="icon ion-close-round"></i>
                 </ion-option-button>
 

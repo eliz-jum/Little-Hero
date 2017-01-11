@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('TutorEditTaskController', function($scope, $state, $http, dataService, childService){
+angular.module('littleHero').controller('TutorEditTaskController', function($scope, $state, $http, dataService, childService, ionicToast){
 
   $scope.$on('$ionicView.beforeEnter', function(){
     $scope.tutor = childService.tutorObj;
@@ -10,7 +10,7 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
 
   $scope.back = function () {
     $state.go("tutorTasks");
-  }
+  };
 
   $scope.settings = function() {
     $state.go("settings");
@@ -40,6 +40,15 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
     else {
       $scope.invalid=true;
     }
+  };
+
+  $scope.deleteTask = function (){
+    dataService.deleteTask(childService.currentTask.id).then(function() {
+      var index = childService.tasks.indexOf(childService.currentTask);
+      childService.tasks.splice(index, 1);
+      $state.go("tutorTasks");
+      ionicToast.show("Zadanie usunięte", 'bottom', false, 2500);
+    });
   }
 
 });
