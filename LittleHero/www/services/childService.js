@@ -1650,63 +1650,62 @@ angular.module('littleHero').factory('childService',function($state, dataService
     dataService.postAvatar(newAvatar).then( function(res) {
       console.log("postAvatar", res);
       var newAvatarId = res.data.id;
-      // childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
+      childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
       childService.hardcodeAvatarItemArrays();
     });
   }
 
 
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
-    var allItems = dataService.getItems();
+    dataService.getItems().then(function(res){
+      var allItems = res.data;
 
-    allItems.forEach(function (item) {
-      if (item.clazz == "wornByDefault"){
-        dataService.postAvatarItemLink({
-          avatar_id: newAvatarId,
-          state: "worn",
-          item_id: item.id
-        });
-        //todo musze jakos dostac id tego co wlasnie wlozylam!!!
-        var avatarItemLinksId;
-        item.avatarItemLinksId = avatarItemLinksId;
-        childService.wornItems.push(item);
-      }
-      else if (item.price == 0 && item.clazz == "allClasses") {
-        dataService.postAvatarItemLink({
-          avatar_id: newAvatarId,
-          state: "canBePutOn",
-          item_id: item.id
-        });
-        //todo musze jakos dostac id tego co wlasnie wlozylam!!!
-        var avatarItemLinksId;
-        item.avatarItemLinksId = avatarItemLinksId;
-        childService.canBePutOnItems.push(item);
-      }
-      else if (item.clazz == avatarClass || item.clazz == "allClasses") {
-        if (item.level == 1){
+      allItems.forEach(function (item) {
+        if (item.clazz == "wornByDefault"){
           dataService.postAvatarItemLink({
             avatar_id: newAvatarId,
-            state: "canBePurchased",
+            state: "worn",
             item_id: item.id
+          }).then(function(res) {
+            console.log('wi',childService.wornItems);
+            item.avatarItemLinksId = res.id;
+          childService.wornItems.push(item);
           });
-          //todo musze jakos dostac id tego co wlasnie wlozylam!!!
-          var avatarItemLinksId;
-          item.avatarItemLinksId = avatarItemLinksId;
-          childService.canBePurchasedItems.push(item);
         }
-        else {
+        else if (item.price == 0 && item.clazz == "allClasses") {
           dataService.postAvatarItemLink({
             avatar_id: newAvatarId,
-            state: "unavailable",
+            state: "canBePutOn",
             item_id: item.id
+          }).then(function(res) {
+            console.log('cbpo',childService.canBePutOnItems);
+            item.avatarItemLinksId = res.id;
+            childService.canBePutOnItems.push(item);
           });
-          //todo musze jakos dostac id tego co wlasnie wlozylam!!!
-          var avatarItemLinksId;
-          item.avatarItemLinksId = avatarItemLinksId;
-          childService.unavailableItems.push(item);
         }
-      }
-    })
+        else if (item.clazz == avatarClass || item.clazz == "allClasses") {
+          if (item.level == 1){
+            dataService.postAvatarItemLink({
+              avatar_id: newAvatarId,
+              state: "canBePurchased",
+              item_id: item.id
+            }).then(function(res) {
+              item.avatarItemLinksId = res.id;
+              childService.canBePurchasedItems.push(item);
+            });
+          }
+          else {dataService.postAvatarItemLink({
+              avatar_id: newAvatarId,
+              state: "unavailable",
+              item_id: item.id
+            }).then(function(res) {
+              item.avatarItemLinksId = res.id;
+              childService.unavailableItems.push(item);
+            });
+          }
+        }
+      })
+    });
   }
 
 
@@ -1714,7 +1713,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.setWornItems = function () {
       dataService.getAvatarWornItemsIds(childService.currentAvatarId).then(function (res) {
         childService.wornItems = res.data;
-        result.forEach(function (item, i) {
+        childService.wornItems.forEach(function (item, i) {
           var avatarItemLinksId = item.id;
           var itemId = item.item_id;
           dataService.getItem(itemId).then(function (res) {

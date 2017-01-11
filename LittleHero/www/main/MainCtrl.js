@@ -10,10 +10,10 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     // if (typeof childService.currentAvatar.id !== "undefined") {
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
-      // childService.setWornItems();
-      // childService.setCanBePutOnItems();
-      // childService.setCanBePurchasedItems();
-      // childService.setUnavailableItems();
+      childService.setWornItems();
+      childService.setCanBePutOnItems();
+      childService.setCanBePurchasedItems();
+      childService.setUnavailableItems();
       childService.hardcodeAvatarItemArrays();
       childService.hardcodeAvatarWornItemsArray();
       childService.setAvatarTasks();
@@ -141,10 +141,10 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     console.log("level", childService.currentAvatar);
     childService.currentAvatarId = childService.currentAvatar.id;
 
-    // childService.setWornItems();
-    // childService.setCanBePutOnItems();
-    // childService.setCanBePurchasedItems();
-    // childService.setUnavailableItems();
+    childService.setWornItems();
+    childService.setCanBePutOnItems();
+    childService.setCanBePurchasedItems();
+    childService.setUnavailableItems();
     childService.setAvatarTasks();
     childService.setNotificationsArray();
     childService.hardcodeAvatarItemArrays();
