@@ -87,11 +87,22 @@ angular.module('littleHero').service("dataService", function($http) {
 
       postAvatarItemLink: function (newLink) {
         console.log("raz");
-        return $http.post(BASE_PATH + "avatar-item-links/", newLink).then(function(res) {
-          console.log("dwa");
-          return res;
-        });
-      },
+          return $http.post(BASE_PATH + "avatar-item-links/", newLink).then(function(res) {
+            console.log("dwa");
+            return res;
+          });
+        },
+      //   return $http({
+      //     method: 'POST',
+      //     url: BASE_PATH + "avatar-item-links/",
+      //     data: newLink,
+      //     headers: {
+      //       'Content-Type':  'application/json'
+      //     }
+      //   }).success(function (data) {
+      //     return data;
+      //   }).error(function(response) { console.log(response); });
+      // },
 
 
       patchAvatar: function (avatarId, changes) {
