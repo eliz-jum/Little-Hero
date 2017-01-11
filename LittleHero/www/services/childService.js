@@ -1,7 +1,6 @@
 angular.module('littleHero').factory('childService',function($state, dataService){
   var childService = {};
 
-
   childService.tutorObj = {};
 
   childService.childObj = {};
@@ -1655,57 +1654,101 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
   }
 
+  childService.putItemIntoCorrectArray = function (type, data) {
+    console.log('wi');
+    item.avatarItemLinksId = data.id;
+    if (type == 0){
+      childService.wornItems.push(item);
+    }
+    else if (type == 1){
+      childService.canBePutOnItems.push(item);
+    }
+    else if (type == 2){
+      childService.canBePurchasedItems.push(item);
+    }
+    else {
+      childService.unavailableItems.push(item);
+    }
+  }
 
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
-    dataService.getItems().then(function(res){
-      var allItems = res.data;
-
+    //dataService.getItems().then(function(res){
+      //var allItems = res.data;
+    var allItems = [
+      {
+            id: 62,
+            type: "sock",
+            clazz: "wornByDefault",
+            iconSrc: "img/empty_icon.svg",
+            imgSrc: "img/empty.svg",
+            level: 1,
+            price: 0
+          },
+      {
+            id: 11,
+            type: "misc_ear",
+            clazz: "mage",
+            iconSrc: "img/mage/ears12_icon.svg",
+            imgSrc: "img/mage/ears12.svg",
+            level: 1,
+            price: 4
+          },
+      {
+            id: 17,
+            type: "misc_ear",
+            clazz: "mage",
+            iconSrc: "img/mage/ears12_icon.svg",
+            imgSrc: "img/mage/ears12.svg",
+            level: 1,
+            price: 0
+          },
+      {
+            id: 117,
+            type: "misc_ear",
+            clazz: "mage",
+            iconSrc: "img/mage/ears12_icon.svg",
+            imgSrc: "img/mage/ears12.svg",
+            level: 5,
+            price: 4
+          }
+    ];
       allItems.forEach(function (item) {
         if (item.clazz == "wornByDefault"){
-          dataService.postAvatarItemLink({
+          var obj = {
             avatar_id: newAvatarId,
             state: "worn",
             item_id: item.id
-          }).then(function(res) {
-            console.log('wi',childService.wornItems);
-            item.avatarItemLinksId = res.id;
-          childService.wornItems.push(item);
-          });
+          };
+          dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 0);
         }
         else if (item.price == 0 && item.clazz == "allClasses") {
-          dataService.postAvatarItemLink({
+          var obj = {
             avatar_id: newAvatarId,
             state: "canBePutOn",
             item_id: item.id
-          }).then(function(res) {
-            console.log('cbpo',childService.canBePutOnItems);
-            item.avatarItemLinksId = res.id;
-            childService.canBePutOnItems.push(item);
-          });
+          };
+          dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 1);
         }
         else if (item.clazz == avatarClass || item.clazz == "allClasses") {
+          var obj = {
+            avatar_id: newAvatarId,
+            state: "canBePurchased",
+            item_id: item.id
+          };
           if (item.level == 1){
-            dataService.postAvatarItemLink({
-              avatar_id: newAvatarId,
-              state: "canBePurchased",
-              item_id: item.id
-            }).then(function(res) {
-              item.avatarItemLinksId = res.id;
-              childService.canBePurchasedItems.push(item);
-            });
+            dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 2);
           }
-          else {dataService.postAvatarItemLink({
+          else {
+            var obj = {
               avatar_id: newAvatarId,
-              state: "unavailable",
+                state: "unavailable",
               item_id: item.id
-            }).then(function(res) {
-              item.avatarItemLinksId = res.id;
-              childService.unavailableItems.push(item);
-            });
+            };
+            dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 3);
           }
         }
       })
-    });
+    //});
   }
 
 

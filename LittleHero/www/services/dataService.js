@@ -47,7 +47,6 @@ angular.module('littleHero').service("dataService", function($http) {
 
       getAvatarWornItemsIds: function(avatarId) {
         return $http.get(BASE_PATH + "avatar-item-links/" + avatarId + "?state=worn").then(function(res) {
-          console.log("res", res);
           return res;
         });
       },
@@ -85,10 +84,12 @@ angular.module('littleHero').service("dataService", function($http) {
         return $http.patch(BASE_PATH + "avatar-item-links/" + avatarItemLinksId, newState)
       },
 
-      postAvatarItemLink: function (newLink) {
-        console.log("raz");
+      postAvatarItemLink: function (newLink, callback, type) {
+        console.log("raz", newLink.item_id);
           return $http.post(BASE_PATH + "avatar-item-links/", newLink).then(function(res) {
-            console.log("dwa");
+            console.log("dwa  dwa", newLink.item_id);
+            console.log("dwa  dwa  res", res.data);
+            callback(type, res.data);
             return res;
           });
         },
