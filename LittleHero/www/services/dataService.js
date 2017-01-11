@@ -250,6 +250,13 @@ angular.module('littleHero').service("dataService", function($http) {
         return $http.post(BASE_PATH + "avatars/" + avatarId + "/notifications", notification).then(function(res) {
           return res;
         });
+      },
+
+      deleteNotification: function (avatarId, notificationId) {
+        return $http.delete(BASE_PATH + "avatars/" + avatarId + "/notifications/" + notificationId).then(function(res) {
+          return res;
+        });
+
       }
 
     }
