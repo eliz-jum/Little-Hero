@@ -1617,7 +1617,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.setTutorAvatarListByChildId = function () {
     dataService.getAvatarsByChildAndTutor(childService.childObj.id, childService.tutorObj.id).then(function (res) {
       childService.avatarList = res.data;
-      console.log("servis");
     });
   }
 

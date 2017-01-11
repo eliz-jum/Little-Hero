@@ -30,7 +30,10 @@ angular.module('littleHero').service("dataService", function($http) {
       },
 
       getAvatarsByChildAndTutor: function (childId, tutorId) {
-        return $http.get(BASE_PATH + "avatars/?child_id=" + childId + "&?tutor_id=" + tutorId).then(function(res) {
+        console.log("set avatars list child", childId);
+        console.log("set avatars list tutor", tutorId);
+        return $http.get(BASE_PATH + "avatars/?child_id=" + childId + "&tutor_id=" + tutorId).then(function(res) {
+          console.log(res.data);
           return res;
         });
       },
