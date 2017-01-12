@@ -1655,7 +1655,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
   }
 
   childService.putItemIntoCorrectArray = function (item, type, data) {
-    console.log('wi');
     item.avatarItemLinksId = data.id;
     if (type == 0){
       childService.wornItems.push(item);
@@ -1675,44 +1674,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
     dataService.getItems().then(function(res){
       var allItems = res.data;
       console.log(allItems[0]);
-    // var allItems = [
-    //   {
-    //         id: 62,
-    //         type: "sock",
-    //         clazz: "wornByDefault",
-    //         iconSrc: "img/empty_icon.svg",
-    //         imgSrc: "img/empty.svg",
-    //         level: 1,
-    //         price: 0
-    //       },
-    //   {
-    //         id: 11,
-    //         type: "misc_ear",
-    //         clazz: "mage",
-    //         iconSrc: "img/mage/ears12_icon.svg",
-    //         imgSrc: "img/mage/ears12.svg",
-    //         level: 1,
-    //         price: 4
-    //       },
-    //   {
-    //         id: 17,
-    //         type: "misc_ear",
-    //         clazz: "mage",
-    //         iconSrc: "img/mage/ears12_icon.svg",
-    //         imgSrc: "img/mage/ears12.svg",
-    //         level: 1,
-    //         price: 0
-    //       },
-    //   {
-    //         id: 117,
-    //         type: "misc_ear",
-    //         clazz: "mage",
-    //         iconSrc: "img/mage/ears12_icon.svg",
-    //         imgSrc: "img/mage/ears12.svg",
-    //         level: 5,
-    //         price: 4
-    //       }
-    // ];
+      //robi ze zmiennych tablice (bez tego są obiektami i nie da się zrobić push)
+      childService.wornItems = [];
+      childService.canBePutOnItems = [];
+      childService.canBePurchasedItems = [];
+      childService.unavailableItems = [];
+      //
       allItems.forEach(function (item) {
         if (item.clazz == "wornByDefault"){
           var obj = {
