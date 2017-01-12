@@ -1,9 +1,21 @@
 .background {
   background: $body-background;
+
+  ion-list .item {
+    border-color: #eed79a;
+  }
+
+  .item-input {
+    border-color: #e6e1d5;
+  }
 }
 
 .orange {
   background: $orange;
+
+  &.bar {
+    border-color: #e25d33;
+  }
 }
 
 .bar-header {
