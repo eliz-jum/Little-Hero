@@ -1654,7 +1654,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
     });
   }
 
-  childService.putItemIntoCorrectArray = function (type, data) {
+  childService.putItemIntoCorrectArray = function (item, type, data) {
     console.log('wi');
     item.avatarItemLinksId = data.id;
     if (type == 0){
@@ -1672,46 +1672,47 @@ angular.module('littleHero').factory('childService',function($state, dataService
   }
 
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
-    //dataService.getItems().then(function(res){
-      //var allItems = res.data;
-    var allItems = [
-      {
-            id: 62,
-            type: "sock",
-            clazz: "wornByDefault",
-            iconSrc: "img/empty_icon.svg",
-            imgSrc: "img/empty.svg",
-            level: 1,
-            price: 0
-          },
-      {
-            id: 11,
-            type: "misc_ear",
-            clazz: "mage",
-            iconSrc: "img/mage/ears12_icon.svg",
-            imgSrc: "img/mage/ears12.svg",
-            level: 1,
-            price: 4
-          },
-      {
-            id: 17,
-            type: "misc_ear",
-            clazz: "mage",
-            iconSrc: "img/mage/ears12_icon.svg",
-            imgSrc: "img/mage/ears12.svg",
-            level: 1,
-            price: 0
-          },
-      {
-            id: 117,
-            type: "misc_ear",
-            clazz: "mage",
-            iconSrc: "img/mage/ears12_icon.svg",
-            imgSrc: "img/mage/ears12.svg",
-            level: 5,
-            price: 4
-          }
-    ];
+    dataService.getItems().then(function(res){
+      var allItems = res.data;
+      console.log(allItems[0]);
+    // var allItems = [
+    //   {
+    //         id: 62,
+    //         type: "sock",
+    //         clazz: "wornByDefault",
+    //         iconSrc: "img/empty_icon.svg",
+    //         imgSrc: "img/empty.svg",
+    //         level: 1,
+    //         price: 0
+    //       },
+    //   {
+    //         id: 11,
+    //         type: "misc_ear",
+    //         clazz: "mage",
+    //         iconSrc: "img/mage/ears12_icon.svg",
+    //         imgSrc: "img/mage/ears12.svg",
+    //         level: 1,
+    //         price: 4
+    //       },
+    //   {
+    //         id: 17,
+    //         type: "misc_ear",
+    //         clazz: "mage",
+    //         iconSrc: "img/mage/ears12_icon.svg",
+    //         imgSrc: "img/mage/ears12.svg",
+    //         level: 1,
+    //         price: 0
+    //       },
+    //   {
+    //         id: 117,
+    //         type: "misc_ear",
+    //         clazz: "mage",
+    //         iconSrc: "img/mage/ears12_icon.svg",
+    //         imgSrc: "img/mage/ears12.svg",
+    //         level: 5,
+    //         price: 4
+    //       }
+    // ];
       allItems.forEach(function (item) {
         if (item.clazz == "wornByDefault"){
           var obj = {
@@ -1719,7 +1720,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
             state: "worn",
             item_id: item.id
           };
-          dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 0);
+          dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 0);
         }
         else if (item.price == 0 && item.clazz == "allClasses") {
           var obj = {
@@ -1727,7 +1728,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
             state: "canBePutOn",
             item_id: item.id
           };
-          dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 1);
+          dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 1);
         }
         else if (item.clazz == avatarClass || item.clazz == "allClasses") {
           var obj = {
@@ -1736,7 +1737,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
             item_id: item.id
           };
           if (item.level == 1){
-            dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 2);
+            dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 2);
           }
           else {
             var obj = {
@@ -1744,11 +1745,11 @@ angular.module('littleHero').factory('childService',function($state, dataService
                 state: "unavailable",
               item_id: item.id
             };
-            dataService.postAvatarItemLink(obj, childService.fillNewAvatarItemArrays, 3);
+            dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 3);
           }
         }
       })
-    //});
+    });
   }
 
 

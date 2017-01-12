@@ -84,12 +84,11 @@ angular.module('littleHero').service("dataService", function($http) {
         return $http.patch(BASE_PATH + "avatar-item-links/" + avatarItemLinksId, newState)
       },
 
-      postAvatarItemLink: function (newLink, callback, type) {
-        console.log("raz", newLink.item_id);
+      postAvatarItemLink: function (newLink, item, callback, type) {
+        console.log("raz", newLink);
           return $http.post(BASE_PATH + "avatar-item-links/", newLink).then(function(res) {
-            console.log("dwa  dwa", newLink.item_id);
-            console.log("dwa  dwa  res", res.data);
-            callback(type, res.data);
+            console.log("dwa res", res.data);
+            callback(item, type, res.data);
             return res;
           });
         },
