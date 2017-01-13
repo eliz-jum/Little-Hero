@@ -1657,7 +1657,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.putItemIntoCorrectArray = function (item, type, data) {
     item.avatarItemLinksId = data.id;
     if (type == 0){
-      childService.wornItems.push(item);
+      childService.wornItems.push();
     }
     else if (type == 1){
       childService.canBePutOnItems.push(item);
@@ -1721,15 +1721,18 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
 
-  childService.setWornItems = function () {
-      dataService.getAvatarWornItemsIds(childService.currentAvatarId).then(function (res) {
-        childService.wornItems = res.data;
+  childService.setWornItems = function (callback) {
+    dataService.getAvatarWornItemsIds(childService.currentAvatarId).then(function (res) {
+      childService.wornItems = res.data;
         childService.wornItems.forEach(function (item, i) {
           var avatarItemLinksId = item.id;
           var itemId = item.item_id;
           dataService.getItem(itemId).then(function (res) {
             childService.wornItems[i] = res.data;
             childService.wornItems[i].avatarItemLinksId = avatarItemLinksId;
+            if (i == childService.wornItems.length-1){
+              callback();
+            }
           })
         })
       }

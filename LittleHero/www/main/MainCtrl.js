@@ -10,15 +10,15 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     // if (typeof childService.currentAvatar.id !== "undefined") {
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
-      childService.setWornItems();
+
+      childService.setWornItems(dressAvatar);
       childService.setCanBePutOnItems();
       childService.setCanBePurchasedItems();
       childService.setUnavailableItems();
-      childService.hardcodeAvatarItemArrays();
-      childService.hardcodeAvatarWornItemsArray();
+      // childService.hardcodeAvatarItemArrays();
+      // childService.hardcodeAvatarWornItemsArray();
       childService.setAvatarTasks();
       childService.setNotificationsArray();
-      dressAvatar();
       $scope.showAvatar = true;
     // }
   });
@@ -44,6 +44,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     childService.canBePurchasedItems = [];
     childService.unavailableItems = [];
     childService.notifications = [];
+    childService.tasks = [];
   }
 
   $scope.nextType = function () {
@@ -128,8 +129,11 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   ]
 
   var dressAvatar = function () {
+    console.log("dress");
     var element;
     childService.wornItems.forEach(function (item) {
+      console.log("item type", item.type);
+
       element = document.getElementsByClassName(item.type)[0];
       element.setAttribute("src", item.imgSrc);
     });
@@ -138,18 +142,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.setAvatarData = function (avatar) {
     cleanAvatarArrays();
     childService.currentAvatar = avatar;
-    console.log("level", childService.currentAvatar);
     childService.currentAvatarId = childService.currentAvatar.id;
 
-    childService.setWornItems();
+    childService.setWornItems(dressAvatar);
     childService.setCanBePutOnItems();
     childService.setCanBePurchasedItems();
     childService.setUnavailableItems();
     childService.setAvatarTasks();
     childService.setNotificationsArray();
-    childService.hardcodeAvatarItemArrays();
-    childService.hardcodeAvatarWornItemsArray();
-    dressAvatar();
+    // childService.hardcodeAvatarItemArrays();
+    // childService.hardcodeAvatarWornItemsArray();
+
 
   }
 
