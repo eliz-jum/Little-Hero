@@ -5,9 +5,10 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.showAvatar = false;
 
   $scope.$on('$ionicView.beforeEnter', function () {
+    $scope.showAvatar = false;
     cleanAvatarArrays();
 
-    // if (typeof childService.currentAvatar.id !== "undefined") {
+    if (childService.avatarList.length != 0) {
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
       // childService.setWornItems();
@@ -20,7 +21,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
       childService.setNotificationsArray();
       dressAvatar();
       $scope.showAvatar = true;
-    // }
+    }
   });
 
 
@@ -44,6 +45,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     childService.canBePurchasedItems = [];
     childService.unavailableItems = [];
     childService.notifications = [];
+    childService.tasks = [];
   }
 
   $scope.nextType = function () {
