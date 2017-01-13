@@ -1644,13 +1644,16 @@ angular.module('littleHero').factory('childService',function($state, dataService
       health : 100,
       experience : 0
     };
-    childService.avatarList.push(newAvatar);
+
     console.log(newAvatar);
     dataService.postAvatar(newAvatar).then( function(res) {
       console.log("postAvatar", res);
-      var newAvatarId = res.data.id;
-      childService.fillNewAvatarItemArrays(avatarClass, newAvatarId);
-      // childService.hardcodeAvatarItemArrays();
+      newAvatar.id = res.data.id;
+      childService.avatarList.push(newAvatar);
+      childService.currentAvatar = newAvatar;
+      childService.currentAvatarId = newAvatar.id;
+
+      childService.fillNewAvatarItemArrays(avatarClass, newAvatar.id);
     });
   }
 
@@ -1689,7 +1692,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
           };
           dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 0);
         }
-        else if (item.price == 0 && item.clazz == "allClasses") {
+        else if (item.price == 0 && item.clazz == "allclazzes") {
           var obj = {
             avatar_id: newAvatarId,
             state: "canBePutOn",
@@ -1697,7 +1700,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
           };
           dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 1);
         }
-        else if (item.clazz == avatarClass || item.clazz == "allClasses") {
+        else if (item.clazz == avatarClass || item.clazz == "allclazzes") {
           var obj = {
             avatar_id: newAvatarId,
             state: "canBePurchased",

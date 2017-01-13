@@ -11,14 +11,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
 
-      childService.setWornItems(dressAvatar);
-      childService.setCanBePutOnItems();
-      childService.setCanBePurchasedItems();
-      childService.setUnavailableItems();
-      // childService.hardcodeAvatarItemArrays();
-      // childService.hardcodeAvatarWornItemsArray();
-      childService.setAvatarTasks();
-      childService.setNotificationsArray();
+      $scope.setAvatarData(childService.currentAvatar);
       $scope.showAvatar = true;
     // }
   });
@@ -150,9 +143,6 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     childService.setUnavailableItems();
     childService.setAvatarTasks();
     childService.setNotificationsArray();
-    // childService.hardcodeAvatarItemArrays();
-    // childService.hardcodeAvatarWornItemsArray();
-
 
   }
 
