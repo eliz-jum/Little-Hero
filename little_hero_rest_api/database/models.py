@@ -11,38 +11,9 @@ class BaseModel(db.Model):
     __abstract__ = True  # sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
     creation_date = db.Column(db.DateTime)  # todo: add creation date
-    # created = db.Column()
 
 
-class SecurityBaseModel(BaseModel):
-    __abstract__ = True
-
-    @classmethod
-    def verify_password(cls, password, hash):
-        return pbkdf2_sha512.verify(password, hash)
-
-    @classmethod
-    def hash_password(cls, password):
-        return pbkdf2_sha512.hash(password)
-
-    def generate_auth_token(self, expiration=1200):
-        s = Serializer(settings.SECRET_KEY, expires_in=expiration)
-        return s.dumps({'id': self.id})
-
-    @classmethod
-    def verify_auth_token(cls, token):
-        s = Serializer(settings.SECRET_KEY)
-        try:
-            data = s.loads(token)
-        except SignatureExpired:
-            return None  # valid token, but expired
-        except BadSignature:
-            return None  # invalid token
-        entity = cls.query.get(data['id'])
-        return entity
-
-
-class Child(SecurityBaseModel):
+class Child(BaseModel):
     login = db.Column(db.String(50), unique=True)
     nickname = db.Column(db.String(50))
     password = db.Column(db.String(50))
@@ -101,7 +72,7 @@ class Avatar(BaseModel):
         return '<Avatar %r>' % self.name
 
 
-class Tutor(SecurityBaseModel):
+class Tutor(BaseModel):
     login = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(50))
     mail = db.Column(db.String(50))

@@ -9,11 +9,13 @@ from little_hero_rest_api.dao.invitation import InvitationDAO
 from little_hero_rest_api.api.serializers import (child_for_post, child_full, child_for_patch, invitation_full,
                                                   child_invitation_for_post, invitation_for_patch, tutor_full)
 #from flask_httpauth import HTTPBasicAuth
+from little_hero_rest_api.security.hmac_auth import HMACAuth
 
 log = logging.getLogger(__name__)
 
 ns = api.namespace('v1/children', description='Operations related to children')
 #auth = HTTPBasicAuth()
+hmac_auth = HMACAuth()
 
 child_dao = ChildDAO()
 invitation_dao = InvitationDAO()
@@ -24,6 +26,7 @@ invitation_dao = InvitationDAO()
 class ChildrenCollection(Resource):
     """Show a list of all children and lets you POST to add new child."""
 
+    @hmac_auth.protected
     @api.marshal_list_with(child_full)
     def get(self):
         """Returns list of children."""
