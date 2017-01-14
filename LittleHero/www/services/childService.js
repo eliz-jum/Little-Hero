@@ -1793,8 +1793,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.canBePurchasedItems.splice(itemIndex, 1);
     childService.canBePutOnItems.push(item);
 
-    //dataService.patchItem(item.id, {price: 0});
-    //dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"});
+    //dataService.patchItem(item.id, {price: 0}); //todo tego chyba nie powinno sie robić nie?
+    dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"});
     dataService.patchAvatar(childService.currentAvatarId, {money: childService.currentAvatar.money});
   }
 
@@ -1819,8 +1819,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
     //drugi parametr to newState
-    //dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
-    //dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
+    dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
+    dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
   },
 
   childService.setNotificationsArray = function () {

@@ -122,21 +122,19 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   ]
 
   var dressAvatar = function () {
-    console.log("dress");
     var element;
     childService.wornItems.forEach(function (item) {
-      console.log("item type", item.type);
-
       element = document.getElementsByClassName(item.type)[0];
       element.setAttribute("src", item.imgSrc);
     });
   }
 
   $scope.setAvatarData = function (avatar) {
+    console.log("avatar", avatar);
     cleanAvatarArrays();
     childService.currentAvatar = avatar;
     childService.currentAvatarId = childService.currentAvatar.id;
-
+    $scope.currentAvatar = childService.currentAvatar;
     childService.setWornItems(dressAvatar);
     childService.setCanBePutOnItems();
     childService.setCanBePurchasedItems();
@@ -194,7 +192,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
 
   $scope.buy = function (item) {
     if ($scope.currentAvatar.money >= item.price) {
-      $scope.currentAvatar.money -= item.price;
+      var index;
+      childService.avatarList.forEach(function (item2, i) {
+        console.log("id ", item2.id, childService.currentAvatarId);
+        if (item2.id == childService.currentAvatarId){
+          index = i;
+        }
+      });
+      //index = childService.avatarList.map(function(e) { return e.id; }).indexOf(item.id);
+      childService.currentAvatar.money -= item.price;
+      childService.avatarList[index] = childService.currentAvatar;
+      $scope.currentAvatar = childService.currentAvatar;
       item.price = 0;
       childService.purchaseItem(item);
       $scope.putOn(item);
