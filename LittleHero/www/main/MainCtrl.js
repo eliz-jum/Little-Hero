@@ -8,18 +8,10 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     $scope.showAvatar = false;
     cleanAvatarArrays();
 
-    if (childService.avatarList.length != 0) {
+    if (childService.avatarList.length > 0) {
       $scope.currentAvatar = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
-      // childService.setWornItems();
-      // childService.setCanBePutOnItems();
-      // childService.setCanBePurchasedItems();
-      // childService.setUnavailableItems();
-      childService.hardcodeAvatarItemArrays();
-      childService.hardcodeAvatarWornItemsArray();
-      childService.setAvatarTasks();
-      childService.setNotificationsArray();
-      dressAvatar();
+      $scope.setAvatarData(childService.currentAvatar);
       $scope.showAvatar = true;
     }
   });
@@ -138,21 +130,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   }
 
   $scope.setAvatarData = function (avatar) {
+    console.log("avatar", avatar);
     cleanAvatarArrays();
     childService.currentAvatar = avatar;
-    console.log("level", childService.currentAvatar);
     childService.currentAvatarId = childService.currentAvatar.id;
-
-    // childService.setWornItems();
-    // childService.setCanBePutOnItems();
-    // childService.setCanBePurchasedItems();
-    // childService.setUnavailableItems();
+    $scope.currentAvatar = childService.currentAvatar;
+    childService.setWornItems(dressAvatar);
+    childService.setCanBePutOnItems();
+    childService.setCanBePurchasedItems();
+    childService.setUnavailableItems();
     childService.setAvatarTasks();
     childService.setNotificationsArray();
-    childService.hardcodeAvatarItemArrays();
-    childService.hardcodeAvatarWornItemsArray();
-    dressAvatar();
-
   }
 
 
@@ -203,7 +191,16 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
 
   $scope.buy = function (item) {
     if ($scope.currentAvatar.money >= item.price) {
-      $scope.currentAvatar.money -= item.price;
+      var index;
+      childService.avatarList.forEach(function (item2, i) {
+        console.log("id ", item2.id, childService.currentAvatarId);
+        if (item2.id == childService.currentAvatarId){
+          index = i;
+        }
+      });
+      childService.currentAvatar.money -= item.price;
+      childService.avatarList[index] = childService.currentAvatar;
+      $scope.currentAvatar = childService.currentAvatar;
       item.price = 0;
       childService.purchaseItem(item);
       $scope.putOn(item);

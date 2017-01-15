@@ -46,8 +46,7 @@ angular.module('littleHero').service("dataService", function($http) {
 
 
       getAvatarWornItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=worn").then(function(res) {
-          console.log("res", res);
+        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=worn").then(function(res) {
           return res;
         });
       },
@@ -63,19 +62,19 @@ angular.module('littleHero').service("dataService", function($http) {
       //zapisując ciuch trzeba mu dodać pole avatarItemLinksId bo to potrzebne do pacha
       //pach zmienia stan itemu w item-links
       getAvatarCanBePutOnItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePutOn").then(function(res) {
+        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=canBePutOn").then(function(res) {
           return res;
         });
       },
 
       getAvatarCanBePurchasedItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=canBePurchased").then(function(res) {
+        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=canBePurchased").then(function(res) {
           return res;
         });
       },
 
       getAvatarUnavailableItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links?avatar_id=" + avatarId + "&state=unavailable").then(function(res) {
+        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=unavailable").then(function(res) {
           return res;
         });
       },
@@ -85,9 +84,25 @@ angular.module('littleHero').service("dataService", function($http) {
         return $http.patch(BASE_PATH + "avatar-item-links/" + avatarItemLinksId, newState)
       },
 
-      postAvatarItemLink: function (newLink) {
-        return $http.post(BASE_PATH + "avatar-item-links/", newLink)
-      },
+      postAvatarItemLink: function (newLink, item, callback, type) {
+        console.log("raz", newLink);
+          return $http.post(BASE_PATH + "avatar-item-links/", newLink).then(function(res) {
+            console.log("dwa res", res.data);
+            callback(item, type, res.data);
+            return res;
+          });
+        },
+      //   return $http({
+      //     method: 'POST',
+      //     url: BASE_PATH + "avatar-item-links/",
+      //     data: newLink,
+      //     headers: {
+      //       'Content-Type':  'application/json'
+      //     }
+      //   }).success(function (data) {
+      //     return data;
+      //   }).error(function(response) { console.log(response); });
+      // },
 
 
       patchAvatar: function (avatarId, changes) {
