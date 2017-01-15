@@ -10,7 +10,8 @@ from little_hero_rest_api import settings
 class BaseModel(db.Model):
     __abstract__ = True  # sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
-    creation_date = db.Column(db.DateTime)  # todo: add creation date
+    creationDate = db.Column(db.DateTime)  # todo: add creation date
+    #todo: rename to creation_date
 
 
 class Child(BaseModel):

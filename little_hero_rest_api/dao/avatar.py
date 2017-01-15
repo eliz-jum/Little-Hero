@@ -50,7 +50,6 @@ class AvatarDAO(GenericDAO):
         update_task = data.get('update_task')
         update_invitation = data.get('update_invitation')
         update_notification = data.get('update_notification')
-
         child_id = data.get('child_id')
         tutor_id = data.get('tutor_id')
         level = data.get('level')
@@ -62,11 +61,11 @@ class AvatarDAO(GenericDAO):
 
         if clazz:
             avatar.clazz = clazz
-        if update_task:
+        if isinstance(update_task, bool):
             avatar.update_task = update_task
-        if update_invitation:
+        if isinstance(update_invitation, bool):
             avatar.update_invitation = update_invitation
-        if update_notification:
+        if isinstance(update_notification, bool):
             avatar.update_notification = update_notification
 
         if name:
