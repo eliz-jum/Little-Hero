@@ -6,25 +6,28 @@ from little_hero_rest_api import settings
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
 from flask_restplus import fields
+from werkzeug.exceptions import Unauthorized
 
 log = logging.getLogger(__name__)
 
-# authorizations = {
-#     'Basic': {
-#         'type': 'basic',
-#         'in': 'header',
-#         'name': 'Authorization'
-#     }
-# }
+authorizations = {
+    'HMAC': {
+        'type': 'hmac',
+        'in': 'header',
+        'name': 'Authorization'
+    }
+}
 
-# api = Api(version='1.2', title='Little Hero API', authorizations=authorizations,
-#           security='Basic', description='Little Hero API for Little Hero mobile application',
+
+authorizations_header_desc = 'Expecting: hmac {posix_time}:{nonce}:{b64encoded_digest}'
+# api = Api(version='1.2', title='Little Hero API', , description='Little Hero API for Little Hero mobile application',
 #           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl')
 api = Api(version='1.2', title='Little Hero API', description='API for Little Hero mobile application',
           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl',
-          contact_url='https://github.com/siulkilulki')
+          contact_url='https://github.com/siulkilulki', authorizations=authorizations,
+          security='HMAC')
 
-#todo: move to serializers
+# todo: move to serializers
 error_fields = api.model('Errors fields', {
     'code': fields.Integer(required=True, description='HTTP status code'),
     'message': fields.String(required=True, description='Error message')
@@ -66,6 +69,17 @@ def integrity_error_handler(e):
                'code': 400,
                'message': __format_error_message(str(e.orig))
            }, 400
+
+
+@api.errorhandler(Unauthorized)
+@api.marshal_with(error_fields)
+def authorization_error_handler(e):
+    """Raised when unauthorized access happened."""
+    log.warning(traceback.format_exc())
+    return {
+               'code': 401,
+               'message': 'Unauthorized access!'
+           }, 401
 
 
 def __format_error_message(message):

@@ -11,12 +11,15 @@ from little_hero_rest_api.api.serializers import notification_for_post
 from little_hero_rest_api.api.serializers import notification_for_patch
 from little_hero_rest_api.dao.avatar import AvatarDAO
 from little_hero_rest_api.dao.notification import NotificationDAO
-
+from little_hero_rest_api.security.hmac_auth import HMACAuth
+from little_hero_rest_api.api.restplus import authorizations_header_desc
 
 log = logging.getLogger(__name__)
 
 ns = api.namespace('v1/avatars', description='Operations related to avatars')
 
+
+hmac_auth = HMACAuth()
 avatar_dao = AvatarDAO()
 notification_dao = NotificationDAO()
 
@@ -25,6 +28,9 @@ notification_dao = NotificationDAO()
 @ns.response(400, 'Bad request')
 class AvatarsCollection(Resource):
     """Show a list of avatars and lets you POST to add new avatar."""
+
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.marshal_list_with(avatar_full)
     @ns.param('child_id', 'For filtering by child id', 'query')
     @ns.param('tutor_id', 'For filtering by tutor id', 'query')
@@ -35,6 +41,8 @@ class AvatarsCollection(Resource):
         avatars = avatar_dao.get_all(child_id, tutor_id)
         return avatars
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.response(201, 'Avatar created.')
     @api.expect(avatar_for_post)
     @ns.marshal_with(avatar_full)
@@ -62,6 +70,8 @@ class Avatar(Resource):
         avatar_dao.delete(id)
         return None, 204
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(200, 'Avatar updated')
     @api.expect(avatar_for_patch)
     @ns.marshal_with(avatar_full)
@@ -77,12 +87,17 @@ class Avatar(Resource):
 @ns.param('avatar_id', 'The avatar identifier')
 class AvatarNotificationsCollection(Resource):
     """Show a list of all avatar notifications and lets you POST to add new notification."""
+
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.marshal_list_with(notification_full)
     def get(self, avatar_id):
         """Returns list of notifications."""
         notifications = notification_dao.get_all(avatar_id)
         return notifications
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.response(201, 'Notification created.')
     @api.expect(notification_for_post)
     @ns.marshal_with(notification_full)
@@ -99,17 +114,24 @@ class AvatarNotificationsCollection(Resource):
 @ns.param('notification_id', 'The notification identifier')
 class AvatarNotification(Resource):
     """Show a single notification entity and lets you delete and update it"""
+
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.marshal_with(notification_full)
     def get(self, avatar_id, notification_id):
         """Return notification"""
         return notification_dao.get(notification_id)
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(204, 'Notification deleted')
     def delete(self, avatar_id, notification_id):
         """Delete an notification given its identifier"""
         notification_dao.delete(notification_id)
         return None, 204
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(200, 'Notification updated')
     @api.expect(notification_for_patch)
     @ns.marshal_with(notification_full)

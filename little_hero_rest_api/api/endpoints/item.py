@@ -7,10 +7,14 @@ from little_hero_rest_api.api.serializers import item_for_post
 from little_hero_rest_api.api.serializers import item_full
 from little_hero_rest_api.api.serializers import item_for_patch
 from little_hero_rest_api.dao.item import ItemDAO
+from little_hero_rest_api.security.hmac_auth import HMACAuth
+from little_hero_rest_api.api.restplus import authorizations_header_desc
+
 
 log = logging.getLogger(__name__)
 
 ns = api.namespace('v1/items', description='Operations related to items')
+hmac_auth = HMACAuth()
 DAO = ItemDAO()
 
 
@@ -19,12 +23,16 @@ DAO = ItemDAO()
 class ItemsCollection(Resource):
     """Show a list of all items and lets you POST to add new item."""
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.marshal_list_with(item_full)
     def get(self):
         """Returns list of items."""
         items = DAO.get_all()
         return items
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.response(201, 'Item created.')
     @api.expect(item_for_post)
     @ns.marshal_with(item_full)
@@ -33,6 +41,8 @@ class ItemsCollection(Resource):
         data = request.json
         return DAO.create(data), 201
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.response(204, 'No content')
     @api.expect([item_for_post])
     def put(self):
@@ -48,18 +58,25 @@ class ItemsCollection(Resource):
 @ns.param('id', 'The item identifier')
 class Item(Resource):
     """Show a single item entity and lets you delete and update it"""
+
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.marshal_with(item_full)
     def get(self, id):
         """Returns item"""
         item = DAO.get(id)
         return item
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(204, 'item deleted')
     def delete(self, id):
         """Delete a item given its identifier"""
         DAO.delete(id)
         return None, 204
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(200, 'item updated')
     @api.expect(item_for_patch)
     @ns.marshal_with(item_full)

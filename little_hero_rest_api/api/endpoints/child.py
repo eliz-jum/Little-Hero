@@ -8,13 +8,12 @@ from little_hero_rest_api.dao.child import ChildDAO
 from little_hero_rest_api.dao.invitation import InvitationDAO
 from little_hero_rest_api.api.serializers import (child_for_post, child_full, child_for_patch, invitation_full,
                                                   child_invitation_for_post, invitation_for_patch, tutor_full)
-#from flask_httpauth import HTTPBasicAuth
 from little_hero_rest_api.security.hmac_auth import HMACAuth
+from little_hero_rest_api.api.restplus import authorizations_header_desc
 
 log = logging.getLogger(__name__)
 
 ns = api.namespace('v1/children', description='Operations related to children')
-#auth = HTTPBasicAuth()
 hmac_auth = HMACAuth()
 
 child_dao = ChildDAO()
@@ -27,12 +26,15 @@ class ChildrenCollection(Resource):
     """Show a list of all children and lets you POST to add new child."""
 
     @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.marshal_list_with(child_full)
     def get(self):
         """Returns list of children."""
         children = child_dao.get_all()
         return children
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.response(201, 'Child created.')
     @api.expect(child_for_post)
     @ns.marshal_with(child_full)
@@ -48,20 +50,24 @@ class ChildrenCollection(Resource):
 @ns.param('id', 'The child identifier')
 class Child(Resource):
     """Show a single child entity and lets you delete and update it"""
-    #@auth.login_required
-    @api.doc(security='Basic')
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.marshal_with(child_full)
     def get(self, id):
         """Returns child"""
         child = child_dao.get(id)
         return child
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(204, 'Child deleted')
     def delete(self, id):
         """Delete a child given its identifier"""
         child_dao.delete(id)
         return None, 204
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(200, 'Child updated')
     @api.expect(child_for_patch)
     @ns.marshal_with(child_full)
@@ -79,6 +85,8 @@ class Child(Resource):
 class ChildTutors(Resource):
     """Returns list of child tutors"""
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.marshal_list_with(tutor_full)
     def get(self, id):
         return child_dao.get_all_tutors(id)
@@ -91,6 +99,8 @@ class ChildTutors(Resource):
 class ChildInvitationsCollection(Resource):
     """Show a list of all child invitations and lets you POST to add new invitation."""
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.marshal_list_with(invitation_full)
     @ns.param('kind', 'For filtering by type of invitation', 'query')
     @ns.param('status', 'For filtering by status of invitation', 'query')
@@ -101,6 +111,8 @@ class ChildInvitationsCollection(Resource):
         invitations = invitation_dao.get_all(id, None, kind, status)
         return invitations
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.response(201, 'Invitation created.')
     @api.expect(child_invitation_for_post)
     @ns.marshal_with(invitation_full)
@@ -108,22 +120,6 @@ class ChildInvitationsCollection(Resource):
         """Create invitations"""
         data = request.json
         return invitation_dao.create(data, id), 201
-
-from flask_restplus import reqparse
-
-parser = reqparse.RequestParser()
-parser.add_argument('Authorization', location='headers')
-
-# @ns.route('/token')
-# @ns.response(400, 'Bad request')
-# class ChildSecurity(Resource):
-#     @auth.login_required
-#     @api.doc(security='Basic')
-#     @api.expect(parser)
-#     def get(self):
-#         """Get token for authentication"""
-#         token = g.child.generate_auth_token()
-#         return jsonify({'token': token.decode('ascii')})
 
 
 @ns.route('/<int:child_id>/invitations/<int:invitation_id>')
@@ -134,6 +130,8 @@ parser.add_argument('Authorization', location='headers')
 class ChildInvitation(Resource):
     """Show a single invitation entity and lets you delete and update it"""
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @api.marshal_with(invitation_full)
     def get(self, child_id, invitation_id):
         """Return invitation"""
@@ -141,12 +139,16 @@ class ChildInvitation(Resource):
         # invitation_id = request.args.get('invitation_id')
         return invitation_dao.get(invitation_id)
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(204, 'Invitation deleted')
     def delete(self, child_id, invitation_id):
         """Delete an invitation given its identifier"""
         invitation_dao.delete(invitation_id)
         return None, 204
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(200, 'Invitation updated')
     @api.expect(invitation_for_patch)
     @ns.marshal_with(invitation_full)
@@ -155,15 +157,3 @@ class ChildInvitation(Resource):
         data = request.json
         updated_invitation = invitation_dao.update(invitation_id, data)
         return updated_invitation, 200
-
-
-# @auth.verify_password
-# def verify_password(login_or_token, password):
-#     child = ChildModel.verify_auth_token(login_or_token)
-#     if not child:
-#         child = child_dao.get_child_by_login(login_or_token)
-#         password_hash = child.password
-#         if not child or not ChildModel.verify_password(password, password_hash):
-#             return False
-#     g.child = child
-#     return True

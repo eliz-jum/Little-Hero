@@ -6,7 +6,8 @@ FLASK_DEBUG = True  # Do not use debug mode in production
 RESTPLUS_SWAGGER_UI_DOC_EXPANSION = 'list'
 RESTPLUS_VALIDATE = True
 RESTPLUS_MASK_SWAGGER = False
-RESTPLUS_ERROR_404_HELP = False
+#RESTPLUS_ERROR_404_HELP = False
+RESTPLUS_EASY_SWAGGER_AUTHORIZATION = True #True only for development phase todo: make use of it
 
 # SQLAlchemy settings
 #SQLALCHEMY_DATABASE_URI = 'postgres://quwrbyzkcxxzwa:cueQfkHYBKCJTrOiwoDnfZkO1E@ec2-54-235-124-2.compute-1.amazonaws.com:5432/dcdvmp6lvciurs'
