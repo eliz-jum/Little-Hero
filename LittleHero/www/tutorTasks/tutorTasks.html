@@ -20,8 +20,6 @@
             <h2>{{avatar.name}}</h2>
           </div>
 
-
-
           <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false">
             <ion-item ng-click="editTask(task)" ng-repeat="task in avatarTasks track by task.id" class="item-remove-animate">
               <ion-content class="task-item background" scroll="false">
@@ -40,12 +38,8 @@
               </ion-content>
             </ion-item>
             <ion-list>
-
-
         </ion-content>
-
         <div class="empty-msg" ng-if="!avatarTasks.length">Ten awatar nie ma żadnych wyzwań</div>
-        <ion-footer-bar class="button-footer orange"/>
       </ion-pane>
 </ion-view>
 

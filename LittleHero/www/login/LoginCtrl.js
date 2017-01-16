@@ -20,7 +20,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         dataService.getChildren().then(function(res) {
             children = res;
         });
-      
+
     });
 
     $scope.validate = function() {
@@ -52,6 +52,8 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
     $scope.checkIfAccountExists = function() {
         for (index in tutors) {
+          //todo zakomentowana wersja to LOGOWANIE PO LOGINIE
+            //if (tutors[index].login == $scope.login && tutors[index].password == $scope.password) {
             if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
                 childService.tutorObj = tutors[index];
                 childService.setTutorChildren();

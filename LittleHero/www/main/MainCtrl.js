@@ -200,6 +200,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
       });
       childService.currentAvatar.money -= item.price;
       childService.avatarList[index] = childService.currentAvatar;
+      $scope.allAvatars = childService.avatarList;
       $scope.currentAvatar = childService.currentAvatar;
       item.price = 0;
       childService.purchaseItem(item);
@@ -245,8 +246,21 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     dataService.getAvatarById(childService.currentAvatarId).then(function (res) {
       childService.currentAvatar = res.data;
       if (childService.currentAvatar.update_task == true) {
-        childService.currentAvatar.update_task ==false;
+        childService.currentAvatar.update_task = false;
+        childService.setNotificationsArray();
+        childService.setAvatarTasks();
+        dataService.patchAvatar(childService.currentAvatarId, {update_task: false});
+        var index;
+        childService.avatarList.forEach(function (item, i) {
+          if (item.id == childService.currentAvatarId){
+            index = i;
+          }
+        });
+        childService.avatarList[index] = childService.currentAvatar;
+        $scope.allAvatars = childService.avatarList;
         $scope.currentAvatar = childService.currentAvatar;
+        console.log("childService avatars", childService.avatarList);
+        console.log("scope avatars", $scope.allAvatars);
       }
     });
   },60000);

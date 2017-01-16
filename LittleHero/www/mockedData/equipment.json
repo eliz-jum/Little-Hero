@@ -901,7 +901,7 @@
     "type": "misc_ear",
     "clazz": "mage",
     "iconSrc": "img/mage/ears3_icon.svg",
-    "imgSrc": "img/mage/earss3.svg",
+    "imgSrc": "img/mage/ears3.svg",
     "level": 1,
     "price": 2
   },

@@ -3,16 +3,15 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
   $scope.allAvatars = [];
 
   $scope.$on('$ionicView.beforeEnter', function () {
-    console.log("jestem w tasks");
     $scope.tutor = childService.tutorObj;
     $scope.avatar = childService.currentAvatar;
 
-    //if (typeof childService.tasks[0] !== "undefined") {
-
-    $scope.avatarTasks = childService.tasks;
-
-
-    //}
+    if (childService.tasks.length > 0) {
+      $scope.avatarTasks = childService.tasks;
+    }
+    else{
+      //todo wiadomosc
+    }
   });
 
   $scope.back = function () {
@@ -25,16 +24,17 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
   };
 
   $scope.taskCompleted = function (task) {
+    childService.currentAvatar.update_task = true;
     childService.completeTask(task);
-    dataService.patchAvatar(childService.currentAvatarId, {update_task: true});
     childService.addNotification("Udało się! Wykonałeś wyzwanie:  " + task.content +
       "  Dostajesz " + task.reward + " pieniędzy i " + task.experience + " doświadczenia!");
   }
 
   $scope.taskFailed = function (task) {
+    childService.currentAvatar.update_task = true;
     childService.failTask(task);
     childService.addNotification("Nie podołałeś wyzwaniu:  " + task.content +
-      "  Tracisz " + task.reward + " pieniędzy i " + task.experience + " doświadczenia.");
+      "  Tracisz " + task.reward + " pieniędzy i " + task.experience + " życia.");
   }
 
   $scope.editTask = function (task) {

@@ -61,12 +61,12 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
       childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
     $scope.closeModal("newAvatar");
 
-    // dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
-    //       var index = $scope.invites.indexOf($scope.invite);
-    //       $scope.invites.splice(index, 1);
-    //       $scope.closeModal("newAvatar");
-    //       $scope.showToast("Utworzono nowy awatar!");
-    //   });
+    dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
+          var index = $scope.invites.indexOf($scope.invite);
+          $scope.invites.splice(index, 1);
+          $scope.closeModal("newAvatar");
+          $scope.showToast("Utworzono nowego awatara!");
+      });
   };
 
 
