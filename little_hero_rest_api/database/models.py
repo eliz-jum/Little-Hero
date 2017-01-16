@@ -99,7 +99,7 @@ class Item(BaseModel):
     type = db.Column(db.String(50))
     imgSrc = db.Column(db.String(50))
     iconSrc = db.Column(db.String(50))
-
+    db.UniqueConstraint('imgSrc', 'iconSrc', 'type')
     # itemOfAvatars = db.relationship('AvatarItem', back_populates='item', lazy='dynamic')
 
     def __init__(self, price, level, clazz, type, imgSrc, iconSrc):
