@@ -1,6 +1,6 @@
 angular.module('littleHero').controller('MainController', function ($scope, $state, $interval, $ionicModal, $http, dataService, childService, ionicToast) {
 
-  $scope.allAvatars = null;
+  $scope.allAvatars = [];
   $scope.currentAvatar = null;
   $scope.showAvatar = false;
 
@@ -132,15 +132,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.setAvatarData = function (avatar) {
     console.log("avatar", avatar);
     cleanAvatarArrays();
-    childService.currentAvatar = avatar;
-    childService.currentAvatarId = childService.currentAvatar.id;
-    $scope.currentAvatar = childService.currentAvatar;
-    childService.setWornItems(dressAvatar);
-    childService.setCanBePutOnItems();
-    childService.setCanBePurchasedItems();
-    childService.setUnavailableItems();
-    childService.setAvatarTasks();
-    childService.setNotificationsArray();
+    dataService.getAvatarById(avatar.id).then(function (res) {
+      childService.currentAvatar = res.data;
+      childService.currentAvatarId = childService.currentAvatar.id;
+      $scope.currentAvatar = childService.currentAvatar;
+      childService.setWornItems(dressAvatar);
+      childService.setCanBePutOnItems();
+      childService.setCanBePurchasedItems();
+      childService.setUnavailableItems();
+      childService.setAvatarTasks();
+      childService.setNotificationsArray();
+    });
   }
 
 
@@ -199,9 +201,12 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
         }
       });
       childService.currentAvatar.money -= item.price;
+      $scope.currentAvatar.money = childService.currentAvatar.money;
+
       childService.avatarList[index] = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
-      $scope.currentAvatar = childService.currentAvatar;
+      $scope.$apply();
+
       item.price = 0;
       childService.purchaseItem(item);
       $scope.putOn(item);
@@ -257,10 +262,16 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
           }
         });
         childService.avatarList[index] = childService.currentAvatar;
-        $scope.allAvatars = childService.avatarList;
         $scope.currentAvatar = childService.currentAvatar;
-        console.log("childService avatars", childService.avatarList);
-        console.log("scope avatars", $scope.allAvatars);
+        $scope.allAvatars = childService.avatarList;
+        //console.log("childService avatars", childService.avatarList);
+        //console.log("scope avatars", $scope.allAvatars);
+        // var phase = $scope.$root.$$phase;
+        // console.log("ohase", phase);
+        // if(phase !== '$apply' && phase !== '$digest') {
+        //   console.log("tralalala");
+        //   $scope.$apply();
+        // }
       }
     });
   },60000);
