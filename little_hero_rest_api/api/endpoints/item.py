@@ -20,15 +20,20 @@ DAO = ItemDAO()
 
 @ns.route('/')
 @ns.response(400, 'Bad request')
+@ns.response(401, 'Unauthorized')
 class ItemsCollection(Resource):
     """Show a list of all items and lets you POST to add new item."""
 
     @hmac_auth.protected
     @api.header('Authorization', authorizations_header_desc)
+    @ns.param('avatar_id', 'For filtering by avatar id', 'query')
+    @ns.param('state', 'For filtering by item state', 'query')
     @api.marshal_list_with(item_full)
     def get(self):
         """Returns list of items."""
-        items = DAO.get_all()
+        avatar_id = request.args.get('avatar_id')
+        state = request.args.get('state')
+        items = DAO.get_all(avatar_id, state)
         return items
 
     @hmac_auth.protected
@@ -53,6 +58,7 @@ class ItemsCollection(Resource):
 
 
 @ns.route('/<int:id>')
+@ns.response(401, 'Unauthorized')
 @ns.response(404, 'Item not found')
 @ns.response(400, 'Bad request')
 @ns.param('id', 'The item identifier')

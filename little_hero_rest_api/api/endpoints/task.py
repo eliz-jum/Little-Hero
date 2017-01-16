@@ -20,6 +20,7 @@ DAO = TaskDAO()
 
 @ns.route('/')
 @ns.response(400, 'Bad request')
+@ns.response(401, 'Unauthorized')
 class TasksCollection(Resource):
     """Show a list of all tasks and lets you POST to add new task."""
 
@@ -47,6 +48,7 @@ class TasksCollection(Resource):
 
 
 @ns.route('/<int:id>')
+@ns.response(401, 'Unauthorized')
 @ns.response(404, 'Task not found')
 @ns.response(400, 'Bad request')
 @ns.param('id', 'The task identifier')

@@ -50,6 +50,7 @@ class AvatarItemCollection(Resource):
 
 
 @ns.route('/<int:id>')
+@ns.response(401, 'Unauthorized')
 @ns.response(404, 'Avatar-Item link not found')
 @ns.response(400, 'Bad request')
 @ns.param('id', 'The avatar identifier')

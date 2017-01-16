@@ -22,6 +22,7 @@ invitation_dao = InvitationDAO()
 
 @ns.route('/')
 @ns.response(400, 'Bad request')
+@ns.response(401, 'Unauthorized')
 class ChildrenCollection(Resource):
     """Show a list of all children and lets you POST to add new child."""
 
@@ -45,6 +46,7 @@ class ChildrenCollection(Resource):
 
 
 @ns.route('/<int:id>')
+@ns.response(401, 'Unauthorized')
 @ns.response(404, 'Child not found')
 @ns.response(400, 'Bad request')
 @ns.param('id', 'The child identifier')
@@ -79,6 +81,7 @@ class Child(Resource):
 
 
 @ns.route('/<int:id>/tutors')
+@ns.response(401, 'Unauthorized')
 @ns.response(404, 'Child not found')
 @ns.response(400, 'Bad request')
 @ns.param('id', 'The child identifier')
@@ -93,6 +96,7 @@ class ChildTutors(Resource):
 
 
 @ns.route('/<int:id>/invitations')
+@ns.response(401, 'Unauthorized')
 @ns.response(404, 'Child not found')
 @ns.response(400, 'Bad request')
 @ns.param('id', 'The child identifier')
@@ -123,6 +127,7 @@ class ChildInvitationsCollection(Resource):
 
 
 @ns.route('/<int:child_id>/invitations/<int:invitation_id>')
+@ns.response(401, 'Unauthorized')
 @ns.response(404, 'Child not found')
 @ns.response(400, 'Bad request')
 @ns.param('child_id', 'The child identifier')

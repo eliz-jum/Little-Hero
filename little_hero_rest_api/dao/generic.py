@@ -11,8 +11,8 @@ class GenericDAO(object):
         return model
 
     def get_all(self):
-        children = self.db_model.query.all()
-        return children
+        all = self.db_model.query.all()
+        return all
 
     def delete(self, id):
         model = self.get(id)
