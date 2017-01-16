@@ -264,14 +264,6 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
         childService.avatarList[index] = childService.currentAvatar;
         $scope.currentAvatar = childService.currentAvatar;
         $scope.allAvatars = childService.avatarList;
-        //console.log("childService avatars", childService.avatarList);
-        //console.log("scope avatars", $scope.allAvatars);
-        // var phase = $scope.$root.$$phase;
-        // console.log("ohase", phase);
-        // if(phase !== '$apply' && phase !== '$digest') {
-        //   console.log("tralalala");
-        //   $scope.$apply();
-        // }
       }
     });
   },60000);

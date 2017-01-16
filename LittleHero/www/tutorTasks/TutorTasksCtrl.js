@@ -6,12 +6,8 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
     $scope.tutor = childService.tutorObj;
     $scope.avatar = childService.currentAvatar;
 
-    if (childService.tasks.length > 0) {
-      $scope.avatarTasks = childService.tasks;
-    }
-    else{
-      //todo wiadomosc
-    }
+    $scope.avatarTasks = childService.tasks;
+
   });
 
   $scope.back = function () {

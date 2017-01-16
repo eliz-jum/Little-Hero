@@ -1677,7 +1677,17 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
     dataService.getItems().then(function(res){
       var allItems = res.data;
-      console.log(allItems[0]);
+      // allItems[0] = {
+      //   id: 294,
+      //   type: "top",
+      //   clazz: "allclazzes",
+      //   iconSrc: "img/empty_icon.svg",
+      //   imgSrc: "img/empty.svg",
+      //   level: 1,
+      //   price: 0
+      // };
+
+
       //robi ze zmiennych tablice (bez tego są obiektami i nie da się zrobić push)
       childService.wornItems = [];
       childService.canBePutOnItems = [];
@@ -1702,12 +1712,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
           dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 1);
         }
         else if (item.clazz == avatarClass || item.clazz == "allclazzes") {
-          var obj = {
-            avatar_id: newAvatarId,
-            state: "canBePurchased",
-            item_id: item.id
-          };
           if (item.level == 1){
+            var obj = {
+              avatar_id: newAvatarId,
+              state: "canBePurchased",
+              item_id: item.id
+            };
             dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 2);
           }
           else {
