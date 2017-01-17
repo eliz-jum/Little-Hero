@@ -1017,7 +1017,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   //       type: "misc_ear",
   //       clazz: "mage",
   //       iconSrc: "img/mage/ears3_icon.svg",
-  //       imgSrc: "img/mage/earss3.svg",
+  //       imgSrc: "img/mage/ears3.svg",
   //       level: 1,
   //       price: 2
   //     },
@@ -1676,7 +1676,24 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
     dataService.getItems().then(function(res){
       var allItems = res.data;
-      console.log(allItems[0]);
+      // allItems[0] = {
+      //   id: 295,
+      //   type: "bottom",
+      //   clazz: "allclazzes",
+      //   iconSrc: "img/empty_icon.svg",
+      //   imgSrc: "img/empty.svg",
+      //   level: 1,
+      //   price: 0
+      // };
+      // console.log("foreach!");
+      //
+      // allItems.forEach(function (item) {
+      //   if (item.id == 295){
+      //     console.log("295!!!!!",item);
+      //   }
+      // });
+
+
       //robi ze zmiennych tablice (bez tego są obiektami i nie da się zrobić push)
       childService.wornItems = [];
       childService.canBePutOnItems = [];
@@ -1701,12 +1718,12 @@ angular.module('littleHero').factory('childService',function($state, dataService
           dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 1);
         }
         else if (item.clazz == avatarClass || item.clazz == "allclazzes") {
-          var obj = {
-            avatar_id: newAvatarId,
-            state: "canBePurchased",
-            item_id: item.id
-          };
           if (item.level == 1){
+            var obj = {
+              avatar_id: newAvatarId,
+              state: "canBePurchased",
+              item_id: item.id
+            };
             dataService.postAvatarItemLink(obj, item, childService.putItemIntoCorrectArray, 2);
           }
           else {
@@ -1773,15 +1790,16 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.setUnavailableItems = function () {
     dataService.getAvatarUnavailableItemsIds(childService.currentAvatarId).then(function(res) {
-        childService.unavailableItems = res.data;
-        childService.unavailableItems.forEach(function (item, i) {
-          var avatarItemLinksId = item.id;
-          var itemId = item.item_id;
-          dataService.getItem(itemId).then(function (res) {
-            childService.unavailableItems[i] = res.data;
-            childService.unavailableItems[i].avatarItemLinksId = avatarItemLinksId;
-          })
+      childService.unavailableItems = res.data;
+      childService.unavailableItems.forEach(function (item, i) {
+        var avatarItemLinksId = item.id;
+        var itemId = item.item_id;
+        dataService.getItem(itemId).then(function (res) {
+          childService.unavailableItems[i] = res.data;
+          childService.unavailableItems[i].avatarItemLinksId = avatarItemLinksId;
         })
+      })
+
     })
   }
 
@@ -1842,16 +1860,19 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.currentAvatar.health = 100;
     childService.currentAvatar.experience = exp;
 
-    childService.addNotification("Masz nowy poziom! Sprawdz ekwipunek, dostepne sa nowa rzeczy!");
+    childService.addNotification("Zdobyłeś nowy poziom! Sprawdz ekwipunek, dostepne sa nowa rzeczy!");
 
-    //todo JAK BEDA ITEMY to odkomentowac
-    // childService.setUnavailableItems();
-    // for (var i=childService.unavailableItems.length-1; i>=0; i--){
-    //   var item = childService.unavailableItems[i];
-    //   if (item.level == childService.currentAvatar.level) {
-    //     dataService.changeEquipmentItemState(item.avatarItemLinksId, "canBePurchased");
-    //   }
-    // }
+    childService.setUnavailableItems();
+    setTimeout(function(){
+      for (var i=childService.unavailableItems.length-1; i>=0; i--){
+        var item = childService.unavailableItems[i];
+        if (item.level == childService.currentAvatar.level) {
+          dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePurchased"});
+        }
+      }
+    },3000);
+
+
   }
 
   childService.loseLevel = function () {
@@ -1862,13 +1883,15 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.currentAvatar.money = 0;
     childService.addNotification("Straciłeś poziom i pieniądze. Ale nie martw się, masz znowu pełne zdrowie, zacznij od nowa. Powodzenia!");
 
-    // childService.setCanBePurchasedItems();
-    // childService.canBePurchasedItems.forEach(function (item) {
-    //   if (item.level > childService.currentAvatar.level) {
-    //     childService.unavailableItems.push(item);
-    //     dataService.changeEquipmentItemState(item.avatarItemLinksId, "unavailable");
-    //   }
-    // })
+    childService.setCanBePurchasedItems();
+    setTimeout(function(){
+      childService.canBePurchasedItems.forEach(function (item) {
+        if (item.level > childService.currentAvatar.level) {
+          childService.unavailableItems.push(item);
+          dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "unavailable"});
+        }
+      })
+    },3000);
   }
 
   childService.completeTask = function (task) {
@@ -1898,11 +1921,11 @@ angular.module('littleHero').factory('childService',function($state, dataService
       childService.loseLevel();
     }
     else {
+      childService.currentAvatar.health -= task.experience;
       childService.currentAvatar.money -= task.reward;
       if (childService.currentAvatar.money<0){
         childService.currentAvatar.money = 0;
       }
-      childService.currentAvatar.health -= task.experience;
     }
     dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
   }

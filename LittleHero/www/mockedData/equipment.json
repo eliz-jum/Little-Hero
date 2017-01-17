@@ -421,7 +421,7 @@
   {
     "id": 28,
     "type": "top",
-    "clazz": "empty",
+    "clazz": "allclazzes",
     "iconSrc": "img/empty_icon.svg",
     "imgSrc": "img/empty.svg",
     "level": 1,
@@ -520,7 +520,7 @@
   {
     "id": 33,
     "type": "bottom",
-    "clazz": "empty",
+    "clazz": "allclazzes",
     "iconSrc": "img/empty_icon.svg",
     "imgSrc": "img/empty.svg",
     "level": 1,
@@ -901,7 +901,7 @@
     "type": "misc_ear",
     "clazz": "mage",
     "iconSrc": "img/mage/ears3_icon.svg",
-    "imgSrc": "img/mage/earss3.svg",
+    "imgSrc": "img/mage/ears3.svg",
     "level": 1,
     "price": 2
   },

@@ -30,8 +30,6 @@ angular.module('littleHero').service("dataService", function($http) {
       },
 
       getAvatarsByChildAndTutor: function (childId, tutorId) {
-        console.log("set avatars list child", childId);
-        console.log("set avatars list tutor", tutorId);
         return $http.get(BASE_PATH + "avatars/?child_id=" + childId + "&tutor_id=" + tutorId).then(function(res) {
           console.log(res.data);
           return res;
@@ -85,24 +83,11 @@ angular.module('littleHero').service("dataService", function($http) {
       },
 
       postAvatarItemLink: function (newLink, item, callback, type) {
-        console.log("raz", newLink);
           return $http.post(BASE_PATH + "avatar-item-links/", newLink).then(function(res) {
-            console.log("dwa res", res.data);
             callback(item, type, res.data);
             return res;
           });
         },
-      //   return $http({
-      //     method: 'POST',
-      //     url: BASE_PATH + "avatar-item-links/",
-      //     data: newLink,
-      //     headers: {
-      //       'Content-Type':  'application/json'
-      //     }
-      //   }).success(function (data) {
-      //     return data;
-      //   }).error(function(response) { console.log(response); });
-      // },
 
 
       patchAvatar: function (avatarId, changes) {

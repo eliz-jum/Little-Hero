@@ -65,7 +65,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     //       var index = $scope.invites.indexOf($scope.invite);
     //       $scope.invites.splice(index, 1);
     //       $scope.closeModal("newAvatar");
-    //       $scope.showToast("Utworzono nowy awatar!");
+    //       $scope.showToast("Utworzono nowego awatara!");
     //   });
   };
 

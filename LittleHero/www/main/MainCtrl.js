@@ -1,6 +1,6 @@
 angular.module('littleHero').controller('MainController', function ($scope, $state, $interval, $ionicModal, $http, dataService, childService, ionicToast) {
 
-  $scope.allAvatars = null;
+  $scope.allAvatars = [];
   $scope.currentAvatar = null;
   $scope.showAvatar = false;
 
@@ -132,15 +132,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.setAvatarData = function (avatar) {
     console.log("avatar", avatar);
     cleanAvatarArrays();
-    childService.currentAvatar = avatar;
-    childService.currentAvatarId = childService.currentAvatar.id;
-    $scope.currentAvatar = childService.currentAvatar;
-    childService.setWornItems(dressAvatar);
-    childService.setCanBePutOnItems();
-    childService.setCanBePurchasedItems();
-    childService.setUnavailableItems();
-    childService.setAvatarTasks();
-    childService.setNotificationsArray();
+    dataService.getAvatarById(avatar.id).then(function (res) {
+      childService.currentAvatar = res.data;
+      childService.currentAvatarId = childService.currentAvatar.id;
+      $scope.currentAvatar = childService.currentAvatar;
+      childService.setWornItems(dressAvatar);
+      childService.setCanBePutOnItems();
+      childService.setCanBePurchasedItems();
+      childService.setUnavailableItems();
+      childService.setAvatarTasks();
+      childService.setNotificationsArray();
+    });
   }
 
 
@@ -199,8 +201,12 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
         }
       });
       childService.currentAvatar.money -= item.price;
+      $scope.currentAvatar.money = childService.currentAvatar.money;
+
       childService.avatarList[index] = childService.currentAvatar;
-      $scope.currentAvatar = childService.currentAvatar;
+      $scope.allAvatars = childService.avatarList;
+      $scope.$apply();
+
       item.price = 0;
       childService.purchaseItem(item);
       $scope.putOn(item);
@@ -245,8 +251,22 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     dataService.getAvatarById(childService.currentAvatarId).then(function (res) {
       childService.currentAvatar = res.data;
       if (childService.currentAvatar.update_task == true) {
-        childService.currentAvatar.update_task ==false;
+        childService.currentAvatar.update_task = false;
+        childService.setNotificationsArray();
+        childService.setAvatarTasks();
+        //todo if (change_level)  - flaga
+        childService.setCanBePurchasedItems();
+        childService.setUnavailableItems();
+        dataService.patchAvatar(childService.currentAvatarId, {update_task: false});
+        var index;
+        childService.avatarList.forEach(function (item, i) {
+          if (item.id == childService.currentAvatarId){
+            index = i;
+          }
+        });
+        childService.avatarList[index] = childService.currentAvatar;
         $scope.currentAvatar = childService.currentAvatar;
+        $scope.allAvatars = childService.avatarList;
       }
     });
   },60000);
