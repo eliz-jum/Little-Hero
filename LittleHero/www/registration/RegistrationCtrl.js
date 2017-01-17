@@ -3,34 +3,35 @@ angular.module('littleHero').controller('RegistrationController', function($scop
     $scope.children = [];
     $scope.tutors = [];
     $scope.newAccount = {};
+    $scope.opiekun = true;
 
     $scope.$on('$ionicView.beforeEnter', function () {
         dataService.getTutors().then(function (res) {
-            tutors = res.data;
+            $scope.tutors = res.data;
         });
 
         dataService.getChildren().then(function (res) {
-            children = res;
+            $scope.children = res;
         });
     });
 
      $scope.validate = function() {
 
         if ($scope.login && $scope.password && $scope.email) {
-            if ($scope.checkIfAccountExists()) {       
+            if ($scope.checkIfAccountExists()) {
 
                 $scope.newAccount["login"] = $scope.login;
                 $scope.newAccount["password"] = $scope.password;
                 $scope.newAccount["mail"] = $scope.email;
 
                 if ($scope.opiekun) {
-                    $scope.createTutorAccount();                    
+                    $scope.createTutorAccount();
                     $state.go("login");
                     $scope.showToast("Teraz możesz się zalogować");
                 }
                 else {
                     $scope.newAccount["nickname"] = $scope.login;
-                    $scope.createChildAccount(); 
+                    $scope.createChildAccount();
                     $state.go("login");
                     $scope.showToast("Teraz możesz się zalogować");
                 }
@@ -55,11 +56,11 @@ angular.module('littleHero').controller('RegistrationController', function($scop
     };
 
     $scope.checkIfAccountExists = function() {
-        
+
         var flag = false;
 
         for (index in $scope.children) {
-            if ($scope.children[index].login == $scope.login && 
+            if ($scope.children[index].login == $scope.login &&
                     $scope.children[index].password == $scope.password) {
                         flag = true;
             }
@@ -72,7 +73,7 @@ angular.module('littleHero').controller('RegistrationController', function($scop
             }
         }
 
-        if (flag) {       
+        if (flag) {
             return false;
         }
         else {
