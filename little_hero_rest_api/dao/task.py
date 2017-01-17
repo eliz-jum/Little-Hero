@@ -3,7 +3,6 @@ from little_hero_rest_api.database.models import Task
 from little_hero_rest_api.dao.avatar import AvatarDAO
 from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.generic import GenericDAO
-from datetime import datetime
 
 
 class TaskDAO(GenericDAO):

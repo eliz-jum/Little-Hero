@@ -17,3 +17,12 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # SECURITY
 SECRET_KEY = 'dev'
+
+# MAIL
+
+MAIL_SERVER = 'smtp.zoho.com'
+MAIL_PORT = 465
+MAIL_USERNAME = 'admin@mylittlehero.com'
+MAIL_PASSWORD = '---'
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
