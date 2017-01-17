@@ -1608,7 +1608,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.setChildAvatarList = function () {
     dataService.getAvatarsByChild(childService.childObj.id).then(function (res) {
         childService.avatarList = res.data;
-      console.log("avatarlist",childService.avatarList);
         childService.currentAvatar = childService.avatarList[0];
         childService.currentAvatarId = childService.currentAvatar.id;
     });
@@ -1678,14 +1677,21 @@ angular.module('littleHero').factory('childService',function($state, dataService
     dataService.getItems().then(function(res){
       var allItems = res.data;
       // allItems[0] = {
-      //   id: 294,
-      //   type: "top",
+      //   id: 295,
+      //   type: "bottom",
       //   clazz: "allclazzes",
       //   iconSrc: "img/empty_icon.svg",
       //   imgSrc: "img/empty.svg",
       //   level: 1,
       //   price: 0
       // };
+      // console.log("foreach!");
+      //
+      // allItems.forEach(function (item) {
+      //   if (item.id == 295){
+      //     console.log("295!!!!!",item);
+      //   }
+      // });
 
 
       //robi ze zmiennych tablice (bez tego są obiektami i nie da się zrobić push)
