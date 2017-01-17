@@ -1865,7 +1865,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
     for (var i=childService.unavailableItems.length-1; i>=0; i--){
       var item = childService.unavailableItems[i];
       if (item.level == childService.currentAvatar.level) {
-        dataService.changeEquipmentItemState(item.avatarItemLinksId, "canBePurchased");
+        dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePurchased"});
       }
     }
   }
@@ -1882,7 +1882,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.canBePurchasedItems.forEach(function (item) {
       if (item.level > childService.currentAvatar.level) {
         childService.unavailableItems.push(item);
-        dataService.changeEquipmentItemState(item.avatarItemLinksId, "unavailable");
+        dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "unavailable"});
       }
     })
   }
