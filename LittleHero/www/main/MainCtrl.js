@@ -205,7 +205,8 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
 
       childService.avatarList[index] = childService.currentAvatar;
       $scope.allAvatars = childService.avatarList;
-      $scope.$apply();
+      if($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest')
+        $scope.$apply();
 
       item.price = 0;
       childService.purchaseItem(item);
