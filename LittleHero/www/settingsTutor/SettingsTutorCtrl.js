@@ -6,14 +6,6 @@ angular.module('littleHero').controller('SettingsTutorController', function($sco
       state: "account"
     },
     {
-      title: "Dzieci",
-      state: "children"
-    },
-    {
-      title: "Powiadomienia",
-      state: "notifications"
-    },
-    {
       title: "Zaproszenia",
       state: "invitationsTutor"
     },
