@@ -1790,15 +1790,16 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
   childService.setUnavailableItems = function () {
     dataService.getAvatarUnavailableItemsIds(childService.currentAvatarId).then(function(res) {
-        childService.unavailableItems = res.data;
-        childService.unavailableItems.forEach(function (item, i) {
-          var avatarItemLinksId = item.id;
-          var itemId = item.item_id;
-          dataService.getItem(itemId).then(function (res) {
-            childService.unavailableItems[i] = res.data;
-            childService.unavailableItems[i].avatarItemLinksId = avatarItemLinksId;
-          })
+      childService.unavailableItems = res.data;
+      childService.unavailableItems.forEach(function (item, i) {
+        var avatarItemLinksId = item.id;
+        var itemId = item.item_id;
+        dataService.getItem(itemId).then(function (res) {
+          childService.unavailableItems[i] = res.data;
+          childService.unavailableItems[i].avatarItemLinksId = avatarItemLinksId;
         })
+      })
+
     })
   }
 
@@ -1862,12 +1863,16 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.addNotification("Zdobyłeś nowy poziom! Sprawdz ekwipunek, dostepne sa nowa rzeczy!");
 
     childService.setUnavailableItems();
-    for (var i=childService.unavailableItems.length-1; i>=0; i--){
-      var item = childService.unavailableItems[i];
-      if (item.level == childService.currentAvatar.level) {
-        dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePurchased"});
+    setTimeout(function(){
+      for (var i=childService.unavailableItems.length-1; i>=0; i--){
+        var item = childService.unavailableItems[i];
+        if (item.level == childService.currentAvatar.level) {
+          dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePurchased"});
+        }
       }
-    }
+    },3000);
+
+
   }
 
   childService.loseLevel = function () {
@@ -1879,12 +1884,14 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.addNotification("Straciłeś poziom i pieniądze. Ale nie martw się, masz znowu pełne zdrowie, zacznij od nowa. Powodzenia!");
 
     childService.setCanBePurchasedItems();
-    childService.canBePurchasedItems.forEach(function (item) {
-      if (item.level > childService.currentAvatar.level) {
-        childService.unavailableItems.push(item);
-        dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "unavailable"});
-      }
-    })
+    setTimeout(function(){
+      childService.canBePurchasedItems.forEach(function (item) {
+        if (item.level > childService.currentAvatar.level) {
+          childService.unavailableItems.push(item);
+          dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "unavailable"});
+        }
+      })
+    },3000);
   }
 
   childService.completeTask = function (task) {

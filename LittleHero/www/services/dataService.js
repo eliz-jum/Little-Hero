@@ -88,17 +88,6 @@ angular.module('littleHero').service("dataService", function($http) {
             return res;
           });
         },
-      //   return $http({
-      //     method: 'POST',
-      //     url: BASE_PATH + "avatar-item-links/",
-      //     data: newLink,
-      //     headers: {
-      //       'Content-Type':  'application/json'
-      //     }
-      //   }).success(function (data) {
-      //     return data;
-      //   }).error(function(response) { console.log(response); });
-      // },
 
 
       patchAvatar: function (avatarId, changes) {

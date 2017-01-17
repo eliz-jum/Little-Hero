@@ -254,6 +254,9 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
         childService.currentAvatar.update_task = false;
         childService.setNotificationsArray();
         childService.setAvatarTasks();
+        //todo if (change_level)  - flaga
+        childService.setCanBePurchasedItems();
+        childService.setUnavailableItems();
         dataService.patchAvatar(childService.currentAvatarId, {update_task: false});
         var index;
         childService.avatarList.forEach(function (item, i) {
