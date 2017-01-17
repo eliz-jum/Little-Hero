@@ -16,6 +16,13 @@ angular.module('littleHero').controller('SettingsController', function($rootScop
       }
     },
     {
+      title: "Zaproszenia",
+      state: "invitations",
+      click: function(state) {
+        $state.go(state);
+      }
+    },
+    {
       title: "Wyloguj",
       state: "login",
       click: function(state) {
@@ -27,7 +34,7 @@ angular.module('littleHero').controller('SettingsController', function($rootScop
 
     $scope.changeState = function(state) {
         $state.go(state);
-    };
+    }
 
   $scope.myGoBack = function() {
     $backView = $ionicHistory.backView();
