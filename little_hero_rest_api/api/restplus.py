@@ -24,7 +24,7 @@ authorizations_header_desc = 'Expecting: hmac {posix_time}:{nonce}:{b64encoded_d
 #           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl')
 api = Api(version='1.2', title='Little Hero API', description='API for Little Hero mobile application',
           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl',
-          contact_url='jurkiewiczdawid@mylittlehero.eu', authorizations=authorizations,
+          contact_url='jurkiewicz.dawid@mylittlehero.eu', authorizations=authorizations,
           security='HMAC')
 
 # todo: move to serializers
