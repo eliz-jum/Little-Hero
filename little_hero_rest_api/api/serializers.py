@@ -139,9 +139,7 @@ item_full = api.clone('Item entity', item_for_post, {
 })
 
 item_for_avatar = api.clone('Item for avatar entity', item_full, {
-    'avatar_item_id': fields.Integer(required=True, description='Id of avatar_item_link'),
-    'state': fields.String(required=True, description='State of item (on, bought, available, unavailable)',
-                           enum=STATES_OF_ITEM)
+    'avatar_item_link_id': fields.Integer(required=True, description='Id of avatar_item_link'),
 })
 
 item_for_patch = api.model('Item entity for patch request', {

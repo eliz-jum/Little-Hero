@@ -112,7 +112,6 @@ class AvatarDAO(GenericDAO):
                 type=item.type,
                 imgSrc=item.imgSrc,
                 iconSrc=item.iconSrc,
-                state=avatar_item.state,
                 avatar_item_id=avatar_item.id
             )
             item_set.add(item)

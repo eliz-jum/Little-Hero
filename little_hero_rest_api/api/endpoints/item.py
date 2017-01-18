@@ -33,7 +33,7 @@ class ItemsCollection(Resource):
         """Returns list of items."""
         avatar_id = request.args.get('avatar_id')
         state = request.args.get('state')
-        items = DAO.get_all(avatar_id, state)
+        items = DAO.get_all(avatar_id, state) #todo: remove filtering?
         return items
 
     @hmac_auth.protected
