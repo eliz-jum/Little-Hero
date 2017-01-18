@@ -2,84 +2,96 @@ angular.module('littleHero').controller('RegistrationController', function($scop
 
     $scope.children = [];
     $scope.tutors = [];
-    $scope.newAccount = {};
     $scope.opiekun = true;
+  $scope.errorMessage = "";
 
-    $scope.$on('$ionicView.beforeEnter', function () {
-        dataService.getTutors().then(function (res) {
-            $scope.tutors = res.data;
-        });
 
-        dataService.getChildren().then(function (res) {
-            $scope.children = res;
-        });
+  $scope.$on('$ionicView.beforeEnter', function () {
+    dataService.getTutors().then(function (res) {
+      $scope.tutors = res.data;
+    });
+
+    dataService.getChildren().then(function (res) {
+      $scope.children = res;
+    });
     });
 
      $scope.validate = function() {
+       $scope.errorMessage = "";
 
         if ($scope.login && $scope.password && $scope.email) {
-            if ($scope.checkIfAccountExists()) {
-
-                $scope.newAccount["login"] = $scope.login;
-                $scope.newAccount["password"] = $scope.password;
-                $scope.newAccount["mail"] = $scope.email;
-
-                if ($scope.opiekun) {
-                    $scope.createTutorAccount();
+            if ($scope.checkIfAccountExists() == false) {
+              if (validateEmail($scope.email)){
+                if ($scope.password.length > 11){
+                  createAnAccount();
+                  setTimeout(function () {
                     $state.go("login");
                     $scope.showToast("Teraz możesz się zalogować");
+                  }, 500);
                 }
                 else {
-                    $scope.newAccount["nickname"] = $scope.login;
-                    $scope.createChildAccount();
-                    $state.go("login");
-                    $scope.showToast("Teraz możesz się zalogować");
+                  $scope.invalid = true;
+                  $scope.errorMessage = "Hasło musi mieć minimum 12 znaków.";
                 }
+              }
+              else {
+                $scope.invalid = true;
+                $scope.errorMessage = "Niepoprawny mail.";
+              }
             }
-            else $scope.invalidExists = true;
+            else {
+              $scope.invalid = true;
+              $scope.errorMessage = "Ten login jest już zajęty.";
+            }
         }
-        else $scope.invalidData = true;
-    };
-
-    $scope.createChildAccount = function() {
-
-        dataService.postChild($scope.newAccount).then(function(res) {
-            console.log(res);
-      });
-    };
-
-    $scope.createTutorAccount = function() {
-
-        dataService.postTutor($scope.newAccount).then(function(res) {
-            console.log(res);
-      });
+        else {
+          $scope.invalid = true;
+          $scope.errorMessage = "Niepoprawne dane.";
+        }
     };
 
     $scope.checkIfAccountExists = function() {
-
-        var flag = false;
-
         for (index in $scope.children) {
-            if ($scope.children[index].login == $scope.login &&
-                    $scope.children[index].password == $scope.password) {
-                        flag = true;
+            if ($scope.children[index].login == $scope.login ) {
+              return true;
             }
         }
 
         for (index in $scope.tutors) {
-            if ($scope.tutors[index].login == $scope.login &&
-                    $scope.tutors[index].password == $scope.password) {
-                        flag = true;
+            if ($scope.tutors[index].login == $scope.login) {
+              return true;
             }
         }
-
-        if (flag) {
-            return false;
-        }
-        else {
-            return true;
-        }
+      return false;
     }
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    return re.test(email);
+  }
+
+  var createAnAccount = function () {
+    var account = {};
+    account.login = $scope.login;
+    account.password = $scope.password;
+    account.mail = $scope.email;
+
+    if ($scope.opiekun) {
+      dataService.postTutor(account).then(function(res) {
+        console.log(res);
+      });
+
+    }
+    else {
+      dataService.postChild(account).then(function(res) {
+        console.log(res);
+      });
+
+    }
+  }
+
+
+
 
     $scope.showToast = function (message) {
         ionicToast.show(message, 'bottom', false, 2500);

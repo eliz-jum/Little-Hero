@@ -30,11 +30,8 @@
         Zarejestruj
       </button>
     </div>
-    <div ng-show="invalidExists">
-      Takie konto już istnieje
-    </div>
-    <div ng-show="invalidData">
-      Brak/nieprawidłowe dane
+    <div ng-show="invalid">
+      {{errorMessage}}
     </div>
     <a ui-sref="login">Masz już konto?</a>
   </form>
