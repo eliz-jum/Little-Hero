@@ -11,39 +11,31 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     var tutors = [];
     var type = -1; //0 - child, 1 - tutor, -1 - account does not exist
     $scope.number = -1;
+    $scope.errorMessage = "";
 
     $scope.$on('$ionicView.beforeEnter', function () {
-        dataService.getTutors().then(function(res) {
-            tutors = res.data;
-        });
+      dataService.getTutors().then(function(res) {
+          tutors = res.data;
+      });
 
-        dataService.getChildren().then(function(res) {
-            children = res;
-        });
+      dataService.getChildren().then(function(res) {
+          children = res;
+      });
 
     });
 
     $scope.validate = function() {
-        setTimeout(function () {
-            if (type == 0) {
-                $scope.password = null;
-                $scope.login =  null;
-                $state.go("main");
-            }
-            else if (type == 1) {
-                $scope.password = null;
-                $scope.login =  null;
-                $state.go("mainTutor");
-            }
-            else {
-                $scope.invalid = true;
-            }
-        }, 500);
+      type = -1;
+      $scope.errorMessage = "";
+      if ($scope.login && $scope.password) {
+        $scope.checkIfAccountExists();
+      }
+      else {
+        $scope.invalid = true;
+        $scope.errorMessage = "Niepoprawne dane.";
+      }
 
-        if ($scope.login && $scope.password) {
-            $scope.checkIfAccountExists();
-        }
-        else $scope.invalid = true;
+
     };
 
     $scope.registration = function() {
@@ -68,5 +60,28 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
                 type = 0;
             }
         }
+      //setTimeout(function () {
+        if (type == 0) {
+          $scope.password = null;
+          $scope.login =  null;
+          setTimeout(function () {
+            $state.go("main");
+          }, 500);
+
+        }
+        else if (type == 1) {
+          $scope.password = null;
+          $scope.login =  null;
+          setTimeout(function () {
+            $state.go("mainTutor");
+          }, 500);
+
+          }
+        else if (type == -1) {
+          $scope.invalid = true;
+          $scope.errorMessage = "konto o podanych danych nie istnieje";
+
+        }
+      //}, 500);
     };
 });
