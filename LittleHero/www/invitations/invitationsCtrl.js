@@ -61,13 +61,20 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
       if($scope.newAvatar.name.length < 21) {
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
         $scope.closeModal("newAvatar");
+      $scope.showSpinner = true;
+      console.log("invite", $scope.invite);
+      childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
+    $scope.closeModal("newAvatar");
 
-        // dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
-        //       var index = $scope.invites.indexOf($scope.invite);
-        //       $scope.invites.splice(index, 1);
-        //       $scope.closeModal("newAvatar");
-        //       $scope.showToast("Utworzono nowego awatara!");
-        //   });
+    // dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
+    //       var index = $scope.invites.indexOf($scope.invite);
+    //       $scope.invites.splice(index, 1);
+            setTimeout(function() {
+              $scope.showSpinner = false;
+            },4000);
+    //       $scope.closeModal("newAvatar");
+    //       $scope.showToast("Utworzono nowego awatara!");
+    //   });
       }
       else{
         $scope.invalid = true;
@@ -77,7 +84,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     else {
       $scope.invalid = true;
       $scope.errorMessage = "Niepoprawne dane.";
-    }
+       }
   };
 
 
