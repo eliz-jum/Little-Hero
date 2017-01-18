@@ -20,22 +20,22 @@
             <h2>{{avatar.name}}</h2>
           </div>
 
-          <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false">
-            <ion-item ng-click="editTask(task)" ng-repeat="task in avatarTasks | orderBy: task.id :true track by task.id" class="item-remove-animate">
-              <ion-content class="task-item background" scroll="false">
+          <ion-list class="notification-list" can-swipe="true" swipe-direction="both" scroll="false">
+            <ion-item ng-click="editTask(task)" ng-repeat="task in avatarTasks | orderBy: task.id :true track by task.id" class="item item-complex item-right-editable">
+                <ion-content class="background" scroll="false">
 
-                <span class="task-name">{{ task.content }}</span>
-                <span class="task-details">${{task.reward}}</span>
-                <span class="task-details">{{task.experience}}XP</span>
+                  <span class="task-name">{{ task.content }}</span>
+                  <span class="task-details">${{task.reward}}</span>
+                  <span class="task-details">{{task.experience}}XP</span>
 
-                <ion-option-button side="left" class="button button-balanced" ng-click="taskCompleted(task)">
-                  <i class="icon ion-checkmark-round"></i>
-                </ion-option-button>
-                <ion-option-button side="right" class="button button-assertive" ng-click="taskFailed(task)">
-                  <i class="icon ion-close-round"></i>
-                </ion-option-button>
+                  <ion-option-button side="left" class="button button-balanced" ng-click="taskCompleted(task)">
+                    <i class="icon ion-checkmark-round"></i>
+                  </ion-option-button>
+                  <ion-option-button side="right" class="button button-assertive" ng-click="taskFailed(task)">
+                    <i class="icon ion-close-round"></i>
+                  </ion-option-button>
 
-              </ion-content>
+                </ion-content>
             </ion-item>
             <ion-list>
               <div class="empty-msg" ng-if="!avatarTasks.length">Ten awatar nie ma żadnych wyzwań</div>
