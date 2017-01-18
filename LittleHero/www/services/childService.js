@@ -178,7 +178,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
 
-  childService.setWornItems = function (callback) {
+  childService.setWornItems = function (callback, spinner) {
     dataService.getAvatarWornItemsIds(childService.currentAvatarId).then(function (res) {
       childService.wornItems = res.data;
         childService.wornItems.forEach(function (item, i) {
@@ -188,7 +188,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
             childService.wornItems[i] = res.data;
             childService.wornItems[i].avatarItemLinksId = avatarItemLinksId;
             if (i == childService.wornItems.length-1){
-              callback();
+              callback(spinner);
             }
           })
         })

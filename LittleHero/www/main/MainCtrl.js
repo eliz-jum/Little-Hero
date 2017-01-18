@@ -123,22 +123,24 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     }
   ]
 
-  var dressAvatar = function () {
+  var dressAvatar = function (spinner) {
     var element;
     childService.wornItems.forEach(function (item) {
       element = document.getElementsByClassName(item.type)[0];
       element.setAttribute("src", item.imgSrc);
     });
+    if (spinner == true) $scope.showSpinner = false;
   }
 
-  $scope.setAvatarData = function (avatar) {
+  $scope.setAvatarData = function (avatar, spinner) {
+    if (spinner == true) $scope.showSpinner = true;
     console.log("avatar", avatar);
     cleanAvatarArrays();
     dataService.getAvatarById(avatar.id).then(function (res) {
       childService.currentAvatar = res.data;
       childService.currentAvatarId = childService.currentAvatar.id;
       $scope.currentAvatar = childService.currentAvatar;
-      childService.setWornItems(dressAvatar);
+      childService.setWornItems(dressAvatar, true);
       childService.setCanBePutOnItems();
       childService.setCanBePurchasedItems();
       childService.setUnavailableItems();
