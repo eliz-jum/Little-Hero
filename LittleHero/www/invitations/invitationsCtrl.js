@@ -57,16 +57,27 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     };
 
   $scope.createNewAvatar = function () {
-      console.log("invite", $scope.invite);
-      childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
-    $scope.closeModal("newAvatar");
+    if ($scope.newAvatar.name && $scope.newAvatar.class) {
+      if($scope.newAvatar.name.length < 20) {
+        childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
+        $scope.closeModal("newAvatar");
 
-    // dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
-    //       var index = $scope.invites.indexOf($scope.invite);
-    //       $scope.invites.splice(index, 1);
-    //       $scope.closeModal("newAvatar");
-    //       $scope.showToast("Utworzono nowego awatara!");
-    //   });
+        // dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
+        //       var index = $scope.invites.indexOf($scope.invite);
+        //       $scope.invites.splice(index, 1);
+        //       $scope.closeModal("newAvatar");
+        //       $scope.showToast("Utworzono nowego awatara!");
+        //   });
+      }
+      else{
+        $scope.invalid = true;
+        $scope.errorMessage = "Za długe imię. Maksymalnie 20 znaków.";
+      }
+    }
+    else {
+      $scope.invalid = true;
+      $scope.errorMessage = "Niepoprawne dane.";
+    }
   };
 
 
