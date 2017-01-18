@@ -58,7 +58,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
 
   $scope.createNewAvatar = function () {
     if ($scope.newAvatar.name && $scope.newAvatar.class) {
-      if($scope.newAvatar.name.length < 20) {
+      if($scope.newAvatar.name.length < 21) {
         childService.addNewAvatar($scope.newAvatar.name, $scope.newAvatar.class, $scope.tutorId);
         $scope.closeModal("newAvatar");
 

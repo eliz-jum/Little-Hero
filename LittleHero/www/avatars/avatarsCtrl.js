@@ -20,8 +20,20 @@ angular.module('littleHero').controller('AvatarsController', function($scope, $s
     };
 
     $scope.patchAvatar = function (editedAvatar) {
-        dataService.patchAvatar(editedAvatar.id, editedAvatar);
-        $scope.closeModal("edit");
+      if($scope.editedAvatar.name){
+        if($scope.editedAvatar.name < 21){
+          dataService.patchAvatar(editedAvatar.id, editedAvatar);
+          $scope.closeModal("edit");
+        }
+        else{
+          $scope.invalid = true;
+          $scope.errorMessage = "Za długe imię. Maksymalnie 20 znaków.";
+        }
+      }
+      else {
+        $scope.invalid = true;
+        $scope.errorMessage = "Niepoprawne dane.";
+      }
     };
 
     $scope.requestAvatar = function(tutorId) {

@@ -11,5 +11,8 @@
         <button class="button button-full button-balanced" ng-click="patchAvatar(editedAvatar)">
             OKEJ!
         </button>
+      <div ng-show="invalid">
+        {{errorMessage}}
+      </div>
     </ion-content>
 </ion-modal-view>
