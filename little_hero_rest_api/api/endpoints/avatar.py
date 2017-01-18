@@ -8,7 +8,7 @@ from little_hero_rest_api.api.serializers import avatar_full
 from little_hero_rest_api.api.serializers import avatar_for_patch
 from little_hero_rest_api.api.serializers import notification_full
 from little_hero_rest_api.api.serializers import notification_for_post
-from little_hero_rest_api.api.serializers import notification_for_patch
+from little_hero_rest_api.api.serializers import notification_for_patch, item_for_avatar
 from little_hero_rest_api.dao.avatar import AvatarDAO
 from little_hero_rest_api.dao.notification import NotificationDAO
 from little_hero_rest_api.security.hmac_auth import HMACAuth
@@ -144,3 +144,22 @@ class AvatarNotification(Resource):
         data = request.json
         updated_notification = notification_dao.update(notification_id, data)
         return updated_notification, 200
+
+
+@ns.route('/<int:avatar_id>/items')
+@ns.response(401, 'Unauthorized')
+@ns.response(404, 'Avatar not found')
+@ns.response(400, 'Bad request')
+@ns.param('avatar_id', 'The avatar identifier')
+@ns.param('state', 'For filtering by item state', 'query')
+class AvatarItems(Resource):
+    """Getting avatar items with state and avatar_item_link id"""
+
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
+    @api.marshal_list_with(item_for_avatar)
+    def get(self, avatar_id):
+        """Get avatar items with state and avatar_item_link id"""
+        state = request.args.get('state')
+        items = avatar_dao.get_all_items(avatar_id, state)
+        return items, 200

@@ -1,8 +1,11 @@
 from little_hero_rest_api.database import db
 from little_hero_rest_api.database.models import Avatar
+from little_hero_rest_api.database.models import Item
+from little_hero_rest_api.database.models import AvatarItem
 from little_hero_rest_api.dao.child import ChildDAO
 from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.generic import GenericDAO
+from little_hero_rest_api.dto.generic_dto import GenericDTO
 
 
 class AvatarDAO(GenericDAO):
@@ -89,3 +92,28 @@ class AvatarDAO(GenericDAO):
         db.session.commit()
 
         return avatar
+
+    def get_all_items(self, avatar_id, state):
+        query = db.session.query(Item, AvatarItem) \
+            .filter(AvatarItem.item_id == Item.id)
+        if avatar_id:
+            query = query.filter(AvatarItem.avatar_id == avatar_id)
+        if state:
+            query = query.filter(AvatarItem.state == state)
+        result = query.all()
+
+        item_set = set()
+        for (item, avatar_item) in result:
+            item = GenericDTO(
+                id=item.id,
+                price=item.price,
+                level=item.level,
+                clazz=item.clazz,
+                type=item.type,
+                imgSrc=item.imgSrc,
+                iconSrc=item.iconSrc,
+                state=avatar_item.state,
+                avatar_item_id=avatar_item.id
+            )
+            item_set.add(item)
+        return list(item_set)

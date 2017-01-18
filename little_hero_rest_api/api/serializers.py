@@ -1,7 +1,7 @@
 from flask_restplus import fields
 from little_hero_rest_api.api.restplus import api
 
-STATES_OF_ITEM = ['worn', 'canBePutOn', 'canBePurchased', 'unavailable'] #todo: uppercase
+STATES_OF_ITEM = ['worn', 'canBePutOn', 'canBePurchased', 'unavailable']  # todo: uppercase
 CLASSES_OF_ITEM = ['wornByDefault', 'allclazzes', 'human', 'empty', 'king', 'mage', 'cowboy']
 CLASSES_OF_AVATAR = ['human', 'king', 'mage', 'cowboy']
 TYPES_OF_ITEM = ['shoes', 'sock', 'prop_right', 'prop_left', 'misc_neck', 'misc_ear', 'misc_head', 'top_bottom',
@@ -10,7 +10,6 @@ KINDS_OF_INVITATION = ['child-avatar', 'child', 'tutor', 'tutor-avatar']
 STATUSES_OF_INVITATION = ['pending', 'accepted']
 
 MAIL_PATTERN = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-
 
 MIN_HEALTH = 0
 MAX_HEALTH = 100
@@ -25,7 +24,6 @@ child_for_post = api.model('Child for post', {
     'mail': fields.String(required=True, description='Child e-mail', pattern=MAIL_PATTERN)
 })
 
-
 child_full = api.clone('Child entity', child_for_post, {
     'id': fields.Integer(readOnly=True, description='Id of child'),
 })
@@ -39,7 +37,7 @@ child_for_patch = api.model('Child entity for patch request', {
 
 avatar_for_post = api.model('Avatar for post', {
     'name': fields.String(required=True, description='Avatar name'),
-    'clazz': fields.String(required=True, description='Avatar class', enum=CLASSES_OF_AVATAR), #todo: enum for class
+    'clazz': fields.String(required=True, description='Avatar class', enum=CLASSES_OF_AVATAR),  # todo: enum for class
     'child_id': fields.Integer(required=True, description='Id of avatars owner (child)'),
     'tutor_id': fields.Integer(required=True, description='Id of tutors related to avatar'),
     'level': fields.Integer(required=True, description='Avatar level', min=0),
@@ -56,7 +54,7 @@ avatar_full = api.clone('Avatar entity', avatar_for_post, {
 })
 
 avatar_for_patch = api.model('Avatar entity for patch request', {
-    #'id': fields.Integer(readOnly=True, description='Id of avatar'),
+    # 'id': fields.Integer(readOnly=True, description='Id of avatar'),
     'name': fields.String(description='Avatar name'),
     'clazz': fields.String(description='Avatar class', enum=CLASSES_OF_AVATAR),
     'update_task': fields.Boolean(description='Flag indicating if update of task is required'),
@@ -82,7 +80,7 @@ avatar_item_full = api.clone('Avatar-Item entity', avatar_item_for_post, {
 })
 
 avatar_item_for_patch = api.model('Avatar-Item entity for patch request', {
-    #'id': fields.Integer(readOnly=True, description='Id of avatar-item'),
+    # 'id': fields.Integer(readOnly=True, description='Id of avatar-item'),
     'avatar_id': fields.Integer(description='Avatar id'),
     'item_id': fields.Integer(description='Item id'),
     'state': fields.String(description='State of item (worn, canBePutOn, canBePurchased, unavailable)',
@@ -100,7 +98,7 @@ tutor_full = api.clone('Tutor entity', tutor_for_post, {
 })
 
 tutor_for_patch = api.model('Tutor entity for patch request', {
-    #'id': fields.Integer(readOnly=True, description='Id of tutor'),
+    # 'id': fields.Integer(readOnly=True, description='Id of tutor'),
     'password': fields.String(description='Tutor password', min_length=MIN_PASS_LEN),
     'mail': fields.String(description='Tutor e-mail', pattern=MAIL_PATTERN)
 })
@@ -119,7 +117,7 @@ task_full = api.clone('Task entity', task_for_post, {
 })
 
 task_for_patch = api.model('Task entity for patch request', {
-    #'id': fields.Integer(readOnly=True, description='Id of item'),
+    # 'id': fields.Integer(readOnly=True, description='Id of item'),
     'content': fields.String(description='Description of task'),
     'avatar_id': fields.Integer(description='Id of avatar who was given this task'),
     'tutor_id': fields.Integer(description='Id of tutor who was gave the task'),
@@ -138,6 +136,12 @@ item_for_post = api.model('Item for post', {
 
 item_full = api.clone('Item entity', item_for_post, {
     'id': fields.Integer(readOnly=True, description='Id of item'),
+})
+
+item_for_avatar = api.clone('Item for avatar entity', item_full, {
+    'avatar_item_id': fields.Integer(required=True, description='Id of avatar_item_link'),
+    'state': fields.String(required=True, description='State of item (on, bought, available, unavailable)',
+                           enum=STATES_OF_ITEM)
 })
 
 item_for_patch = api.model('Item entity for patch request', {

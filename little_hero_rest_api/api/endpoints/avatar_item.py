@@ -34,9 +34,9 @@ class AvatarItemCollection(Resource):
         avatar_id = request.args.get('avatar_id')
         item_id = request.args.get('item_id')
         state = request.args.get('state')
-        avatars = DAO.get_all(avatar_id, item_id, state)
+        avatar_item_links = DAO.get_all(avatar_id, item_id, state)
         # wornItems, canBePutOnItems, canBePurchasedItems, unavailableItems
-        return avatars
+        return avatar_item_links
 
     @hmac_auth.protected
     @api.header('Authorization', authorizations_header_desc)
