@@ -1,4 +1,15 @@
+@font-face {
+  font-family: 'granstander';
+  src: url('../fonts/grandstander.otf');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 h2 {
   text-align: center;
+  margin-bottom: 20px;
   padding: 3%;
+  font-family: granstander;
+  font-size: 26px;
 }
