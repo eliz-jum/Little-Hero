@@ -21,24 +21,53 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
     var money = parseInt(document.getElementById("edit-task-money").value);
     var experience = parseInt(document.getElementById("edit-task-experience").value);
 
-    console.log(description);
-    console.log(money);
-    console.log(experience);
+    if (description && money!==NaN && experience!==NaN) {
 
-    if ($scope.description && $scope.money && $scope.experience) {
-      //todo lepsza walidacja powinna byc
-      var changes = {
-        reward: money,
-        experience: experience,
-        content: description
-      };
-      dataService.patchTask(childService.currentTask.id, changes);
-      childService.addNotification(childService.tutorObj.login + " dokonał zmian w wyzwaniu:  " + childService.currentTask.content);
+      if (description !== childService.currentTask.content ||
+        money !== childService.currentTask.reward ||
+        experience !== childService.currentTask.experience) {
+        if (description.length < 100) {
+          if (money>0 && money<100){
+            if (experience>0 && experience<100){
+              var changes = {
+                reward: money,
+                experience: experience,
+                content: description
+              };
+              dataService.patchTask(childService.currentTask.id, changes);
+              childService.addNotification(childService.tutorObj.login + " dokonał zmian w wyzwaniu:  " + childService.currentTask.content);
+              var index = childService.tasks.indexOf(childService.currentTask);
+              childService.tasks[index].reward = money;
+              childService.tasks[index].experience = experience;
+              childService.tasks[index].content = description;
 
-      $state.go("tutorTasks");
+
+
+              $state.go("tutorTasks");
+            }
+            else{
+              $scope.invalid = true;
+              $scope.errorMessage = "Możesz przydzielić 1-99 doświadczenia.";
+            }
+          }
+          else{
+            $scope.invalid = true;
+            $scope.errorMessage = "Możesz przydzielić 1-99 pieniędzy.";
+          }
+        }
+        else{
+          $scope.invalid = true;
+          $scope.errorMessage = "Za długi opis. Maksymalnie 2000 znaków.";
+        }
+      }
+      else {
+        $scope.invalid = true;
+        $scope.errorMessage = "Nie wprowadziłeś żadnych zmian!";
+      }
     }
     else {
-      $scope.invalid=true;
+      $scope.invalid = true;
+      $scope.errorMessage = "Niepoprawne dane.";
     }
   };
 
