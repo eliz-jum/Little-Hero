@@ -23,7 +23,7 @@
       </div>
 
       <ion-list class="task-list" scroll="false">
-        <ion-item ng-repeat="task in tasks track by $index" class="background">
+        <ion-item ng-repeat="task in tasks | orderBy: task.id :true track by task.id" class="background">
           <ion-content class="task-item" scroll="false">
               <span class="task-name">{{ task.content }}</span>
               <span class="task-details">${{task.reward}}</span>

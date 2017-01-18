@@ -21,7 +21,7 @@
           </div>
 
           <ion-list class="task-list" can-swipe="true" swipe-direction="both" scroll="false">
-            <ion-item ng-click="editTask(task)" ng-repeat="task in avatarTasks track by task.id" class="item-remove-animate">
+            <ion-item ng-click="editTask(task)" ng-repeat="task in avatarTasks | orderBy: task.id :true track by task.id" class="item-remove-animate">
               <ion-content class="task-item background" scroll="false">
 
                 <span class="task-name">{{ task.content }}</span>
