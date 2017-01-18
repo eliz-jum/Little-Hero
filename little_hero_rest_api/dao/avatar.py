@@ -112,7 +112,7 @@ class AvatarDAO(GenericDAO):
                 type=item.type,
                 imgSrc=item.imgSrc,
                 iconSrc=item.iconSrc,
-                avatar_item_id=avatar_item.id
+                avatar_item_link_id=avatar_item.id
             )
             item_set.add(item)
         return list(item_set)
