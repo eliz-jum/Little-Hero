@@ -1,43 +1,48 @@
-<div class="bar bar-header orange">
-  <a class="button button-icon icon ion-android-arrow-back" ng-click="back()"></a>
-  <div class="row row-center orange">
-        <div class="col col-70">
-            {{ user.nickname }}
-        </div>
-        <button class="button button-icon icon ion-plus" ng-click="invite()"></button>
-        <button class="button button-icon icon ion-gear-b" ui-sref="settings"></button>
+<ion-view>
+  <div class="bar bar-header orange">
+    <a class="button button-icon icon ion-android-arrow-back" ng-click="back()"></a>
+    <div class="row row-center orange">
+          <div class="col col-70">
+              {{ user.nickname }}
+          </div>
+          <button class="button button-icon icon ion-plus" ng-click="invite()"></button>
+          <button class="button button-icon icon ion-gear-b" ui-sref="settings"></button>
+      </div>
     </div>
   </div>
-</div>
-<ion-content class="background has-header">
-  <div class="title">
-    <h2>Zaproszenia</h2>
-  </div>
-  <ion-list class="background" can-swipe="true" swipe-direction="both" scroll="false">
-    <ion-item class="item-remove-animate item item-complex item-right-editable" ng-repeat="invite in invites">
-        <div>
-            <div ng-if="invite.kind=='child'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
-            <div ng-if="invite.kind=='child-avatar'">Poprosiłeś opiekuna nr {{invite.tutor_id}} o nowy awatar</div>
-            <div ng-if="invite.kind=='tutor'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
-            <div style="opacity: 0.5">
-                <div ng-if="invite.status=='pending'">oczekujące</div>
-                <div ng-if="invite.status=='accepted'">zaakceptowane</div>
-            </div>
-        </div>
-        <div ng-if="invite.kind=='tutor' || invite.status=='accepted'">
-            <ion-option-button side="left" class="button button-balanced" ng-click="acceptInvite(invite)">
-                <i class="icon ion-checkmark-round"></i>
-            </ion-option-button>
-            <ion-option-button side="right" class="button button-assertive" ng-click="rejectInvite(invite)">
+  <ion-content class="background has-header">
+    <div class="title">
+      <h2>Zaproszenia</h2>
+    </div>
+    <ion-list class="background" can-swipe="true" swipe-direction="both" scroll="false">
+      <ion-item class="item-remove-animate item item-complex item-right-editable" ng-repeat="invite in invites">
+          <div>
+              <div ng-if="invite.kind=='child'">Zaprosiłeś opiekuna nr {{invite.tutor_id}}</div>
+              <div ng-if="invite.kind=='child-avatar'">Poprosiłeś opiekuna nr {{invite.tutor_id}} o nowy awatar</div>
+              <div ng-if="invite.kind=='tutor'">Zaprosił cię opiekun nr {{invite.tutor_id}}</div>
+              <div style="opacity: 0.5">
+                  <div ng-if="invite.status=='pending'">oczekujące</div>
+                  <div ng-if="invite.status=='accepted'">zaakceptowane</div>
+              </div>
+          </div>
+          <div ng-if="invite.kind=='tutor' || invite.status=='accepted'">
+              <ion-option-button side="left" class="button button-balanced" ng-click="acceptInvite(invite)">
+                  <i class="icon ion-checkmark-round"></i>
+              </ion-option-button>
+              <ion-option-button side="right" class="button button-assertive" ng-click="rejectInvite(invite)">
+                  <i class="icon ion-close-round"></i>
+              </ion-option-button>
+          </div>
+          <div ng-if="invite.kind!='tutor' && invite.status!='accepted'">
+              <ion-option-button side="right" class="button button-assertive" ng-click="cancelInvite(invite)">
                 <i class="icon ion-close-round"></i>
-            </ion-option-button>
-        </div>
-        <div ng-if="invite.kind!='tutor' && invite.status!='accepted'">
-            <ion-option-button side="right" class="button button-assertive" ng-click="cancelInvite(invite)">
-              <i class="icon ion-close-round"></i>
-            </ion-option-button>
-        </div>
-    </ion-item>
-  </ion-list>
-  <div class="empty-msg" ng-if="!invites.length">Nie masz żadnych zaproszeń</div>
-</ion-content>
+              </ion-option-button>
+          </div>
+      </ion-item>
+    </ion-list>
+    <div class="empty-msg" ng-if="!invites.length">Nie masz żadnych zaproszeń</div>
+  </ion-content>
+  <div ng-class="{'lh-spinner': showSpinner}">
+    <img class="lh-spinner-img" src="http://i.imgur.com/kStqI6W.gif">
+  </div>
+</ion-view>
