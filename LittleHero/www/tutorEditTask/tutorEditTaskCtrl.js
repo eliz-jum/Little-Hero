@@ -5,8 +5,12 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
     $scope.description = childService.currentTask.content;
     $scope.money = childService.currentTask.reward;
     $scope.experience = childService.currentTask.experience;
-
   });
+
+    $scope.resizeTextarea = function (o) {
+      o.style.height = "1px";
+      o.style.height = (25+o.scrollHeight)+"px";
+    }
 
   $scope.back = function () {
     $state.go("tutorTasks");
@@ -80,4 +84,21 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
     });
   }
 
-});
+})
+.directive('elastic', [
+  '$timeout',
+  function($timeout) {
+    return {
+      restrict: 'A',
+      link: function($scope, element) {
+        $scope.initialHeight = $scope.initialHeight || element[0].style.height;
+        var resize = function() {
+          element[0].style.height = $scope.initialHeight;
+          element[0].style.height = "" + element[0].scrollHeight + "px";
+        };
+        element.on("input change", resize);
+        $timeout(resize, 0);
+      }
+    };
+  }
+]);
