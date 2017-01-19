@@ -1,36 +1,32 @@
-.tasks-title {
-  padding: 20pt 0 5pt;
-}
-
-.task-list ion-item {
-  display: flex;
-  flex-direction: row;
-  height: 50pt;
-  line-height: 50pt;
-  padding: 0;
-}
-
-.drag {
-  width: 35pt;
-  border-radius: 0 30px 30px 0;
-  background-color: #585860;
-}
-
 .item-content {
   width: 100%;
 }
 
-.task-item {
-  padding: 0 15px;
-}
-
 .task-name {
-  font-weight: bold;
   color: black;
+  white-space: normal;
 }
 
 .task-details {
   float: right;
   font-weight: normal;
-  margin-left: 10px;
+  margin-left: 5px;
+}
+
+.tutor-tasks-page {
+  .item-complex > .item-content {
+    background: $body-background;
+    padding: 5px;
+    display: flex;
+  }
+  ion-list .item {
+    padding: 0;
+  }
+
+  .item,
+  .item-complex {
+    &.activated .item-content {
+      background: $body-background;
+    }
+  }
 }

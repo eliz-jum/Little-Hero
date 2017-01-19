@@ -18,9 +18,9 @@
         <h2>Wszystkie dzieci</h2>
       </div>
 
-      <ion-list class="task-list" can-swipe="false" scroll="false" >
+      <ion-list class="fixed-list" can-swipe="false" scroll="false" >
             <ion-item class="background" ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
-                <ion-content scroll="false" class="task-item">
+                <ion-content scroll="false" class="fixed-item">
 
                     <div class="tutor-avatar-list">
                         <span> {{ child.login }}</span>

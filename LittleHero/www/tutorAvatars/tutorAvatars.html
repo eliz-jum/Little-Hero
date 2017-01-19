@@ -17,14 +17,10 @@
         <h2>{{child.login}}</h2>
       </div>
 
-      <ion-list class="task-list" can-swipe="false" scroll="false">
+      <ion-list class="fixed-list" can-swipe="false" scroll="false">
         <ion-item class="background" ng-click="showAvatarTasks(avatar)" ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate">
-          <ion-content scroll="false" class="task-item">
-
-            <div class="tutor-avatar-list">
-              <span> {{ avatar.name }}</span>
-            </div>
-
+          <ion-content scroll="false" class="fixed-item">
+              <span>{{ avatar.name }}</span>
           </ion-content>
         </ion-item>
         <ion-list>

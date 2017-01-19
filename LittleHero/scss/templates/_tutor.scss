@@ -9,3 +9,15 @@
 .edit-task .item-input {
   padding-right: 16px;
 }
+
+.fixed-list ion-item{
+  display: flex;
+  flex-direction: row;
+  height: 50pt;
+  line-height: 50pt;
+  padding: 0;
+}
+
+.fixed-item {
+  padding: 0 15px;
+}

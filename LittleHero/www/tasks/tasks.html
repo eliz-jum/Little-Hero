@@ -17,20 +17,16 @@
     </div>
 
     <ion-content on-swipe-right="swipeRight()" class="background has-header">
-
-      <div class="tasks-title">
         <h2>Wyzwania</h2>
-      </div>
 
-      <ion-list class="task-list" scroll="false">
-        <ion-item ng-repeat="task in tasks | orderBy: task.id :true track by task.id" class="background">
-          <ion-content class="task-item" scroll="false">
-              <span class="task-name">{{ task.content }}</span>
-              <span class="task-details">${{task.reward}}</span>
-              <span class="task-details">{{task.experience}}XP</span>
-            </div>
-          </ion-content>
-        </ion-item>
+      <ion-list scroll="false">
+        <div ng-repeat="task in tasks track by $index">
+          <ion-item class="background row" scroll="false">
+              <div class="task-name col col-70">{{ task.content }}</div>
+              <div class="task-details col-10 col">${{task.reward}}</div>
+              <div class="task-details col col-10">{{task.experience}}XP</div>
+          </ion-item>
+        </div>
       <ion-list>
         <div class="empty-msg" ng-if="!tasks.length">Nie masz żadnych wyzwań</div>
     </ion-content>
