@@ -53,6 +53,7 @@ def default_error_handler(e):
 def database_not_found_error_handler(e):
     """Raised when no result in database found"""
     log.warning(traceback.format_exc())
+    log.debug(e)
     return {
                'code': 404,
                'message': 'A database result was required but none was found.'
@@ -65,6 +66,7 @@ def integrity_error_handler(e):
     """Raised when the relational integrity of the database is affected, e.g.
     a foreign key check fails, duplicate key, etc."""
     log.warning(traceback.format_exc())
+    log.debug(__format_error_message(str(e.orig)))
     return {
                'code': 400,
                'message': __format_error_message(str(e.orig))

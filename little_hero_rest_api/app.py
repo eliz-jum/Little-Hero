@@ -21,6 +21,22 @@ app = Flask(__name__)  # Create a Flask WSGI application
 logging.config.fileConfig('logging.conf')
 log = logging.getLogger(__name__)
 
+from flask import request
+@app.before_request
+def log_request_info():
+    log.debug('Headers: %s', request.headers)
+    log.debug('Body sent: %s', request.get_data())
+
+@app.after_request
+def after(response):
+  # todo with response
+  log.debug(response.status)
+  log.debug(response.headers)
+  log.debug('Body returned %s', response.get_data())
+  return response
+
+
+
 def configure_app(flask_app):
     #flask_app.config['SERVER_NAME'] = settings.FLASK_SERVER_NAME
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = settings.SQLALCHEMY_DATABASE_URI
