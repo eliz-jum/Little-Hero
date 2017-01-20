@@ -26,7 +26,7 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Opis</span>
-          <textarea id="edit-task-description" ng-value="description" type="text" >{{description}}</textarea>
+          <textarea onkeyup="resizeTextarea(this)" id="edit-task-description" ng-value="description" type="text" >{{description}}</textarea>
         </label>
 
         <label class="item item-input item-stacked-label">
