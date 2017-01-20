@@ -3,7 +3,7 @@ angular.module('littleHero').controller('SettingsController', function($rootScop
   $scope.buttons = [
     {
       title: "Dane konta",
-      state: "account",
+      state: "editAccount",
       click: function(state) {
         $state.go(state);
       }
