@@ -36,7 +36,7 @@ def after(response):
   log.debug('Response status: %s', response.status)
   log.debug('Response headers: %s', response.headers)
   if response.content_type != 'application/javascript' and response.content_type != 'text/css; charset=utf-8' and \
-      response.content_type != 'application/font-sfnt':
+      response.content_type != 'application/font-sfnt' and response.content_type != 'application/octet-stream':
     log.debug('Body returned %s', response.get_data())
   else:
     log.debug('No body returned. application/javascript content_type')
