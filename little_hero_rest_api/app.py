@@ -21,18 +21,25 @@ app = Flask(__name__)  # Create a Flask WSGI application
 logging.config.fileConfig('logging.conf')
 log = logging.getLogger(__name__)
 
+
 from flask import request
 @app.before_request
 def log_request_info():
+    log.debug('Path: %s %s', request.method, request.base_url)
     log.debug('Headers: %s', request.headers)
     log.debug('Body sent: %s', request.get_data())
 
 @app.after_request
 def after(response):
   # todo with response
-  log.debug(response.status)
-  log.debug(response.headers)
-  log.debug('Body returned %s', response.get_data())
+
+  log.debug('Response status: %s', response.status)
+  log.debug('Response headers: %s', response.headers)
+  if response.content_type != 'application/javascript' and response.content_type != 'text/css; charset=utf-8' and \
+      response.content_type != 'application/font-sfnt':
+    log.debug('Body returned %s', response.get_data())
+  else:
+    log.debug('No body returned. application/javascript content_type')
   return response
 
 
