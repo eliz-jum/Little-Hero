@@ -18,7 +18,6 @@ authorizations = {
     }
 }
 
-
 authorizations_header_desc = 'Expecting: hmac {posix_time}:{nonce}:{b64encoded_digest}'
 # api = Api(version='1.2', title='Little Hero API', , description='Little Hero API for Little Hero mobile application',
 #           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl')
@@ -38,13 +37,13 @@ error_fields = api.model('Errors fields', {
 @api.marshal_with(error_fields)
 def default_error_handler(e):
     """Raised when internal unhandled server error"""
-    message = 'An unhandled exception occurred.'
-    log.exception(message)
+    description = 'An unhandled exception occurred.'
+    log.exception(description)
 
     if not settings.FLASK_DEBUG:
         return {
-                   'code': 500,
-                   'message': message
+                   'message': 'Server error',
+                   'description': description
                }, 500
 
 
@@ -55,8 +54,8 @@ def database_not_found_error_handler(e):
     log.warning(traceback.format_exc())
     log.debug(e)
     return {
-               'code': 404,
-               'message': 'A database result was required but none was found.'
+               'message': 'Result not found',
+               'description': 'A database result was required but none was found.'
            }, 404
 
 
@@ -68,8 +67,8 @@ def integrity_error_handler(e):
     log.warning(traceback.format_exc())
     log.debug(__format_error_message(str(e.orig)))
     return {
-               'code': 400,
-               'message': __format_error_message(str(e.orig))
+               'message': 'Database integrity error',
+               'description': __format_error_message(str(e.orig))
            }, 400
 
 
@@ -79,7 +78,6 @@ def authorization_error_handler(e):
     """Raised when unauthorized access happened."""
     log.warning(traceback.format_exc())
     return {
-               'code': 401,
                'message': 'Unauthorized access!'
            }, 401
 
