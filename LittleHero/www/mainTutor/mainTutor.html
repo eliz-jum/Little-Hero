@@ -29,7 +29,12 @@
                 </ion-content>
             </ion-item>
       </ion-list>
-      <div class="empty-msg" ng-if="!children.length">Nie masz żadnych znajomych dzieci</div>
+      <div class="empty-msg-container">
+        <div class="empty-msg" ng-if="!children.length">Nie masz żadnych znajomych dzieci</div>
+        <button class="button button-balanced invite-child-button" ui-sref="invitationsTutor">
+          Zaproś kogoś!
+        </button>
+      </div>
     </ion-content>
   </ion-pane>
 </ion-view>
