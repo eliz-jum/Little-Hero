@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('editAccountController', function($scope, $state, $http, dataService, childService, ionicToast){
+angular.module('littleHero').controller('accountSettingsController', function($scope, $state, $http, dataService, childService, ionicToast){
 
   $scope.$on('$ionicView.beforeEnter', function(){
     $scope.tutor = childService.tutorObj;

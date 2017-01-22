@@ -105,10 +105,10 @@ angular.module('littleHero', ['ionic', 'ui.router', 'ionic-toast'])
                 templateUrl: 'avatars/avatars.html',
                 controller: 'AvatarsController'
             })
-            .state('editAccount', {
-            url: '/editAccount',
-            templateUrl: 'editAccount/editAccount.html',
-            controller: 'editAccountController'
+            .state('accountSettings', {
+            url: '/accountSettings',
+            templateUrl: 'accountSettings/accountSettings.html',
+            controller: 'accountSettingsController'
             }),
             $urlRouterProvider.otherwise('/login');
     });
