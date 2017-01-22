@@ -9,7 +9,6 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
     var children = [];
     var tutors = [];
-    var type = -1; //0 - child, 1 - tutor, -1 - account does not exist
     $scope.number = -1;
 
     $scope.$on('$ionicView.beforeEnter', function () {
@@ -25,12 +24,12 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
 
     $scope.validate = function() {
         setTimeout(function () {
-            if (type == 0) {
+            if (childService.isChild == 1) {
                 $scope.password = null;
                 $scope.login =  null;
                 $state.go("main");
             }
-            else if (type == 1) {
+            else if (childService.isChild == 0) {
                 $scope.password = null;
                 $scope.login =  null;
                 $state.go("mainTutor");
@@ -55,7 +54,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
             if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
                 childService.tutorObj = tutors[index];
                 childService.setTutorChildren();
-                type = 1;
+                childService.isChild = 0;
             }
         }
 
@@ -63,7 +62,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
             if (children[index].login == $scope.login && children[index].password == $scope.password) {
                 childService.childObj = children[index];
                 childService.setChildAvatarList();
-                type = 0;
+                childService.isChild = 1;
             }
         }
     };
