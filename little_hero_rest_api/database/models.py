@@ -2,9 +2,6 @@
 # http://flask-sqlalchemy.pocoo.org/2.1/quickstart/#simple-relationships
 from datetime import datetime
 from little_hero_rest_api.database import db
-from passlib.hash import pbkdf2_sha512
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
-from little_hero_rest_api import settings
 
 
 class BaseModel(db.Model):

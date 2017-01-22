@@ -4,9 +4,8 @@ from flask_restplus import Resource, Api
 app = Flask(__name__)  # Create a Flask WSGI application
 api = Api(app)  # Create a Flask-RESTPlus API
 
-
 @api.route('/hello')
-class HelloWorld(Resource):
+class LittleHero(Resource):
     def get(self):
         return {'hello': 'Hello Little Hero'}
 
