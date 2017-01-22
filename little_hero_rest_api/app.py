@@ -44,7 +44,6 @@ def after(response):
   return response
 
 
-
 def configure_app(flask_app):
     #flask_app.config['SERVER_NAME'] = settings.FLASK_SERVER_NAME
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = settings.SQLALCHEMY_DATABASE_URI
@@ -83,8 +82,8 @@ def main():
     #log.info('>>>>> Starting development server at http://{}/api/ <<<<<'.format(app.config['SERVER_NAME']))
     #if 'liveconsole' not in gethostname():
     #app.debug = settings.FLASK_DEBUG
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    #port = int(os.environ.get("PORT", 5000))
+    #app.run(host='0.0.0.0', port=port)
     app.run(debug=settings.FLASK_DEBUG)
 
 if __name__ == "__main__":
