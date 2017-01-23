@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+Flask-Mail
+flask-restplus
+Flask-SQLAlchemy
+SQLAlchemy
+Werkzeug
