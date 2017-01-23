@@ -174,7 +174,9 @@ angular.module('littleHero').service("dataService", function($http) {
             });
         },
 
-
+      patchChild: function (childId, changes) {
+        return $http.patch(BASE_PATH + "children/" + childId, changes);
+      },
 
 
 
@@ -202,6 +204,10 @@ angular.module('littleHero').service("dataService", function($http) {
                 return res;
             });
         },
+
+      patchTutor: function (tutorId, changes) {
+        return $http.patch(BASE_PATH + "tutors/" + tutorId, changes);
+      },
 
       //------------------------------------------------ITEM---------------------------------------
       getItems: function () {

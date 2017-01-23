@@ -3,7 +3,7 @@ angular.module('littleHero').controller('SettingsTutorController', function($sco
   $scope.buttons = [
     {
       title: "Dane konta",
-      state: "account"
+      state: "accountSettings"
     },
     {
       title: "Zaproszenia",
