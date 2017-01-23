@@ -51,7 +51,6 @@ def configure_app(flask_app):
     flask_app.config['SWAGGER_UI_DOC_EXPANSION'] = settings.RESTPLUS_SWAGGER_UI_DOC_EXPANSION
     flask_app.config['RESTPLUS_VALIDATE'] = settings.RESTPLUS_VALIDATE
     flask_app.config['RESTPLUS_MASK_SWAGGER'] = settings.RESTPLUS_MASK_SWAGGER
-    #flask_app.config['ERROR_404_HELP'] = settings.RESTPLUS_ERROR_404_HELP
     flask_app.config['SECRET_KEY'] = settings.SECRET_KEY
 
 
@@ -83,7 +82,7 @@ def main():
     #if 'liveconsole' not in gethostname():
     #app.debug = settings.FLASK_DEBUG
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=settings.FLASK_DEBUG)
+    app.run(host='0.0.0.0', port=port)
     #app.run(debug=settings.FLASK_DEBUG)
 
 if __name__ == "__main__":
