@@ -253,14 +253,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $interval(function () {
     dataService.getAvatarById(childService.currentAvatarId).then(function (res) {
       childService.currentAvatar = res.data;
-      if (childService.currentAvatar.update_task == true) {
+      if (childService.currentAvatar.update_notification == true) {
+        dataService.patchAvatar(childService.currentAvatarId, {update_notification: false});
         $scope.arrowLeft = true;
         setTimeout(function () {
           $scope.arrowLeft = false;
         }, 3000);
-
-        childService.currentAvatar.update_task = false;
         childService.setNotificationsArray();
+      }
+      //todo dodac flage update_stats
+      if (childService.currentAvatar.update_task == true) {
+        childService.currentAvatar.update_task = false;
         childService.setAvatarTasks();
         //todo if (change_level)  - flaga
         childService.setCanBePurchasedItems();

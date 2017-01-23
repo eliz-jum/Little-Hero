@@ -40,6 +40,9 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
               };
               dataService.patchTask(childService.currentTask.id, changes);
               childService.addNotification(childService.tutorObj.login + " dokonał zmian w wyzwaniu:  " + childService.currentTask.content);
+              dataService.patchAvatar(childService.currentAvatarId, {"update_notification": true});
+              //todo update_task: true ale tylko jeśli dodamy flagę update_stats
+              
               var index = childService.tasks.indexOf(childService.currentTask);
               childService.tasks[index].reward = money;
               childService.tasks[index].experience = experience;
@@ -84,21 +87,5 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
     });
   }
 
-})
-.directive('elastic', [
-  '$timeout',
-  function($timeout) {
-    return {
-      restrict: 'A',
-      link: function($scope, element) {
-        $scope.initialHeight = $scope.initialHeight || element[0].style.height;
-        var resize = function() {
-          element[0].style.height = $scope.initialHeight;
-          element[0].style.height = "" + element[0].scrollHeight + "px";
-        };
-        element.on("input change", resize);
-        $timeout(resize, 0);
-      }
-    };
-  }
-]);
+});
+
