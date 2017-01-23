@@ -65,7 +65,57 @@ angular.module('littleHero').controller('accountSettingsController', function($s
         $scope.errorMessage = "Niepoprawny mail.";
       }
     }
-    
+    else if (email && !oldPassword && !newPassword && !newPassword2) {
+      if (validateEmail($scope.email)){
+        changeAccountData(email, newPassword);
+        setTimeout(function () {
+          if (childService.isChild) {
+            $state.go("main");
+          }
+          else {
+            $state.go("mainTutor");
+          }
+          showToast("Dane zostały zmienione");
+        }, 500);
+
+      }
+      else {
+        $scope.invalid = true;
+        $scope.errorMessage = "Niepoprawny mail.";
+      }
+
+    }
+    else if (!email && oldPassword && newPassword && newPassword2) {
+      if ((childService.isChild && oldPassword == childService.childObj.password) ||
+        (!childService.isChild && oldPassword == childService.tutorObj.password)) {
+        if (newPassword.length > 11) {
+          if (newPassword == newPassword2) {
+            changeAccountData("",newPassword);
+            setTimeout(function () {
+              if (childService.isChild) {
+                $state.go("main");
+              }
+              else {
+                $state.go("mainTutor");
+              }
+              showToast("Dane zostały zmienione");
+            }, 500);
+          }
+          else {
+            $scope.invalid = true;
+            $scope.errorMessage = "Nowe hasła nie są zgodne.";
+          }
+        }
+        else {
+          $scope.invalid = true;
+          $scope.errorMessage = "Hasło musi mieć minimum 12 znaków.";
+        }
+      }
+      else {
+        $scope.invalid = true;
+        $scope.errorMessage = "Niepoprawne stare hasło.";
+      }
+    }
 
     else {
       $scope.invalid = true;
@@ -86,11 +136,23 @@ angular.module('littleHero').controller('accountSettingsController', function($s
   var changeAccountData = function (email, password) {
     console.log(email);
     console.log(password);
+    if (!email) {
+      var changes = {
+        password: password
+      };
+    }
+    else if (!password) {
+      var changes = {
+        mail: email,
+      };
+    }
+    else {
+      var changes = {
+        mail: email,
+        password: password
+      };
+    }
 
-    var changes = {
-      mail: email,
-      password: password
-    };
     if (childService.isChild) {
       dataService.patchChild(childService.childObj.id, changes);
     }
