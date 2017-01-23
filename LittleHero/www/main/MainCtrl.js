@@ -5,6 +5,8 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.showAvatar = false;
 
   $scope.$on('$ionicView.beforeEnter', function () {
+    $scope.arrowLeft = true;
+    $scope.exclamationSettings = true;
     $scope.showAvatar = false;
     cleanAvatarArrays();
 
