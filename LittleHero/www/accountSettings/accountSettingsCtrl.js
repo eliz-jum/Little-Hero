@@ -24,11 +24,11 @@ angular.module('littleHero').controller('accountSettingsController', function($s
 
   $scope.validate = function() {
     var email = document.getElementById("account-settings-email").value;
-    var oldPassword = parseInt(document.getElementById("account-settings-old-password").value);
-    var newPassword = parseInt(document.getElementById("account-settings-new-password").value);
-    var newPassword2 = parseInt(document.getElementById("account-settings-new-password2").value);
+    var oldPassword = document.getElementById("account-settings-old-password").value;
+    var newPassword = document.getElementById("account-settings-new-password").value;
+    var newPassword2 = document.getElementById("account-settings-new-password2").value;
 
-    if ($scope.email && $scope.password) {
+    if (email && oldPassword && newPassword && newPassword2) {
       if (validateEmail($scope.email)){
         if ((childService.isChild && oldPassword == childService.childObj.password) ||
           (!childService.isChild && oldPassword == childService.tutorObj.password)) {
@@ -65,10 +65,17 @@ angular.module('littleHero').controller('accountSettingsController', function($s
         $scope.errorMessage = "Niepoprawny mail.";
       }
     }
+    
+
     else {
       $scope.invalid = true;
       $scope.errorMessage = "Niepoprawne dane.";
     }
+
+
+
+
+
   };
 
   function validateEmail(email) {
