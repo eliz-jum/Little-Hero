@@ -5,7 +5,7 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.showAvatar = false;
 
   $scope.$on('$ionicView.beforeEnter', function () {
-    $scope.arrowLeft = true;
+    $scope.arrowLeft = false;
     $scope.exclamationSettings = true;
     $scope.showAvatar = false;
     cleanAvatarArrays();
@@ -254,6 +254,11 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     dataService.getAvatarById(childService.currentAvatarId).then(function (res) {
       childService.currentAvatar = res.data;
       if (childService.currentAvatar.update_task == true) {
+        $scope.arrowLeft = true;
+        setTimeout(function () {
+          $scope.arrowLeft = false;
+        }, 3000);
+
         childService.currentAvatar.update_task = false;
         childService.setNotificationsArray();
         childService.setAvatarTasks();
