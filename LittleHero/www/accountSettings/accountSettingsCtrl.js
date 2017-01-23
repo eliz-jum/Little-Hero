@@ -26,22 +26,29 @@ angular.module('littleHero').controller('accountSettingsController', function($s
     var email = document.getElementById("account-settings-email").value;
     var oldPassword = parseInt(document.getElementById("account-settings-old-password").value);
     var newPassword = parseInt(document.getElementById("account-settings-new-password").value);
+    var newPassword2 = parseInt(document.getElementById("account-settings-new-password2").value);
 
     if ($scope.email && $scope.password) {
       if (validateEmail($scope.email)){
         if ((childService.isChild && oldPassword == childService.childObj.password) ||
           (!childService.isChild && oldPassword == childService.tutorObj.password)) {
           if (newPassword.length > 11) {
-            changeAccountData(email, newPassword);
-            setTimeout(function () {
-              if (childService.isChild) {
-                $state.go("main");
-              }
-              else {
-                $state.go("mainTutor");
-              }
-              showToast("Dane zostały zmienione");
-            }, 500);
+            if (newPassword == newPassword2) {
+              changeAccountData(email, newPassword);
+              setTimeout(function () {
+                if (childService.isChild) {
+                  $state.go("main");
+                }
+                else {
+                  $state.go("mainTutor");
+                }
+                showToast("Dane zostały zmienione");
+              }, 500);
+            }
+            else {
+              $scope.invalid = true;
+              $scope.errorMessage = "Nowe hasła nie są zgodne.";
+            }
           }
           else {
             $scope.invalid = true;
