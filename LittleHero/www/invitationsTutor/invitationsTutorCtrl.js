@@ -86,9 +86,9 @@ angular.module('littleHero').controller('InvitationsTutorController', function (
 
     $scope.sendInvite = function (child) {
         dataService.postInvites('tutors', childService.tutorObj.id, {child_id: child.id, kind: "tutor"}).then(function(res) {
-            $scope.invites.push(res);
-            $scope.closeModal();
-            $scope.showToast("Zaproszenie wysłane");
+          $scope.invites.push(res);
+          $scope.closeModal();
+          $scope.showToast("Zaproszenie wysłane");
         });
     };
 
