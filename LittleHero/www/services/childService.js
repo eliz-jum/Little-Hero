@@ -1,6 +1,8 @@
 angular.module('littleHero').factory('childService',function($state, dataService){
   var childService = {};
 
+  childService.isChild = -1;//flaga kto jest zalogowany - dziecko czy tutor
+  
   childService.tutorObj = {};
 
   childService.childObj = {};

@@ -1,0 +1,60 @@
+<ion-view ng-app="littleHero" class="edit-Account">
+  <ion-pane class="background">
+
+    <div class="bar bar-header orange">
+      <a class="button button-icon icon ion-android-arrow-back" ng-click="back()"></a>
+      <div class="row row-center orange">
+      </div>
+    </div>
+
+    <ion-content class="background has-header">
+
+      <div class="title">
+        <h2>Edytuj konto</h2>
+      </div>
+
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Stary E-mail</span><br />
+          <span class="input-label">{{email}}</span>
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nowy E-mail</span>
+          <input id="account-settings-email" type="text">
+        </label>
+
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label"></span>
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Stare hasło</span>
+          <input id="account-settings-old-password" type="password" ng-model="oldPassword">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nowe hasło</span>
+          <input id="account-settings-new-password" type="password" ng-model="newPassword">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Powtórz nowe hasło</span>
+          <input id="account-settings-new-password2" type="password" ng-model="newPassword2">
+        </label>
+      </div>
+
+      <div class='accept-button-container'>
+        <button class="button button-block orange accept-button" ng-click="validate()">
+          Zapisz zmiany
+        </button>
+      </div>
+
+      <div ng-show="invalid">
+        {{errorMessage}}
+      </div>
+
+    </ion-content>
+  </ion-pane>
+</ion-view>
