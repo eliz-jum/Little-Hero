@@ -7,17 +7,18 @@
 aniso8601==1.2.0          # via flask-restplus
 blinker==1.4              # via flask-mail
 click==6.7                # via flask
-Flask-Cors==3.0.2
-Flask-Mail==0.9.1
+flask-cors==3.0.2
+flask-mail==0.9.1
 flask-restplus==0.9.2
-Flask-SQLAlchemy==2.1
-Flask==0.12               # via flask-cors, flask-mail, flask-restplus, flask-sqlalchemy
+flask-sqlalchemy==2.1
+flask==0.12
 itsdangerous==0.24        # via flask
-Jinja2==2.9.4             # via flask
+jinja2==2.9.4             # via flask
 jsonschema==2.5.1         # via flask-restplus
-MarkupSafe==0.23          # via jinja2
+markupsafe==0.23          # via jinja2
+psycopg2==2.6.2
 python-dateutil==2.6.0    # via aniso8601
 pytz==2016.10             # via flask-restplus
-Six==1.10.0               # via flask-cors, flask-restplus, python-dateutil
-SQLAlchemy==1.1.5         # via flask-sqlalchemy
-Werkzeug==0.11.15         # via flask
+six==1.10.0               # via flask-cors, flask-restplus, python-dateutil
+sqlalchemy==1.1.5
+werkzeug==0.11.15
