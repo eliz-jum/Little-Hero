@@ -1,5 +1,5 @@
 
-//ostatni obiekt id: 155
+//ostatni obiekt id: 179
 
 
 [
@@ -513,6 +513,42 @@
     "level": 2,
     "price": 15
   },
+  {
+    "id": 172,
+    "type": "top",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top1_icon.svg",
+    "imgSrc": "img/cowboy/top1.svg",
+    "level": 1,
+    "price": 15
+  },
+  {
+    "id": 173,
+    "type": "top",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top2_icon.svg",
+    "imgSrc": "img/cowboy/top2.svg",
+    "level": 1,
+    "price": 15
+  },
+  {
+    "id": 174,
+    "type": "top",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top3_icon.svg",
+    "imgSrc": "img/cowboy/top3.svg",
+    "level": 1,
+    "price": 15
+  },
+  {
+    "id": 175,
+    "type": "top",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top3_icon.svg",
+    "imgSrc": "img/cowboy/top3.svg",
+    "level": 1,
+    "price": 15
+  },
 
 
 
@@ -615,6 +651,24 @@
     "imgSrc": "img/mage/pants11.svg",
     "level": 3,
     "price": 15
+  },
+  {
+    "id": 158,
+    "type": "bottom",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/pants1_icon.svg",
+    "imgSrc": "img/cowboy/pants1.svg",
+    "level": 3,
+    "price": 25
+  },
+  {
+    "id": 159,
+    "type": "bottom",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/pants2_icon.svg",
+    "imgSrc": "img/cowboy/pants2.svg",
+    "level": 4,
+    "price": 25
   },
 
 
@@ -748,6 +802,42 @@
     "level": 2,
     "price": 28
   },
+  {
+    "id": 176,
+    "type": "top_bottom",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top_bottom1_icon.svg",
+    "imgSrc": "img/cowboy/top_bottom1.svg",
+    "level": 5,
+    "price": 50
+  },
+  {
+    "id": 177,
+    "type": "top_bottom",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top_bottom2_icon.svg",
+    "imgSrc": "img/cowboy/top_bottom2.svg",
+    "level": 5,
+    "price": 50
+  },
+  {
+    "id": 178,
+    "type": "top_bottom",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top_bottom3_icon.svg",
+    "imgSrc": "img/cowboy/top_bottom3.svg",
+    "level": 2,
+    "price": 30
+  },
+  {
+    "id": 179,
+    "type": "top_bottom",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top_bottom4_icon.svg",
+    "imgSrc": "img/cowboy/top_bottom4.svg",
+    "level": 2,
+    "price": 30
+  },
 
 
 
@@ -787,6 +877,24 @@
     "imgSrc": "img/hat3.svg",
     "level": 2,
     "price": 33
+  },
+  {
+    "id": 156,
+    "type": "misc_head",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/hat1_icon.svg",
+    "imgSrc": "img/cowboy/hat1.svg",
+    "level": 2,
+    "price": 20
+  },
+  {
+    "id": 157,
+    "type": "misc_head",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/hat2_icon.svg",
+    "imgSrc": "img/cowboy/hat2.svg",
+    "level": 3,
+    "price": 23
   },
   {
     "id": 106,
@@ -1274,6 +1382,15 @@
     "level": 3,
     "price": 30
   },
+  {
+    "id": 170,
+    "type": "prop_right",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/prop1_right_icon.svg",
+    "imgSrc": "img/cowboy/prop1_right.svg",
+    "level": 4,
+    "price": 30
+  },
 
 
 
@@ -1470,6 +1587,15 @@
     "imgSrc": "img/mage/shoes9.svg",
     "level": 3,
     "price": 23
+  },
+  {
+    "id": 171,
+    "type": "shoes",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/shoes1_icon.svg",
+    "imgSrc": "img/cowboy/shoes1.svg",
+    "level": 1,
+    "price": 10
   }
 
 
