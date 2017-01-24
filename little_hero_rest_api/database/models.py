@@ -8,7 +8,7 @@ class BaseModel(db.Model):
     __abstract__ = True  # sqlAlchemy will not create table for this model
     id = db.Column(db.Integer, primary_key=True)
     creationDate = db.Column(db.DateTime)  # todo: add creation date
-    #todo: rename to creation_date
+    # todo: rename to creation_date
 
 
 class Child(BaseModel):
@@ -97,6 +97,7 @@ class Item(BaseModel):
     imgSrc = db.Column(db.String(50))
     iconSrc = db.Column(db.String(50))
     db.UniqueConstraint('imgSrc', 'iconSrc', 'type')
+
     # itemOfAvatars = db.relationship('AvatarItem', back_populates='item', lazy='dynamic')
 
     def __init__(self, price, level, clazz, type, imgSrc, iconSrc):

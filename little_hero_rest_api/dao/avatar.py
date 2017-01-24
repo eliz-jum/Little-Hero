@@ -47,47 +47,9 @@ class AvatarDAO(GenericDAO):
         return avatar
 
     def update(self, id, data):
-        name = data.get('name')
-
-        clazz = data.get('clazz')
-        update_task = data.get('update_task')
-        update_invitation = data.get('update_invitation')
-        update_notification = data.get('update_notification')
-        child_id = data.get('child_id')
-        tutor_id = data.get('tutor_id')
-        level = data.get('level')
-        money = data.get('money')
-        health = data.get('health')
-        experience = data.get('experience')
-
-        avatar = Avatar.query.filter_by(id=id).one()
-
-        if clazz:
-            avatar.clazz = clazz
-        if isinstance(update_task, bool):
-            avatar.update_task = update_task
-        if isinstance(update_invitation, bool):
-            avatar.update_invitation = update_invitation
-        if isinstance(update_notification, bool):
-            avatar.update_notification = update_notification
-
-        if name:
-            avatar.name = name
-
-        if isinstance(child_id, int):
-            child = self.child_dao.get(child_id)
-            avatar.child = child
-        if isinstance(tutor_id, int):
-            tutor = self.tutor_dao.get(tutor_id)
-            avatar.tutor = tutor
-        if isinstance(level, int):
-            avatar.level = level
-        if isinstance(money, int):
-            avatar.money = money
-        if isinstance(health, int):
-            avatar.health = health
-        if isinstance(experience, int):
-            avatar.experience = experience
+        query = Avatar.query.filter_by(id=id)
+        query.update(data)
+        avatar = query.one()
 
         db.session.commit()
 

@@ -4,5 +4,4 @@ Flask-Mail
 flask-restplus
 Flask-SQLAlchemy
 SQLAlchemy
-Werkzeug
 psycopg2

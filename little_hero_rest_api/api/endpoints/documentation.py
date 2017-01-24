@@ -12,5 +12,6 @@ ns = api.namespace('v1/documentation', description='Endpoint for getting documen
 @ns.route('/')
 class Documentation(Resource):
     """Alternative way to get swagger.json Api documentation"""
+    #todo: export postman doc
     def get(self):
         return json.loads(json.dumps(api.__schema__))
