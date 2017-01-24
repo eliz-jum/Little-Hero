@@ -46,14 +46,14 @@ class AvatarDAO(GenericDAO):
         db.session.commit()
         return avatar
 
-    def update(self, id, data):
-        query = Avatar.query.filter_by(id=id)
-        query.update(data)
-        avatar = query.one()
-
-        db.session.commit()
-
-        return avatar
+    # def update(self, id, data):
+    #     query = Avatar.query.filter_by(id=id)
+    #     query.update(data)
+    #     avatar = query.one()
+    #
+    #     db.session.commit()
+    #
+    #     return avatar
 
     def get_all_items(self, avatar_id, state):
         query = db.session.query(Item, AvatarItem) \
