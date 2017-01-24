@@ -3,7 +3,7 @@ angular.module('littleHero').controller('SettingsTutorController', function($sco
   $scope.buttons = [
     {
       title: "Dane konta",
-      state: "account"
+      state: "accountSettings"
     },
     {
       title: "Zaproszenia",
@@ -20,13 +20,13 @@ angular.module('littleHero').controller('SettingsTutorController', function($sco
     }
 
   $scope.myGoBack = function() {
-    $backView = $ionicHistory.backView();
-    if ($backView) {
-      $backView.go();
-    }
-    else {
+    // $backView = $ionicHistory.backView();
+    // if ($backView) {
+    //   $backView.go();
+    // }
+    //else {
       $state.go("mainTutor");
-    };
+    //};
   };
   $scope.go = function ( path ) {
     $location.path( path );

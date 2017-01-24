@@ -65,7 +65,9 @@ angular.module('littleHero').controller('TaskCreatorController', function($scope
       childService.tasks.push(task);
     });
     childService.addNotification(childService.tutorObj.login + " dał ci nowe wyzwanie!   " + newTask.content);
-
+    dataService.patchAvatar(childService.currentAvatarId, {"update_notification": true});
+    //todo update_task: true ale tylko jeśli dodamy flagę update_stats
+    
     $state.go("tutorTasks");
 
   }

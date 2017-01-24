@@ -14,6 +14,10 @@ angular.module('littleHero').controller('AvatarsController', function($scope, $s
     $scope.user = childService.childObj;
     $scope.avatars = childService.avatarList;
 
+  $scope.back = function () {
+    $state.go('settings');
+  }
+
     $scope.edit = function (avatar) {
         $scope.editedAvatar = avatar;
         $scope.openModal("edit");
