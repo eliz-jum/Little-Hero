@@ -18,7 +18,6 @@ class GenericDAO(object):
         query = self.db_model.query.filter_by(id=id)
         query.update(data)
         entity = query.one()
-
         db.session.commit()
         return entity
 

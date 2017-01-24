@@ -60,12 +60,17 @@ class AvatarsCollection(Resource):
 @ns.param('id', 'The avatar identifier')
 class Avatar(Resource):
     """Show a single avatar entity and lets you delete and update it"""
+
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.marshal_with(avatar_full)
     def get(self, id):
         """Returns avatar"""
         avatar = avatar_dao.get(id)
         return avatar
 
+    @hmac_auth.protected
+    @api.header('Authorization', authorizations_header_desc)
     @ns.response(204, 'Avatar deleted')
     def delete(self, id):
         """Delete a avatar given its identifier"""
