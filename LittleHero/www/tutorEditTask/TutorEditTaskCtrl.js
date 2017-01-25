@@ -84,6 +84,7 @@ angular.module('littleHero').controller('TutorEditTaskController',
       var index = childService.tasks.indexOf(childService.currentTask);
       childService.tasks.splice(index, 1);
       $state.go("tutorTasks");
+      $scope.closeModal();
       ionicToast.show("Zadanie usunięte", 'bottom', false, 2500);
     });
   }
