@@ -2,7 +2,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   var childService = {};
 
   childService.isChild = -1;//flaga kto jest zalogowany - dziecko czy tutor
-  
+
   childService.tutorObj = {};
 
   childService.childObj = {};
@@ -22,7 +22,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.tasks = [];
   childService.currentTask = {};
   childService.notifications = [];
-  
+
 
 
 //todo za kazdym raze trzeba ise logowac? zapamietujey gdzies child i urzadzenie??
@@ -347,8 +347,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
     dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
   }
 
-
-
   childService.failTask = function (task) {
     var index = childService.tasks.indexOf(task);
     childService.tasks.splice(index, 1);
@@ -367,9 +365,22 @@ angular.module('littleHero').factory('childService',function($state, dataService
     dataService.patchAvatar(childService.currentAvatarId, childService.currentAvatar);
   }
 
-
-
-
+  childService.clearAllData = function() {
+    childService.isChild = -1;//flaga kto jest zalogowany - dziecko czy tutor
+    childService.tutorObj = {};
+    childService.childObj = {};
+    childService.tutorChildren = [];
+    childService.avatarList = [];
+    childService.currentAvatar = {};
+    childService.currentAvatarId = -1;
+    childService.wornItems = [];
+    childService.canBePutOnItems = [];
+    childService.canBePurchasedItems = [];
+    childService.unavailableItems = [];
+    childService.tasks = [];
+    childService.currentTask = {};
+    childService.notifications = [];
+  };
 
   return childService;
 

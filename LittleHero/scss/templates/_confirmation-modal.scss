@@ -1,0 +1,17 @@
+.confirmation-modal.modal {
+  background: rgba(0,0,0,0.4);
+
+  .modal-content {
+    position: absolute;
+    background: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 10vw;
+    min-height: 100px;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 4px;
+  }
+}

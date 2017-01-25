@@ -1,4 +1,5 @@
-angular.module('littleHero').controller('TutorEditTaskController', function($scope, $state, $http, dataService, childService, ionicToast){
+angular.module('littleHero').controller('TutorEditTaskController',
+  function($scope, $state, $http, dataService, childService, ionicToast, $ionicModal){
 
   $scope.$on('$ionicView.beforeEnter', function(){
     $scope.tutor = childService.tutorObj;
@@ -42,7 +43,7 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
               childService.addNotification(childService.tutorObj.login + " dokonał zmian w wyzwaniu:  " + childService.currentTask.content);
               dataService.patchAvatar(childService.currentAvatarId, {"update_notification": true});
               //todo update_task: true ale tylko jeśli dodamy flagę update_stats
-              
+
               var index = childService.tasks.indexOf(childService.currentTask);
               childService.tasks[index].reward = money;
               childService.tasks[index].experience = experience;
@@ -83,9 +84,24 @@ angular.module('littleHero').controller('TutorEditTaskController', function($sco
       var index = childService.tasks.indexOf(childService.currentTask);
       childService.tasks.splice(index, 1);
       $state.go("tutorTasks");
+      $scope.closeModal();
       ionicToast.show("Zadanie usunięte", 'bottom', false, 2500);
     });
   }
+
+    $ionicModal.fromTemplateUrl('tutorEditTask/confirmationModal.html', {
+      scope: $scope
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
+
+    $scope.openModal = function () {
+      $scope.modal.show();
+    };
+
+    $scope.closeModal = function () {
+      $scope.modal.hide();
+    };
 
 });
 
