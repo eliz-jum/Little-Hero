@@ -14,10 +14,12 @@ from little_hero_rest_api.api.endpoints.avatar_item import ns as avatar_item_nam
 from little_hero_rest_api.api.endpoints.documentation import ns as documentation_namespace
 from little_hero_rest_api.api.restplus import api
 from little_hero_rest_api.database import db
-#from little_hero_rest_api.database.models import Task
 from flask_cors import CORS
+from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)  # Create a Flask WSGI application
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
 logging.config.fileConfig('logging.conf')
 log = logging.getLogger(__name__)
 
@@ -61,7 +63,7 @@ def initialize_app(flask_app):
     CORS(blueprint)
     api.init_app(blueprint)
     api.add_namespace(child_namespace)
-    api.add_namespace(avatar_namespace)
+    api.addg_namespace(avatar_namespace)
     api.add_namespace(tutor_namespace)
     api.add_namespace(item_namespace)
     api.add_namespace(task_namespace)
