@@ -16,7 +16,7 @@ SQLALCHEMY_DATABASE_URI = 'postgres://quwrbyzkcxxzwa:cueQfkHYBKCJTrOiwoDnfZkO1E@
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # SECURITY
-SECRET_KEY = 'dev'
+SECRET_KEY = '73fbcfe785ec0daf567fd364a09d91e6'
 
 # MAIL
 
