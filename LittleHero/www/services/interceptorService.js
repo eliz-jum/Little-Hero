@@ -1,4 +1,4 @@
-var secretKey = '6D11B3574B11F'
+var secretKey = '6D11B357'
 
 angular.module('littleHero').factory('httpRequestInterceptor', function () {
   return {
@@ -9,7 +9,7 @@ angular.module('littleHero').factory('httpRequestInterceptor', function () {
         var timestamp = Date.now().toString();
         var nonce = Math.random().toString();
         var message = method + '+' + url + '+' + timestamp + '+' + nonce
-        var signature = CryptoJS.HmacSHA1(message, CryptoJS.MD5(secretKey).toString()).toString(CryptoJS.enc.Base64);
+        var signature = CryptoJS.HmacSHA1(message, CryptoJS.MD5(secretKey).toString().substring(24)).toString(CryptoJS.enc.Base64);
         config.headers['Authorization'] = 'hmac ' + timestamp + ':' + nonce + ':' + signature;
         console.log(method + '\n' + url + '\n' + config.headers['Authorization'])
       }
