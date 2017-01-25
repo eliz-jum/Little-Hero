@@ -9,11 +9,11 @@
       <div class="equipment-item canBePutOn" ng-repeat="item in filteredCanBePutOnEquipment track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
       </div>
-      <div class="equipment-item canBePurchased" ng-repeat="item in filteredCanBePurchasedEquipment track by $index">
+      <div class="equipment-item canBePurchased" ng-repeat="item in filteredCanBePurchasedEquipment | orderBy: ['level','price'] track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="buy(item)"/>
         <div class="price-tag"><i class="icon icon ion-cash"></i> {{item.price}}</div>
       </div>
-      <div class="equipment-item unavailable" ng-repeat="item in filteredUnavailableEquipment track by $index">
+      <div class="equipment-item unavailable" ng-repeat="item in filteredUnavailableEquipment | orderBy: ['level','price'] track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="showToast('Jeszcze nie masz tego poziomu!')"/>
         <div class="lvl-tag"><i class="icon icon ion-flash"></i> {{item.level}}</div>
         <div class="price-tag"><i class="icon icon ion-cash"></i> {{item.price}}</div>
