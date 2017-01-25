@@ -12,13 +12,13 @@ from little_hero_rest_api.api.endpoints.item import ns as item_namespace
 from little_hero_rest_api.api.endpoints.task import ns as task_namespace
 from little_hero_rest_api.api.endpoints.avatar_item import ns as avatar_item_namespace
 from little_hero_rest_api.api.endpoints.documentation import ns as documentation_namespace
-from little_hero_rest_api.api.restplus import api
+from little_hero_rest_api.api.restplus import api, mail
 from little_hero_rest_api.database import db
 from flask_cors import CORS
-from werkzeug.contrib.fixers import ProxyFix
+#from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)  # Create a Flask WSGI application
-app.wsgi_app = ProxyFix(app.wsgi_app)
+#
 
 logging.config.fileConfig('logging.conf')
 log = logging.getLogger(__name__)
@@ -54,10 +54,17 @@ def configure_app(flask_app):
     flask_app.config['RESTPLUS_VALIDATE'] = settings.RESTPLUS_VALIDATE
     flask_app.config['RESTPLUS_MASK_SWAGGER'] = settings.RESTPLUS_MASK_SWAGGER
     flask_app.config['SECRET_KEY'] = settings.SECRET_KEY
+    flask_app.config['MAIL_SERVER'] = settings.MAIL_SERVER
+    flask_app.config['MAIL_PORT'] = settings.MAIL_PORT
+    flask_app.config['MAIL_USERNAME'] = settings.MAIL_USERNAME
+    flask_app.config['MAIL_PASSWORD'] = settings.MAIL_PASSWORD
+    flask_app.config['MAIL_USE_TLS'] = settings.MAIL_USE_TLS
+    flask_app.config['MAIL_USE_SSL'] = settings.MAIL_USE_SSL
 
 
 def initialize_app(flask_app):
     configure_app(flask_app)
+    mail.init_app(flask_app)
 
     blueprint = Blueprint('api', __name__, url_prefix='/api')
     CORS(blueprint)

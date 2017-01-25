@@ -7,6 +7,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
 from flask_restplus import fields
 from werkzeug.exceptions import Unauthorized
+from flask_mail import Mail
 
 log = logging.getLogger(__name__)
 
@@ -25,6 +26,8 @@ api = Api(version='1.2', title='Little Hero API', description='API for Little He
           contact='Dawid Jurkiewicz', contact_email='dawjur@st.amu.edu.pl',
           contact_url='jurkiewicz.dawid@mylittlehero.eu', authorizations=authorizations,
           security='HMAC')
+
+mail = Mail()
 
 # todo: move to serializers
 error_fields = api.model('Errors fields', {

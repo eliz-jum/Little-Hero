@@ -9,7 +9,8 @@ from little_hero_rest_api.dao.invitation import InvitationDAO
 from little_hero_rest_api.api.serializers import (child_for_post, child_full, child_for_patch, invitation_full,
                                                   child_invitation_for_post, invitation_for_patch, tutor_full)
 from little_hero_rest_api.security.hmac_auth import HMACAuth
-from little_hero_rest_api.api.restplus import authorizations_header_desc
+from little_hero_rest_api.api.restplus import authorizations_header_desc, mail
+from flask_mail import Message
 
 log = logging.getLogger(__name__)
 
@@ -42,7 +43,13 @@ class ChildrenCollection(Resource):
     def post(self):
         """Create child"""
         data = request.json
-        return child_dao.create(data), 201
+        child = child_dao.create(data)
+        msg = Message('Welcome to Little Hero ' + child.nickname +'!',
+                      sender='registration@mylittlehero.eu', recipients=[child.mail])
+        msg.body = 'Welcome to Little Hero! \n\n You have successfully registered \n ' \
+                   'Your login is: ' + child.login + '.'
+        mail.send(msg)
+        return child, 201
 
 
 @ns.route('/<int:id>')
@@ -52,6 +59,7 @@ class ChildrenCollection(Resource):
 @ns.param('id', 'The child identifier')
 class Child(Resource):
     """Show a single child entity and lets you delete and update it"""
+
     @hmac_auth.protected
     @api.header('Authorization', authorizations_header_desc)
     @ns.marshal_with(child_full)

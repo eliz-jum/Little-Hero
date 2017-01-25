@@ -13,7 +13,8 @@ from little_hero_rest_api.api.serializers import tutor_invitation_for_post
 from little_hero_rest_api.dao.tutor import TutorDAO
 from little_hero_rest_api.dao.invitation import InvitationDAO
 from little_hero_rest_api.security.hmac_auth import HMACAuth
-from little_hero_rest_api.api.restplus import authorizations_header_desc
+from little_hero_rest_api.api.restplus import authorizations_header_desc, mail
+from flask_mail import Message
 
 log = logging.getLogger(__name__)
 
@@ -45,7 +46,15 @@ class TutorsCollection(Resource):
     def post(self):
         """Create tutor"""
         data = request.json
-        return tutor_dao.create(data), 201
+
+        tutor = tutor_dao.create(data)
+        msg = Message('Welcome to Little Hero ' + tutor.login + '!',
+                      sender='registration@mylittlehero.eu', recipients=[tutor.mail])
+        msg.body = 'Welcome to Little Hero! \n\n You have successfully registered. \n ' \
+                   'You are a tutor. \n Your login is: ' + tutor.login + '.'
+        mail.send(msg)
+
+        return tutor, 201
 
 
 @ns.route('/<int:id>')
