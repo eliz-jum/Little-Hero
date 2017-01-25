@@ -25,6 +25,7 @@ log = logging.getLogger(__name__)
 
 
 from flask import request
+
 @app.before_request
 def log_request_info():
     log.debug('Path: %s %s', request.method, request.base_url)
@@ -91,7 +92,7 @@ def main():
     #if 'liveconsole' not in gethostname():
     #app.debug = settings.FLASK_DEBUG
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=settings.FLASK_DEBUG)
     #app.run(debug=settings.FLASK_DEBUG)
 
 if __name__ == "__main__":
