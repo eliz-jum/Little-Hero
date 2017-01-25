@@ -33,6 +33,13 @@
   }
 }
 
-.task-creator-page .item-input {
-  border: 0;
+.edit-task,
+.edit-account,
+.new-avatar-modal,
+.request-avatar-modal,
+.edit-avatar-modal,
+.task-creator-page {
+  .item-stacked-label {
+    border: 0;
+  }
 }
