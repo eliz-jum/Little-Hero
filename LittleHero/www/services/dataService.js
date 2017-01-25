@@ -1,6 +1,6 @@
 angular.module('littleHero').service("dataService", function($http) {
 
-    var BASE_PATH = "http://little-hero.herokuapp.com/api/v1/";
+    var BASE_PATH = "https://mylittlehero.eu/api/v1/";
 
 
     return {
