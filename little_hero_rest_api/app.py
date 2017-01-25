@@ -29,7 +29,7 @@ from flask import request
 @app.before_request
 def log_request_info():
     log.debug('Path: %s %s', request.method, request.base_url)
-    log.debug('Headers: %s', request.headers)
+    log.debug('Headers sent: %s', request.headers)
     log.debug('Body sent: %s', request.get_data())
 
 @app.after_request
@@ -37,7 +37,6 @@ def after(response):
   # todo with response
 
   log.debug('Response status: %s', response.status)
-  log.debug('Response headers: %s', response.headers)
   if response.content_type != 'application/javascript' and response.content_type != 'text/css; charset=utf-8' and \
       response.content_type != 'application/font-sfnt' and response.content_type != 'application/octet-stream'\
           and response.content_type != 'image/gif':
