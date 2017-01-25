@@ -6,7 +6,7 @@
 
   <ion-content>
     <div class="equipment">
-      <div class="equipment-item canBePutOn" ng-repeat="item in filteredCanBePutOnEquipment track by $index">
+      <div class="equipment-item canBePutOn" ng-repeat="item in filteredCanBePutOnEquipment | orderBy:'clazz':true:emptyFirst track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
       </div>
       <div class="equipment-item canBePurchased" ng-repeat="item in filteredCanBePurchasedEquipment | orderBy: ['level','price'] track by $index">
