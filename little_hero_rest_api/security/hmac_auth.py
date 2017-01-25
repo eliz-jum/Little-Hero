@@ -17,8 +17,12 @@ import base64
 from werkzeug.exceptions import Unauthorized
 import time
 from little_hero_rest_api.settings import ENABLE_AUTHORIZATION
+import logging.config
 
 __version__ = '1.0'
+
+logging.config.fileConfig('logging.conf')
+log = logging.getLogger(__name__)
 
 
 class HMACAuth(object):
@@ -26,15 +30,18 @@ class HMACAuth(object):
         @wraps(f)
         def wrapper(*args, **kwargs):
             # todo: regex checking if authorization header is ok
-            if ENABLE_AUTHORIZATION:
-                posix_time, nonce, digest = request.headers['Authorization'].split()[1].split(':', 2)
-                method = request.method
-                path = request.path
-                message = (method + '+' + path + '+' + posix_time + '+' + nonce).encode('utf-8')
-                secret_key = settings.SECRET_KEY.encode('utf-8')
-                server_digest = hmac.new(secret_key, message, hashlib.sha1).digest()
-                encoded_server_digest = base64.b64encode(server_digest).decode('utf-8')
+            posix_time, nonce, digest = request.headers['Authorization'].split()[1].split(':', 2)
+            method = request.method
+            path = request.url
+            message = (method + '+' + path + '+' + posix_time + '+' + nonce).encode('utf-8')
+            secret_key = settings.SECRET_KEY.encode('utf-8')
+            server_digest = hmac.new(secret_key, message, hashlib.sha1).digest()
+            encoded_server_digest = base64.b64encode(server_digest).decode('utf-8')
 
+            log.debug('\nclient digest: ' + digest + '\n'
+                      + 'Server digest: ' + encoded_server_digest)
+
+            if ENABLE_AUTHORIZATION:
                 if digest != encoded_server_digest:
                     raise Unauthorized('Unauthorized access!')
 
