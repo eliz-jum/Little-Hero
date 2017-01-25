@@ -1,51 +1,31 @@
-angular.module('littleHero').controller('SettingsController', function($rootScope, $scope, $ionicHistory, $state){
+angular.module('littleHero').controller('SettingsController', function($rootScope, $scope, $ionicHistory, $state, childService){
 
   $scope.buttons = [
     {
       title: "Dane konta",
-      state: "accountSettings",
-      click: function(state) {
-        $state.go(state);
+      onClick: function() {
+        $state.go("accountSettings");
       }
     },
     {
       title: "Awatary",
-      state: "avatars",
-      click: function(state) {
-        $state.go(state);
+      onClick: function() {
+        $state.go("avatars");
       }
     },
     {
       title: "Zaproszenia",
-      state: "invitations",
-      click: function(state) {
-        $state.go(state);
+      onClick: function() {
+        $state.go("invitations");
       }
     },
     {
       title: "Wyloguj",
-      state: "login",
-      click: function(state) {
-        $rootScope.$emit('logout');
-        $state.go(state);
+      onClick: function() {
+        childService.clearAllData();
+        console.log(childService);
+        $state.go("login");
       }
     }
   ];
-
-    $scope.changeState = function(state) {
-        $state.go(state);
-    }
-
-  $scope.myGoBack = function() {
-    $backView = $ionicHistory.backView();
-    if ($backView) {
-      $backView.go();
-    }
-    else {
-      $state.go("main");
-    };
-  };
-  $scope.go = function ( path ) {
-    $location.path( path );
-  };
 });

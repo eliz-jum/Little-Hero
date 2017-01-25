@@ -3,8 +3,7 @@
 
     <ion-header-bar class="bar bar-header orange">
       <div class="buttons">
-        <button class="button button-icon icon ion-android-arrow-back"
-                ng-click="myGoBack()"></button>
+        <button class="button button-icon icon ion-android-arrow-back" ui-sref="mainTutor"></button>
       </div>
     </ion-header-bar>
 
@@ -13,7 +12,7 @@
       <div class="title"></div>
 
       <ion-list>
-        <ion-item class="background" ng-repeat="button in buttons" ng-click="changeState(button.state)">
+        <ion-item class="background" ng-repeat="button in buttons" ng-click="button.onClick()">
           {{ button.title }}
         </ion-item>
 
