@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
   "dependencies": {
-    "ionic-toast": "^0.2.0"
+    "ionic-toast": "^0.2.0",
+    "crypto-js": "^3.1.9"
   }
 }
