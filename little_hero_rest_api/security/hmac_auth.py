@@ -30,7 +30,7 @@ class HMACAuth(object):
         @wraps(f)
         def wrapper(*args, **kwargs):
             # todo: regex checking if authorization header is ok
-            if request.headers['Authorization']:
+            if False:
                 log.debug('Authorization header: ' + request.headers['Authorization'])
                 log.debug('Method and Url: ' + request.method + ' ' + request.url)
                 posix_time, nonce, digest = request.headers['Authorization'].split()[1].split(':', 2)
