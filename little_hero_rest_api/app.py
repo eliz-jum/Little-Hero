@@ -28,9 +28,9 @@ from flask import request
 
 @app.before_request
 def log_request_info():
-    log.debug('Path: %s %s', request.method, request.base_url)
-    log.debug('Headers sent: %s', request.headers)
-    log.debug('Body sent: %s', request.get_data())
+    pass#log.debug('Path: %s %s', request.method, request.base_url)
+    #log.debug('Headers sent: %s', request.headers)
+    #log.debug('Body sent: %s', request.get_data())
 
 @app.after_request
 def after(response):
