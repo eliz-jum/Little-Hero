@@ -63,7 +63,7 @@ def initialize_app(flask_app):
     CORS(blueprint)
     api.init_app(blueprint)
     api.add_namespace(child_namespace)
-    api.addg_namespace(avatar_namespace)
+    api.add_namespace(avatar_namespace)
     api.add_namespace(tutor_namespace)
     api.add_namespace(item_namespace)
     api.add_namespace(task_namespace)
