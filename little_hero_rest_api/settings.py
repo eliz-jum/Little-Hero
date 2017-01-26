@@ -8,7 +8,7 @@ RESTPLUS_VALIDATE = True
 RESTPLUS_MASK_SWAGGER = False
 #RESTPLUS_ERROR_404_HELP = False
 RESTPLUS_EASY_SWAGGER_AUTHORIZATION = False #True only for development phase todo: make use of it
-ENABLE_AUTHORIZATION = False
+ENABLE_AUTHORIZATION = True
 
 # SQLAlchemy settings
 SQLALCHEMY_DATABASE_URI = 'postgres://quwrbyzkcxxzwa:cueQfkHYBKCJTrOiwoDnfZkO1E@ec2-54-235-124-2.compute-1.amazonaws.com:5432/dcdvmp6lvciurs'

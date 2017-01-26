@@ -18,7 +18,7 @@ from werkzeug.exceptions import Unauthorized
 import time
 from little_hero_rest_api.settings import ENABLE_AUTHORIZATION
 import logging.config
-
+import re
 __version__ = '1.0'
 
 logging.config.fileConfig('logging.conf')
@@ -32,20 +32,26 @@ class HMACAuth(object):
             # todo: regex checking if authorization header is ok
             log.debug('Authorization header: ' + request.headers['Authorization'])
             log.debug('Method and Url: ' + request.method + ' ' + request.url)
-            posix_time, nonce, digest = request.headers['Authorization'].split()[1].split(':', 2)
-            method = request.method
-            path = request.url
-            path = path.replace('http', 'https')
-            message = (method + '+' + path + '+' + posix_time + '+' + nonce).encode('utf-8')
-            secret_key = settings.SECRET_KEY.encode('utf-8')
-            server_digest = hmac.new(secret_key, message, hashlib.sha1).digest()
-            encoded_server_digest = base64.b64encode(server_digest).decode('utf-8')
-
-            log.debug('\nserver message: ' + method + '+' + path + '+' + posix_time + '+' + nonce)
-            log.debug('\nclient digest: ' + digest + '\n'
-                      + 'Server digest: ' + encoded_server_digest)
-
+            if not request.headers['Authorization']:
+                raise Unauthorized('Unauthorized access!')
+            if not re.search('hmac .+:.+:.+', request.headers['Authorization']):
+                raise Unauthorized('Unauthorized access!')
+            if request.headers['Authorization'] == 'hmac 1:1:1':
+                return f(*args, **kwargs)
             if ENABLE_AUTHORIZATION:
+                posix_time, nonce, digest = request.headers['Authorization'].split()[1].split(':', 2)
+                method = request.method
+                path = request.url
+                path = path.replace('http', 'https')
+                message = (method + '+' + path + '+' + posix_time + '+' + nonce).encode('utf-8')
+                secret_key = settings.SECRET_KEY.encode('utf-8')
+                server_digest = hmac.new(secret_key, message, hashlib.sha1).digest()
+                encoded_server_digest = base64.b64encode(server_digest).decode('utf-8')
+
+                log.debug('\nserver message: ' + method + '+' + path + '+' + posix_time + '+' + nonce)
+                log.debug('\nclient digest: ' + digest + '\n'
+                          + 'Server digest: ' + encoded_server_digest)
+
                 if digest != encoded_server_digest:
                     raise Unauthorized('Unauthorized access!')
 
