@@ -26,14 +26,14 @@ class ItemsCollection(Resource):
 
     @hmac_auth.protected
     @api.header('Authorization', authorizations_header_desc)
-    @ns.param('avatar_id', 'For filtering by avatar id', 'query')
-    @ns.param('state', 'For filtering by item state', 'query')
+    #@ns.param('avatar_id', 'For filtering by avatar id', 'query')
+    #@ns.param('state', 'For filtering by item state', 'query')
     @api.marshal_list_with(item_full)
     def get(self):
         """Returns list of items."""
-        avatar_id = request.args.get('avatar_id')
-        state = request.args.get('state')
-        items = DAO.get_all(avatar_id, state) #todo: remove filtering?
+        #avatar_id = request.args.get('avatar_id')
+        #state = request.args.get('state')
+        items = DAO.get_all() #todo: remove filtering?
         return items
 
     @hmac_auth.protected
