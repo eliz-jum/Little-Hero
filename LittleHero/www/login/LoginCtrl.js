@@ -41,7 +41,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.checkIfAccountExists = function() {
       var hashedPass = CryptoJS.SHA1($scope.password).toString()
       for (index in tutors) {
-          if (tutors[index].mail == $scope.login && tutors[index].password == $scope.password) {
+          if (tutors[index].mail == $scope.login && tutors[index].password == hashedPass) {
               childService.tutorObj = tutors[index];
               childService.setTutorChildren();
               childService.isChild = 0;
@@ -49,7 +49,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
       }
 
       for (index in children) {
-          if (children[index].login == $scope.login && children[index].password == $scope.password) {
+          if (children[index].login == $scope.login && children[index].password == hashedPass) {
               childService.childObj = children[index];
               childService.setChildAvatarList();
               childService.isChild = 1;
