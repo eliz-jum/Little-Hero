@@ -18,10 +18,8 @@
       </div>
 
       <ion-list class="fixed-list" can-swipe="false" scroll="false">
-        <ion-item class="background" ng-click="showAvatarTasks(avatar)" ng-repeat="avatar in allAvatars track by $index" class="item-remove-animate">
-          <ion-content scroll="false" class="fixed-item">
-              <span>{{ avatar.name }}</span>
-          </ion-content>
+        <ion-item class="background" ng-click="showAvatarTasks(avatar)" ng-repeat="avatar in allAvatars | orderBy:'name' track by $index" class="item-remove-animate">
+          {{ avatar.name }}
         </ion-item>
         <ion-list>
     </ion-content>

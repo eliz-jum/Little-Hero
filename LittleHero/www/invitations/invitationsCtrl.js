@@ -64,16 +64,16 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
       $scope.showSpinner = true;
       console.log("invite", $scope.invite);
 
-    // dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
-    //       var index = $scope.invites.indexOf($scope.invite);
-    //       $scope.invites.splice(index, 1);
-    //       $scope.closeModal("newAvatar")
-    setTimeout(function() {
-      $scope.showSpinner = false;
-      $state.go('main');
-    },5000);
-    //       $scope.showToast("Utworzono nowego awatara!");
-    //   });
+        dataService.deleteInvite('children', childService.childObj.id, $scope.invite.id).then(function () {
+          var index = $scope.invites.indexOf($scope.invite);
+          $scope.invites.splice(index, 1);
+          $scope.closeModal("newAvatar");
+          setTimeout(function() {
+            $scope.showSpinner = false;
+            $state.go('main');
+          },5000);
+          $scope.showToast("Utworzono nowego awatara!");
+          });
       }
       else{
         $scope.invalid = true;
@@ -83,7 +83,7 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
     else {
       $scope.invalid = true;
       $scope.errorMessage = "Niepoprawne dane.";
-       }
+    }
   };
 
 

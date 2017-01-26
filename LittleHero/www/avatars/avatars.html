@@ -9,7 +9,7 @@
 
 <ion-content class="background has-header">
     <ion-list>
-        <ion-item class="background" ng-repeat="avatar in avatars">
+        <ion-item class="background" ng-repeat="avatar in avatars | orderBy:'name'">
             <div style="display: inline-block">
                 <div style="display: inline">{{avatar.name}}:</div>
                 <div style="display: inline; margin: 0 5px;"><i class="icon icon ion-flash"></i> {{avatar.level}}</div>

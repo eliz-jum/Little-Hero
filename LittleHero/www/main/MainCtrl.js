@@ -5,6 +5,8 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   $scope.showAvatar = false;
 
   $scope.$on('$ionicView.beforeEnter', function () {
+    $scope.allAvatars = [];
+    $scope.currentAvatar = null;
     $scope.arrowLeft = false;
     $scope.exclamationSettings = false;
     $scope.showAvatar = false;
@@ -246,11 +248,21 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     filterBy(item, childService.canBePutOnItems, $scope.filteredCanBePutOnEquipment);
     filterBy(item, childService.canBePurchasedItems, $scope.filteredCanBePurchasedEquipment);
     filterBy(item, childService.unavailableItems, $scope.filteredUnavailableEquipment);
-  }
+  };
+
+  $scope.emptyFirst = function(c1, c2) {
+    if (c1 == "empty") {
+      return -1;
+    }
+    else if (c2 == "empty") {
+      return 1;
+    }
+    return (c1 > c2) ? -1 : 1;
+  };
 
   $scope.showToast = function (message) {
     ionicToast.show(message, 'bottom', false, 2500);
-  }
+  };
 
   $interval(function () {
     dataService.getAvatarById(childService.currentAvatarId).then(function (res) {

@@ -3,7 +3,7 @@
     <div class="bar bar-header orange">
       <div class="row row-center orange">
         <div class="col col-40 item item-select avatar-select">
-          <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar, true)" ng-options="avatar.name for avatar in allAvatars track by avatar.id">
+          <select ng-model="currentAvatar" ng-change="setAvatarData(currentAvatar)" ng-options="avatar.name for avatar in allAvatars | orderBy:'name' track by avatar.id">
               <option value="">{{ currentAvatar.name }} </option>
           </select>
         </div>
@@ -82,7 +82,9 @@
 
 
     <ion-footer-bar class="button-footer orange">
+      <div class="inner-button-footer">
         <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="openModal(item)"/>
+      </div>
     </ion-footer-bar>
     <div ng-class="{'lh-spinner': showSpinner}">
       <img class="lh-spinner-img" src="http://i.imgur.com/kStqI6W.gif">
