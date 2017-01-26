@@ -36,13 +36,13 @@ def log_request_info():
 def after(response):
   # todo with response
 
-  # log.debug('Response status: %s', response.status)
-  # if response.content_type != 'application/javascript' and response.content_type != 'text/css; charset=utf-8' and \
-  #     response.content_type != 'application/font-sfnt' and response.content_type != 'application/octet-stream'\
-  #         and response.content_type != 'image/gif':
-  #   log.debug('Body returned %s', response.get_data())
-  # else:
-  #   log.debug('No body returned. application/javascript content_type')
+  log.debug('Response status: %s', response.status)
+  if response.content_type != 'application/javascript' and response.content_type != 'text/css; charset=utf-8' and \
+      response.content_type != 'application/font-sfnt' and response.content_type != 'application/octet-stream'\
+          and response.content_type != 'image/gif':
+    log.debug('Body returned %s', response.get_data())
+  else:
+    log.debug('No body returned. application/javascript content_type')
   return response
 
 
