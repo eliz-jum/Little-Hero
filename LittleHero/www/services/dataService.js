@@ -43,36 +43,8 @@ angular.module('littleHero').service("dataService", function($http) {
       },
 
 
-      getAvatarWornItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=worn").then(function(res) {
-          return res;
-        });
-      },
-      //to nam daje obiekty item-links a nie obiekty item
-      // {
-      //   avatar_id
-      //   sate = worn
-      //   item_id
-      //   id
-      // }
-      // id ciuchow sa w srodku
-      //tzreba petlą pojsc po calej tablicy i wywolywac getItem(id=item_id)
-      //zapisując ciuch trzeba mu dodać pole avatarItemLinksId bo to potrzebne do pacha
-      //pach zmienia stan itemu w item-links
-      getAvatarCanBePutOnItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=canBePutOn").then(function(res) {
-          return res;
-        });
-      },
-
-      getAvatarCanBePurchasedItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=canBePurchased").then(function(res) {
-          return res;
-        });
-      },
-
-      getAvatarUnavailableItemsIds: function(avatarId) {
-        return $http.get(BASE_PATH + "avatar-item-links/?avatar_id=" + avatarId + "&state=unavailable").then(function(res) {
+      getAvatarItemsByState: function(avatarId, state) {
+        return $http.get(BASE_PATH + "avatars/" + avatarId + "/items?state=" + state).then(function(res) {
           return res;
         });
       },
