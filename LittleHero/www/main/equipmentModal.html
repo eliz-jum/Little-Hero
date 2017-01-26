@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view class="equipment-modal">
   <ion-header-bar class="bar">
     <a class="button button-icon icon ion-android-arrow-back" ng-click="closeModal()"></a>
     <h1 class="title">Wybierz ekwipunek</h1>
@@ -22,8 +22,8 @@
   </ion-content>
 
   <ion-footer-bar class="button-footer">
-    <div >
-      <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
-    </div>
+  <div class="inner-button-footer">
+    <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
+  </div>
   </ion-footer-bar>
 </ion-modal-view>
