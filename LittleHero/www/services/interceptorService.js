@@ -12,7 +12,7 @@ angular.module('littleHero').factory('httpRequestInterceptor', function () {
         var signature = CryptoJS.HmacSHA1(message, '70cd581b735c4a4599d1a7fd6a8e3c22').toString(CryptoJS.enc.Base64);
         config.headers['Authorization'] = 'hmac ' + timestamp + ':' + nonce + ':' + signature;
         console.log(method + '\n' + url + '\n' + config.headers['Authorization'] + '\n' +
-        CryptoJS.MD5(secretKey).toString())
+        'secret_Key: ' + CryptoJS.MD5(secretKey).toString() + '\n' + message)
       }
       return config;
     }
