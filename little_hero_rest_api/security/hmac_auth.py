@@ -40,7 +40,7 @@ class HMACAuth(object):
             server_digest = hmac.new(secret_key, message, hashlib.sha1).digest()
             encoded_server_digest = base64.b64encode(server_digest).decode('utf-8')
 
-            log.debug('server message: ' + method + '+' + path + '+' + posix_time + '+' + nonce)
+            log.debug('\nserver message: ' + method + '+' + path + '+' + posix_time + '+' + nonce)
             log.debug('\nclient digest: ' + digest + '\n'
                       + 'Server digest: ' + encoded_server_digest)
 
