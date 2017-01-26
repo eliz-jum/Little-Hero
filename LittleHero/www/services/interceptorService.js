@@ -9,10 +9,10 @@ angular.module('littleHero').factory('httpRequestInterceptor', function () {
         var timestamp = Date.now().toString();
         var nonce = Math.random().toString();
         var message = method + '+' + url + '+' + timestamp + '+' + nonce
-        var signature = CryptoJS.HmacSHA1(message, '70cd581b735c4a4599d1a7fd6a8e3c22').toString(CryptoJS.enc.Base64);
+        var signature = CryptoJS.HmacSHA1(message, CryptoJS.MD5(secretKey).toString()).toString(CryptoJS.enc.Base64);
         config.headers['Authorization'] = 'hmac ' + timestamp + ':' + nonce + ':' + signature;
         console.log(method + '\n' + url + '\n' + config.headers['Authorization'] + '\n' +
-        'secret_Key: ' + CryptoJS.MD5(secretKey).toString() + '\n' + message)
+        'secret_Key: ' + CryptoJS.MD5(secretKey).toString() + '\nMessage: ' + message)
       }
       return config;
     }
