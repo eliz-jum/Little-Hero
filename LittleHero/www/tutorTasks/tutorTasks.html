@@ -25,7 +25,7 @@
             <ion-item class="row background" scroll="false" ng-click="editTask(task)">
                 <div class="task-name col col-70">{{ task.content }}</div>
                 <div class="task-details col col-10">${{task.reward}}</div>
-                <div class="task-details col col-10">{{task.experience}}XP</div>
+                <div class="task-details col col-20">{{task.experience}}XP</div>
 
                 <ion-option-button side="left" class="button button-balanced" ng-click="taskCompleted(task)">
                   <i class="icon ion-checkmark-round"></i>

@@ -1,10 +1,12 @@
 .notification-list {
-  .item-content {
-    min-height: 80px;
-  }
-
   .ng-binding {
     white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
     padding: 10px;
+  }
+
+  ion-list .item {
+    padding: 0;
   }
 }

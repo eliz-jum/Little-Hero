@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view class="equipment-modal">
   <ion-header-bar class="bar">
     <a class="button button-icon icon ion-android-arrow-back" ng-click="closeModal()"></a>
     <h1 class="title">Wybierz ekwipunek</h1>
@@ -6,14 +6,14 @@
 
   <ion-content>
     <div class="equipment">
-      <div class="equipment-item canBePutOn" ng-repeat="item in filteredCanBePutOnEquipment track by $index">
+      <div class="equipment-item canBePutOn" ng-repeat="item in filteredCanBePutOnEquipment | orderBy:'clazz':true:emptyFirst track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="putOn(item)"/>
       </div>
-      <div class="equipment-item canBePurchased" ng-repeat="item in filteredCanBePurchasedEquipment track by $index">
+      <div class="equipment-item canBePurchased" ng-repeat="item in filteredCanBePurchasedEquipment | orderBy: ['level','price'] track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="buy(item)"/>
         <div class="price-tag"><i class="icon icon ion-cash"></i> {{item.price}}</div>
       </div>
-      <div class="equipment-item unavailable" ng-repeat="item in filteredUnavailableEquipment track by $index">
+      <div class="equipment-item unavailable" ng-repeat="item in filteredUnavailableEquipment | orderBy: ['level','price'] track by $index">
         <img ng-src="{{item.iconSrc}}" ng-click="showToast('Jeszcze nie masz tego poziomu!')"/>
         <div class="lvl-tag"><i class="icon icon ion-flash"></i> {{item.level}}</div>
         <div class="price-tag"><i class="icon icon ion-cash"></i> {{item.price}}</div>
@@ -22,8 +22,8 @@
   </ion-content>
 
   <ion-footer-bar class="button-footer">
-    <div >
-      <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
-    </div>
+  <div class="inner-button-footer">
+    <img ng-src="{{item.iconSrc}}" ng-repeat="item in buttons" ng-click="filterDisplay(item)" ng-class="{selected: item == currentButton}"/>
+  </div>
   </ion-footer-bar>
 </ion-modal-view>

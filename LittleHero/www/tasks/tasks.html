@@ -23,8 +23,8 @@
         <div ng-repeat="task in tasks track by $index">
           <ion-item class="background row" scroll="false">
               <div class="task-name col col-70">{{ task.content }}</div>
-              <div class="task-details col-10 col">${{task.reward}}</div>
-              <div class="task-details col col-10">{{task.experience}}XP</div>
+              <div class="task-details col col-10">${{task.reward}}</div>
+              <div class="task-details col col-20">{{task.experience}}XP</div>
           </ion-item>
         </div>
       <ion-list>
