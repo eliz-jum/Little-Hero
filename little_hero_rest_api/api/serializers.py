@@ -19,7 +19,6 @@ MIN_PASS_LEN = 12
 
 child_for_post = api.model('Child for post', {
     'login': fields.String(required=True, description='Child login'),
-    'nickname': fields.String(required=True, description='Child nickname'),
     'password': fields.String(required=True, description='Child password', min_length=MIN_PASS_LEN),
     'mail': fields.String(required=True, description='Child e-mail', pattern=MAIL_PATTERN)
 })
