@@ -41,7 +41,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
     $scope.checkIfAccountExists = function() {
       var hashedPass = CryptoJS.SHA1($scope.password).toString()
       for (index in tutors) {
-          if (tutors[index].mail == $scope.login && tutors[index].password == hashedPass) {
+          if (tutors[index].login == $scope.login && tutors[index].password == hashedPass) {
               childService.tutorObj = tutors[index];
               childService.setTutorChildren();
               childService.isChild = 0;
