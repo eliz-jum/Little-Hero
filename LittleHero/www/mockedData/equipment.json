@@ -306,11 +306,18 @@
 
 
   {
-
     "type": "hair_back",
     "clazz": "wornByDefault",
     "iconSrc": "img/hair_back1_icon.svg",
     "imgSrc": "img/hair_back1.svg",
+    "level": 1,
+    "price": 0
+  },
+  {
+    "type": "hair_back",
+    "clazz": "allclazzes",
+    "iconSrc": "img/hair_back9_icon.svg",
+    "imgSrc": "img/hair_back9.svg",
     "level": 1,
     "price": 0
   },
@@ -504,7 +511,7 @@
     "iconSrc": "img/cowboy/top1_icon.svg",
     "imgSrc": "img/cowboy/top1.svg",
     "level": 1,
-    "price": 15
+    "price": 5
   },
   {
 
@@ -513,7 +520,7 @@
     "iconSrc": "img/cowboy/top2_icon.svg",
     "imgSrc": "img/cowboy/top2.svg",
     "level": 1,
-    "price": 15
+    "price": 8
   },
   {
 
@@ -521,19 +528,33 @@
     "clazz": "cowboy",
     "iconSrc": "img/cowboy/top3_icon.svg",
     "imgSrc": "img/cowboy/top3.svg",
-    "level": 1,
-    "price": 15
+    "level": 2,
+    "price": 10
   },
   {
-
     "type": "top",
     "clazz": "cowboy",
     "iconSrc": "img/cowboy/top4_icon.svg",
     "imgSrc": "img/cowboy/top4.svg",
-    "level": 1,
-    "price": 15
+    "level": 2,
+    "price": 13
   },
-
+  {
+    "type": "top",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top5_icon.svg",
+    "imgSrc": "img/cowboy/top5.svg",
+    "level": 3,
+    "price": 16
+  },
+  {
+    "type": "top",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/top6_icon.svg",
+    "imgSrc": "img/cowboy/top6.svg",
+    "level": 3,
+    "price": 20
+  },
 
 
 
