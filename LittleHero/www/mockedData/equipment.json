@@ -1580,6 +1580,24 @@
     "imgSrc": "img/cowboy/shoes1.svg",
     "level": 1,
     "price": 10
+  },
+  {
+
+    "type": "animal",
+    "clazz": "cowboy",
+    "iconSrc": "img/cowboy/animal1_icon.svg",
+    "imgSrc": "img/cowboy/animal1.svg",
+    "level": 1,
+    "price": 20
+  },
+  {
+
+    "type": "shoes",
+    "clazz": "mage",
+    "iconSrc": "img/mage/animal1_icon.svg",
+    "imgSrc": "img/mage/animal1.svg",
+    "level": 1,
+    "price": 20
   }
 
 
