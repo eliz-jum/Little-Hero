@@ -125,6 +125,10 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
     }
   ]
 
+  var hideSpinner = function () {
+    $scope.showSpinner = false;
+  }
+
   var dressAvatar = function (spinner) {
     var element;
     childService.wornItems.forEach(function (item) {
@@ -135,17 +139,17 @@ angular.module('littleHero').controller('MainController', function ($scope, $sta
   }
 
   $scope.setAvatarData = function (avatar, spinner) {
-    if (spinner == true) $scope.showSpinner = true;
+    $scope.showSpinner = true;
     console.log("avatar", avatar);
     cleanAvatarArrays();
     dataService.getAvatarById(avatar.id).then(function (res) {
       childService.currentAvatar = res.data;
       childService.currentAvatarId = childService.currentAvatar.id;
       $scope.currentAvatar = childService.currentAvatar;
-      childService.setWornItems(dressAvatar, true);
+      childService.setWornItems(dressAvatar);
       childService.setCanBePutOnItems();
       childService.setCanBePurchasedItems();
-      childService.setUnavailableItems();
+      childService.setUnavailableItems(true, hideSpinner);
       childService.setAvatarTasks();
       childService.setNotificationsArray();
     });

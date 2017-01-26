@@ -70,9 +70,9 @@ angular.module('littleHero').controller('InvitationsController', function ($scop
           $scope.closeModal("newAvatar");
           setTimeout(function() {
             $scope.showSpinner = false;
+            $scope.showToast("Utworzono nowego awatara!");
             $state.go('main');
           },5000);
-          $scope.showToast("Utworzono nowego awatara!");
           });
       }
       else{

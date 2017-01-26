@@ -182,9 +182,10 @@ angular.module('littleHero').factory('childService',function($state, dataService
       })
   }
 
-  childService.setUnavailableItems = function () {
+  childService.setUnavailableItems = function (spinner, callback) {
     dataService.getAvatarItemsByState(childService.currentAvatarId, "unavailable").then(function(res) {
       childService.unavailableItems = res.data;
+      if (spinner == true) callback();
     })
   }
 
