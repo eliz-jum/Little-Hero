@@ -73,7 +73,7 @@ angular.module('littleHero').controller('RegistrationController', function($scop
   var createAnAccount = function () {
     var account = {};
     account.login = $scope.login;
-    account.password = $scope.password;
+    account.password = CryptoJS.SHA1($scope.password).toString();
     account.mail = $scope.email;
 
     if ($scope.opiekun) {
