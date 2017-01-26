@@ -30,8 +30,9 @@ class HMACAuth(object):
         @wraps(f)
         def wrapper(*args, **kwargs):
             # todo: regex checking if authorization header is ok
-            log.debug('Authorization header: ' + request.headers['Authorization'])
-            log.debug('Method and Url: ' + request.method + ' ' + request.url)
+            log.debug('\nAuthorization header: ' + request.headers['Authorization'])
+            log.debug('\nMethod and Url: ' + request.method + ' ' + request.url)
+            log.debug('\nBody sent: %s', request.get_data())
             if not request.headers['Authorization']:
                 raise Unauthorized('Unauthorized access!')
             if not re.search('hmac .+:.+:.+', request.headers['Authorization']):
