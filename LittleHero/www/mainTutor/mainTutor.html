@@ -19,7 +19,7 @@
       </div>
 
       <ion-list class="fixed-list" can-swipe="false" scroll="false" >
-            <ion-item class="background" ng-click="showChildAvatars(child)" ng-repeat="child in children track by $index" class="item-remove-animate">
+            <ion-item class="background" ng-click="showChildAvatars(child)" ng-repeat="child in children | orderBy:'login' track by $index" class="item-remove-animate">
               {{ child.login }}
             </ion-item>
       </ion-list>

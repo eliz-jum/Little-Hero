@@ -1,4 +1,4 @@
-angular.module('littleHero').controller('tutorTasksController', function($scope, $state, $ionicModal, $http, dataService, childService){
+angular.module('littleHero').controller('tutorTasksController', function($scope, $state, $ionicModal, $http, dataService, childService, ionicToast){
 
   $scope.allAvatars = [];
 
@@ -14,9 +14,12 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
     $state.go("tutorAvatars");
   }
 
-
   $scope.settings = function() {
     $state.go("settings");
+  };
+
+  var showToast = function(message){
+    ionicToast.show(message, 'bottom', false, 2500);
   };
 
   $scope.taskCompleted = function (task) {
@@ -24,6 +27,7 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
     childService.completeTask(task);
     childService.addNotification("Udało się! Wykonałeś wyzwanie:  " + task.content +
       "  Dostajesz " + task.reward + " pieniędzy i " + task.experience + " doświadczenia!");
+    showToast("Wyzwanie zaliczone");
   }
 
   $scope.taskFailed = function (task) {
@@ -31,6 +35,7 @@ angular.module('littleHero').controller('tutorTasksController', function($scope,
     childService.failTask(task);
     childService.addNotification("Nie podołałeś wyzwaniu:  " + task.content +
       "  Tracisz " + task.reward + " pieniędzy i " + task.experience + " życia.");
+    showToast("Wyzwanie niewykonane");
   }
 
   $scope.editTask = function (task) {
