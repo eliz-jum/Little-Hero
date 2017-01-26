@@ -35,6 +35,7 @@ class HMACAuth(object):
             posix_time, nonce, digest = request.headers['Authorization'].split()[1].split(':', 2)
             method = request.method
             path = request.url
+            path = path.replace('http', 'https')
             message = (method + '+' + path + '+' + posix_time + '+' + nonce).encode('utf-8')
             secret_key = settings.SECRET_KEY.encode('utf-8')
             server_digest = hmac.new(secret_key, message, hashlib.sha1).digest()
