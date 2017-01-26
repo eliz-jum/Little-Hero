@@ -95,7 +95,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
   }
 
   childService.putItemIntoCorrectArray = function (item, type, data) {
-    item.avatarItemLinksId = data.id;
+    item.avatar_item_link_id = data.id;
     if (type == 0){
       childService.wornItems.push();
     }
@@ -113,22 +113,6 @@ angular.module('littleHero').factory('childService',function($state, dataService
   childService.fillNewAvatarItemArrays = function (avatarClass, newAvatarId) {
     dataService.getItems().then(function(res){
       var allItems = res.data;
-      // allItems[0] = {
-      //   id: 295,
-      //   type: "bottom",
-      //   clazz: "allclazzes",
-      //   iconSrc: "img/empty_icon.svg",
-      //   imgSrc: "img/empty.svg",
-      //   level: 1,
-      //   price: 0
-      // };
-      // console.log("foreach!");
-      //
-      // allItems.forEach(function (item) {
-      //   if (item.id == 295){
-      //     console.log("295!!!!!",item);
-      //   }
-      // });
 
 
       //robi ze zmiennych tablice (bez tego są obiektami i nie da się zrobić push)
@@ -179,64 +163,28 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
   childService.setWornItems = function (callback) {
-    dataService.getAvatarWornItemsIds(childService.currentAvatarId).then(function (res) {
-      childService.wornItems = res.data;
-        childService.wornItems.forEach(function (item, i) {
-          var avatarItemLinksId = item.id;
-          var itemId = item.item_id;
-          dataService.getItem(itemId).then(function (res) {
-            childService.wornItems[i] = res.data;
-            childService.wornItems[i].avatarItemLinksId = avatarItemLinksId;
-            if (i == childService.wornItems.length-1){
-              callback();
-            }
-          })
-        })
-      }
-    )
+    dataService.getAvatarItemsByState(childService.currentAvatarId, "worn").then(function (res) {
+        childService.wornItems = res.data;
+        callback();
+      })
+
   }
 
   childService.setCanBePutOnItems = function () {
-      dataService.getAvatarCanBePutOnItemsIds(childService.currentAvatarId).then(function(res) {
+      dataService.getAvatarItemsByState(childService.currentAvatarId, "canBePutOn").then(function(res) {
         childService.canBePutOnItems = res.data;
-        childService.canBePutOnItems.forEach(function (item, i) {
-          var avatarItemLinksId = item.id;
-          var itemId = item.item_id;
-          dataService.getItem(itemId).then(function (res) {
-            childService.canBePutOnItems[i] = res.data;
-            childService.canBePutOnItems[i].avatarItemLinksId = avatarItemLinksId;
-          })
-        })
     })
   }
 
   childService.setCanBePurchasedItems = function () {
-     dataService.getAvatarCanBePurchasedItemsIds(childService.currentAvatarId).then(function(res) {
+     dataService.getAvatarItemsByState(childService.currentAvatarId, "canBePurchased").then(function(res) {
           childService.canBePurchasedItems = res.data;
-          childService.canBePurchasedItems.forEach(function (item, i) {
-            var avatarItemLinksId = item.id;
-            var itemId = item.item_id;
-            dataService.getItem(itemId).then(function (res) {
-              childService.canBePurchasedItems[i] = res.data;
-              childService.canBePurchasedItems[i].avatarItemLinksId = avatarItemLinksId;
-            })
-          })
       })
   }
 
-
   childService.setUnavailableItems = function () {
-    dataService.getAvatarUnavailableItemsIds(childService.currentAvatarId).then(function(res) {
+    dataService.getAvatarItemsByState(childService.currentAvatarId, "unavailable").then(function(res) {
       childService.unavailableItems = res.data;
-      childService.unavailableItems.forEach(function (item, i) {
-        var avatarItemLinksId = item.id;
-        var itemId = item.item_id;
-        dataService.getItem(itemId).then(function (res) {
-          childService.unavailableItems[i] = res.data;
-          childService.unavailableItems[i].avatarItemLinksId = avatarItemLinksId;
-        })
-      })
-
     })
   }
 
@@ -248,8 +196,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
     childService.canBePurchasedItems.splice(itemIndex, 1);
     childService.canBePutOnItems.push(item);
 
-    //dataService.patchItem(item.id, {price: 0}); //todo tego chyba nie powinno sie robić nie?
-    dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePutOn"});
+    dataService.changeEquipmentItemState(item.avatar_item_link_id, {state: "canBePutOn"});
     dataService.patchAvatar(childService.currentAvatarId, {money: childService.currentAvatar.money});
   }
 
@@ -274,8 +221,8 @@ angular.module('littleHero').factory('childService',function($state, dataService
 
 
     //drugi parametr to newState
-    dataService.changeEquipmentItemState(oldItem.avatarItemLinksId, {state: "canBePutOn"});
-    dataService.changeEquipmentItemState(newItem.avatarItemLinksId, {state: "worn"});
+    dataService.changeEquipmentItemState(oldItem.avatar_item_link_id, {state: "canBePutOn"});
+    dataService.changeEquipmentItemState(newItem.avatar_item_link_id, {state: "worn"});
   },
 
   childService.setNotificationsArray = function () {
@@ -304,7 +251,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       for (var i=childService.unavailableItems.length-1; i>=0; i--){
         var item = childService.unavailableItems[i];
         if (item.level == childService.currentAvatar.level) {
-          dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "canBePurchased"});
+          dataService.changeEquipmentItemState(item.avatar_item_link_id, {state: "canBePurchased"});
         }
       }
     },3000);
@@ -325,7 +272,7 @@ angular.module('littleHero').factory('childService',function($state, dataService
       childService.canBePurchasedItems.forEach(function (item) {
         if (item.level > childService.currentAvatar.level) {
           childService.unavailableItems.push(item);
-          dataService.changeEquipmentItemState(item.avatarItemLinksId, {state: "unavailable"});
+          dataService.changeEquipmentItemState(item.avatar_item_link_id, {state: "unavailable"});
         }
       })
     },3000);

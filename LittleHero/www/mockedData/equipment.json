@@ -544,8 +544,8 @@
     "id": 175,
     "type": "top",
     "clazz": "cowboy",
-    "iconSrc": "img/cowboy/top3_icon.svg",
-    "imgSrc": "img/cowboy/top3.svg",
+    "iconSrc": "img/cowboy/top4_icon.svg",
+    "imgSrc": "img/cowboy/top4.svg",
     "level": 1,
     "price": 15
   },
