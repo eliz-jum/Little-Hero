@@ -20,7 +20,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         dataService.getChildren().then(function(res) {
             children = res;
         });
-      
+
     });
 
     $scope.validate = function() {
@@ -72,7 +72,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
       }
       else {
         $scope.invalid = true;
-        $scope.errorMessage = "konto o podanych danych nie istnieje";
+        $scope.errorMessage = "Takie konto nie istnieje.";
 
       }
     };
