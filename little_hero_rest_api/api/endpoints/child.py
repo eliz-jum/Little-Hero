@@ -46,8 +46,8 @@ class ChildrenCollection(Resource):
         child = child_dao.create(data)
         msg = Message('Welcome to Little Hero ' + child.login +'!',
                       sender='registration@mylittlehero.eu', recipients=[child.mail])
-        msg.body = 'Welcome to Little Hero! \n\n You have successfully registered \n ' \
-                   'Your login is: ' + child.login + '.'
+        msg.body = 'Welcome to Little Hero! \n\n    You have successfully registered \n ' \
+                   '    Your login is: ' + child.login + '.'
         mail.send(msg)
         return child, 201
 
