@@ -50,7 +50,7 @@ class TutorsCollection(Resource):
         tutor = tutor_dao.create(data)
         msg = Message('Welcome to Little Hero ' + tutor.login + '!',
                       sender='registration@mylittlehero.eu', recipients=[tutor.mail])
-        msg.body = 'Welcome to Little Hero! \n\n    You have successfully registered as a tutor. \n ' \
+        msg.body = 'Welcome to Little Hero! \n\n    You have successfully registered as a tutor. \n' \
                    '    Your login is: ' + tutor.login + '.'
         mail.send(msg)
 
