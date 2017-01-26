@@ -59,7 +59,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         $scope.login =  null;
         setTimeout(function () {
           $state.go("main");
-        }, 500);
+        }, 3000);
 
       }
       else if (childService.isChild == 0) {
@@ -67,7 +67,7 @@ angular.module('littleHero').controller('LoginController', function($scope, $sta
         $scope.login =  null;
         setTimeout(function () {
           $state.go("mainTutor");
-        }, 500);
+        }, 3000);
 
       }
       else {
